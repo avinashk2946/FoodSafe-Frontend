@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-lg-4 col-md-4">
+      </div>
+      <div class="col-lg-4 col-md-4">
+          <mat-tab-group [selectedIndex]="selectedTabIndex" (focusChange)="onLinkClick($event)">
+              <mat-tab label="Round Trip">
+              </mat-tab>
+              <mat-tab label="One Way">
+                </mat-tab>
+          </mat-tab-group>
+      </div>
+      <div class="col-lg-2 col-md-2">
+        </div>
+  </div>
+
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true" (opened)="false" hideToggle="true">
+    <mat-panel-description>
+      <form class="example-form" [formGroup]="searchFlight"  novalidate>
+        <div class="example-container">
+            <div class="col-lg-2 col-md-2">
+              </div>
+          <div class="col-lg-9 col-md-9">
+            <div class="example-container" >
+              <div class="col-lg-6 col-md-6">
+                <mat-form-field>
+                    <input matInput placeholder="From" formControlName="from" aria-label="State" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                        <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+                        <span>{{ state.name }}</span> 
+                       
+                      </mat-option>
+                    </mat-autocomplete>
+                 </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                  <mat-form-field>
+                      <input matInput placeholder="To" formControlName="to" aria-label="State1" [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let state of filteredToStates | async" [value]="state.name">
+                          <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+                          <span>{{ state.name }}</span> 
+                         
+                        </mat-option>
+                      </mat-autocomplete>
+                   </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker"  formControlName="fromDate"  placeholder="Depart Date">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker1" formControlName="toDate"  placeholder="Return Date" [disabled]=" this.selectedTabIndex==1">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+              </div>
+            
+              <div class="col-lg-6 col-md-6">
+                <mat-form-field>
+                  <mat-select placeholder="Passengers"  formControlName="passenger" >
+                    <mat-option *ngFor="let pass of passengers" [value]="pass.value">
+                      {{ pass.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        <div class="example-container">
+            <div class="col-lg-4 col-md-4">
+              </div>
+              <div class="col-lg-8 col-md-8">
+                  <button mat-raised-button color="primary" (click)="findFlight()" [disabled]="!searchFlight.valid" type="submit" class="align_upload">FIND FLIGHTS</button>
+
+              </div>
+              <div class="col-lg-2 col-md-2">
+                </div>
+          </div>
+      </form>
+    </mat-panel-description>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
