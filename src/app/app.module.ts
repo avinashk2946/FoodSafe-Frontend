@@ -1,98 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule, routingComponents } from './app-routing/app-routing.module';
-import { HttpModule } from "@angular/http";
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ViewFlightsComponent } from './components/view-flights/view-flights.component' ;
+
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { SearchFlightComponent } from './components/search-flight/search-flight.component';
-import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatStepperModule,
-  
-} from '@angular/material';
-import {DataTableModule,SharedModule} from 'primeng/primeng';
+import { AdminComponent } from './layout/admin/admin.component';
+import { AuthComponent } from './layout/auth/auth.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SharedModule} from './shared/shared.module';
+import {MenuItems} from './shared/menu-items/menu-items';
+import {BreadcrumbsComponent} from './layout/admin/breadcrumbs/breadcrumbs.component';
+
+
 @NgModule({
   declarations: [
-    routingComponents,
     AppComponent,
-    SearchFlightComponent,
-    ViewFlightsComponent,
+    AdminComponent,
+    AuthComponent,
+    BreadcrumbsComponent
   ],
   imports: [
-  HttpModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,  
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatStepperModule,
-    DataTableModule,
+    AppRoutingModule,
     SharedModule
-    
   ],
-  providers: [],
+  providers: [MenuItems],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
