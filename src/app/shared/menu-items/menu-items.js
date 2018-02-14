@@ -30,7 +30,7 @@ var MENUITEMS = [
                 ]
             }
         ],
-    },
+    }/*,
     {
         label: 'UI Element',
         main: [
@@ -467,7 +467,7 @@ var MENUITEMS = [
                 icon: 'icon-layout-list-post'
             }
         ]
-    }
+    }*/
 ];
 var MenuItems = (function () {
     function MenuItems() {

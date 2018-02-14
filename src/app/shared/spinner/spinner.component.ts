@@ -1,7 +1,8 @@
-import {Component, Input, OnDestroy, Inject, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, Inject, ViewEncapsulation} from '@angular/core';
 import {Spinkit} from './spinkits';
 import {Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
+import {LoadingService} from '../../common/loading.service';
 
 @Component({
     selector: 'app-spinner',
@@ -12,13 +13,15 @@ import {DOCUMENT} from '@angular/common';
     ],
     encapsulation: ViewEncapsulation.None
 })
-export class SpinnerComponent implements OnDestroy {
-    public isSpinnerVisible = true;
+export class SpinnerComponent implements OnDestroy, OnInit {
+    public isSpinnerVisible = false;
     public Spinkit = Spinkit;
     @Input() public backgroundColor = 'rgba(255, 255, 255, 0.8)';
     @Input() public spinner = Spinkit.skLine;
-    constructor(private router: Router, @Inject(DOCUMENT) private document: Document) {
-        this.router.events.subscribe(event => {
+    constructor(private router: Router,
+        private loadingService: LoadingService,
+     @Inject(DOCUMENT) private document: Document) {
+        /*this.router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 this.isSpinnerVisible = true;
             } else if ( event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
@@ -26,8 +29,17 @@ export class SpinnerComponent implements OnDestroy {
             }
         }, () => {
             this.isSpinnerVisible = false;
-        });
+        });*/
     }
+
+    ngOnInit(){
+        this.loadingService.userChangeEvent.subscribe(isActive => {
+            this.isSpinnerVisible =  isActive;
+        })
+    }
+
+
+      
 
     ngOnDestroy(): void {
         this.isSpinnerVisible = false;
