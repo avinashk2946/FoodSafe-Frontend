@@ -39,8 +39,11 @@ const MENUITEMS = [
         state: 'dashboard',
         short_label: 'D',
         name: 'Dashboard',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-home',
+        external: '/login',
+        type: 'link',
+
         // children: [
         //   {
         //     state: 'default',
@@ -105,8 +108,10 @@ const MENUITEMS = [
         state: 'basic',
         short_label: 'B',
         name: 'Basic',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-layout-grid2-alt',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -222,8 +227,10 @@ const MENUITEMS = [
         state: 'forms',
         short_label: 'F',
         name: 'Form',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-layers',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -272,8 +279,10 @@ const MENUITEMS = [
         state: 'bootstrap-table',
         short_label: 'B',
         name: 'Bootstrap Table',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-receipt',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -325,8 +334,10 @@ const MENUITEMS = [
         state: 'charts',
         short_label: 'C',
         name: 'Charts',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-bar-chart-alt',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -375,8 +386,10 @@ const MENUITEMS = [
         state: 'auth',
         short_label: 'A',
         name: 'Authentication',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-id-badge',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -485,8 +498,10 @@ const MENUITEMS = [
         state: 'task',
         short_label: 'T',
         name: 'Task',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-check-box',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -513,8 +528,10 @@ const MENUITEMS = [
         state: 'invoice',
         short_label: 'I',
         name: 'Invoice',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-layout-media-right',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
@@ -554,8 +571,10 @@ const MENUITEMS = [
         state: '',
         short_label: 'M',
         name: 'Menu Levels',
-        type: 'sub',
+        // type: 'sub',
         icon: 'icon-direction-alt',
+        external: '/login',
+        type: 'link',
       },
       //   children: [
       //     {
