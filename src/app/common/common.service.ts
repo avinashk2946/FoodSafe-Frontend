@@ -29,9 +29,10 @@ export class CommonService {
             GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,
             dataObject.payload, 
             this._options).timeout(GLOBAL_PROPERTIES.REQUEST_TIMEOUT * 1000); 
-        }/*else if (dataObject.method == 'GET') {
-           return '';
-        }*/
+        }else if (dataObject.method == 'GET') {
+            let baseUrl = "http://localhost/FS_Resource/api/";
+           return this.http.get(baseUrl + dataObject.actionName);
+        }
     }
     
     showSuccessMsg(msg): void {

@@ -1,6 +1,6 @@
 
 export const GLOBAL_PROPERTIES = Object.freeze({
-    BASE_API_URL: 'http://10.56.110.174:7001/mobgw2/',
+    BASE_API_URL: 'https://sit.airtelmoney.in/sitretp177/',
     FE_SESSIONID_PREFIX: 'ECOM',
     REQUEST_TIMEOUT: 60,
     CHANNEL: 'ANDROID'
@@ -8,8 +8,8 @@ export const GLOBAL_PROPERTIES = Object.freeze({
 
 export const API_ACTIONS = Object.freeze({
     login: {
-        initiateEcom: 'initiateEcom.action',
-        sendOtp: 'ecomSendOtp.action',
+        loginUser: 'loginUser.action',
+        fetchConfig: 'fetchConfig.json',
         verifyOtp: 'ecomVerifyOtp.action',
         verifymPin: 'ecomVerifyMpin.action'
     },
