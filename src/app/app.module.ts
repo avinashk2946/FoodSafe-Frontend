@@ -23,6 +23,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './common/auth.service';
 import { LoadingService } from './common/loading.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 
@@ -31,7 +32,8 @@ import { LoadingService } from './common/loading.service';
     AppComponent,
     AdminComponent,
     BreadcrumbsComponent,
-    LoginComponent
+    LoginComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

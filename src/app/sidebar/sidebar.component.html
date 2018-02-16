@@ -1,0 +1,39 @@
+<aside id="sidebar-left" class="main-sidebar">
+	<div class="slimScrollDiv"  >
+		<section class='sidebar' >
+			<ul class="sidebar-menu">
+				<li *ngFor="let nav of navlist" (mouseenter)="expanditonhover(true)" (mouseleave)="expanditonhover(false)"  class="treeview {{nav.subopen?'menu-open':''}} {{nav.class}}" routerLinkActive="active" >
+					<ng-container *ngIf="'submenu'!==nav.type">
+
+						<a *ngIf="!nav.external" [routerLink]="nav.link"  routerLinkActive="active" >
+							<i class="fa fa-{{nav.icon}}"  aria-hidden="true"></i>
+							<span>{{nav.name}}</span>
+						</a>
+						<a *ngIf="nav.external" [href]="nav.link"  (mouseenter)="expanditonhover(true)" (mouseleave)="expanditonhover(false)" class="treeview" >
+							<i class="fa fa-{{nav.icon}}" aria-hidden="true"></i>
+							<span>{{nav.name}}</span>
+						</a>
+					</ng-container>
+					<ng-container *ngIf="'submenu'===nav.type">
+						<a  href="#" (click)="$event.preventDefault();nav.subopen=!nav.subopen" (mouseenter)="expanditonhover(true)" (mouseleave)="expanditonhover(false)"  >
+							<i class="fa fa-{{nav.icon}}" aria-hidden="true"></i>
+							<span>{{nav.name}}</span>
+						</a>
+						<ul class="treeview-menu" [style.display]="nav.subopen?'block':'none'">
+							<li *ngFor="let navsub of nav.submenu" routerLinkActive="active">
+								<a *ngIf="!navsub.external" [routerLink]="navsub.link"   >
+									<i class="fa fa-circle-o"  aria-hidden="true"></i>
+									<span>{{navsub.name}}</span>
+								</a>
+								<a *ngIf="navsub.external" [href]="navsub.link"  >
+									<i class="fa fa-circle-o" aria-hidden="true"></i>
+									<span>{{navsub.name}}</span>
+								</a>
+							</li>
+						</ul>
+					</ng-container>
+				</li>
+			</ul>
+		</section>
+	</div>
+</aside>
