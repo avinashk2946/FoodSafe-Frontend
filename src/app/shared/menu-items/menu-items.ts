@@ -1,11 +1,5 @@
 import {Injectable} from '@angular/core';
 
-
-export interface label {
- label: string;
-}
-
-
 export interface BadgeItem {
   type: string;
   value: string;
@@ -29,8 +23,7 @@ export interface MainMenuItems {
   icon: string;
   badge?: BadgeItem[];
   children?: ChildrenItems[];
-  label?: string;
-
+  label?:string;
 }
 
 export interface Menu {
@@ -40,12 +33,12 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    // label: 'Navigation',
+    label: '',
     main: [
       {
         state: 'dashboard',
         short_label: 'D',
-        name: 'Example ',
+        name: 'Dashboard',
         type: 'sub',
         icon: 'icon-home',
         // children: [
@@ -106,15 +99,15 @@ const MENUITEMS = [
     ],
   },
   {
-    // label: 'UI Element',
+    label: '',
     main: [
       {
         state: 'basic',
         short_label: 'B',
-        name: 'Example 0',
+        name: 'Basic',
         type: 'sub',
         icon: 'icon-layout-grid2-alt',
-      }
+      },
       //   children: [
       //     {
       //       state: 'alert',
@@ -195,7 +188,7 @@ const MENUITEMS = [
       //     },
       //     {
       //       state: 'notify',
-      //       name: 'NOTIFY',
+      //       name: 'PNOTIFY',
       //       badge: [
       //         {
       //           type: 'info',
@@ -220,17 +213,18 @@ const MENUITEMS = [
       //   type: 'link',
       //   icon: 'icon-reload rotate-refresh'
       // }
-    ]
+    ],
   },
   {
-    // label: 'Forms',
+    label: '',
     main: [
       {
         state: 'forms',
         short_label: 'F',
-        name: 'Example 1',
+        name: 'Form',
         type: 'sub',
         icon: 'icon-layers',
+      },
       //   children: [
       //     {
       //       state: 'basic',
@@ -269,17 +263,18 @@ const MENUITEMS = [
       //   type: 'link',
       //   icon: 'icon-shortcode'
       // }
-    ]
+    ],
   },
   {
-    // label: 'Tables',
+    label: '',
     main: [
       {
         state: 'bootstrap-table',
         short_label: 'B',
-        name: 'Example 2',
+        name: 'Bootstrap Table',
         type: 'sub',
         icon: 'icon-receipt',
+      },
       //   children: [
       //     {
       //       state: 'basic',
@@ -321,17 +316,18 @@ const MENUITEMS = [
       //     }
       //   ]
       // }
-    ]
+    ],
   },
   {
-    // label: 'Chart And Map',
+    label: '',
     main: [
       {
         state: 'charts',
         short_label: 'C',
-        name: 'Example 3',
+        name: 'Charts',
         type: 'sub',
         icon: 'icon-bar-chart-alt',
+      },
       //   children: [
       //     {
       //       state: 'google',
@@ -370,17 +366,18 @@ const MENUITEMS = [
       //   icon: 'icon-mobile',
       //   target: true
       // }*/
-    ]
+    ],
   },
   {
-    // label: 'Pages',
+    label: '',
     main: [
       {
         state: 'auth',
         short_label: 'A',
-        name: 'Example 4',
+        name: 'Authentication',
         type: 'sub',
         icon: 'icon-id-badge',
+      },
       //   children: [
       //     {
       //       state: 'login',
@@ -479,17 +476,18 @@ const MENUITEMS = [
       //     }
       //   ]
       // }
-    ]
+    ],
   },
   {
-    // label: 'App',
+    label: '',
     main: [
       {
         state: 'task',
         short_label: 'T',
-        name: 'Example 5',
+        name: 'Task',
         type: 'sub',
         icon: 'icon-check-box',
+      },
       //   children: [
       //     {
       //       state: 'list',
@@ -509,14 +507,15 @@ const MENUITEMS = [
     ]
   },
   {
-    // label: 'Extension',
+    label: '',
     main: [
       {
         state: 'invoice',
         short_label: 'I',
-        name: 'Example 6',
+        name: 'Invoice',
         type: 'sub',
         icon: 'icon-layout-media-right',
+      },
       //   children: [
       //     {
       //       state: 'basic',
@@ -546,17 +545,18 @@ const MENUITEMS = [
       //   icon: 'icon-file',
       //   target: true
       // }*/
-    ]
+    ],
   },
   {
-    // label: 'Other',
+    label: '',
     main: [
       {
         state: '',
         short_label: 'M',
-        name: 'Example 7',
+        name: 'Menu Levels',
         type: 'sub',
         icon: 'icon-direction-alt',
+      },
       //   children: [
       //     {
       //       state: '',
@@ -608,20 +608,20 @@ const MENUITEMS = [
       //   type: 'link',
       //   icon: 'icon-layout-sidebar-left'
       // }
-    ]
+    ],
   },
   {
-    // label: 'Support',
+    label: '',
     main: [
-      {
-        state: 'documentation',
-        short_label: 'D',
-        name: 'Example 8',
-        external: 'http://html.codedthemes.com/guru-able/doc-angular-4',
-        type: 'external',
-        icon: 'icon-file',
-        target: true
-      },
+      // {
+      //   state: 'documentation',
+      //   short_label: 'D',
+      //   name: 'Documentation',
+      //   external: 'http://html.codedthemes.com/guru-able/doc-angular-4',
+      //   type: 'external',
+      //   icon: 'icon-file',
+      //   target: true
+      // },
       // {
       //   state: 'submit-issue',
       //   short_label: 'S',
