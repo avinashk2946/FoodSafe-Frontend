@@ -36,12 +36,12 @@ const MENUITEMS = [
     label: '',
     main: [
       {
-        state: 'dashboard',
+        state: 'po',
         short_label: 'D',
-        name: 'Dashboard',
+        name: 'PO',
         // type: 'sub',
         icon: 'icon-home',
-        external: '/login',
+        external: '/po',
         type: 'link',
 
         // children: [
