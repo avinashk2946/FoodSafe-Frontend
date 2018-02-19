@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 	loginForm : FormGroup;
   companyId : string;
   logoUrl : any;
+  backgroundImgUrl : any;
 
   constructor(private _dataService : DataService, private _router : Router, private fb : FormBuilder,private loginSrvc: LoginService,private comonSrvc: CommonService,private locationStrategy: LocationStrategy) { 
     var absUrl = (<any>this.locationStrategy)._platformLocation.location.href;
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.logoUrl = "http://localhost/FS_Resource/images/Logo-small-bottom.png";
     this.onFetchConfig(this.companyId);
   	this.loginForm = this.fb.group({
   		'username' : ['', [Validators.required, Validators.minLength(6)]],
@@ -36,8 +38,9 @@ export class LoginComponent implements OnInit {
   onFetchConfig(companyId) {
     this.loginSrvc.fetchConfig(companyId).subscribe(
       (resData: any) => {
+      resData = {"logoUrl":"http://localhost/FS_Resource/images/Logo-small-bottom.png","themColor":"","backgroundImgUrl":"http://localhost/FS_Resource/images/pic.png"};
       this.logoUrl = resData.logoUrl;
-      console.log('this.configData',this.logoUrl);
+      this.backgroundImgUrl = resData.backgroundImgUrl;
     }, err => { 
       if (err.status === 401) {
       }

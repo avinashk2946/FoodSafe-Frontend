@@ -16,6 +16,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
       { path: 'dashboard',loadChildren: './theme/dashboard/dashboard.module#DashboardModule' },
+      {
+        path: 'rawmaterial',
+        loadChildren: './theme/rawmaterial/rawmaterial.module#RawmaterialModule'
+      }
     ]
   },
 
@@ -25,7 +29,7 @@ const routes: Routes = [
 
   { path:'sidebar',component:SidebarComponent,},
 
-  { path:'rawmaterial',component:RawMaterialComponent,},
+  { path:'rawmaterial',component:RawMaterialComponent},
 
   { path:'rawmaterial/rawmaterialdetails',component:RawMaterialDetailsComponent,},
 

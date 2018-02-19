@@ -11,6 +11,20 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
     constructor(private auth: AuthService, private loadingSrvc: LoadingService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        /*for json mock start*/
+        if (req.responseType == 'json') {
+            req = req.clone({ responseType: 'text' });
+
+            return next.handle(req).map(response => {
+                if (response instanceof HttpResponse) {
+                    response = response.clone<any>({ body: JSON.parse(response.body) });
+                }
+
+                return response;
+            });
+        }
+        /*for json mock start*/
         let token = this.auth.getToken();
         this.loadingSrvc.showLoader();
         if (token) {
@@ -39,5 +53,7 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
                 }
             });
         }
+
+
     };
 };
