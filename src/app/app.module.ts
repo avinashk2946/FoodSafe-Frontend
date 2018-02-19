@@ -23,7 +23,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './common/auth.service';
 import { LoadingService } from './common/loading.service';
-import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PoComponent } from './components/po/po.component';
 
 

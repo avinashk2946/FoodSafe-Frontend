@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {LoginComponent} from './theme/login/login.component';
 import {PoComponent} from './components/po/po.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 const routes: Routes = [
   {  path : '',redirectTo : 'login', pathMatch : 'full'},
@@ -17,6 +18,8 @@ const routes: Routes = [
   {path: 'login',component : LoginComponent,},
 
   { path:'po',component:PoComponent,},
+ 
+  { path:'sidebar',component:PoComponent,},
 
   {path : '**', redirectTo : 'login',pathMatch : 'full'}
 
