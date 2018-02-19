@@ -26,7 +26,10 @@ import { LoadingService } from './common/loading.service';
 
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PoComponent } from './components/po/po.component';
-
+import { RawMaterialComponent } from './components/raw-material/raw-material.component';
+import { RawMaterialDetailsComponent } from './components/raw-material-details/raw-material-details.component';
+import { RawMaterialTableComponent } from './components/raw-material-table/raw-material-table.component';
+import {RawMaterialService} from './service/raw-material.service';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import { PoComponent } from './components/po/po.component';
     BreadcrumbsComponent,
     LoginComponent,
     SidebarComponent,
-    PoComponent
+    PoComponent,
+    RawMaterialComponent,
+    RawMaterialDetailsComponent,
+    RawMaterialTableComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,7 @@ import { PoComponent } from './components/po/po.component';
   DataService,
   CommonService,
    AuthService,
+   RawMaterialService,
    { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
    LoadingService],
   bootstrap: [AppComponent]

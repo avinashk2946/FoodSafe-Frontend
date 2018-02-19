@@ -35,23 +35,35 @@ const MENUITEMS = [
     label: '',
     main: [
       {
-        state: 'Corporate Dashboard',
+        state: 'Dashboard',
         short_label: 'D',
         name: 'Dashboard',
         type: 'sub',
         icon: 'icon-home',
         children: [
+        {
+            state: 'Corporate Dashboard',
+            name: 'Corporate Dashboard',
+            type: 'link',
+            link:'/po'
+          },
           {
             state: 'Plant Dashboard',
-            name: 'Plant Dashboard'
+            name: 'Plant Dashboard',
+            type: 'link',
+            link:'/po'
           },
           {
             state: 'My Dashboard',
-            name: 'My Dashboard'
+            name: 'My Dashboard',
+            type: 'link',
+            link:'/po'
           },
           {
             state: 'Summary',
             name: 'Summary',
+            type: 'link',
+            link:'/po'
             // badge: [
             //   {
             //     type: 'info',
@@ -485,8 +497,10 @@ const MENUITEMS = [
         icon: 'icon-check-box',
         children: [
           {
-            state: ' Raw Materials',
-            name: ' Raw Materials'
+            state: 'rawmaterial',
+            name: ' Raw Materials',
+            type: 'link',
+            link:'/rawmaterial'
           }, {
             state: 'Packaging',
             name: 'Packaging'
