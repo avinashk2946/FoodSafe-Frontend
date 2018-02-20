@@ -9,7 +9,12 @@ const routes: Routes = [
       status: false
     },
     children: [
+      // {
+      //   path: 'corporate',
+      //   loadChildren: './corporate'
+      // },
       {
+
         path: 'corporate',
         loadChildren: './corporate/corporate.module#CorporateModule'
         // loadChildren: './basic-login/basic-login.module#BasicLoginModule'
@@ -17,13 +22,18 @@ const routes: Routes = [
       
       },
       {
-        path: 'ecommerce',
-        // loadChildren: './ecommerce/ecommerce.module#EcommerceModule'
+        path: 'plantdashboard',
+        // loadChildren: './plantdashboard/plantdashboard.module#EcommerceModule'
       },
       {
-        path: 'analytics',
-        // loadChildren: './analytics/analytics.module#AnalyticsModule'
-      }
+        path: 'mydashboard',
+        // loadChildren: './mydashboard/mydashboard.module#AnalyticsModule'
+      },
+       {
+        path: 'summary',
+        // loadChildren: './summary/summary.module#AnalyticsModule'
+      },
+
     ]
   }
 ];

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { RawMaterialService} from '../../service/raw-material.service';
-import { Supplier} from '../../classes/supplier';
+import { RawMaterialService} from '../../../../service/raw-material.service';
+import { Supplier} from '../../../../classes/supplier';
 
 @Component({
   selector: 'app-raw-material-details',
