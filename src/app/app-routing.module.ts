@@ -10,7 +10,7 @@ import { RawMaterialTableComponent } from './components/raw-material-table/raw-m
 
 
 const routes: Routes = [
-  {  path : '',redirectTo : 'login', pathMatch : 'full'},
+  // {  path : '',redirectTo : 'login', pathMatch : 'full'},
 
   { path: 'admin',component: AdminComponent,
     children: [
@@ -19,7 +19,7 @@ const routes: Routes = [
     ]
   },
 
-  {path: 'login',component : LoginComponent,},
+  // {path: 'login',component : LoginComponent,},
 
   { path:'po',component:PoComponent,},
 

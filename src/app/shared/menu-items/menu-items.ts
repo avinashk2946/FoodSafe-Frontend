@@ -41,36 +41,22 @@ const MENUITEMS = [
         type: 'sub',
         icon: 'icon-home',
         children: [
-        {
-            state: 'Corporate Dashboard',
-            name: 'Corporate Dashboard',
-            type: 'link',
-            link:'/po'
+          {
+            state: 'default',
+            name: 'Corporate Dashboard'
           },
           {
-            state: 'Plant Dashboard',
+            state: 'ecommerce',
+            name: 'My Dashboard'
+          },
+          {
+            state: 'analytics',
             name: 'Plant Dashboard',
-            type: 'link',
-            link:'/po'
           },
-          {
-            state: 'My Dashboard',
-            name: 'My Dashboard',
-            type: 'link',
-            link:'/po'
+           {
+            state: 'ecommerce',
+            name: 'My Dashboard'
           },
-          {
-            state: 'Summary',
-            name: 'Summary',
-            type: 'link',
-            link:'/po'
-            // badge: [
-            //   {
-            //     type: 'info',
-            //     value: 'NEW'
-            //   }
-            // ]
-          }
         ]
       },
       // {
