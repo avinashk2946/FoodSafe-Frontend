@@ -9,10 +9,10 @@ const routes: Routes = [
       status: false
     },
     children: [
-      {
-        path: 'corporate',
-        loadChildren: './corporate'
-      },
+      // {
+      //   path: 'corporate',
+      //   loadChildren: './corporate'
+      // },
       {
         path: 'plantdashboard',
         // loadChildren: './plantdashboard/plantdashboard.module#EcommerceModule'
