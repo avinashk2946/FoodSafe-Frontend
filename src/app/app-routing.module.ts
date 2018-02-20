@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       // { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
 
-      { path: 'corporate',loadChildren: './theme/corporate-dashboard/corporate-dashboard.module#CorporateDashboardModule' },
+      // { path: 'corporate',loadChildren: './theme/corporate-dashboard/corporate-dashboard.module#CorporateDashboardModule' },
     ]
   },
 

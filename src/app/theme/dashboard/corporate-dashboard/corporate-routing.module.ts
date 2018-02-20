@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: CorporateComponent,
-    data: {
+    // data: {
     //   title: 'Corporate',
     //   icon: 'icon-home',
     //   caption: 'lorem ipsum dolor sit amet, consectetur adipisicing elit',
