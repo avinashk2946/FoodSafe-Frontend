@@ -23,15 +23,15 @@ const routes: Routes = [
   { path: 'rawmaterials',component: RawMaterialComponent,
     children: [
       { path: '', redirectTo: 'rawmaterial',pathMatch: 'full' },
-      { path: 'rawmaterial',loadChildren: './theme/Record-keeping/raw-materials/raw-material.module#DashboardModule' },
+      { path: 'rawmaterial',loadChildren: './theme/Record-keeping/raw-materials/raw-material.module#RawMaterialdModule' },
     ]
   },
 
   {path: 'login',component : LoginComponent,},
 
-  { path:'po',component:PoComponent,},
+  // { path:'po',component:PoComponent,},
 
-  { path:'sidebar',component:SidebarComponent,},
+  // { path:'sidebar',component:SidebarComponent,},
 
   // { path:'rawmaterial',component:RawMaterialComponent,},
 
