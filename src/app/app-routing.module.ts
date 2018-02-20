@@ -4,9 +4,10 @@ import {AdminComponent} from './layout/admin/admin.component';
 import {LoginComponent} from './theme/login/login.component';
 import {PoComponent} from './components/po/po.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { RawMaterialComponent } from './components/raw-material/raw-material.component';
-import { RawMaterialDetailsComponent } from './components/raw-material-details/raw-material-details.component';
-import { RawMaterialTableComponent } from './components/raw-material-table/raw-material-table.component';
+import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
+// import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
+// import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
+
 
 
 const routes: Routes = [
@@ -19,17 +20,24 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'rawmaterials',component: RawMaterialComponent,
+    children: [
+      { path: '', redirectTo: 'rawmaterial',pathMatch: 'full' },
+      { path: 'rawmaterial',loadChildren: './theme/Record-keeping/raw-materials/raw-material.module#DashboardModule' },
+    ]
+  },
+
   {path: 'login',component : LoginComponent,},
 
   { path:'po',component:PoComponent,},
 
   { path:'sidebar',component:SidebarComponent,},
 
-  { path:'rawmaterial',component:RawMaterialComponent,},
+  // { path:'rawmaterial',component:RawMaterialComponent,},
 
-  { path:'rawmaterial/rawmaterialdetails',component:RawMaterialDetailsComponent,},
+  // { path:'rawmaterial/rawmaterialdetails',component:RawMaterialDetailsComponent,},
 
-   { path:'rawmaterial/rawmaterialtable',component:RawMaterialTableComponent,},
+   // { path:'rawmaterial/rawmaterialtable',component:RawMaterialTableComponent,},
 
   {path : '**', redirectTo : 'login',pathMatch : 'full'}
 

@@ -9,18 +9,22 @@ const routes: Routes = [
       status: false
     },
     children: [
+      // {
+      //   path: 'corporate',
+      //   loadChildren: './corporate'
+      // },
       {
-        path: 'default',
-        loadChildren: './default/default.module#DefaultModule'
+        path: 'plantdashboard',
+        loadChildren: './plantdashboard/plantdashboard.module#EcommerceModule'
       },
       {
-        path: 'ecommerce',
-        loadChildren: './ecommerce/ecommerce.module#EcommerceModule'
+        path: 'mydashboard',
+        loadChildren: './mydashboard/mydashboard.module#AnalyticsModule'
       },
-      {
-        path: 'analytics',
-        loadChildren: './analytics/analytics.module#AnalyticsModule'
-      }
+       {
+        path: 'summary',
+        loadChildren: './summary/summary.module#AnalyticsModule'
+      },
     ]
   }
 ];
