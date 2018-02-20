@@ -35,28 +35,34 @@ const MENUITEMS = [
     label: '',
     main: [
       {
-        state: 'Dashboard',
+        state: 'dashboard',
         short_label: 'D',
         name: 'Dashboard',
         type: 'sub',
         icon: 'icon-home',
         children: [
-          {
-            state: 'default',
-            name: 'Corporate Dashboard'
+        {
+            state: 'corporate',
+            name: 'Corporate Dashboard',
           },
           {
             state: 'ecommerce',
-            name: 'My Dashboard'
+            name: 'Plant Dashboard',
           },
           {
             state: 'analytics',
-            name: 'Plant Dashboard',
+            name: 'My Dashboard',
           },
-           {
+          {
             state: 'ecommerce',
-            name: 'My Dashboard'
-          },
+            name: 'Summary',
+            // badge: [
+            //   {
+            //     type: 'info',
+            //     value: 'NEW'
+            //   }
+            // ]
+          }
         ]
       },
       // {

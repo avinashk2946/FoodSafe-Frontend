@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EcommerceComponent } from './ecommerce.component';
+import { RawMaterialTableComponent } from './raw-material-table.component';
 
-describe('EcommerceComponent', () => {
-  let component: EcommerceComponent;
-  let fixture: ComponentFixture<EcommerceComponent>;
+describe('RawMaterialTableComponent', () => {
+  let component: RawMaterialTableComponent;
+  let fixture: ComponentFixture<RawMaterialTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EcommerceComponent ]
+      declarations: [ RawMaterialTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EcommerceComponent);
+    fixture = TestBed.createComponent(RawMaterialTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

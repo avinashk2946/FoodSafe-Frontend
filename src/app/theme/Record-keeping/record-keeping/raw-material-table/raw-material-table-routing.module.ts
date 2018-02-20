@@ -1,15 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DefaultComponent} from './default.component';
+import {RawMaterialTableComponent} from './raw-material-table.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DefaultComponent,
+    component: RawMaterialTableComponent,
     data: {
-      title: 'Default',
-      icon: 'icon-home',
-      caption: 'lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      title: 'RawMaterialTable',
       status: false
     }
   }
@@ -19,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DefaultRoutingModule { }
+export class RawMaterialTableRoutingModule { }

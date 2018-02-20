@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DefaultComponent } from './default.component';
-import {DefaultRoutingModule} from './default-routing.module';
+import { CorporateComponent } from './corporate.component';
+import {CorporateRoutingModule} from './corporate-routing.module';
 import {SharedModule} from '../../../shared/shared.module';
 import {ChartModule} from 'angular2-chartjs';
 import {SimpleNotificationsModule} from 'angular2-notifications';
@@ -9,12 +9,12 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 @NgModule({
   imports: [
     CommonModule,
-    DefaultRoutingModule,
+    CorporateRoutingModule,
     SharedModule,
     ChartModule,
     SimpleNotificationsModule.forRoot()
   ],
-  declarations: [DefaultComponent],
-  bootstrap: [DefaultComponent]
+  declarations: [CorporateComponent],
+  bootstrap: [CorporateComponent]
 })
 export class DefaultModule { }

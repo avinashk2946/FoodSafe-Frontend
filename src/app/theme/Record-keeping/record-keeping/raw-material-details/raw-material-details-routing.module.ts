@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EcommerceComponent} from './ecommerce.component';
+import { RawMaterialDetailsComponent } from './raw-material-details.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: EcommerceComponent,
+    component: RawMaterialDetailsComponent,
     data: {
-      title: 'Ecommerce',
+      title: 'RawMaterialDetails',
       status: false
     }
   }
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EcommerceRoutingModule { }
+export class RawMaterialDetailsRoutingModule { }

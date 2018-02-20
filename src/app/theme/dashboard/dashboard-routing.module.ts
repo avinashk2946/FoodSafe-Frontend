@@ -5,21 +5,24 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Dashboard',
+      title: 'dashboard',
       status: false
     },
     children: [
       {
-        path: 'default',
-        loadChildren: './default/default.module#DefaultModule'
+        path: 'corporate',
+        loadChildren: './corporate/corporate.module#CorporateModule'
+        // loadChildren: './basic-login/basic-login.module#BasicLoginModule'
+        
+      
       },
       {
         path: 'ecommerce',
-        loadChildren: './ecommerce/ecommerce.module#EcommerceModule'
+        // loadChildren: './ecommerce/ecommerce.module#EcommerceModule'
       },
       {
         path: 'analytics',
-        loadChildren: './analytics/analytics.module#AnalyticsModule'
+        // loadChildren: './analytics/analytics.module#AnalyticsModule'
       }
     ]
   }

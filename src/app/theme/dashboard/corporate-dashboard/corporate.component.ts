@@ -1,7 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
-import { DataService } from '../../../service/data.service';
-
 
 declare const AmCharts: any;
 
@@ -37,7 +35,7 @@ import {NotificationsService} from 'angular2-notifications';
     ])
   ]
 })
-export class DefaultComponent implements OnInit, AfterViewInit {
+export class CorporateComponent implements OnInit, AfterViewInit {
   public seoCard1Data: any;
   public seoCard2Data: any;
   public seoCard1Option: any;
@@ -54,11 +52,10 @@ export class DefaultComponent implements OnInit, AfterViewInit {
       position: ['bottom', 'right'],
     };
 
-    constructor(private servicePNotify: NotificationsService, private _dataService : DataService) {
+    constructor(private servicePNotify: NotificationsService) {
     }
 
   ngOnInit() {
-    console.log(this._dataService.getData());
   }
 
   ngAfterViewInit() {
