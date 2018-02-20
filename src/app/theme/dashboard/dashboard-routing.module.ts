@@ -5,25 +5,25 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Dashboard',
+      title: 'dashboard',
       status: false
     },
     children: [
-      // {
-      //   path: 'corporate',
-      //   loadChildren: './corporate'
-      // },
+      {
+        path: 'corporate',
+        loadChildren: './corporate'
+      },
       {
         path: 'plantdashboard',
-        loadChildren: './plantdashboard/plantdashboard.module#EcommerceModule'
+        // loadChildren: './plantdashboard/plantdashboard.module#EcommerceModule'
       },
       {
         path: 'mydashboard',
-        loadChildren: './mydashboard/mydashboard.module#AnalyticsModule'
+        // loadChildren: './mydashboard/mydashboard.module#AnalyticsModule'
       },
        {
         path: 'summary',
-        loadChildren: './summary/summary.module#AnalyticsModule'
+        // loadChildren: './summary/summary.module#AnalyticsModule'
       },
     ]
   }
