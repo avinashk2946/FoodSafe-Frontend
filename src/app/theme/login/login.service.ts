@@ -21,7 +21,8 @@ export class LoginService {
       channel: GLOBAL_PROPERTIES.CHANNEL,
       companyId: data
     }
-    var httpRequest = new  HttpRequestModal(API_ACTIONS.login.fetchConfig, 'GET', reqPayload,true);
+    //var httpRequest = new  HttpRequestModal(API_ACTIONS.login.fetchConfig, 'GET', reqPayload,true);
+    var httpRequest = new  HttpRequestModal(API_ACTIONS.login.loginUser, 'POST', reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 

@@ -9,9 +9,18 @@ const routes: Routes = [
 
   { path: 'admin',component: AdminComponent,
     children: [
+
       // { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
 
       // { path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
+
+      // { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
+      // { path: 'dashboard',loadChildren: './theme/dashboard/dashboard.module#DashboardModule' },
+      // {
+      //   path: 'rawmaterial',
+      //   loadChildren: './theme/rawmaterial/rawmaterial.module#RawmaterialModule'
+      // }
+
     ]
   },
 
@@ -19,7 +28,7 @@ const routes: Routes = [
 
 
 
-  {path : '**', redirectTo : 'login',pathMatch : 'full'}
+  // {path : '**', redirectTo : 'login',pathMatch : 'full'}
 
 ];
 
