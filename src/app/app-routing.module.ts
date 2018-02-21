@@ -5,30 +5,32 @@ import {LoginComponent} from './theme/login/login.component';
 import {CorporateComponent} from './theme/dashboard/corporate-dashboard/corporate.component';
 
 const routes: Routes = [
-  // {  path : '',redirectTo : 'login', pathMatch : 'full'},
+   {  path : '',redirectTo : 'login', pathMatch : 'full'},
 
   { path: 'admin',component: AdminComponent,
     children: [
 
-      // { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
+       { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
 
-      // { path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
+       //{ path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
 
-      // { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
-      // { path: 'dashboard',loadChildren: './theme/dashboard/dashboard.module#DashboardModule' },
-      // {
-      //   path: 'rawmaterial',
-      //   loadChildren: './theme/rawmaterial/rawmaterial.module#RawmaterialModule'
-      // }
+       { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
+       { path: 'dashboard',loadChildren: './theme/dashboard/dashboard.module#DashboardModule' },
+       {
+         path: 'rawmaterial',
+         loadChildren: './theme/rawmaterial/rawmaterial.module#RawmaterialModule'
+       },
+       {
+         path: 'configuration',
+         loadChildren: './theme/configuration/configuration.module#ConfigurationModule'
+       }
 
     ]
   },
 
-  // {path: 'login',component : LoginComponent,},
+   {path: 'login',component : LoginComponent},
 
-
-
-  // {path : '**', redirectTo : 'login',pathMatch : 'full'}
+   {path : '**', redirectTo : 'login',pathMatch : 'full'}
 
 ];
 
