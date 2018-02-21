@@ -5,14 +5,10 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'dashboard',
+      title: 'Dashboard',
       status: false
     },
     children: [
-      // {
-      //   path: 'corporate',
-      //   loadChildren: './corporate'
-      // },
       {
 
         path: 'corporate',

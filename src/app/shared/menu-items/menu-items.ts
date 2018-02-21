@@ -491,15 +491,33 @@ const MENUITEMS = [
           {
             state: 'rawmaterial',
             name: ' Raw Materials',
-            type: 'link',
-            link:'/rawmaterial'
-          }, {
+            type: 'sub',
+          //       children: [
+          //         {
+          //           state: '',
+          //           name: 'Raw Material',
+                   
+          //         }, {
+          //           state: '',
+          //           name: 'Raw Material Table',
+                    
+          //         }, 
+          //         {
+          //           state: '',
+          //           name: 'Raw Material Details',    
+            //     }, 
+            //   ]
+            
+          }, 
+          {
             state: 'Packaging',
             name: 'Packaging'
-          }, {
+          },
+           {
             state: 'Chemicals',
             name: 'Chemicals'
-          }, {
+          },
+           {
             state: 'Returns',
             name: 'Returns'
           }

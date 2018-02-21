@@ -17,4 +17,4 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
   declarations: [CorporateComponent],
   bootstrap: [CorporateComponent]
 })
-export class DefaultModule { }
+export class CorporateModule { }

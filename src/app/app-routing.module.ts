@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layout/admin/admin.component';
 import {LoginComponent} from './theme/login/login.component';
-
+import {CorporateComponent} from './theme/dashboard/corporate-dashboard/corporate.component';
 
 const routes: Routes = [
   // {  path : '',redirectTo : 'login', pathMatch : 'full'},
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       // { path: '', redirectTo: 'dashboard/default',pathMatch: 'full' },
 
-      // { path: 'corporate',loadChildren: './theme/corporate-dashboard/corporate-dashboard.module#CorporateDashboardModule' },
+      // { path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
     ]
   },
 
