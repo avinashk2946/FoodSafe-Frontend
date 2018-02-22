@@ -14,10 +14,29 @@ export class ConfigurationComponent implements OnInit {
   themeColor : any;
   logoImg : any;
   backgroundImg : any;
+  base64textString:String="";
 
   constructor(private fb : FormBuilder,private ConfigurationSrvc: ConfigurationService) { 
   }
+	handleFileSelect(evt){
+	  var files = evt.target.files;
+	  console.log('files',files);
+	  var file = files[0];
 
+	if (files && file) {
+	    var reader = new FileReader();
+
+	    reader.onload =this._handleReaderLoaded.bind(this);
+
+	    reader.readAsBinaryString(file);
+	}
+	}
+
+	_handleReaderLoaded(readerEvt) {
+	 var binaryString = readerEvt.target.result;
+	        this.base64textString= btoa(binaryString);
+	        console.log(btoa(binaryString));
+	}
   ngOnInit() {
     //this.logoUrl = "http://localhost/FS_Resource/images/Logo-small-bottom.png";
 
