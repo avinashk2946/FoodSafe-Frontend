@@ -46,15 +46,15 @@ const MENUITEMS = [
             name: 'Corporate Dashboard',
           },
           {
-            state: 'ecommerce',
+            state: 'plant',
             name: 'Plant Dashboard',
           },
           {
-            state: 'analytics',
+            state: 'my',
             name: 'My Dashboard',
           },
           {
-            state: 'ecommerce',
+            state: 'summary',
             name: 'Summary',
             // badge: [
             //   {
@@ -491,22 +491,22 @@ const MENUITEMS = [
           {
             state: 'rawmaterial',
             name: ' Raw Materials',
-            type: 'sub',
-          //       children: [
-          //         {
-          //           state: '',
-          //           name: 'Raw Material',
+           
+              //   children: [
+              //     {
+              //       state: '',
+              //       name: 'RawMaterial',
                    
-          //         }, {
-          //           state: '',
-          //           name: 'Raw Material Table',
+              //     }, {
+              //       state: '',
+              //       name: 'Raw Material Table',
                     
-          //         }, 
-          //         {
-          //           state: '',
-          //           name: 'Raw Material Details',    
-            //     }, 
-            //   ]
+              //     }, 
+              //     {
+              //       state: '',
+              //       name: 'Raw Material Details',    
+              //   }, 
+              // ]
             
           }, 
           {

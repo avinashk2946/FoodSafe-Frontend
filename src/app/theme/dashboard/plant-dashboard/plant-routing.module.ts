@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RawmaterialComponent} from './raw-material.component';
+import {PlantComponent} from './plant.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RawmaterialComponent,
+    component: PlantComponent,
     // data: {
     //   title: 'Corporate',
     //   icon: 'icon-home',
@@ -19,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RawmaterialRoutingModule { }
+export class PlantRoutingModule { }

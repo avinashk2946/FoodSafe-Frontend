@@ -26,9 +26,9 @@ import { LoadingService } from './common/loading.service';
 
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PoComponent } from './components/po/po.component';
-import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
-import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
-import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
+// import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
+// import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
+// import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
 import {RawMaterialService} from './service/raw-material.service';
 
 
@@ -40,9 +40,9 @@ import {RawMaterialService} from './service/raw-material.service';
     LoginComponent,
     SidebarComponent,
     PoComponent,
-    RawMaterialComponent,
-    RawMaterialDetailsComponent,
-    RawMaterialTableComponent
+    // RawMaterialComponent,
+    // RawMaterialDetailsComponent,
+    // RawMaterialTableComponent
   ],
   imports: [
     BrowserModule,

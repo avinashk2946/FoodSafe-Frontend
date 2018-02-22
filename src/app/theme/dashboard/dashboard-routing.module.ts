@@ -12,22 +12,20 @@ const routes: Routes = [
       {
 
         path: 'corporate',
-        // loadChildren: './corporate/corporate.module#CorporateModule'
+        loadChildren: './corporate-dashboard/corporate.module#CorporateModule'
         // loadChildren: './basic-login/basic-login.module#BasicLoginModule'
-        
-      
       },
       {
-        path: 'plantdashboard',
-        // loadChildren: './plantdashboard/plantdashboard.module#EcommerceModule'
+        path: 'plant',
+        loadChildren: './plant-dashboard/plant.module#PlantModule'
       },
       {
-        path: 'mydashboard',
-        // loadChildren: './mydashboard/mydashboard.module#AnalyticsModule'
+        path: 'my',
+        loadChildren: './my-dashboard/my.module#MyModule'
       },
        {
         path: 'summary',
-        // loadChildren: './summary/summary.module#AnalyticsModule'
+        loadChildren: './summary/summary.module#SummaryModule'
       },
 
     ]

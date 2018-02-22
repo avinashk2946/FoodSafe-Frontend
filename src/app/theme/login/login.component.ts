@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import {DataService} from '../../service/data.service';
+import { DataService } from '../../service/data.service';
 import { LoginService } from './login.service';
 import { CommonService } from '../../common/common.service';
 import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',

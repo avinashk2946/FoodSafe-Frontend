@@ -15,10 +15,10 @@ import '../../../../assets/charts/amchart/continentsLow.js';
 import {NotificationsService} from 'angular2-notifications';
 
 @Component({
-  selector: 'app-corporate',
-  templateUrl: './corporate.component.html',
+  selector: 'app-my',
+  templateUrl: './my.component.html',
   styleUrls: [
-    './corporate.component.scss',
+    './my.component.scss',
     '../../../../assets/icon/icofont/css/icofont.scss'
   ],
   encapsulation: ViewEncapsulation.None,
@@ -35,7 +35,7 @@ import {NotificationsService} from 'angular2-notifications';
     ])
   ]
 })
-export class CorporateComponent implements OnInit, AfterViewInit {
+export class MyComponent implements OnInit, AfterViewInit {
   public seoCard1Data: any;
   public seoCard2Data: any;
   public seoCard1Option: any;

@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RawmaterialComponent} from './raw-material.component';
+import {MyComponent} from './my.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RawmaterialComponent,
+    component: MyComponent,
     // data: {
     //   title: 'Corporate',
     //   icon: 'icon-home',
@@ -19,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RawmaterialRoutingModule { }
+export class MyRoutingModule { }
