@@ -12,7 +12,7 @@ const routes: Routes = [
       {
 
         path: 'corporate',
-        loadChildren: './corporate/corporate.module#CorporateModule'
+        // loadChildren: './corporate/corporate.module#CorporateModule'
         // loadChildren: './basic-login/basic-login.module#BasicLoginModule'
         
       
