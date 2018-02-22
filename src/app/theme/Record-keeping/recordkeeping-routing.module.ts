@@ -9,11 +9,11 @@ const routes: Routes = [
       status: false
     },
     children: [
-      {
+      // {
 
-        path: 'rawmaterial',
-        loadChildren: './Record-keeping/raw-material.module#RawmaterialModule'
-      },
+      //   path: 'rawmaterial',
+      //   loadChildren: './Record-keeping/raw-material.module#RawmaterialModule'
+      // },
       // {
 
       //   path: 'rawmaterial/rawmaterialdetails',
