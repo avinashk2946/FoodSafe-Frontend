@@ -6,12 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: CorporateComponent,
-    // data: {
-    //   title: 'Corporate',
-    //   icon: 'icon-home',
-    //   caption: 'lorem ipsum dolor sit amet, consectetur adipisicing elit',
-    //   status: false
-    // }
+    data: {
+      title: 'Corporate',
+      icon: 'icon-home',
+      caption: 'lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      status: false
+    }
   }
 ];
 

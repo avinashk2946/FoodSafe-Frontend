@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RawmaterialComponent} from './raw-material.component';
+// import {FormPickerRoutingModule} from '../../form-picker/form-picker-routing.module';
 
 const routes: Routes = [
   {
@@ -16,7 +17,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),
+  // FormPickerRoutingModule
+  ],
   exports: [RouterModule]
 })
 export class RawmaterialRoutingModule { }

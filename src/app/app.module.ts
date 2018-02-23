@@ -10,7 +10,7 @@ import {SharedModule} from './shared/shared.module';
 import {MenuItems} from './shared/menu-items/menu-items';
 import {BreadcrumbsComponent} from './layout/admin/breadcrumbs/breadcrumbs.component';
 import {DataService} from './service/data.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule,FormGroup, FormBuilder, FormControl, Validators,ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 import {LoginComponent} from './theme/login/login.component';
@@ -31,6 +31,9 @@ import { PoComponent } from './components/po/po.component';
 // import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
 import {RawMaterialService} from './service/raw-material.service';
 
+import {FormPickerComponent} from './theme/form-picker/form-picker.component';
+// import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import {RawMaterialService} from './service/raw-material.service';
     LoginComponent,
     SidebarComponent,
     PoComponent,
+    FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,
     // RawMaterialTableComponent
@@ -53,7 +57,8 @@ import {RawMaterialService} from './service/raw-material.service';
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    // FormPickerRoutingModule
   ],
   providers: [
   MenuItems,

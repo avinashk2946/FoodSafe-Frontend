@@ -14,6 +14,8 @@ import {ModalBasicComponent} from './modal-basic/modal-basic.component';
 import {ModalAnimationComponent} from './modal-animation/modal-animation.component';
 import {SpinnerComponent} from './spinner/spinner.component';
 import {ClickOutsideModule} from 'ng-click-outside';
+// import {FormPickerComponent} from '../theme/form-picker/form-picker.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -41,7 +43,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ModalBasicComponent,
     ModalAnimationComponent,
     SpinnerComponent,
-    ClickOutsideModule
+    ClickOutsideModule,
+
   ],
   declarations: [
     ToggleFullScreenDirective,
@@ -53,7 +56,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CardComponent,
     ModalBasicComponent,
     ModalAnimationComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    // FormPickerComponent
   ],
   providers: [
     {

@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
+// import { FormGroup, FormBuilder, FormControl, Validators,ReactiveFormsModule } from '@angular/forms';
 
 declare const AmCharts: any;
 
@@ -48,12 +49,32 @@ export class RawmaterialComponent implements OnInit, AfterViewInit {
   public feedbackData: any;
   public feedbackOption: any;
 
+    // dataForm : FormGroup;
+
+
     options: any = {
       position: ['bottom', 'right'],
     };
 
-    constructor(private servicePNotify: NotificationsService) {
+    constructor(private servicePNotify: NotificationsService,) {
+       // this.createForm();private fb:FormBuilder
     }
+    // public createForm() {
+    //    this.dataForm = this.fb.group({
+    //    plant:["",Validators.required],
+    //    supplier:["",Validators.required],
+    //    broker:["",Validators.required],
+    //    coo: ['',Validators.required],
+    //    product :[''],
+    //    productCode :['',Validators.required],
+    //    variety :['',Validators.required],
+    //    kosher:['',Validators.required],
+    //    nonGmo:['',[Validators.required,Validators.minLength(6)]],
+    //    po:[''],
+    //    containerNo :['',[Validators.required,Validators.minLength(6)]],
+    //     lotNo:['',Validators.required],
+    //     });
+    //    }
 
   ngOnInit() {
   }
