@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   	this.loginForm = this.fb.group({
   		'username' : ['', [Validators.required, Validators.minLength(6)]],
   		'password' : ['', [Validators.required, Validators.minLength(6)]]
-  	})
+  	});
   }
   
   onFetchConfig(companyId) {
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       (resData: any) => {
       console.log('res',resData);
       this.comonSrvc.showSuccessMsg(resData.messageText);
-      this._router.navigate(['/admin']);
+      this._router.navigate(['/configuration']);
     }, err => { 
       if (err.status === 401) {
         this.comonSrvc.showErrorMsg(err.messageText);

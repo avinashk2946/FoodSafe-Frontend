@@ -439,28 +439,6 @@ const MENUITEMS = [
         // ]
       },
       // {
-      //   state: 'maintenance',
-      //   short_label: 'A',
-      //   name: 'Maintenance',
-      //   type: 'sub',
-      //   icon: 'icon-settings',
-      //   children: [
-      //     {
-      //       state: 'error',
-      //       name: 'Error'
-      //     },
-      //     {
-      //       state: 'coming-soon',
-      //       name: 'Coming Soon'
-      //     },
-      //     {
-      //       state: 'offline-ui',
-      //       name: 'Offline UI',
-      //       target: true
-      //     }
-      //   ]
-      // },
-      // {
       //   state: 'user',
       //   short_label: 'U',
       //   name: 'User Profile',
@@ -491,22 +469,6 @@ const MENUITEMS = [
           {
             state: 'rawmaterial',
             name: ' Raw Materials',
-           
-              //   children: [
-              //     {
-              //       state: '',
-              //       name: 'RawMaterial',
-                   
-              //     }, {
-              //       state: '',
-              //       name: 'Raw Material Table',
-                    
-              //     }, 
-              //     {
-              //       state: '',
-              //       name: 'Raw Material Details',    
-              //   }, 
-              // ]
             
           }, 
           {
@@ -525,6 +487,31 @@ const MENUITEMS = [
       }
     ]
   },
+   {
+    label: '',
+    main: [
+      {
+        state: 'configuration',
+        short_label: 'C',
+        name: 'Configuration',
+        type: 'sub',
+        icon: 'icon-settings',
+        children: [
+          {
+            //state: 'loginConfiguration',
+            state: 'configuration',
+            name: 'login page'
+          },
+          {
+            state: 'userConfiguration',
+            name: 'user management'
+          }
+        ]
+      }
+      }
+    ]
+  },
+   
   // {
   //   label: 'Extension',
   //   main: [
