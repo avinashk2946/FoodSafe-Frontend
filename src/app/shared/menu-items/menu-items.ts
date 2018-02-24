@@ -499,15 +499,14 @@ const MENUITEMS = [
         children: [
           {
             //state: 'loginConfiguration',
-            state: 'configuration',
+            state: 'login-page',
             name: 'login page'
           },
           {
-            state: 'userConfiguration',
+            state: 'user-menu',
             name: 'user management'
           }
         ]
-      }
       }
     ]
   },

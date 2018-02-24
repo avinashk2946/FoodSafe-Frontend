@@ -1,46 +1,26 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ConfigurationService } from './configuration.service';
+import { LoginPageService } from './login-page.service';
 import {ColorPickerService, Rgba} from 'ngx-color-picker';
 
 
 @Component({
   selector: 'app-configuration',
-  templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.scss'],
-  providers:[ConfigurationService]
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss'],
+  providers:[LoginPageService]
 })
-export class ConfigurationComponent {
+export class LoginPageComponent {
 
  loginCofigurationForm : FormGroup;
   loading: boolean = false;
   public themeColor = '#4099ff';
   @ViewChild('fileInput1') fileInput1: ElementRef;
   @ViewChild('fileInput2') fileInput2: ElementRef;
-  constructor(private fb : FormBuilder,private ConfigurationSrvc: ConfigurationService) { 
+  constructor(private fb : FormBuilder,private LoginPageSrvc: LoginPageService) { 
     this.createForm();
   }
   
-
-	/*handleFileSelect(evt){
-	  var files = evt.target.files;
-	  console.log('files',files);
-	  var file = files[0];
-
-	if (files && file) {
-	    var reader = new FileReader();
-
-	    reader.onload =this._handleReaderLoaded.bind(this);
-
-	    reader.readAsBinaryString(file);
-	}
-	}
-
-	_handleReaderLoaded(readerEvt) {
-	 var binaryString = readerEvt.target.result;
-	        this.base64textString= btoa(binaryString);
-	        console.log(btoa(binaryString));
-	}*/
   createForm() {
 
   	this.loginCofigurationForm = this.fb.group({
@@ -89,7 +69,7 @@ export class ConfigurationComponent {
       this.loading = false;
     }, 1000);*/
   	var requestData={themeColor:this.themeColor,logoImg:this.loginCofigurationForm.value.logoImage,backgroundImg:this.loginCofigurationForm.value.backgroungImage};
-    this.ConfigurationSrvc.setLoginPageConfig(requestData).subscribe(
+    this.LoginPageSrvc.setLoginPageConfig(requestData).subscribe(
       (resData: any) => {
         this.loading = false;
         this.clearFile();

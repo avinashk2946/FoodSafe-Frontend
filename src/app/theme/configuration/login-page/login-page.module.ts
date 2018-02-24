@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ConfigurationRoutingModule} from './configuration-routing.module';
-import {SharedModule} from '../../shared/shared.module';
+import { LoginPageComponent } from './login-page.component';
+import {LoginPageRoutingModule} from './login-page-routing.module';
+import {SharedModule} from '../../../shared/shared.module';
 import {ColorPickerModule} from 'ngx-color-picker';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
@@ -9,10 +10,10 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
-    ConfigurationRoutingModule,
+    LoginPageRoutingModule,
     SharedModule,
     ColorPickerModule,FormsModule,ReactiveFormsModule
   ],
-  declarations: []
+  declarations: [LoginPageComponent]
 })
-export class ConfigurationModule { }
+export class LoginPageModule { }

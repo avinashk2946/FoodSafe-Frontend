@@ -12,6 +12,7 @@ import {BreadcrumbsComponent} from './layout/admin/breadcrumbs/breadcrumbs.compo
 import {DataService} from './service/data.service';
 import { FormsModule,FormGroup, FormBuilder, FormControl, Validators,ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { TreeviewModule } from 'ngx-treeview';
 
 import {LoginComponent} from './theme/login/login.component';
 
@@ -58,6 +59,7 @@ import {FormPickerComponent} from './theme/form-picker/form-picker.component';
     HttpClientModule,
     HttpModule,
     ToastrModule.forRoot(),
+    TreeviewModule.forRoot()
     // FormPickerRoutingModule
   ],
   providers: [

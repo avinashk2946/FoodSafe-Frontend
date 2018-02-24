@@ -13,11 +13,11 @@ const routes: Routes = [
        { path: '', 
        redirectTo: 'dashboard/corporate',pathMatch: 'full' },
 
-       //{ path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
+       /*{ path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
 
-       // { path: '', 
-       // redirectTo: 'dashboard/default',pathMatch: 'full' },
-
+       { path: '',
+       redirectTo: 'dashboard/default',pathMatch: 'full' },
+*/
         {
         path: 'dashboard/corporate',
         loadChildren: './theme/dashboard/dashboard.module#DashboardModule'
