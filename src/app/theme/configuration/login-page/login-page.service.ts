@@ -7,13 +7,17 @@ import { HttpRequestModal } from '../../../common/httpRequest.modal';
 export class LoginPageService {
   constructor(private comonSrvc: CommonService) {
   }
-  setLoginPageConfig(data){
+  setLoginPageConfig(dataP){
     var reqPayload = {
-      channel: GLOBAL_PROPERTIES.CHANNEL,
-      companyId: data
-    }
-    //var httpRequest = new  HttpRequestModal(API_ACTIONS.login.fetchConfig, 'GET', reqPayload,true);
-    var httpRequest = new  HttpRequestModal(API_ACTIONS.login.loginUser, 'POST', reqPayload,true);
+  "clientId"            : GLOBAL_PROPERTIES.CLIENTID,
+    "backgroundImg"            : dataP.backgroundImg.value,
+    "backgroundImgName"    : dataP.backgroundImg.filename,
+    "logoImg"            :  dataP.logoImg.value,
+    "logoImgName"    : dataP.logoImg.filename,
+    "themeCol1"            :  dataP.themeColor,
+    "themeCol2"            :  dataP.themeColor
+}
+    var httpRequest = new  HttpRequestModal(API_ACTIONS.configuration.loginConfig, 'POST', reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 

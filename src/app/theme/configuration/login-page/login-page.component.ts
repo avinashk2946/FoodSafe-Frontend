@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginPageService } from './login-page.service';
 import {ColorPickerService, Rgba} from 'ngx-color-picker';
+import { CommonService } from '../../../common/common.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginPageComponent {
   public themeColor = '#4099ff';
   @ViewChild('fileInput1') fileInput1: ElementRef;
   @ViewChild('fileInput2') fileInput2: ElementRef;
-  constructor(private fb : FormBuilder,private LoginPageSrvc: LoginPageService) { 
+  constructor(private fb : FormBuilder,private LoginPageSrvc: LoginPageService ,private comonSrvc:CommonService) { 
     this.createForm();
   }
   
@@ -62,21 +63,17 @@ export class LoginPageComponent {
   onSubmit() {
     const formModel = this.loginCofigurationForm.value;
     this.loading = true;
-    console.log('this.loginCofigurationForm',this.loginCofigurationForm.value);
-    console.log('this.themeColor',this.themeColor);
-    /*setTimeout(() => {
-      alert('done!');
-      this.loading = false;
-    }, 1000);*/
   	var requestData={themeColor:this.themeColor,logoImg:this.loginCofigurationForm.value.logoImage,backgroundImg:this.loginCofigurationForm.value.backgroungImage};
     this.LoginPageSrvc.setLoginPageConfig(requestData).subscribe(
       (resData: any) => {
         this.loading = false;
         this.clearFile();
+        this.comonSrvc.showSuccessMsg(resData.message);
     }, err => { 
-      if (err.status === 401) {
+      this.comonSrvc.showErrorMsg(err.message);
+      //if (err.status === 401) {
         this.loading = false;
-      }
+      //}
      
     });
   }

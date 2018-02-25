@@ -36,7 +36,7 @@ const routes: Routes = [
        loadChildren: './theme/dashboard/summary/summary.module#SummaryModule' },
 
        {
-         path: 'rawmaterial',
+         path: 'recordkeeping/rawmaterial',
          loadChildren: './theme/Record-keeping/raw-materials/raw-material.module#RawmaterialModule'
        },
        //  {

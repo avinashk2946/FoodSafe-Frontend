@@ -9,7 +9,6 @@ export class LoginService {
   }
   verifyUser(data) {
     var reqPayload = {
-      channel: GLOBAL_PROPERTIES.CHANNEL,
       username: data.username,
       password: data.password
     }
@@ -21,8 +20,7 @@ export class LoginService {
       channel: GLOBAL_PROPERTIES.CHANNEL,
       companyId: data
     }
-    //var httpRequest = new  HttpRequestModal(API_ACTIONS.login.fetchConfig, 'GET', reqPayload,true);
-    var httpRequest = new  HttpRequestModal(API_ACTIONS.login.loginUser, 'POST', reqPayload,true);
+    var httpRequest = new  HttpRequestModal(API_ACTIONS.configuration.loginConfig, 'GET', reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
