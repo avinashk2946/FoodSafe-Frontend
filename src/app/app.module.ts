@@ -32,7 +32,7 @@ import { PoComponent } from './components/po/po.component';
 // import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
 import {RawMaterialService} from './service/raw-material.service';
 
-import {FormPickerComponent} from './theme/form-picker/form-picker.component';
+// import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 
 
@@ -44,7 +44,7 @@ import {FormPickerComponent} from './theme/form-picker/form-picker.component';
     LoginComponent,
     SidebarComponent,
     PoComponent,
-    FormPickerComponent,
+    // FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,
     // RawMaterialTableComponent
