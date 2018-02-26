@@ -7,6 +7,8 @@ import {
     TreeviewI18n, TreeviewItem, TreeviewConfig, TreeviewHelper, TreeviewComponent,
     TreeviewEventParser, OrderDownlineTreeviewEventParser, DownlineTreeviewItem
 } from 'ngx-treeview';
+// import {DyanmicMenu} from '../../../calsses/dyanamicmenu';
+
 
 @Injectable()
 export class ProductTreeviewConfig extends TreeviewConfig {
@@ -16,6 +18,9 @@ export class ProductTreeviewConfig extends TreeviewConfig {
     maxHeight = 400;
 } 
 
+
+
+
 @Component({
   selector: 'app-configuration',
   templateUrl: './user-menu.component.html',
@@ -24,10 +29,17 @@ export class ProductTreeviewConfig extends TreeviewConfig {
   { provide: TreeviewEventParser, useClass: OrderDownlineTreeviewEventParser },
         { provide: TreeviewConfig, useClass: ProductTreeviewConfig }]
 })
+
+
+
 export class UserMenuComponent implements OnInit {
     @ViewChild(TreeviewComponent) treeviewComponent: TreeviewComponent;
     items: TreeviewItem[];
     rows: string[];
+
+
+// public dyanmicmenu:DyanmicMenu;
+
 
     constructor(
         private service: UserMenuService
@@ -78,4 +90,43 @@ export class UserMenuComponent implements OnInit {
    /* ngOnInit() {
         this.items = this.service.getBooks();
     }*/
+
+
+// const MENUITEMS = [
+//   {
+//     label: '',
+//     main: [
+//       {
+//         state: '',
+//         short_label: 'H',
+//         name: 'Hazard Analysis',
+//         type: 'sub',
+//         icon: 'icon-direction-alt',
+//         children: [
+//           {
+//             state: 'riskassessment',
+//             name: 'Risk Assessment',
+//             type: 'sub',
+//           }, {
+//             state: 'monitoringdetails',
+//             name: 'Monitoring Details',
+//             type: 'sub',
+//             // children: [
+//             //   {
+//             //     state: '',
+//             //     name: '',
+//             //   },
+//             //   {
+//             //     state: '',
+//             //     name: '',
+//             //   }
+//             // ]
+           
+//           },
+
+//           ]
+//         },
+//       ]
+//     }
+//   ];
 }

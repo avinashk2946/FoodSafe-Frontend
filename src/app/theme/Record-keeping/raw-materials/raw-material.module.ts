@@ -5,7 +5,9 @@ import {RawmaterialRoutingModule} from './raw-material-routing.module';
 import {SharedModule} from '../../../shared/shared.module';
 import {ChartModule} from 'angular2-chartjs';
 import {SimpleNotificationsModule} from 'angular2-notifications';
-// import {FormPickerRoutingModule} from '../../form-picker/form-picker-routing.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {SelectModule} from 'ng-select';
+
 
 @NgModule({
   imports: [
@@ -13,8 +15,9 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     RawmaterialRoutingModule,
     SharedModule,
     ChartModule,
+    FormsModule,ReactiveFormsModule,
+    SelectModule,
     SimpleNotificationsModule.forRoot(),
-    // FormPickerRoutingModule
 
   ],
   declarations: [RawmaterialComponent],

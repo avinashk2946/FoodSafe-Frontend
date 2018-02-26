@@ -19,8 +19,17 @@
 		  		<div class="col-md-4 form group">
 		            <label for="name">Date Created</label>
 		          </div>
-		          <div class= "col-md-8 form group">
-			         <input class="form-control" type="datetime-local" />  
+		          <div class= "col-md-8 form group">	
+			          <form class="form-inline">
+			            <div class="form-group ">
+			              <div class="input-group">
+			                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modelPopup" ngbDatepicker #d="ngbDatepicker">
+			                <div class="input-group-addon bg-default" (click)="d.toggle()" >
+			                  <span class="icofont icofont-ui-calendar"></span>
+			                </div>
+			              </div>
+			            </div>
+			          </form>  
 		          </div>
 		  	</div>        
 	 	 </div>
@@ -165,7 +174,7 @@
 		            <label for="name">Po</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-	          <input type="text" name="input" class="form-control form-control-primary" >     
+	         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="simpleOption" [(ngModel)]="selectedOption"></ng-select>     
 			        
 
 		          </div>
@@ -177,7 +186,7 @@
 		            <label for="name">Container No</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-	          <input type="text" name="input" class="form-control form-control-primary" >     
+	          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="simpleOption" [(ngModel)]="selectedOption"></ng-select>   
 			          
 		          </div>
 		  	</div>        
@@ -188,7 +197,7 @@
 		            <label for="name">Lot No</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-	          <input type="text" name="input" class="form-control form-control-primary"  >     
+	         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="simpleOption" [(ngModel)]="selectedOption"></ng-select>    
 			           
 		          </div>
 		  	</div>        
@@ -229,7 +238,6 @@
 
 
 
-<!-- <app-form-picker></app-form-picker> -->
 
 <!-- <app-form-select></app-form-select> -->
 
@@ -250,3 +258,62 @@
 	 formConrtolName="po"
 	 formConrtolName="container_id"
 	 formConrtolName="lot_id" -->
+
+
+
+
+      <div class="table-responsive card">
+        <table class="table table-framed ">
+          <thead>
+          <tr>
+            <th>Document</th>
+            <th>Attachment</th>          
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Bill of Lading</td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+          <tr>
+            <td>Commercial Invoice</td>
+              <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+          <tr>
+            <td>Packing list</td>
+               <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+           <tr>
+            <td>COA</td>
+             <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+           <tr>
+            <td>CCP verification records</td>
+             <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+           <tr>
+            <td>Environmental Monitoring records</td>
+             <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+           <tr>
+            <td>Other Supporting records</td>
+             <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+

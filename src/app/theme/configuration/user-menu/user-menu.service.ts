@@ -13,21 +13,21 @@ export class UserMenuService {
             text: 'All', value: 'ALL', children: [
                 { text: 'Dashboard', value: 'dashboard' , children: [
         {
-            value: 'corporate',
-            text: 'Corporate Dashboard',
+            value: 'hazardanalysis',
+            text: 'Hazard Analysis',
           },
-          {
-            value: 'plant',
-            text: 'Plant Dashboard',
-          },
-          {
-            value: 'my',
-            text: 'My Dashboard',
-          },
-          {
-            value: 'summary',
-            text: 'Summary'
-          }
+          // {
+          //   value: 'plant',
+          //   text: 'Plant Dashboard',
+          // },
+          // {
+          //   value: 'my',
+          //   text: 'My Dashboard',
+          // },
+          // {
+          //   value: 'summary',
+          //   text: 'Summary'
+          // }
         ]},
                 { text: 'GFSC', value: 'GFSC'},
                 { text: 'HACCP', value: 'HACCP'},
@@ -63,3 +63,67 @@ export class UserMenuService {
   }
 
 }
+
+export interface ChildrenItems {
+  state: string;
+  target?: boolean;
+  name: string;
+  type?: string;
+  children?: ChildrenItems[];
+}
+
+export interface MainMenuItems {
+  state: string;
+  short_label?: string;
+  main_state?: string;
+  target?: boolean;
+  name: string;
+  type: string;
+  icon: string;
+  children?: ChildrenItems[];
+}
+
+export interface Menu {
+  label: string;
+  main: MainMenuItems[];
+}
+
+
+
+// const MENUITEMS = [
+//   {
+//     label: '',
+//     main: [
+//       {
+//         state: '',
+//         short_label: 'H',
+//         name: 'Hazard Analysis',
+//         type: 'sub',
+//         icon: 'icon-direction-alt',
+//         children: [
+//           {
+//             state: 'riskassessment',
+//             name: 'Risk Assessment',
+//             type: 'sub',
+//           }, {
+//             state: 'monitoringdetails',
+//             name: 'Monitoring Details',
+//             type: 'sub',
+//             // children: [
+//             //   {
+//             //     state: '',
+//             //     name: '',
+//             //   },
+//             //   {
+//             //     state: '',
+//             //     name: '',
+//             //   }
+//             // ]
+           
+//           },
+
+//           ]
+//         },
+//       ]
+//     }
+//   ]
