@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,ErrorHandler } from '@angular/core';
 import { Component, Input } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
@@ -10,9 +10,10 @@ import 'rxjs/add/operator/toPromise';
 export class RawMaterialService {
 
   constructor(private http: Http) { }
+ 
 
 // getOrder(): Observable<any> {
-//     return this.http.get('src/assets/supplier.json')//, options)
+//     return this.http.get('src/assets/data.json')//, options)
 //         .map((response: Response) => {
 //             console.log("data" + response.json());
 //             return response.json();

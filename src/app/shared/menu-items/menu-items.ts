@@ -505,9 +505,8 @@ const MENUITEMS = [
           {
             state: 'userConfiguration',
             name: 'user management'
-          }
+          },
         ]
-      }
       }
     ]
   },

@@ -5,7 +5,7 @@ import {LoginComponent} from './theme/login/login.component';
 import {CorporateComponent} from './theme/dashboard/corporate-dashboard/corporate.component';
 
 const routes: Routes = [
-   {  path : '',redirectTo : 'login', pathMatch : 'full'},
+   // {  path : '',redirectTo : 'login', pathMatch : 'full'},
 
   { path: '',component: AdminComponent,
     children: [

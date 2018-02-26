@@ -5,6 +5,7 @@ import {RawmaterialRoutingModule} from './raw-material-routing.module';
 import {SharedModule} from '../../../shared/shared.module';
 import {ChartModule} from 'angular2-chartjs';
 import {SimpleNotificationsModule} from 'angular2-notifications';
+// import {FormPickerRoutingModule} from '../../form-picker/form-picker-routing.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,9 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     RawmaterialRoutingModule,
     SharedModule,
     ChartModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    // FormPickerRoutingModule
+
   ],
   declarations: [RawmaterialComponent],
   bootstrap: [RawmaterialComponent]
