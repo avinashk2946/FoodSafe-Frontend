@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     //this.logoUrl = "http://localhost/FS_Resource/images/Logo-small-bottom.png";
     this.onFetchConfig(this.companyId);
   	this.loginForm = this.fb.group({
-  		'username' : ['', [Validators.required, Validators.minLength(6)]],
-  		'password' : ['', [Validators.required, Validators.minLength(6)]]
+  		'username' : ['', [Validators.required, Validators.minLength(5)]],
+  		'password' : ['', [Validators.required, Validators.minLength(5)]]
   	});
   }
   
@@ -53,11 +53,13 @@ export class LoginComponent implements OnInit {
     this.loginSrvc.verifyUser(this.loginForm.value).subscribe(
       (resData: any) => {
       console.log('res',resData);
-      this.comonSrvc.showSuccessMsg(resData.messageText);
+      this.comonSrvc.showSuccessMsg(resData.message);
       this._router.navigate(['/configuration']);
     }, err => { 
       if (err.status === 401) {
-        this.comonSrvc.showErrorMsg(err.messageText);
+        this.comonSrvc.showErrorMsg(err.message);
+      }else{
+        this.comonSrvc.showErrorMsg(err.message);
       }
      
     });

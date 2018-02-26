@@ -13,11 +13,11 @@ const routes: Routes = [
        { path: '', 
        redirectTo: 'dashboard/corporate',pathMatch: 'full' },
 
-       //{ path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
+       /*{ path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
 
-       // { path: '', 
-       // redirectTo: 'dashboard/default',pathMatch: 'full' },
-
+       { path: '',
+       redirectTo: 'dashboard/default',pathMatch: 'full' },
+*/
         {
         path: 'dashboard/corporate',
         loadChildren: './theme/dashboard/dashboard.module#DashboardModule'
@@ -36,7 +36,7 @@ const routes: Routes = [
        loadChildren: './theme/dashboard/summary/summary.module#SummaryModule' },
 
        {
-         path: 'rawmaterial',
+         path: 'recordkeeping/rawmaterial',
          loadChildren: './theme/Record-keeping/raw-materials/raw-material.module#RawmaterialModule'
        },
        //  {
