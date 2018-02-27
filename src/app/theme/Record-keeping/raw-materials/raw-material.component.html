@@ -1,20 +1,41 @@
+<div class="row  justify-content-center ">
+	<div class="row m-t-5 ">
+	    <div class="col-md-4">
+	        	<button  [routerLink]="['./rawmaterialdetails']" type="button" class="btn btn-primary">
+	        		Create New Record
+	        	</button>
+	            
+	    </div>
+	    <div class="col-md-4">
+	        	<button [routerLink]="['./rawmaterialtable']"  type="button" class="btn btn-primary">
+	        	 Open In Progress Record
+	        	</button>
+	           
+	    </div>
+	    <div class="col-md-4">
+	        	<button [routerLink]="['./rawmaterialtable']"  type="button" class="btn btn-primary">
+	        	 Open completed Record
+	        	</button>
+	           
+	    </div>
+	</div>   
+</div>
 <div class="raw-materials justify-content-center card">
+
   <!-- <form  [formGroup]="dataForm" (ngSubmit)="onSubmit()" novalidate class="float-lg-left"> -->
-	<div class="col-md-12">
+	<div class="col-md-12 m-t-5 ">
 		<div class="row">
-			<div class="col-sm-4 data-table" >
+			<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Plant</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.broker}} --></option>
-			          </select>  
+			          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="item.id as item.name for item in plants" [(ngModel)]="plant"></ng-select>
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Date Created</label>
@@ -33,7 +54,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Created By</label>
@@ -43,11 +64,11 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-		</div>	
-	</div>
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-sm-4 data-table" >
+		<!-- </div>	 -->
+	<!-- </div> -->
+	<!-- <div class="col-md-12"> -->
+		<!-- <div class="row"> -->
+			<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Supplier</label>
@@ -59,7 +80,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Broker</label>
@@ -71,7 +92,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">COO</label>
@@ -83,11 +104,11 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-		</div>	
-	</div>
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-sm-4 data-table" >
+		<!-- </div> -->	
+	<!-- </div>
+	<div class="col-md-12"> -->
+		<!-- <div class="row"> -->
+			<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Approved</label>
@@ -100,7 +121,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Product</label>
@@ -112,7 +133,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Product Code</label>
@@ -124,11 +145,11 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-		</div>	
-	</div>
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-sm-4 data-table" >
+		<!-- </div> -->	
+	<!-- </div>
+	<div class="col-md-12"> -->
+		<!-- <div class="row"> -->
+			<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Variety</label>
@@ -140,7 +161,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Kosher</label>
@@ -152,7 +173,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">NonGMO</label>
@@ -164,23 +185,23 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-		</div>	
-	</div>
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-sm-4 data-table" >
+		<!-- </div> -->	
+	<!-- </div>
+	<div class="col-md-12"> -->
+		<!-- <div class="row"> -->
+			<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Po</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-	         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="simpleOption" [(ngModel)]="selectedOption"></ng-select>     
+	         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="autocompleteItemsAsObjects" [(ngModel)]="selectedOption"></ng-select>     
 			        
 
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Container No</label>
@@ -191,7 +212,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Lot No</label>
@@ -202,71 +223,25 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-		</div>	
+		<!-- </div>	 -->
+	<!-- </div> -->
 	</div>
-
-	<div class=" row justify-content-center">
+</div>
+<div class=" row justify-content-center">
 		<p>
 		  <button  type="button" class="btn btn-primary">Save</button>
 		  <button  autofocus="" type="button" class="btn btn-success">Save & Submit</button>
 		  <button   type="button" class="btn btn-default">Cancel</button> 
 		</p>
 	</div>
-<!-- </form> -->
 </div>
-
-
-
-
-<div class="row  justify-content-center">
-	<div class="row">
-	    <div class="col-md-6">
-	        	<button  [routerLink]="['./rawmaterialdetails']" type="button" class="btn btn-primary">
-	        		Create New Receiving Record
-	        	</button>
-	            
-	    </div>
-	    <div class="col-md-6">
-	        	<button [routerLink]="['./rawmaterialtable']"  type="button" class="btn btn-primary">
-	        	 Open In Progress Record
-	        	</button>
-	           
-	    </div>
-	</div>   
-</div>
-
-
-
-
-
-<!-- <app-form-select></app-form-select> -->
-
- 	 <!-- formConrtolName="id" 
-	 formConrtolName="company" 
-	 formConrtolName="created_at" 
-     formConrtolName="plant"
-	 formConrtolName="created_by"
-	 formConrtolName="supplier"
-	 formConrtolName="broker"
-	 formConrtolName="coo"
-	 formConrtolName="approved"
-	 formConrtolName="product"
-	 formConrtolName="product_code"
-	 formConrtolName="variety"
-	 formConrtolName="kosher"
-	 formConrtolName="non_gmo"
-	 formConrtolName="po"
-	 formConrtolName="container_id"
-	 formConrtolName="lot_id" -->
-
-
 
 
       <div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
           <tr>
-            <th>Document</th>
+            <th>Document(Optional)</th>
             <th>Attachment</th>          
           </tr>
           </thead>
