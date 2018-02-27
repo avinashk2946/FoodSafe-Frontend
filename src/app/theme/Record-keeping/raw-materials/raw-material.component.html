@@ -31,7 +31,7 @@
 		            <label for="name">Plant</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-			          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="item.id as item.name for item in plants" [(ngModel)]="plant"></ng-select>
+			          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plants" placeholder='select Plant' [(ngModel)]="plant"></ng-select>
 		          </div>
 		  	</div>        
 	 	 </div>
@@ -74,9 +74,7 @@
 		            <label for="name">Supplier</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.supplier_name}} --></option>
-			          </select>  
+			          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier"></ng-select>
 		          </div>
 		  	</div>        
 	 	 </div>
@@ -86,9 +84,7 @@
 		            <label for="name">Broker</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.broker}} --></option>
-			          </select>  
+			          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokers" placeholder='select broker' [(ngModel)]="broker"></ng-select>
 		          </div>
 		  	</div>        
 	 	 </div>
@@ -98,9 +94,7 @@
 		            <label for="name">COO</label>
 		          </div>
 		          <div class= "col-md-8 form group">
-			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.coo}} --></option>
-			          </select>  
+			          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="coos" placeholder='select coo' [(ngModel)]="coo"></ng-select>
 		          </div>
 		  	</div>        
 	 	 </div>
