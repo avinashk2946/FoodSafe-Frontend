@@ -1,4 +1,19 @@
-<div class="raw dyanamic-menu card">
+<div class="raw-dyanamic menu card"  >
+    <div class="">
+      <div  *ngFor="let menu of menus; let st = state"  class="checkbox col" >
+         <input type="checkbox" name="checkbox" class="checkbox" [checked]="st === 1" [value]="menu.state" [(ngModel)]="menu.checked" > 
+         {{ menu.name }} 
+            <input type="radio" name="radiogroup" class="radio" [checked]="st === 0"   [value]="menu.state"  (change)="onSelectionChange(menu)">
+            Edit
+            <input type="radio" name="radiogroup" class="radio" [checked]="st === 0"   [value]="menu.state"  (change)="onSelectionChange(menu)">
+            ReadOnly
+      </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="raw dyanamic-menu card">
   <label class="alert-heading">Food Safety Plan</label>
   <div class="raw">
     <div class="col-md-12">
@@ -75,7 +90,7 @@
 </div>
 
 
-
+ -->
 
 
 
@@ -146,4 +161,19 @@
   </div>
 </div> -->
 
-  
+<!--   <table>
+        <thead>
+          <td>Description</td>
+          <td></td>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of entries">
+            <td>{{ entry.description }}</td>
+            <td>
+                <input type="radio" name="radiogroup">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+ -->
+

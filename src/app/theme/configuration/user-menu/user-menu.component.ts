@@ -129,4 +129,71 @@ export class UserMenuComponent implements OnInit {
 //       ]
 //     }
 //   ];
+//   
+     menus =[
+    {
+        state: "hazardanalysis",
+        name: 'Hazard Analysis'
+    },
+    {
+        state: "Risk Assessment",
+        name: 'Risk Assessment'
+    },
+     {
+        state: "Monitoring Details",
+        name: 'Monitoring Details'
+    },
+     {
+        state: "Supporting Documents ",
+        name: 'Supporting Documents '
+    },
+     {
+        state: "Schematics",
+        name: 'Schematics'
+    },
+     {
+        state: "Risk Assessment Model",
+        name: 'Risk Assessment Model'
+    },
+     {
+        state: "Decision Tree Model",
+        name: 'Decision Tree Model'
+    },
+     {
+        state: "Control Model",
+        name: 'Control Model'
+    },
+     {
+        state: "Reports",
+        name: 'Reports'    
+    },
+]
+  selectedState;
+
+   onSelectionChange(state) {
+        this.selectedState = state;
+    }
+
+
+
+
 }
+
+
+// var checkboxes = document.querySelectorAll('input.subOption'),
+//     checkall = document.getElementById('option');
+
+// for(var i=0; i<checkboxes.length; i++) {
+//   checkboxes[i].onclick = function() {
+//     var checkedCount = document.querySelectorAll('input.subOption:checked').length;
+
+//     checkall.checked = checkedCount > 0;
+//     checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+//   }
+// }
+
+// checkall.onclick = function() {
+//   for(var i=0; i<checkboxes.length; i++) {
+//     checkboxes[i].checked = this.checked;
+//   }
+// }
