@@ -130,52 +130,59 @@ export class UserMenuComponent implements OnInit {
 //     }
 //   ];
 //   
-     menus =[
-    {
-        state: "hazardanalysis",
-        name: 'Hazard Analysis'
-    },
-    {
-        state: "Risk Assessment",
-        name: 'Risk Assessment'
-    },
-     {
-        state: "Monitoring Details",
-        name: 'Monitoring Details'
-    },
-     {
-        state: "Supporting Documents ",
-        name: 'Supporting Documents '
-    },
-     {
-        state: "Schematics",
-        name: 'Schematics'
-    },
-     {
-        state: "Risk Assessment Model",
-        name: 'Risk Assessment Model'
-    },
-     {
-        state: "Decision Tree Model",
-        name: 'Decision Tree Model'
-    },
-     {
-        state: "Control Model",
-        name: 'Control Model'
-    },
-     {
-        state: "Reports",
-        name: 'Reports'    
-    },
-]
-  selectedState;
-
-   onSelectionChange(state) {
-        this.selectedState = state;
-    }
+// children: string = [];
 
 
+private menus=[
+      {
+      'name':"Hazard Analysis",
+      "class":"Hazard Analysis"
+    },     
+      {
+      'name':"Hazard Analysis",
+      "type":"children",
+      "subopen":false,
+      "children":[
+          {
+                'name':"Risk Assessment",
+                'state': 'riskassessment'
+              },
+              {
+                'name':"Monitoring Details",
+                'state': 'riskassessment'
+              },
+               {
+                'name':"Supporting Documents",
+                'state': 'Monitoring Details'
+              },
+               {
+                'name':"Schematics",
+                'state': 'Schematics'
+              },
+               {
+                'name':"Risk Assessment Model",
+                'state': 'Risk Assessment Model'
+              },
+               {
+                'name':"Decision Tree Model",
+                'state': 'Decision Tree Model'
+              },
+               {
+                'name':"Control Model",
+                'state': 'Control Model'
+              },
+                {
+                'name':"Reports",
+                'state': 'Reports'
+              }
+          ]
+      },
+ ];
 
+onMenusChange(event,value) {
+    console.log("name changed", value);
+    // this.menus.push("name changed, value is: " + value);
+  }
 
 }
 

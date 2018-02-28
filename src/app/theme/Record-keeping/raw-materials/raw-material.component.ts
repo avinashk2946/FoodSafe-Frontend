@@ -244,6 +244,67 @@ export class RawmaterialComponent implements OnInit, AfterViewInit {
     // }, 75);
   }
 
+
+
+
+         plants =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+
+          suppliers =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+       
+          brokers =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+          coos =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+
+
+        // submit(){
+
+        // }
+        // // save(){
+
+        // }
+        // // cancel(){
+
+        // }
+
 }
 
 // function e(h, g, i) {

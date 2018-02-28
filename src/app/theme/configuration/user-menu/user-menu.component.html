@@ -1,179 +1,30 @@
-<div class="raw-dyanamic menu card"  >
-    <div class="">
-      <div  *ngFor="let menu of menus; let st = state"  class="checkbox col" >
-         <input type="checkbox" name="checkbox" class="checkbox" [checked]="st === 1" [value]="menu.state" [(ngModel)]="menu.checked" > 
-         {{ menu.name }} 
-            <input type="radio" name="radiogroup" class="radio" [checked]="st === 0"   [value]="menu.state"  (change)="onSelectionChange(menu)">
-            Edit
-            <input type="radio" name="radiogroup" class="radio" [checked]="st === 0"   [value]="menu.state"  (change)="onSelectionChange(menu)">
-            ReadOnly
-      </div>
-  </div>
+<div class='raw-dyanamic menu card' >
+  <ul class="raw-dyanamic">
+    <li *ngFor="let menu of menus" class=" col treeview {{menu.state}} checkbox  " >
+      <ng-container *ngIf="'children'!==menu.type" >
+          <span>{{menu.name}}</span>           
+      </ng-container>
+
+      <ng-container *ngIf="'children'===menu.type">
+         <input type="checkbox" name="checkbox" class="checkbox"  [(ngModel)]="menu.checked" (click)="$event.preventDefault();menu.subopen=!menu.subopen" > 
+          <span>{{menu.name}}</span>
+        <ul class="treeview-menu" [style.display]="menu.subopen?'block':'none'">
+          <li *ngFor="let menuchildren of menu.children" >
+            <input type="checkbox" name="checkbox" class="checkbox" [value]="menu.name"  > 
+              <span>{{menuchildren.name}}</span> 
+              <span class="action">                    
+                <input type="radio" name="radiogroup" class="radio"  (change)="onMenusChange($event, name)">
+                  Edit
+              </span>
+              <span class="action">
+                <input type="radio" name="radiogroup" class="radio"  (change)="onMenusChange($event, name)" >
+                  ReadOnly
+              </span>
+          </li>
+        </ul>
+      </ng-container>
+    </li>
+  </ul>
 </div>
 
-
-
-<!-- <div class="raw dyanamic-menu card">
-  <label class="alert-heading">Food Safety Plan</label>
-  <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Hazard Analysis</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-  <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Risk Assessment</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-  <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Monitoring Details</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-  <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Supporting Documents</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-  <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Schematics</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-  <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Risk Assessment Model</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-   <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label> Decision Tree Model </label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-    <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Control Model</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-   <div class="raw">
-    <div class="col-md-12">
-          <input type="checkbox" name="check" class="" > 
-          <label>Reports</label>
-          <input type="radio" name="radio" class="" > Edit
-          <input type="radio" name="radio" class="" > ReadOnly
-    </div>
-  </div>
-</div>
-
-
- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="row">
-  <div class="col-sm-12"> -->
-    <!-- Basic Form Inputs card start -->
-<!--     <app-card [title]="'User Management Cofiguration'" [cardOptionBlock]="true">
-
-<div class="row"> -->
-<!-- <div class="col-sm-12 col-xl-4">
-          <h4 class="sub-title">Allow clear</h4>
-          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="simpleOption" [(ngModel)]="selectedOption"></ng-select>
-          <p class="m-t-10">The ng-select above is declared with the <code>allowClear</code> attribute</p>
-        </div>
- -->
-<!--   <div class="col-12"> -->
-
-
-<!-- <div class="row">
-  <div class="col-6">
-    <div class="form-group">
-      <div class="d-inline-block">
-        <ngx-treeview [items]="items" [itemTemplate]="itemTemplate" (selectedChange)="onSelectedChange($event)">
-        </ngx-treeview>
-      </div>
-    </div>
-  </div>
-  <div class="col-6">
-    <div class="alert alert-success" role="alert">
-      Selected products:
-      <div >{{rows |json}}</div> -->
-      <!-- <div *ngFor="let row of rows">{{row}}</div> -->
-<!--     </div>
-  </div>
-</div> -->
-      <!-- <div class="col-lg-4 col-sm-12">
-        <div class="form-group">
-          <label>
-            <strong>ngx-treeview</strong>
-          </label>
-          <ngx-treeview [config]="config" [items]="items" [itemTemplate]="itemTemplate"  (selectedChange)="onSelectedChange($event,$event)">
-          </ngx-treeview>
-        </div>
-      </div> -->
-      
-    <!-- </div> -->
- <!--  </div>
-</div>
-
-      
-    </app-card>
-    
-  </div>
-</div> -->
-
-<!--   <table>
-        <thead>
-          <td>Description</td>
-          <td></td>
-        </thead>
-        <tbody>
-          <tr *ngFor="let entry of entries">
-            <td>{{ entry.description }}</td>
-            <td>
-                <input type="radio" name="radiogroup">
-            </td>
-          </tr>
-        </tbody>
-      </table>
- -->
 

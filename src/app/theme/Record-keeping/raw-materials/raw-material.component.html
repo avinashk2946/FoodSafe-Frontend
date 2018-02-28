@@ -9,7 +9,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.broker}} --></option>
+			            <option *ngFor="let plant of plants" value= {{plant.name}}>
+					    	{{plant.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -54,7 +56,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.supplier_name}} --></option>
+			             <option *ngFor="let supplier of suppliers" value= {{supplier.name}}>
+					    	{{supplier.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -66,7 +70,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.broker}} --></option>
+			             <option *ngFor="let broker of brokers" value= {{broker.name}}>
+					    	{{broker.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -78,7 +84,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.coo}} --></option>
+			             <option *ngFor="let coo of coos" value= {{coo.name}}>
+					    	{{coo.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -107,7 +115,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.product}} --></option>
+			             <option *ngFor="let product of products" value= {{product.name}}>
+					    	{{product.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -119,7 +129,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.broker}} --></option>
+			             <option *ngFor="let productcode of productcodes" value= {{productcode.name}}>
+					    	{{productcode.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -135,7 +147,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.variety}} --></option>
+			           <option *ngFor="let variety of varieties" value= {{variety.name}}>
+					    	{{variety.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -147,7 +161,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.kosher}} --></option>
+			             <option *ngFor="let kosher of koshers" value= {{kosher.name}}>
+					    	{{kosher.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -159,7 +175,9 @@
 		          </div>
 		          <div class= "col-md-8 form group">
 			          <select name="select" class="form-control form-control-primary" >
-			            <option value="opt1"><!-- {{data.non_gmo}} --></option>
+			             <option *ngFor="let nongmo of nongmos" value= {{nongmo.name}}>
+					    	{{nongmo.name}}
+					  	</option>
 			          </select>  
 		          </div>
 		  	</div>        
@@ -180,7 +198,7 @@
 		          </div>
 		  	</div>        
 	 	 </div>
-	 	 <div class="col-sm-4 data-table" >
+	 	 <div class="col-sm-4 data-table">
 		  	<div class="row ">
 		  		<div class="col-md-4 form group">
 		            <label for="name">Container No</label>
@@ -218,7 +236,7 @@
 
 
 
-<div class="row  justify-content-center">
+<!-- <div class="row  justify-content-center">
 	<div class="row">
 	    <div class="col-md-6">
 	        	<button  [routerLink]="['./rawmaterialdetails']" type="button" class="btn btn-primary">
@@ -233,7 +251,7 @@
 	           
 	    </div>
 	</div>   
-</div>
+</div> -->
 
 
 
@@ -262,7 +280,7 @@
 
 
 
-      <div class="table-responsive card">
+<div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
           <tr>
@@ -273,47 +291,59 @@
           <tbody>
           <tr>
             <td>Bill of Lading</td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
           <tr>
             <td>Commercial Invoice</td>
-              <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+             <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
           <tr>
             <td>Packing list</td>
-               <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+             <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
            <tr>
             <td>COA</td>
-             <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+             <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
            <tr>
             <td>CCP verification records</td>
-             <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
            <tr>
             <td>Environmental Monitoring records</td>
-             <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+             <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
            <tr>
             <td>Other Supporting records</td>
-             <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
-            <td><a href="" class="link">Attach</a></td>
+             <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
+            <td><input type="file" name=""></td>
           </tr>
           </tbody>
         </table>
-      </div>
 
+        <div class=" row justify-content-center">
+		<p>
+		  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
+		  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
+		  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
+		</p>
+	</div>
+
+</div>
+
+<!-- 			<td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td>
+            <td><a href="" class="link">Attach</a></td> -->
