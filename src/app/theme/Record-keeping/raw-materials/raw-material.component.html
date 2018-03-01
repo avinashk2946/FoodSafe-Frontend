@@ -1,4 +1,4 @@
-<!-- <div class="row  justify-content-center ">
+<div class="row  justify-content-center ">
 	<div class="row m-t-5 ">
 	    <div class="col-md-4">
 	        	<button  [routerLink]="['./rawmaterialdetails']" type="button" class="btn btn-primary">
@@ -19,7 +19,7 @@
 	           
 	    </div>
 	</div>   
-</div> -->
+</div>
 <div class="raw-materials justify-content-center card">
 
   <!-- <form  [formGroup]="dataForm" (ngSubmit)="onSubmit()" novalidate class="float-lg-left"> -->
@@ -369,50 +369,49 @@
           <tbody>
           <tr>
             <td>Bill of Lading</td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader" accept="" name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader" accept="" name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
           </tr>
           <tr>
             <td>Commercial Invoice</td>
-             <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
+             <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
           </tr>
           <tr>
             <td>Packing list</td>
-             <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader" name=""></td>
+             <td><input ng2FileSelect [uploader]="uploader"   type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
           </tr>
            <tr>
             <td>COA</td>
-             <td><input type="file" ng2FileSelect [uploader]="uploader" name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader" name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
+             <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
           </tr>
            <tr>
             <td>CCP verification records</td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
           </tr>
            <tr>
             <td>Environmental Monitoring records</td>
-             <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"   type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"   type="file" name=""></td>
           </tr>
            <tr>
             <td>Other Supporting records</td>
-             <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-            <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
-          </tr>
+             <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"  type="file" name=""></td>
+            <td><input ng2FileSelect [uploader]="uploader"   type="file" name=""></td>
           </tr>
           </tbody>
         </table>
-			
+
         <div class=" row justify-content-center">
 		<p>
 		  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
