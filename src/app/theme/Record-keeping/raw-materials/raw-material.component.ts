@@ -159,5 +159,59 @@ export class RawmaterialComponent implements OnInit {
         // // cancel(){
 
         // }
+        
 
+         Bill of Lading =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+
+          suppliers =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+       
+          brokers =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];
+          coos =[
+            {
+                plant: "Montreal",
+                name: 'Montreal'
+            },
+             {
+                plant: "Canada",
+                name: 'Canada'
+            },
+             
+        ];        
+Bill of Lading
+Commercial Invoice
+Packing list
+COA
+CCP verification records
+Environmental Monitoring records
+Other Supporting records
 }

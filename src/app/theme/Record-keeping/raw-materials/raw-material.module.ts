@@ -7,6 +7,7 @@ import {ChartModule} from 'angular2-chartjs';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {SelectModule} from 'ng-select';
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {SelectModule} from 'ng-select';
     FormsModule,ReactiveFormsModule,
     SelectModule,
     SimpleNotificationsModule.forRoot(),
+    FileUploadModule
 
   ],
   declarations: [RawmaterialComponent],
