@@ -337,7 +337,11 @@
 	         	<span>{{file.name}}</span>           
 	   		</p>
             <td>
-                <input  type="file" name="filegroup" class="file" ng2FileSelect [uploader]="uploader"  >            	
+                <input  type="file" name="filegroup" class="file" ng2FileSelect [uploader]="uploader"  > 
+                    <span><i class="fa fa-check"></i></span> <!-- *ngIf="item.isSuccess" -->
+
+                    <span><i class="fa fa-ban"></i></span> <!-- *ngIf="item.isCancel" -->
+                    <span><i class="fa fa-times"></i></span> <!-- *ngIf="item.isError" -->       	
             </td>
           </tr>
           </tbody>
@@ -345,15 +349,19 @@
 
         <div class=" row justify-content-center">
 			<p>
-			  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
-			  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
-			  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
+			  <button  type="button" class="btn btn-primary" (click)="item.upload()">Save</button>
+			  <button  autofocus="" type="button" class="btn btn-success" (click)="item.submit()">Save & Submit</button>
+			  <button   type="button" class="btn btn-default" (click)="item.cancel()">Cancel</button> 
 			</p>
 		</div>
 
 </div>
 
+
+
+
 <!-- 			<td><a href="" class="link">Attach</a></td>
             <td><a href="" class="link">Attach</a></td>
             <td><a href="" class="link">Attach</a></td> -->
+
 
