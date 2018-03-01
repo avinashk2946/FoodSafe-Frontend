@@ -323,9 +323,7 @@
 
 
 <div class="table-responsive card">
-
       <div class="table-responsive card">
-
         <table class="table table-framed ">
           <thead>
           <tr>
@@ -335,60 +333,27 @@
           </thead>
           <tbody>
           <tr>
-            <td>Bill of Lading</td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-          </tr>
-          <tr>
-            <td>Commercial Invoice</td>
-             <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-          </tr>
-          <tr>
-            <td>Packing list</td>
-             <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-          </tr>
-           <tr>
-            <td>COA</td>
-             <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-          </tr>
-           <tr>
-            <td>CCP verification records</td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-          </tr>
-           <tr>
-            <td>Environmental Monitoring records</td>
-             <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-          </tr>
-           <tr>
-            <td>Other Supporting records</td>
-             <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
-            <td><input type="file" name=""></td>
+           <p *ngFor="let file of files" class=" col {{file.name}}" >
+	         	<span>{{file.name}}</span>           
+	   		</p>
+            <td>
+                <input  type="file" name="filegroup" class="file" ng2FileSelect [uploader]="uploader"  >            	
+            </td>
           </tr>
           </tbody>
         </table>
 
         <div class=" row justify-content-center">
-		<p>
-		  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
-		  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
-		  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
-		</p>
-	</div>
+			<p>
+			  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
+			  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
+			  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
+			</p>
+		</div>
 
 </div>
 
 <!-- 			<td><a href="" class="link">Attach</a></td>
             <td><a href="" class="link">Attach</a></td>
             <td><a href="" class="link">Attach</a></td> -->
+

@@ -159,5 +159,39 @@ export class RawmaterialComponent implements OnInit {
         // // cancel(){
 
         // }
+        
+      files=[
+                {
+                  'name':"Bill of Lading",
+                  "class":"Bill of Lading"
+                },     
+            
+                {
+                    'name':"Commercial Invoice",
+                    'class': 'Commercial Invoice'
+                },
+                {
+                    'name':"Packing list",
+                    'class': 'Packing list'
+                },
+                {
+                    'name':"COA",
+                    'class': 'COA'
+                },
+                {
+                    'name':"CCP verification records",
+                    'class': 'CCP verification records'
+                },
+                {
+                    'name':"Environmental Monitoring records",
+                    'class': 'Environmental Monitoring records'
+                },
+                {
+                    'name':"Other Supporting records",
+                    'class': 'Other Supporting records'
+                },               
+      
+            ];        
+
 
 }

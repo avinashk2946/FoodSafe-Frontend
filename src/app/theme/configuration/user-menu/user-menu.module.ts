@@ -14,7 +14,8 @@ import { TreeviewModule } from 'ngx-treeview';
     UserMenuRoutingModule,
     SharedModule,
     ColorPickerModule,FormsModule,ReactiveFormsModule,
-    TreeviewModule.forRoot()
+    TreeviewModule.forRoot(),
+    
   ],
   declarations: [UserMenuComponent]
 })
