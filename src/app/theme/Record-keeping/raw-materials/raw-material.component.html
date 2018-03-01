@@ -323,13 +323,46 @@
 
 
 <div class="table-responsive card">
-
       <div class="table-responsive card">
-
         <table class="table table-framed ">
           <thead>
           <tr>
             <th>Document(Optional)</th>
+            <th>Attachment</th>          
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+           <p *ngFor="let file of files" class=" col {{file.name}}" >
+	         	<span>{{file.name}}</span>           
+	   		</p>
+            <td>
+                <input  type="file" name="filegroup" class="file" ng2FileSelect [uploader]="uploader"  > 
+                    <span><i class="fa fa-check"></i></span> <!-- *ngIf="item.isSuccess" -->
+
+                    <span><i class="fa fa-ban"></i></span> <!-- *ngIf="item.isCancel" -->
+                    <span><i class="fa fa-times"></i></span> <!-- *ngIf="item.isError" -->       	
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <div class=" row justify-content-center">
+			<p>
+			  <button  type="button" class="btn btn-primary" (click)="item.upload()">Save</button>
+			  <button  autofocus="" type="button" class="btn btn-success" (click)="item.submit()">Save & Submit</button>
+			  <button   type="button" class="btn btn-default" (click)="item.cancel()">Cancel</button> 
+			</p>
+		</div>
+
+</div>
+
+
+<div class="table-responsive card">
+        <table class="table table-framed ">
+          <thead>
+          <tr>
+            <th>Document</th>
             <th>Attachment</th>          
           </tr>
           </thead>
@@ -375,6 +408,7 @@
              <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
             <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
             <td><input type="file" ng2FileSelect [uploader]="uploader"  name=""></td>
+          </tr>
           </tr>
           </tbody>
         </table>

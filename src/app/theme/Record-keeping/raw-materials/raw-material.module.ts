@@ -21,6 +21,7 @@ import {FileUploadModule} from 'ng2-file-upload';
     SimpleNotificationsModule.forRoot(),
     FileUploadModule
 
+
   ],
   declarations: [RawmaterialComponent],
   bootstrap: [RawmaterialComponent]
