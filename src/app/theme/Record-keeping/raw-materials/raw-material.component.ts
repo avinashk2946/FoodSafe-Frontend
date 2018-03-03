@@ -110,6 +110,7 @@ export class RawmaterialComponent implements OnInit {
 
     constructor(private fb : FormBuilder) {
     }
+      
   ngOnInit() {
     this.dataForm = this.fb.group({
       'plant' : ['', [Validators.required]],
@@ -164,56 +165,56 @@ this.dataForm.reset();
   };
 
 
-<<<<<<< HEAD
 
 
 
-         plants =[
-            {
-                plant: "Montreal",
-                name: 'Montreal'
-            },
-             {
-                plant: "Canada",
-                name: 'Canada'
-            },
+
+        //  plants =[
+        //     {
+        //         plant: "Montreal",
+        //         name: 'Montreal'
+        //     },
+        //      {
+        //         plant: "Canada",
+        //         name: 'Canada'
+        //     },
              
-        ];
+        // ];
 
-          suppliers =[
-            {
-                plant: "Montreal",
-                name: 'Montreal'
-            },
-             {
-                plant: "Canada",
-                name: 'Canada'
-            },
+        //   suppliers =[
+        //     {
+        //         plant: "Montreal",
+        //         name: 'Montreal'
+        //     },
+        //      {
+        //         plant: "Canada",
+        //         name: 'Canada'
+        //     },
              
-        ];
+        // ];
        
-          brokers =[
-            {
-                plant: "Montreal",
-                name: 'Montreal'
-            },
-             {
-                plant: "Canada",
-                name: 'Canada'
-            },
+        //   brokers =[
+        //     {
+        //         plant: "Montreal",
+        //         name: 'Montreal'
+        //     },
+        //      {
+        //         plant: "Canada",
+        //         name: 'Canada'
+        //     },
              
-        ];
-          coos =[
-            {
-                plant: "Montreal",
-                name: 'Montreal'
-            },
-             {
-                plant: "Canada",
-                name: 'Canada'
-            },
+        // ];
+        //   coos =[
+        //     {
+        //         plant: "Montreal",
+        //         name: 'Montreal'
+        //     },
+        //      {
+        //         plant: "Canada",
+        //         name: 'Canada'
+        //     },
              
-        ];
+        // ];
 
 
         // submit(){
@@ -259,7 +260,4 @@ this.dataForm.reset();
       
             ];        
 
-
-=======
->>>>>>> 08004ddfc4e6ded53110a7a649c1bfc5a65ecabe
 }
