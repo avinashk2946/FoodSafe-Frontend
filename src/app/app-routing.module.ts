@@ -5,13 +5,14 @@ import {LoginComponent} from './theme/login/login.component';
 import {CorporateComponent} from './theme/dashboard/corporate-dashboard/corporate.component';
 
 const routes: Routes = [
-   // {  path : '',redirectTo : 'login', pathMatch : 'full'},
 
-  { path: '',component: AdminComponent,
-    children: [
+        // {  path : '',redirectTo : 'login', pathMatch : 'full'},
 
-       { path: '', 
-       redirectTo: 'dashboard/corporate',pathMatch: 'full' },
+        { path: '',component: AdminComponent,
+          children: [
+
+        { path: '',   
+         redirectTo: 'dashboard/corporate',pathMatch: 'full' },
 
        /*{ path: 'corporate',loadChildren: './corporate/corporate.module#CorporateModule' },
 

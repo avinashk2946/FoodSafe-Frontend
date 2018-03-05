@@ -1,6 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { RawMaterialsService } from './raw-materials.service';
+import  { Plant } from '../../../classes/plant';
+
 
 @Component({
   selector: 'app-raw-material',
@@ -12,8 +15,12 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 })
 export class RawmaterialComponent implements OnInit {
+
+
+      
+
     dataForm : FormGroup;
-    plant : any = '';
+    plant : any = 'plant[]';
     createdDate : any = new Date();
     createdBy : any = 'admin';
     suplier : any = '';
@@ -28,6 +35,7 @@ export class RawmaterialComponent implements OnInit {
     po : any = '';
     containerNo : any = '';
     lotNo : any = '';
+
     plants : Array<any> =[
     {value: 'AF', label: 'Afghanistan'},
     {value: 'AX', label: 'Åland Islands'},
@@ -108,8 +116,9 @@ export class RawmaterialComponent implements OnInit {
   ];
 
 
-    constructor(private fb : FormBuilder) {
+    constructor(private fb : FormBuilder,public rawmaterialsservice:RawMaterialsService) {
     }
+
       
   ngOnInit() {
     this.dataForm = this.fb.group({
@@ -135,19 +144,19 @@ onRecordCreate() {
   console.log('this.dataForm.value',this.dataForm.value);
   console.log(this.plant);
   console.log(this.createdDate);
-console.log(this.createdBy);
-console.log(this.suplier);
-console.log(this.broker);
-console.log(this.coo);
-console.log(this.product);
-console.log(this.productCode);
-console.log(this.variety);
-console.log(this.approved);
-console.log(this.kosher);
-console.log(this.nonGMO);
-console.log(this.po);
-console.log(this.containerNo);
-console.log(this.lotNo);
+  console.log(this.createdBy);
+  console.log(this.suplier);
+  console.log(this.broker);
+  console.log(this.coo);
+  console.log(this.product);
+  console.log(this.productCode);
+  console.log(this.variety);
+  console.log(this.approved);
+  console.log(this.kosher);
+  console.log(this.nonGMO);
+  console.log(this.po);
+  console.log(this.containerNo);
+  console.log(this.lotNo);
 this.dataForm.reset();
     /*this.loginSrvc.verifyUser(this.loginForm.value).subscribe(
       (resData: any) => {
@@ -166,7 +175,15 @@ this.dataForm.reset();
 
 
 
-
+  public loadplant():void {
+    if(this.plant.get('plant').value>0){
+      this.rawmaterialsservice.view(this.plant.value)
+      .then(plants=>this.plant=plants);
+    }else{
+      this.plants=[];
+    }
+    
+  // }
 
 
         //  plants =[
@@ -227,37 +244,38 @@ this.dataForm.reset();
 
         // }
         
-      files=[
-                {
-                  'name':"Bill of Lading",
-                  "class":"Bill of Lading"
-                },     
+  //     files=[
+  //               {
+  //                 'name':"Bill of Lading",
+  //                 "class":"Bill of Lading"
+  //               },     
             
-                {
-                    'name':"Commercial Invoice",
-                    'class': 'Commercial Invoice'
-                },
-                {
-                    'name':"Packing list",
-                    'class': 'Packing list'
-                },
-                {
-                    'name':"COA",
-                    'class': 'COA'
-                },
-                {
-                    'name':"CCP verification records",
-                    'class': 'CCP verification records'
-                },
-                {
-                    'name':"Environmental Monitoring records",
-                    'class': 'Environmental Monitoring records'
-                },
-                {
-                    'name':"Other Supporting records",
-                    'class': 'Other Supporting records'
-                },               
+  //               {
+  //                   'name':"Commercial Invoice",
+  //                   'class': 'Commercial Invoice'
+  //               },
+  //               {
+  //                   'name':"Packing list",
+  //                   'class': 'Packing list'
+  //               },
+  //               {
+  //                   'name':"COA",
+  //                   'class': 'COA'
+  //               },
+  //               {
+  //                   'name':"CCP verification records",
+  //                   'class': 'CCP verification records'
+  //               },
+  //               {
+  //                   'name':"Environmental Monitoring records",
+  //                   'class': 'Environmental Monitoring records'
+  //               },
+  //               {
+  //                   'name':"Other Supporting records",
+  //                   'class': 'Other Supporting records'
+  //               },               
       
-            ];        
+  //           ];        
 
+  }
 }
