@@ -20,6 +20,8 @@ export class RawmaterialComponent implements OnInit {
       
 
     dataForm : FormGroup;
+    
+    rawmaterials: any = 'rawmaterials[]';
     plant : any = 'plant[]';
     createdDate : any = new Date();
     createdBy : any = 'admin';
@@ -36,84 +38,84 @@ export class RawmaterialComponent implements OnInit {
     containerNo : any = '';
     lotNo : any = '';
 
-    plants : Array<any> =[
-    {value: 'AF', label: 'Afghanistan'},
-    {value: 'AX', label: 'Åland Islands'},
-    {value: 'AL', label: 'Albania'},
-    {value: 'DZ', label: 'Algeria'},
-    {value: 'AS', label: 'American Samoa'},
-    {value: 'AD', label: 'Andorra'},
-    {value: 'AO', label: 'Angola'},
-    {value: 'AI', label: 'Anguilla'},
-    {value: 'AQ', label: 'Antarctica'},
-    {value: 'AG', label: 'Antigua and Barbuda'},
-    {value: 'AR', label: 'Argentina'}
-  ];
-  supliers : Array<any> =[
-    {value: 'AF', label: 'Afghanistan'},
-    {value: 'AX', label: 'Åland Islands'},
-    {value: 'AL', label: 'Albania'},
-    {value: 'DZ', label: 'Algeria'},
-    {value: 'AS', label: 'American Samoa'},
-    {value: 'AD', label: 'Andorra'},
-    {value: 'AO', label: 'Angola'},
-    {value: 'AI', label: 'Anguilla'},
-    {value: 'AQ', label: 'Antarctica'},
-    {value: 'AG', label: 'Antigua and Barbuda'},
-    {value: 'AR', label: 'Argentina'}
-  ];
-  brokers : Array<any> =[
-    {value: 'AF', label: 'Afghanistan'},
-    {value: 'AX', label: 'Åland Islands'},
-    {value: 'AL', label: 'Albania'},
-    {value: 'DZ', label: 'Algeria'},
-    {value: 'AS', label: 'American Samoa'},
-    {value: 'AD', label: 'Andorra'},
-    {value: 'AO', label: 'Angola'},
-    {value: 'AI', label: 'Anguilla'},
-    {value: 'AQ', label: 'Antarctica'},
-    {value: 'AG', label: 'Antigua and Barbuda'},
-    {value: 'AR', label: 'Argentina'}
-  ];
-  coos : Array<any> =[
-    {value: 'AF', label: 'Afghanistan'},
-    {value: 'AX', label: 'Åland Islands'},
-    {value: 'AL', label: 'Albania'},
-    {value: 'DZ', label: 'Algeria'},
-    {value: 'AS', label: 'American Samoa'},
-    {value: 'AD', label: 'Andorra'},
-    {value: 'AO', label: 'Angola'},
-    {value: 'AI', label: 'Anguilla'},
-    {value: 'AQ', label: 'Antarctica'},
-    {value: 'AG', label: 'Antigua and Barbuda'},
-    {value: 'AR', label: 'Argentina'}
-  ];
-  products: Array<any> =[
-    {value: 'AF', label: 'Afghanistan'},
-    {value: 'AX', label: 'Åland Islands'},
-    {value: 'AL', label: 'Albania'},
-    {value: 'DZ', label: 'Algeria'},
-    {value: 'AS', label: 'American Samoa'},
-    {value: 'AD', label: 'Andorra'},
-    {value: 'AO', label: 'Angola'},
-    {value: 'AI', label: 'Anguilla'},
-    {value: 'AQ', label: 'Antarctica'},
-    {value: 'AG', label: 'Antigua and Barbuda'},
-    {value: 'AR', label: 'Argentina'}
-  ];
-  productCodes: Array<any> =[
-    {value: 'AF', label: 'Afghanistan'},
-    {value: 'AX', label: 'Åland Islands'},
-    {value: 'AL', label: 'Albania'},
-    {value: 'DZ', label: 'Algeria'},
-    {value: 'AS', label: 'American Samoa'},
-    {value: 'AD', label: 'Andorra'},
-    {value: 'AO', label: 'Angola'},
-    {value: 'AI', label: 'Anguilla'},
-    {value: 'AQ', label: 'Antarctica'},
-    {value: 'AG', label: 'Antigua and Barbuda'},
-    {value: 'AR', label: 'Argentina'}
-  ];
+  //   plants : Array<any> =[
+  //   {value: 'AF', label: 'Afghanistan'},
+  //   {value: 'AX', label: 'Åland Islands'},
+  //   {value: 'AL', label: 'Albania'},
+  //   {value: 'DZ', label: 'Algeria'},
+  //   {value: 'AS', label: 'American Samoa'},
+  //   {value: 'AD', label: 'Andorra'},
+  //   {value: 'AO', label: 'Angola'},
+  //   {value: 'AI', label: 'Anguilla'},
+  //   {value: 'AQ', label: 'Antarctica'},
+  //   {value: 'AG', label: 'Antigua and Barbuda'},
+  //   {value: 'AR', label: 'Argentina'}
+  // ];
+  // supliers : Array<any> =[
+  //   {value: 'AF', label: 'Afghanistan'},
+  //   {value: 'AX', label: 'Åland Islands'},
+  //   {value: 'AL', label: 'Albania'},
+  //   {value: 'DZ', label: 'Algeria'},
+  //   {value: 'AS', label: 'American Samoa'},
+  //   {value: 'AD', label: 'Andorra'},
+  //   {value: 'AO', label: 'Angola'},
+  //   {value: 'AI', label: 'Anguilla'},
+  //   {value: 'AQ', label: 'Antarctica'},
+  //   {value: 'AG', label: 'Antigua and Barbuda'},
+  //   {value: 'AR', label: 'Argentina'}
+  // ];
+  // brokers : Array<any> =[
+  //   {value: 'AF', label: 'Afghanistan'},
+  //   {value: 'AX', label: 'Åland Islands'},
+  //   {value: 'AL', label: 'Albania'},
+  //   {value: 'DZ', label: 'Algeria'},
+  //   {value: 'AS', label: 'American Samoa'},
+  //   {value: 'AD', label: 'Andorra'},
+  //   {value: 'AO', label: 'Angola'},
+  //   {value: 'AI', label: 'Anguilla'},
+  //   {value: 'AQ', label: 'Antarctica'},
+  //   {value: 'AG', label: 'Antigua and Barbuda'},
+  //   {value: 'AR', label: 'Argentina'}
+  // ];
+  // coos : Array<any> =[
+  //   {value: 'AF', label: 'Afghanistan'},
+  //   {value: 'AX', label: 'Åland Islands'},
+  //   {value: 'AL', label: 'Albania'},
+  //   {value: 'DZ', label: 'Algeria'},
+  //   {value: 'AS', label: 'American Samoa'},
+  //   {value: 'AD', label: 'Andorra'},
+  //   {value: 'AO', label: 'Angola'},
+  //   {value: 'AI', label: 'Anguilla'},
+  //   {value: 'AQ', label: 'Antarctica'},
+  //   {value: 'AG', label: 'Antigua and Barbuda'},
+  //   {value: 'AR', label: 'Argentina'}
+  // ];
+  // products: Array<any> =[
+  //   {value: 'AF', label: 'Afghanistan'},
+  //   {value: 'AX', label: 'Åland Islands'},
+  //   {value: 'AL', label: 'Albania'},
+  //   {value: 'DZ', label: 'Algeria'},
+  //   {value: 'AS', label: 'American Samoa'},
+  //   {value: 'AD', label: 'Andorra'},
+  //   {value: 'AO', label: 'Angola'},
+  //   {value: 'AI', label: 'Anguilla'},
+  //   {value: 'AQ', label: 'Antarctica'},
+  //   {value: 'AG', label: 'Antigua and Barbuda'},
+  //   {value: 'AR', label: 'Argentina'}
+  // ];
+  // productCodes: Array<any> =[
+  //   {value: 'AF', label: 'Afghanistan'},
+  //   {value: 'AX', label: 'Åland Islands'},
+  //   {value: 'AL', label: 'Albania'},
+  //   {value: 'DZ', label: 'Algeria'},
+  //   {value: 'AS', label: 'American Samoa'},
+  //   {value: 'AD', label: 'Andorra'},
+  //   {value: 'AO', label: 'Angola'},
+  //   {value: 'AI', label: 'Anguilla'},
+  //   {value: 'AQ', label: 'Antarctica'},
+  //   {value: 'AG', label: 'Antigua and Barbuda'},
+  //   {value: 'AR', label: 'Argentina'}
+  // ];
 
 
     constructor(private fb : FormBuilder,public rawmaterialsservice:RawMaterialsService) {
@@ -176,11 +178,11 @@ this.dataForm.reset();
 
 
   public loadplant():void {
-    if(this.plant.get('plant').value>0){
-      this.rawmaterialsservice.view(this.plant.value)
-      .then(plants=>this.plant=plants);
+    if(this.rawmaterials.get('rawmaterials').value>0){
+      this.rawmaterialsservice.view(this.rawmaterials.value)
+      .then(rawmaterials=>this.rawmaterials=rawmaterials);
     }else{
-      this.plants=[];
+      this.rawmaterials=[];
     }
     
   // }

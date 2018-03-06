@@ -1,4 +1,4 @@
-export class Plant {	
+export class Supplier {	
 
    id:number;
    name: string ;
@@ -8,4 +8,6 @@ export class Plant {
    pin:string;
    fax: string;
    phone: string; 
+   contactSalutation :string;
+   contactFirstName  : string;
 }
