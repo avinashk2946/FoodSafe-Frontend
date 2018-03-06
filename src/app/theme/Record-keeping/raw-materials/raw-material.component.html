@@ -244,7 +244,7 @@
 	   		</p>
             <td>
                 <input  type="file" name="filegroup" class="file" ng2FileSelect [uploader]="uploader"  > 
-                    <span><i class="fa fa-check"></i></span> <!-- *ngIf="item.isSuccess" -->
+                    <span><i class="fa fa-check"></i></span> *ngIf="item.isSuccess"
                     <span><i class="fa fa-ban"></i></span> <!-- *ngIf="item.isCancel" -->
                     <span><i class="fa fa-times"></i></span> <!-- *ngIf="item.isError" -->       	
             </td>
@@ -263,7 +263,7 @@
 </div>
 
 
-<div class="table-responsive card">
+<<!-- div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
           <tr>
@@ -318,13 +318,13 @@
         </table>
 
         <div class=" row justify-content-center">
-		<p>
-		  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
-		  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
-		  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
-		</p>
-	</div>
-
+			<p>
+			  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
+			  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
+			  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
+			</p>
+		</div>
+ -->
 </div>
 
 <!-- 			<td><a href="" class="link">Attach</a></td>

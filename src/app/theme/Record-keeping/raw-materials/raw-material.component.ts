@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angu
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { RawMaterialsService } from './raw-materials.service';
-import  { Plant } from '../../../classes/plant';
+import  { Rawmaterials } from '../../../classes/rawmaterials';
 
 
 @Component({
@@ -20,9 +20,10 @@ export class RawmaterialComponent implements OnInit {
       
 
     dataForm : FormGroup;
-    
+
     rawmaterials: any = 'rawmaterials[]';
-    plant : any = 'plant[]';
+
+    plant : any = 'plant';
     createdDate : any = new Date();
     createdBy : any = 'admin';
     suplier : any = '';

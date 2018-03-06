@@ -4,12 +4,11 @@ import { Broker } from './broker';
 import { Supplier } from './supplier'; 
 
 export class Rawmaterials {
-	
-	  plant:string; 
+  
+	  id:number;
   	createdDate :string ;
   	createdBy : string;
   	suplier : string;
-  	broker :string ;
 	  coo : string;
  	  product :string ;
  	  productCode :string;
@@ -19,4 +18,8 @@ export class Rawmaterials {
   	po : string;
   	containerNo :string;
   	lotNo :string; 
+    plant:Plant;
+    address:Address;
+    broker:Broker;
+    supplier:Supplier;
 }
