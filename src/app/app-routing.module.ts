@@ -6,7 +6,7 @@ import {CorporateComponent} from './theme/dashboard/corporate-dashboard/corporat
 
 const routes: Routes = [
 
-        // {  path : '',redirectTo : 'login', pathMatch : 'full'},
+        {  path : '',redirectTo : 'login', pathMatch : 'full'},
 
         { path: '',component: AdminComponent,
           children: [

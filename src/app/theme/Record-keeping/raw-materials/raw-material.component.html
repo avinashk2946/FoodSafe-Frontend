@@ -29,7 +29,7 @@
 				  		<div class="col-md-4 form group">
 				            <label for="name">Plant</label>
 				          </div>
-				          <div class= "col-md-8 form group">
+				          <div class= "col-md-8 form group">   <!-- {{rawmaterials | json}} -->
 					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plants" placeholder='select Plant' [(ngModel)]="plant" (change)='loadplant()' formControlName="plant"></ng-select>
 				          </div>
 				  	</div>        
@@ -71,7 +71,7 @@
 				            <label for="name">Supplier</label>
 				          </div>
 				          <div class= "col-md-8 form group">
-					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier" formControlName="suplier"></ng-select>
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier" (change)='loadsupplier()'  formControlName="suplier"></ng-select>
 				          </div>
 				  	</div>        
 			 	 </div>
@@ -255,7 +255,7 @@
         <div class=" row justify-content-center">
 			<p>
 			  <button  type="button" class="btn btn-primary" (click)="item.upload()">Save</button>
-			  <button  autofocus="" type="button" class="btn btn-success" (click)="item.submit()">Save & Submit</button>
+			  <button  autofocus="" type="button" class="btn btn-success" (click)="onsubmit()">Save & Submit</button>
 			  <button   type="button" class="btn btn-default" (click)="item.cancel()">Cancel</button> 
 			</p>
 		</div>

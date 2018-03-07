@@ -1,9 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { RawMaterialsService } from './raw-materials.service';
-import  { Rawmaterials } from '../../../classes/rawmaterials';
+import { RawMaterialsService } from '../../../service/raw-materials.service';
+import { PlantService } from '../../../service/plant.service';
+import { SupplierService } from '../../../service/supplier.service';
 
+import  { Rawmaterial } from '../../../classes/rawmaterial';
+import  { Plant } from '../../../classes/plant';
+import  { Supplier } from '../../../classes/supplier';
 
 @Component({
   selector: 'app-raw-material',
@@ -21,12 +25,12 @@ export class RawmaterialComponent implements OnInit {
 
     dataForm : FormGroup;
 
-    rawmaterials: any = 'rawmaterials[]';
+    rawmaterial: any = 'rawmaterials[]';
 
-    plant : any = 'plant';
+    plant : any = 'Plant[]';
     createdDate : any = new Date();
     createdBy : any = 'admin';
-    suplier : any = '';
+    supplier : any = 'Supplier[]';
     broker : any = '';
     coo : any = '';
     product : any = '';
@@ -119,7 +123,9 @@ export class RawmaterialComponent implements OnInit {
   // ];
 
 
-    constructor(private fb : FormBuilder,public rawmaterialsservice:RawMaterialsService) {
+    constructor(private fb : FormBuilder,public rawmaterialsservice:RawMaterialsService,
+      public suppliersservice:SupplierService,
+      public plantservice:PlantService) {
     }
 
       
@@ -148,7 +154,7 @@ onRecordCreate() {
   console.log(this.plant);
   console.log(this.createdDate);
   console.log(this.createdBy);
-  console.log(this.suplier);
+  console.log(this.supplier);
   console.log(this.broker);
   console.log(this.coo);
   console.log(this.product);
@@ -173,17 +179,27 @@ this.dataForm.reset();
         this.comonSrvc.showErrorMsg(err.message);
       }
      
-    });*/
+    });*/  
   };
 
 
 
   public loadplant():void {
-    if(this.rawmaterials.get('rawmaterials').value>0){
-      this.rawmaterialsservice.view(this.rawmaterials.value)
-      .then(rawmaterials=>this.rawmaterials=rawmaterials);
+   console.log(this.plant)
+    if(this.plantservice.get(this.plant)){
+      this.plantservice.view(this.plant.value)
+      .then(plants=>this.plant=plants);
     }else{
-      this.rawmaterials=[];
+      this.plant=[];
+    }
+}
+     public loadsupplier():void {
+     console.log(this.supplier)
+      if(this.suppliersservice.get(this.supplier)){
+        this.suppliersservice.view(this.supplier.value)
+        .then(suppliers=>this.supplier=suppliers);
+      }else{
+        this.supplier=[];
     }
     
   // }
