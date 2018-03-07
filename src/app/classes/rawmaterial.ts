@@ -3,7 +3,7 @@ import { Address } from './address';
 import { Broker } from './broker'; 
 import { Supplier } from './supplier'; 
 
-export class Rawmaterials {
+export class Rawmaterial {
   
 	  id:number;
   	createdDate :string ;

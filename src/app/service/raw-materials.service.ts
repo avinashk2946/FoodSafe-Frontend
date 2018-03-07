@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Rx';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/observable/of';
-import  { Rawmaterials } from '../../../classes/rawmaterials';
+import  { Rawmaterial } from '../classes/rawmaterial';
 
 @Injectable()
 export class RawMaterialsService {
@@ -32,34 +32,28 @@ export class RawMaterialsService {
      	toPromise:any;
 
 
-	get(rawmaterials:Rawmaterials): Promise<Rawmaterials>{
-			  return this.handleToken(this).then(()=>{
+	get(rawmaterial:Rawmaterial): Promise<Rawmaterial>{	  
 			  return this.http
 			  .get(this.baseUrl,{headers: this.headers})  
-			  .toPromise()
-			  .then(res=> res.json() as Rawmaterials)
-			  .catch((error)=>this.handleError(error));
-			});	  
+			  .toPromise()	
+			  .then(res=> res.json() as Rawmaterial)		  
+		  
 	}
 
-	view(id: number):Promise<Rawmaterials>{
+	view(id: number):Promise<Rawmaterial>{
 		 const baseUrl = `${this.baseUrl}/${id}`;
-	  	 return this.handleToken(this).then(()=>{
 		 return this.http.get(baseUrl,{headers:this.headers})
 		.toPromise()
-		.then(response =>{ return response.json() as Rawmaterials ;})
-	  	.catch((error)=>this.handleError(error));	
-		});
+		.then(response =>{ return response.json() as Rawmaterial ;})
+	  		
 	}
 	
 	 // list(extradata=undefined):Promise<Rawmaterials>{
-	 //  // return this.handleToken(this).then(()=>{
-  //         return  this.list(extradata)
+  //         return list(extradata)
   //         .toPromise()
   //         .then(response =>{
   //          return response as Rawmaterials
   //         })
   //         .catch((error)=>{return this.handleError(error)});
-  //     // });
   //   }
 }

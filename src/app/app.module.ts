@@ -31,8 +31,9 @@ import { PoComponent } from './components/po/po.component';
 // import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
 // import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
 
-import { RawMaterialsService } from './theme/Record-keeping/raw-materials/raw-materials.service';
-
+import { RawMaterialsService } from './service/raw-materials.service';
+import { SupplierService } from './service/supplier.service';
+import { PlantService } from './service/plant.service';
 // import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 
@@ -69,6 +70,8 @@ import { RawMaterialsService } from './theme/Record-keeping/raw-materials/raw-ma
   CommonService,
    AuthService,
    RawMaterialsService,
+   SupplierService,
+   PlantService,
    { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
    LoadingService],
   bootstrap: [AppComponent]
