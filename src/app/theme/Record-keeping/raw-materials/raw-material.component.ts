@@ -4,10 +4,16 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { RawMaterialsService } from '../../../service/raw-materials.service';
 import { PlantService } from '../../../service/plant.service';
 import { SupplierService } from '../../../service/supplier.service';
+import { ProductService } from '../../../service/product.service';
+import { BrokerService } from '../../../service/broker.service';
+
 
 import  { Rawmaterial } from '../../../classes/rawmaterial';
 import  { Plant } from '../../../classes/plant';
 import  { Supplier } from '../../../classes/supplier';
+import  { Broker } from '../../../classes/broker';
+import  { Product } from '../../../classes/product';
+
 
 @Component({
   selector: 'app-raw-material',
@@ -31,9 +37,9 @@ export class RawmaterialComponent implements OnInit {
     createdDate : any = new Date();
     createdBy : any = 'admin';
     supplier : any = 'Supplier[]';
-    broker : any = '';
+    broker : any = 'Broker[]';
     coo : any = '';
-    product : any = '';
+    product : any = 'Product[]';
     productCode : any = '';
     variety : any = '';
     approved : any = '';
@@ -125,7 +131,9 @@ export class RawmaterialComponent implements OnInit {
 
     constructor(private fb : FormBuilder,public rawmaterialsservice:RawMaterialsService,
       public suppliersservice:SupplierService,
-      public plantservice:PlantService) {
+      public plantservice:PlantService,
+      public productservice:ProductService,
+      public brokerservice:BrokerService,) {
     }
 
       
@@ -201,7 +209,25 @@ this.dataForm.reset();
       }else{
         this.supplier=[];
     }
-    
+  }  
+   public loadbroker():void {
+     console.log(this.broker)
+      if(this.brokerservice.get(this.broker)){
+        this.brokerservice.view(this.broker.value)
+        .then(brokers=>this.broker=brokers);
+      }else{
+        this.broker=[];
+    }
+}
+    public loadproduct():void {
+     console.log(this.product)
+      if(this.productservice.get(this.product)){
+        this.productservice.view(this.product.value)
+        .then(products=>this.product=products);
+      }else{
+        this.product=[];
+    }
+  }
   // }
 
 
@@ -297,4 +323,3 @@ this.dataForm.reset();
   //           ];        
 
   }
-}

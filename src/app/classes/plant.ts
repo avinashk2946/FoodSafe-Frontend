@@ -1,6 +1,7 @@
 export class Plant {	
 
    id:number;
+   plantId:number;
    name: string ;
    country:string;
    state: string; 

@@ -3,6 +3,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import  { Rawmaterial } from '../classes/rawmaterial';
 import  { Plant } from '../classes/plant';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class PlantService {
@@ -22,7 +24,7 @@ export class PlantService {
 			  return this.http
 			  .get(this.baseUrl,{headers: this.headers})  
 			  .toPromise()	
-			  .then(res=> res.json() as Plant)		  
+			  .then(res=> res.json() as Plant)	
 		  
 	}
 
@@ -44,3 +46,5 @@ export class PlantService {
   //         .catch((error)=>{return this.handleError(error)});
   //   }
 }
+
+// .post(this.baseUrl,JSON.stringify(plant),{headers: this.headers})  

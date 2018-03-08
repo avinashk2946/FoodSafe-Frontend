@@ -34,6 +34,8 @@ import { PoComponent } from './components/po/po.component';
 import { RawMaterialsService } from './service/raw-materials.service';
 import { SupplierService } from './service/supplier.service';
 import { PlantService } from './service/plant.service';
+import { ProductService } from './service/product.service';
+import { BrokerService } from './service/broker.service';
 // import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 
@@ -72,6 +74,8 @@ import { PlantService } from './service/plant.service';
    RawMaterialsService,
    SupplierService,
    PlantService,
+   ProductService,
+  BrokerService,
    { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
    LoadingService],
   bootstrap: [AppComponent]
