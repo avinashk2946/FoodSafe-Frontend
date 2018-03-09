@@ -6,9 +6,11 @@ import  { Plant } from '../classes/plant';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
+import 'rxjs/add/operator/toPromise';
+	
 @Injectable()
 export class PlantService {
-	private baseUrl='http://loalhost:3000/plant'
+	private baseUrl='http://localhost:3000/plant'
 
   constructor(private http:Http) { }
 
@@ -25,6 +27,7 @@ export class PlantService {
 			  .get(this.baseUrl,{headers: this.headers})  
 			  .toPromise()	
 			  .then(res=> res.json() as Plant)	
+			  // .catch((error)=>{return this.handleError(error)});
 		  
 	}
 

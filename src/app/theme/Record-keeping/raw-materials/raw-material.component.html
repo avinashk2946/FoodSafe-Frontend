@@ -68,7 +68,7 @@
 					<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
-				            <label for="name">Supplier</label> <!-- {{supplier | json}} -->
+				            <label for="name">Supplier</label>  <!-- <pre>{{supplier | json}}</pre> -->
 				          </div>
 				          <div class= "col-md-8 form group">
 					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier" (change)='loadsupplier()'  formControlName="suplier"></ng-select>
@@ -228,7 +228,7 @@
 </form>
 
 
-<div class="table-responsive card">
+<!-- <div class="table-responsive card">
       <div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
@@ -245,8 +245,8 @@
             <td>
                 <input  type="file" name="filegroup" class="file" ng2FileSelect [uploader]="uploader"  > 
                     <span><i class="fa fa-check"></i></span> *ngIf="item.isSuccess"
-                    <span><i class="fa fa-ban"></i></span> <!-- *ngIf="item.isCancel" -->
-                    <span><i class="fa fa-times"></i></span> <!-- *ngIf="item.isError" -->       	
+                    <span><i class="fa fa-ban"></i></span> 
+                    <span><i class="fa fa-times"></i></span>      	
             </td>
           </tr>
           </tbody>
@@ -260,10 +260,10 @@
 			</p>
 		</div>
 
-</div>
+</div> -->
 
 
-<<!-- div class="table-responsive card">
+<div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
           <tr>
@@ -320,11 +320,13 @@
         <div class=" row justify-content-center">
 			<p>
 			  <button  type="button" class="btn btn-primary" (click)="save($event)">Save</button>
-			  <button  autofocus="" type="button" class="btn btn-success" (click)="submit($event)">Save & Submit</button>
+			  <button  autofocus="" type="button" class="btn btn-success" (click)="uploadFile() ">Save & Upload</button>
 			  <button   type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button> 
 			</p>
 		</div>
- -->
+				
+				<!-- || file.isUploading || file.isSuccess
+				<span *ngIf="file.isSuccess"><i class="fa fa-check"></i></span> -->
 </div>
 
 <!-- 			<td><a href="" class="link">Attach</a></td>

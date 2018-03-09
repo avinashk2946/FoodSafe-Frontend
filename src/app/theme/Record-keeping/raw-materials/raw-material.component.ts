@@ -6,6 +6,8 @@ import { PlantService } from '../../../service/plant.service';
 import { SupplierService } from '../../../service/supplier.service';
 import { ProductService } from '../../../service/product.service';
 import { BrokerService } from '../../../service/broker.service';
+import { UploaddataService } from '../../../service/uploaddata.service';
+import {FileUploader} from 'ng2-file-upload';
 
 
 import  { Rawmaterial } from '../../../classes/rawmaterial';
@@ -13,6 +15,7 @@ import  { Plant } from '../../../classes/plant';
 import  { Supplier } from '../../../classes/supplier';
 import  { Broker } from '../../../classes/broker';
 import  { Product } from '../../../classes/product';
+import {Observable} from 'rxjs/Rx';
 
 
 @Component({
@@ -28,7 +31,8 @@ export class RawmaterialComponent implements OnInit {
 
 
       
-
+ // uploader: FileUploader = new FileUploader;
+ 
     dataForm : FormGroup;
 
     rawmaterial: any = 'rawmaterials[]';
@@ -48,6 +52,8 @@ export class RawmaterialComponent implements OnInit {
     po : any = '';
     containerNo : any = '';
     lotNo : any = '';
+    FormData:any="";
+    dataLoader:any="";
 
   //   plants : Array<any> =[
   //   {value: 'AF', label: 'Afghanistan'},
@@ -133,7 +139,8 @@ export class RawmaterialComponent implements OnInit {
       public suppliersservice:SupplierService,
       public plantservice:PlantService,
       public productservice:ProductService,
-      public brokerservice:BrokerService,) {
+      public brokerservice:BrokerService,
+      public uploaddataservice:UploaddataService,) {
     }
 
       
@@ -228,6 +235,15 @@ this.dataForm.reset();
         this.product=[];
     }
   }
+
+      // public uploadFile(){
+      //     let files=this.uploaddataservice.uploaddata('selectFile').files;
+      //     let formData=new FormData();
+      //     let file =files[0];
+      //     formData.append('selectFile',file,file.name);
+      //     this.uploaddataservice.uploaddata(formData)
+      //     .subscribe(res=>this.dataLoader(res));
+      //   }
   // }
 
 

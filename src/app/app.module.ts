@@ -38,6 +38,8 @@ import { ProductService } from './service/product.service';
 import { BrokerService } from './service/broker.service';
 // import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
+import { UploaddataService } from './service/uploaddata.service';
+
 
 
 @NgModule({
@@ -76,6 +78,7 @@ import { BrokerService } from './service/broker.service';
    PlantService,
    ProductService,
   BrokerService,
+  UploaddataService,
    { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
    LoadingService],
   bootstrap: [AppComponent]
