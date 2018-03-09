@@ -29,8 +29,8 @@
 				  		<div class="col-md-4 form group">
 				            <label for="name">Plant</label> <!-- {{plant | json}} -->
 				          </div>
-				          <div class= "col-md-8 form group">   
-					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plants" placeholder='select Plant' [(ngModel)]="plant" (change)='loadplant()' formControlName="plant"></ng-select>
+				          <div class= "col-md-8 form group">  
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant" (change)='changePlant()' formControlName="plant"></ng-select>
 				          </div>
 				  	</div>        
 			 	 </div>
