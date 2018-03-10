@@ -82,7 +82,7 @@ export class RawmaterialComponent implements OnInit {
   }
   getPlant () {
     this.rawMatService.getPlant().subscribe((response: any) => {
-      console.log(response);
+      console.log(this.plant);
       this.plantList = response.data;
       this.plantList.forEach(element => {
         element.label = element.name;
@@ -95,7 +95,7 @@ export class RawmaterialComponent implements OnInit {
     });
   }
   public changePlant ():void {
-    console.log(6565);
+    console.log(this.plant);
     this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
       console.log(response);
     }, err => { 
