@@ -33,4 +33,8 @@ export const API_ACTIONS = Object.freeze({
     register: {
         registerUser: 'ecomRegisterUser.action'
     },
+    raw_material:{
+        plant : 'plant',
+        supplier : 'supplier'
+    }
 });
