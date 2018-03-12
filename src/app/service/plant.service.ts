@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 	
 @Injectable()
 export class PlantService {
-	private baseUrl='http://localhost:3000/plant'
+	private APIUrl='http://localhost:3000/plant'
 
   constructor(private http:Http) { }
 
@@ -22,22 +22,26 @@ export class PlantService {
 	);
 
 
-	get(plant:Plant): Promise<Plant>{	  
-			  return this.http
-			  .get(this.baseUrl,{headers: this.headers})  
-			  .toPromise()	
-			  .then(res=> res.json() as Plant)	
-			  // .catch((error)=>{return this.handleError(error)});
+	// get(plant:Plant): Promise<Plant>{	  
+	// 		  return this.http
+	// 		  .get(this.APIUrl,{headers: this.headers})  
+	// 		  .toPromise()	
+	// 		  .then(res=> res.json() as Plant)	
+	// 		  // .catch((error)=>{return this.handleError(error)});
 		  
+	// }
+	getplant(){
+		return this.http.get(this.APIUrl)
+		.map((response:Response)=>response.json())
 	}
 
-	view(id: number):Promise<Plant>{
-		 const baseUrl = `${this.baseUrl}/${id}`;
-		 return this.http.get(baseUrl,{headers:this.headers})
-		.toPromise()
-		.then(response =>{ return response.json() as Plant ;})
+	// view(id: number):Promise<Plant>{
+	// 	 const baseUrl = `${this.APIUrl}/${id}`;
+	// 	 return this.http.get(APIUrl,{headers:this.headers})
+	// 	.toPromise()
+	// 	.then(response =>{ return response.json() as Plant ;})
 	  		
-	}
+	// }
 
 
 	 // list(extradata=undefined):Promise<Plant>{

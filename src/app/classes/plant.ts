@@ -8,5 +8,6 @@ export class Plant {
    city:string;  
    pin:string;
    fax: string;
-   phone: string; 
+   phone: string;
+   value:string; 
 }
