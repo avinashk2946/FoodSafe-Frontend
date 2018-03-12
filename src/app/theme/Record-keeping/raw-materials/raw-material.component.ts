@@ -1,9 +1,9 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 // import { RawMaterialsService } from '../../../service/raw-materials.service';
-// import { PlantService } from '../../../service/plant.service';
+import { PlantService } from '../../../service/plant.service';
 // import { SupplierService } from '../../../service/supplier.service';
 // import { ProductService } from '../../../service/product.service';
 // import { BrokerService } from '../../../service/broker.service';
@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 
 // import  { Rawmaterial } from '../../../classes/rawmaterial';
-// import  { Plant } from '../../../classes/plant';
+import  { Plant } from '../../../classes/plant';
 // import  { Supplier } from '../../../classes/supplier';
 // import  { Broker } from '../../../classes/broker';
 // import  { Product } from '../../../classes/product';
@@ -36,7 +36,7 @@ import { LocationStrategy } from '@angular/common';
 })
 export class RawmaterialComponent implements OnInit {
   dataForm : FormGroup;
-  plant : any;
+  // plant : Plant;
   rawmaterial: any = 'rawmaterials[]';
   plantList = [];
   createdDate : any = new Date();
@@ -53,9 +53,12 @@ export class RawmaterialComponent implements OnInit {
   po : any = '';
   containerNo : any = '';
   lotNo : any = '';
+  
+ @Input() plant=[];
+
   constructor(private fb : FormBuilder,public rawMatService:RawMaterialService,
     // public suppliersservice:SupplierService,
-    // public plantservice:PlantService,
+    public plantservice:PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
   ) {}
@@ -78,32 +81,18 @@ export class RawmaterialComponent implements OnInit {
       'containerNo' : ['', [Validators.required]],
       'lotNo' : ['', [Validators.required]]
     });
-    this.getPlant();
+    this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
   }
-  getPlant () {
-    this.rawMatService.getPlant().subscribe((response: any) => {
-      console.log(this.plant);
-      this.plantList = response.data;
-      this.plantList.forEach(element => {
-        element.label = element.name;
-        element.value = element._id;
-      });
+ 
 
-    },
-     err => { 
-      if (err.status === 401) {
-      }
-    });
-  }
-  public changePlant ():void {
-    console.log(this.plant);
-    this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
+  public changePlant (plant:Plant):void {
+    console.log("hi",this.plant);
+    this.plantservice.getplant().subscribe((response: any) => {
       console.log(response);
-    }, err => { 
-      if (err.status === 401) {
-      }
     });
   }
+
+  
   onRecordCreate() {
     console.log('this.dataForm.value',this.dataForm.value);
     console.log(this.plant);
