@@ -26,12 +26,12 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-   getBroker(id) {
-    var reqPayload = {
-      channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.broker+'/'+id;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
-    return this.comonSrvc.createHttpRequest(httpRequest);
-  }
+  //  getBroker(id) {
+  //   var reqPayload = {
+  //     channel: GLOBAL_PROPERTIES.CHANNEL
+  //   }
+  //   var url = API_ACTIONS.raw_material.broker+'/'+id;
+  //   var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+  //   return this.comonSrvc.createHttpRequest(httpRequest);
+  // }
 }

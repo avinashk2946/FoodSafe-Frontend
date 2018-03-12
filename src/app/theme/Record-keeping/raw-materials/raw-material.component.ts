@@ -89,10 +89,11 @@ export class RawmaterialComponent implements OnInit {
         element.value = element._id;
       });
 
-    }, err => { 
-      if (err.status === 401) {
-      }
-    });
+    },
+    //  err => { 
+    //   if (err.status === 401) {
+    //   }
+    // });
   }
   public changePlant ():void {
     console.log(this.plant);
