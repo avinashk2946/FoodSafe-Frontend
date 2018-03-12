@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 
 // import  { Rawmaterial } from '../../../classes/rawmaterial';
-// import  { Plant } from '../../../classes/plant';
+import  { Plant } from '../../../classes/plant';
 // import  { Supplier } from '../../../classes/supplier';
 // import  { Broker } from '../../../classes/broker';
 // import  { Product } from '../../../classes/product';
@@ -36,7 +36,7 @@ import { LocationStrategy } from '@angular/common';
 })
 export class RawmaterialComponent implements OnInit {
   dataForm : FormGroup;
-  plant : any;
+  plant : Plant;
   rawmaterial: any = 'rawmaterials[]';
   plantList = [];
   createdDate : any = new Date();
@@ -94,7 +94,7 @@ export class RawmaterialComponent implements OnInit {
       }
     });
   }
-  public changePlant ():void {
+  public changePlant (plant:Plant):void {
     console.log(this.plant);
     this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
       console.log(response);
