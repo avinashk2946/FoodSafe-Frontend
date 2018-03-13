@@ -23,6 +23,7 @@ import { RawMaterialService } from './raw-material.service';
 import { CommonService } from '../../../common/common.service';
 import { AuthService } from '../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-raw-material',
@@ -38,13 +39,15 @@ export class RawmaterialComponent implements OnInit {
   dataForm : FormGroup;
   // plant : Plant;
   rawmaterial: any = 'rawmaterials[]';
-  plantList = [];
   createdDate : any = new Date();
+  plantList = [];
+  brokerList = [];
+  supplierList = [];
+  productList = [];
   createdBy : any = 'admin';
-  supplier : any = 'Supplier[]';
-  broker : any = 'Broker[]';
+  broker : any = '';
   coo : any = '';
-  product : any = 'Product[]';
+  product : any = '';
   productCode : any = '';
   variety : any = '';
   approved : any = '';
@@ -53,12 +56,16 @@ export class RawmaterialComponent implements OnInit {
   po : any = '';
   containerNo : any = '';
   lotNo : any = '';
+  plant : any = '';
+  supplier : any = '';
+  selectedSupplier : any = '';
+  selectedProduct : any = '';
   
- @Input() plant=[];
+ //@Input() plant=[];
 
   constructor(private fb : FormBuilder,public rawMatService:RawMaterialService,
     // public suppliersservice:SupplierService,
-    public plantservice:PlantService,
+    //public plantservice:PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
   ) {}
@@ -79,26 +86,16 @@ export class RawmaterialComponent implements OnInit {
       'nonGMO' : ['', [Validators.required]],
       'po' : ['', [Validators.required]],
       'containerNo' : ['', [Validators.required]],
-      'lotNo' : ['', [Validators.required]]
+      'lotNo' : ['', [Validators.required]],
+      'organic' : ['', [Validators.required]],
     });
-    this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
-  }
- 
-
-  public changePlant (plant:Plant):void {
-    console.log("hi",this.plant);
-    this.plantservice.getplant().subscribe((response: any) => {
-      console.log(response);
-    });
-  }
-
-  
+    //this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
+    this.getPlant();
+  } 
   onRecordCreate() {
     console.log('this.dataForm.value',this.dataForm.value);
-    console.log(this.plant);
     console.log(this.createdDate);
     console.log(this.createdBy);
-    console.log(this.supplier);
     console.log(this.broker);
     console.log(this.coo);
     console.log(this.product);
@@ -112,6 +109,92 @@ export class RawmaterialComponent implements OnInit {
     console.log(this.lotNo);
     this.dataForm.reset();
   };
+  getPlant () {
+    this.rawMatService.getPlant().subscribe((response: any) => {
+      console.log(response);
+      this.plantList = response.data;
+      this.plantList.forEach(element => {
+        element.label = element.name;
+        element.value = element._id;
+      });
+
+    }, err => { 
+      if (err.status === 401) {
+      }
+    });
+  }
+  public changePlant (plant:Plant):void {
+    // this.plantservice.getplant().subscribe((response: any) => {
+    //   console.log(response);
+    // });
+    this.supplierList = [];
+    if(this.plant != '')
+      this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
+        console.log(response);
+        this.supplierList = response.data;
+        this.supplierList.forEach(element => {
+          element.label = element.name;
+          element.value = element._id;
+        });
+      }, err => { 
+        if (err.status === 401) {
+        }
+      });
+  }
+  public changeSupplier ():void {
+    this.brokerList = [];
+    if(this.supplier != ''){
+      var obj = {
+        plantId : this.plant,
+        supplierId:this.supplier
+      }
+      this.selectedSupplier = _.find(this.supplierList,{"_id":this.supplier});
+      this.selectedSupplier.address.forEach(element => {
+        element.label = element.country;
+        element.value = element._id;
+      })
+      this.rawMatService.getBroker(obj).subscribe((response: any) => {
+        this.brokerList = response.data;
+        this.brokerList.forEach(element => {
+          element.label = element.name;
+          element.value = element._id;
+        });
+      }, err => { 
+        if (err.status === 401) {
+        }
+      });
+    }
+  }
+
+  public changeBroker ():void {
+    this.productList = [];
+    if(this.supplier != ''){
+     var obj = {
+       plantId : this.plant,
+       supplierId:this.supplier,
+       brokerId:this.broker
+     }
+      this.rawMatService.getProduct(obj).subscribe((response: any) => {
+        this.productList = response.data;
+        this.productList.forEach(element => {
+          element.label = element.name;
+          element.value = element._id;
+        });
+      }, err => { 
+        if (err.status === 401) {
+        }
+      });
+    }
+  }
+  public changeProduct ():void {
+    if(this.product != ''){
+      this.selectedProduct = _.find(this.productList,{"_id":this.product});
+      // this.selectedProduct.variety.forEach(element => {
+      //   element.label = element.country;
+      //   element.value = element._id;
+      // })
+    }
+  }
 
 
   // public uploadFile(){
