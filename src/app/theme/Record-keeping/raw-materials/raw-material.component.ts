@@ -24,6 +24,7 @@ import { CommonService } from '../../../common/common.service';
 import { AuthService } from '../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import * as _ from "lodash";
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 @Component({
   selector: 'app-raw-material',
@@ -44,15 +45,16 @@ export class RawmaterialComponent implements OnInit {
   brokerList = [];
   supplierList = [];
   productList = [];
-  createdBy : any = 'admin';
+  createdBy : any = '';
+  createdById : any = '';
   broker : any = '';
   coo : any = '';
   product : any = '';
   productCode : any = '';
   variety : any = '';
-  approved : any = '';
-  kosher : any = '';
-  nonGMO : any = '';
+  isApproved : any = "false";
+  kosher : any = 'false';
+  nonGMO : any = 'false';
   po : any = '';
   containerNo : any = '';
   lotNo : any = '';
@@ -63,7 +65,11 @@ export class RawmaterialComponent implements OnInit {
   
  //@Input() plant=[];
 
-  constructor(private fb : FormBuilder,public rawMatService:RawMaterialService,
+  constructor(
+    private fb : FormBuilder,
+    public rawMatService:RawMaterialService,
+    public comonSrvc:CommonService,
+    protected localStorage: AsyncLocalStorage,
     // public suppliersservice:SupplierService,
     //public plantservice:PlantService,
     // public productservice:ProductService,
@@ -91,23 +97,35 @@ export class RawmaterialComponent implements OnInit {
     });
     //this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
     this.getPlant();
+    this.localStorage.getItem('user').subscribe((user) => {
+      console.log(user) // should be 'Henri'
+      this.createdBy = user.user.username;
+      this.createdById = user.user._id;
+    });
   } 
   onRecordCreate() {
-    console.log('this.dataForm.value',this.dataForm.value);
-    console.log(this.createdDate);
-    console.log(this.createdBy);
-    console.log(this.broker);
-    console.log(this.coo);
-    console.log(this.product);
-    console.log(this.productCode);
-    console.log(this.variety);
-    console.log(this.approved);
-    console.log(this.kosher);
-    console.log(this.nonGMO);
-    console.log(this.po);
-    console.log(this.containerNo);
-    console.log(this.lotNo);
-    this.dataForm.reset();
+    let obj = {
+      plant : this.plant,
+      supplier : this.supplier,
+      broker : this.broker,
+      country : this.coo,
+      product : this.product,
+      approved : (this.isApproved == 'true') ? true : false,
+      po : this.po,
+      containerNo : this.containerNo,
+      lotNo : this.lotNo,
+      variety : this.variety,
+      nonGmo : this.nonGMO,
+      createdBy : this.createdById,
+      isDelete : false
+    }
+    console.log('this.dataForm.value',obj);
+    this.rawMatService.saveRecord(obj).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+    }, err => { 
+      this.comonSrvc.showErrorMsg(err.message);
+    });
+    //this.dataForm.reset();
   };
   getPlant () {
     this.rawMatService.getPlant().subscribe((response: any) => {
@@ -151,7 +169,7 @@ export class RawmaterialComponent implements OnInit {
       this.selectedSupplier = _.find(this.supplierList,{"_id":this.supplier});
       this.selectedSupplier.address.forEach(element => {
         element.label = element.country;
-        element.value = element._id;
+        element.value = element.country;
       })
       this.rawMatService.getBroker(obj).subscribe((response: any) => {
         this.brokerList = response.data;

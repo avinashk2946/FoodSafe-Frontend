@@ -40,4 +40,9 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+  saveRecord (obj){
+    var url = API_ACTIONS.raw_material.record;
+    var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 }
