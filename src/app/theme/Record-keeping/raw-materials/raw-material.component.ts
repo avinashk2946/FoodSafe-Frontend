@@ -60,8 +60,10 @@ export class RawmaterialComponent implements OnInit {
   supplier : any = '';
   selectedSupplier : any = '';
   selectedProduct : any = '';
+
+  submitted:boolean;
   
-   // @Input() plant=[];
+ //@Input() plant=[];
 
   constructor(private fb : FormBuilder,public rawMatService:RawMaterialService,
     // public suppliersservice:SupplierService,
@@ -141,6 +143,12 @@ export class RawmaterialComponent implements OnInit {
         }
       });
   }
+
+
+  public onSubmit(){
+   this.submitted=true;
+  } 
+
   public changeSupplier ():void {
     this.brokerList = [];
     if(this.supplier != ''){
