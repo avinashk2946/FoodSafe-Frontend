@@ -61,7 +61,7 @@ export class RawmaterialComponent implements OnInit {
   selectedSupplier : any = '';
   selectedProduct : any = '';
   
- //@Input() plant=[];
+   // @Input() plant=[];
 
   constructor(private fb : FormBuilder,public rawMatService:RawMaterialService,
     // public suppliersservice:SupplierService,
