@@ -19,7 +19,7 @@ import  { Plant } from '../../../classes/plant';
 // import {Observable} from 'rxjs/Rx';
 
 
-import { RawMaterialService } from './raw-material.service';
+// import { RawMaterialService } from './raw-material.service';
 import { CommonService } from '../../../common/common.service';
 import { AuthService } from '../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
@@ -31,31 +31,31 @@ import { LocationStrategy } from '@angular/common';
     './raw-material.component.scss',
     '../../../../assets/icon/icofont/css/icofont.scss'
   ],
-  providers:[RawMaterialService]
+  // providers:[RawMaterialService]
 
 })
 export class RawmaterialComponent implements OnInit {
   dataForm : FormGroup;
   // plant : Plant;
-  rawmaterial: any = 'rawmaterials[]';
-  plantList = [];
-  createdDate : any = new Date();
-  createdBy : any = 'admin';
-  supplier : any = 'Supplier[]';
-  broker : any = 'Broker[]';
-  coo : any = '';
-  product : any = 'Product[]';
-  productCode : any = '';
-  variety : any = '';
-  approved : any = '';
-  kosher : any = '';
-  nonGMO : any = '';
-  po : any = '';
-  containerNo : any = '';
-  lotNo : any = '';
+  // rawmaterial: any = 'rawmaterials[]';
+  // plantList = [];
+  // createdDate : any = new Date();
+  // createdBy : any = 'admin';
+  // supplier : any = 'Supplier[]';
+  // broker : any = 'Broker[]';
+  // coo : any = '';
+  // product : any = 'Product[]';
+  // productCode : any = '';
+  // variety : any = '';
+  // approved : any = '';
+  // kosher : any = '';
+  // nonGMO : any = '';
+  // po : any = '';
+  // containerNo : any = '';
+  // lotNo : any = '';
  @Input() plant=[];
 
-  constructor(private fb : FormBuilder,public rawMatService:RawMaterialService,
+  constructor(private fb : FormBuilder,
     // public suppliersservice:SupplierService,
     public plantservice:PlantService,
     // public productservice:ProductService,
@@ -106,25 +106,25 @@ export class RawmaterialComponent implements OnInit {
   }
 
   
-  onRecordCreate() {
-    console.log('this.dataForm.value',this.dataForm.value);
-    console.log(this.plant);
-    console.log(this.createdDate);
-    console.log(this.createdBy);
-    console.log(this.supplier);
-    console.log(this.broker);
-    console.log(this.coo);
-    console.log(this.product);
-    console.log(this.productCode);
-    console.log(this.variety);
-    console.log(this.approved);
-    console.log(this.kosher);
-    console.log(this.nonGMO);
-    console.log(this.po);
-    console.log(this.containerNo);
-    console.log(this.lotNo);
-    this.dataForm.reset();
-  };
+  // onRecordCreate() {
+  //   console.log('this.dataForm.value',this.dataForm.value);
+  //   console.log(this.plant);
+  //   console.log(this.createdDate);
+  //   console.log(this.createdBy);
+  //   console.log(this.supplier);
+  //   console.log(this.broker);
+  //   console.log(this.coo);
+  //   console.log(this.product);
+  //   console.log(this.productCode);
+  //   console.log(this.variety);
+  //   console.log(this.approved);
+  //   console.log(this.kosher);
+  //   console.log(this.nonGMO);
+  //   console.log(this.po);
+  //   console.log(this.containerNo);
+  //   console.log(this.lotNo);
+  //   this.dataForm.reset();
+  // };
 
 
   // public uploadFile(){
