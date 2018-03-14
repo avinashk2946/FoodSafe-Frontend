@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -63,6 +63,7 @@ import { UploaddataService } from './service/uploaddata.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AsyncLocalStorageModule,
     HttpModule,
     ToastrModule.forRoot(),
     TreeviewModule.forRoot()

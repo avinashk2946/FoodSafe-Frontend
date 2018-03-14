@@ -37,6 +37,7 @@ export const API_ACTIONS = Object.freeze({
         plant : 'plant',
         supplier : 'supplier',
         broker:"broker",
-        product:'product'
+        product:'product',
+        record:'record'
     }
 });
