@@ -25,8 +25,6 @@ import { HttpModule } from '@angular/http';
 import { AuthService } from './common/auth.service';
 import { LoadingService } from './common/loading.service';
 
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { PoComponent } from './components/po/po.component';
 // import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
 // import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
 // import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
@@ -41,15 +39,12 @@ import { BrokerService } from './service/broker.service';
 import { UploaddataService } from './service/uploaddata.service';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     BreadcrumbsComponent,
     LoginComponent,
-    SidebarComponent,
-    PoComponent,
     // FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,

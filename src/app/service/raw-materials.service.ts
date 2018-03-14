@@ -56,4 +56,13 @@ export class RawMaterialsService {
   //         })
   //         .catch((error)=>{return this.handleError(error)});
   //   }
+  //   
+    create(rawmaterial:Rawmaterial): Promise<Rawmaterial>{
+          // return this.messenger.handleToken(this).then(()=>{
+      return this.http
+      .post(this.baseUrl,JSON.stringify(rawmaterial),{headers: this.headers})  
+      .toPromise()
+      .then(res=> res.json() as Rawmaterial)
+      // .catch((error)=>this.messenger.handleError(error));});
+     }
 }

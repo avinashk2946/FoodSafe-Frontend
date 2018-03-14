@@ -5,9 +5,14 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class UploaddataService {
 
-	 	public baseUrl='http://localhost:3000/upload'
+	 	public APIUrl='http://localhost:3000/file/upload'
 
   constructor(private http:Http) { }
+
+//   	this.upload .onCompleteFile=(File:any, response:any,status:any,
+//   		headers:any){
+// 	this.attachmentList.push(JSON.parse(response));
+// }
   	private headers= new Headers(
 		{
 			"Content-Type":"application/json",
@@ -17,7 +22,7 @@ export class UploaddataService {
 
 uploaddata (FormData:any){
 	return this.http
-	.post(this.baseUrl,{headers:this.headers})
+	.post(this.APIUrl,{headers:this.headers})
 	 	.catch(this.errorHandler);
 			 }
 			 private errorHandler(error:Response){

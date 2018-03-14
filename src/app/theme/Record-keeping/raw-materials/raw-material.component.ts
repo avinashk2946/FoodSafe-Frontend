@@ -2,14 +2,15 @@ import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from 
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-// import { RawMaterialsService } from '../../../service/raw-materials.service';
+import { RawMaterialsService } from '../../../service/raw-materials.service';
 import { PlantService } from '../../../service/plant.service';
 // import { SupplierService } from '../../../service/supplier.service';
 // import { ProductService } from '../../../service/product.service';
 // import { BrokerService } from '../../../service/broker.service';
 // import { UploaddataService } from '../../../service/uploaddata.service';
-// import {FileUploader} from 'ng2-file-upload';
-
+import {FileUploader} from 'ng2-file-upload';
+import { Http} from '@angular/http';
+import { HttpEventType} from '@angular/common/http';
 
 // import  { Rawmaterial } from '../../../classes/rawmaterial';
 import  { Plant } from '../../../classes/plant';
@@ -17,7 +18,7 @@ import  { Plant } from '../../../classes/plant';
 // import  { Broker } from '../../../classes/broker';
 // import  { Product } from '../../../classes/product';
 // import {Observable} from 'rxjs/Rx';
-
+import { Router , ActivatedRoute} from '@angular/router';
 
 import { RawMaterialService } from './raw-material.service';
 import { CommonService } from '../../../common/common.service';
@@ -64,7 +65,8 @@ export class RawmaterialComponent implements OnInit {
   selectedProduct : any = '';
 
   submitted:boolean;
-  
+  selectedFile:File =null;
+
  //@Input() plant=[];
 
   constructor(
@@ -72,6 +74,8 @@ export class RawmaterialComponent implements OnInit {
     public rawMatService:RawMaterialService,
     public comonSrvc:CommonService,
     protected localStorage: AsyncLocalStorage,
+    public router:Router ,
+    public rawmaterialsservice:RawMaterialsService  
     // public suppliersservice:SupplierService,
     //public plantservice:PlantService,
     // public productservice:ProductService,
@@ -97,12 +101,15 @@ export class RawmaterialComponent implements OnInit {
       'lotNo' : ['', [Validators.required]],
       'organic' : ['', [Validators.required]],
     });
+
+     window.localStorage.setItem('Rawmatid','-1');
     //this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
     this.getPlant();
     this.localStorage.getItem('user').subscribe((user) => {
       console.log(user) // should be 'Henri'
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
+
     });
   } 
   onRecordCreate() {
@@ -143,6 +150,7 @@ export class RawmaterialComponent implements OnInit {
       }
     });
   }
+  
   public changePlant (plant:Plant):void {
     // this.plantservice.getplant().subscribe((response: any) => {
     //   console.log(response);
@@ -162,10 +170,6 @@ export class RawmaterialComponent implements OnInit {
       });
   }
 
-
-  public onSubmit(){
-   this.submitted=true;
-  } 
 
   public changeSupplier ():void {
     this.brokerList = [];
@@ -223,15 +227,38 @@ export class RawmaterialComponent implements OnInit {
   }
 
 
-  // public uploadFile(){
-  //     let files=this.uploaddataservice.uploaddata('selectFile').files;
-  //     let formData=new FormData();
-  //     let file =files[0];
-  //     formData.append('selectFile',file,file.name);
-  //     this.uploaddataservice.uploaddata(formData)
-  //     .subscribe(res=>this.dataLoader(res));
-  //   }
+onFileSelected(event) {
+    this.selectedFile = <File>event.target.files[0]
+  }
 
+
+  public onSubmit(){
+      this.submitted=true;
+    if (this.dataForm.valid) {
+      let requetsdata=this.dataForm.value;
+      requetsdata.rawmaterial_type=2;
+    this.rawmaterialsservice.create(requetsdata)
+   .then((responseRawmat )=>{
+     window.localStorage.setItem('clientid',responseRawmat.id+'');
+    this.router.navigate(['/']); 
+    }
+  )} 
+}
+//   public uploadFile(){
+//       let formData=new FormData();
+//       formData.append('image',this.selectedFile,this.selectedFile.name');
+//       this.http.post('http://localhost:3000/file/upload',formData,{
+//           Progress:true,
+//           observe:'events'
+//       })
+//       .subscribe(res=>{
+//        if (event.type===HttpEventType.UploadProgress) {
+//         console.log('Upload Progress:' + Math.round(event.loaded/event.total)*100 + '%')
+//        }else if (event .type === HttpEventType>Response) { 
+//        console.log(event);
+//        } 
+//     }
+// }
   //    public loadsupplier():void {
   //    console.log(this.supplier)
   //     if(this.suppliersservice.get(this.supplier)){
@@ -259,5 +286,19 @@ export class RawmaterialComponent implements OnInit {
   //       this.product=[];
   //   }
   // }    
+        // public plantlist(id:number):string{
+  //   if(undefined!==this.plant ){
+  //   let plant:Plant=this.plant.find(function(plant){
+  //       return plant.id==id;
+  //     })
+  //     if(undefined!==plant && null !== plant ){
+  //         return plant.name;
+  //     }else{
+  //         return '';
+  //     }
+  //   }else{
+  //     return "";
+  //   }
+  // }
 
 }

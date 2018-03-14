@@ -297,97 +297,101 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr >
 				<td>Bill of Lading</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple    name=""
+					 (change)="onFileChanged($event)">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <div class="" *ngFor="let file of uploader.queue">
+						{{file?.file?.name?}}
+					</div>
+					 -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <span *ngIf="file.isSuccess"><i class="fa fa-check"></i></span> -->
 				</td>
 			</tr>
 			<tr>
 				<td>Commercial Invoice</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple   name="">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 			</tr>
 			<tr>
 				<td>Packing list</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple   name="">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 			</tr>
 			<tr>
 				<td>COA</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple   name="">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 			</tr>
 			<tr>
 				<td>CCP verification records</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple   name="">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 			</tr>
 			<tr>
 				<td>Environmental Monitoring records</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple   name="">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 			</tr>
 			<tr>
 				<td>Other Supporting records</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<input ng2FileSelect [uploader]="uploader" type="file" multiple name="">
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 				<td>
-					<input ng2FileSelect [uploader]="uploader" type="file" name="">
+					<!-- <input ng2FileSelect [uploader]="uploader" type="file" name=""> -->
 				</td>
 			</tr>
 		</tbody>
 	</table>
-
+	
 	<div class=" row justify-content-center">
 		<p>
 			<button type="button" class="btn btn-primary" (click)="save($event)">Save</button>
-			<button autofocus="" type="button" class="btn btn-success" (click)="uploadFile() ">Save & Upload</button>
+			<!-- <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile() ">Save & Upload</button> -->
 			<button type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button>
 		</p>
 	</div>
