@@ -232,14 +232,14 @@ onFileSelected(event) {
   }
 
 
-  public onSubmit(){
+public onSubmit(){
       this.submitted=true;
     if (this.dataForm.valid) {
       let requetsdata=this.dataForm.value;
       requetsdata.rawmaterial_type=2;
     this.rawmaterialsservice.create(requetsdata)
    .then((responseRawmat )=>{
-     window.localStorage.setItem('clientid',responseRawmat.id+'');
+     window.localStorage.setItem('Rawmatid',responseRawmat.id+'');
     this.router.navigate(['/']); 
     }
   )} 
