@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormArray, FormGroup , Validators } from '@angular/forms';
 
 // import { RawMaterialsService } from '../../../service/raw-materials.service';
 import { PlantService } from '../../../service/plant.service';
@@ -54,13 +54,49 @@ export class RawmaterialComponent implements OnInit {
   // containerNo : any = '';
   // lotNo : any = '';
  @Input() plant=[];
+  // public filesAddForm: FormGroup;
+  // @Input() file=[];
 
   constructor(private fb : FormBuilder,
     // public suppliersservice:SupplierService,
     public plantservice:PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
-  ) {}
+  ) {
+    // this.createForm();
+  }
+
+//   createForm() {
+//     this.filesAddForm = this.fb.group({
+//       files:this.fb.array([
+//          this.fb.group({
+//             file:['',],
+           
+//         })
+//       ])
+//     });
+//     // ]);    
+//   }
+// public addDocument(e:Event){
+//   e.preventDefault();
+//   let files=this.filesAddForm.controls.files as FormArray;
+//   files.push(
+//     this.fb.group({
+//         file:['',],
+       
+//     })
+//   );
+// }
+//     delete(e:Event,index: number) {
+//       e.preventDefault();
+//             const control = <FormArray>this.filesAddForm.controls['files'];
+//              if (control.length>1) {
+//                control.removeAt(index);
+//              }
+        
+
+//     }
+
 
   ngOnInit() {
     this.dataForm = this.fb.group({
@@ -81,7 +117,12 @@ export class RawmaterialComponent implements OnInit {
       'lotNo' : ['', [Validators.required]]
     });
     this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
+
+ 
+
   }
+
+
   // getPlant () {
   //   this.rawMatService.getPlant().subscribe((response: any) => {
   //     console.log(this.plant);

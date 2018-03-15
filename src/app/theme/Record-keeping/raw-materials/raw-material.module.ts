@@ -8,6 +8,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {SelectModule} from 'ng-select';
 import {FileUploadModule} from 'ng2-file-upload';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {FileUploadModule} from 'ng2-file-upload';
     FormsModule,ReactiveFormsModule,
     SelectModule,
     SimpleNotificationsModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    // BrowserAnimationsModule
 
 
   ],

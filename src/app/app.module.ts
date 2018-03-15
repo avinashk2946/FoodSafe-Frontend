@@ -39,6 +39,7 @@ import { BrokerService } from './service/broker.service';
 // import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 import { UploaddataService } from './service/uploaddata.service';
+import { StyleComponent } from './style/style.component';
 
 
 
@@ -50,6 +51,7 @@ import { UploaddataService } from './service/uploaddata.service';
     LoginComponent,
     SidebarComponent,
     PoComponent,
+    StyleComponent,
     // FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,
