@@ -37,6 +37,7 @@ import { BrokerService } from './service/broker.service';
 // import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 import { UploaddataService } from './service/uploaddata.service';
+import { StyleComponent } from './style/style.component';
 
 
 @NgModule({
@@ -45,6 +46,9 @@ import { UploaddataService } from './service/uploaddata.service';
     AdminComponent,
     BreadcrumbsComponent,
     LoginComponent,
+
+    StyleComponent,
+
     // FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,
