@@ -7,12 +7,13 @@ import { PlantService } from '../../../service/plant.service';
 // import { SupplierService } from '../../../service/supplier.service';
 // import { ProductService } from '../../../service/product.service';
 // import { BrokerService } from '../../../service/broker.service';
-// import { UploaddataService } from '../../../service/uploaddata.service';
+import { UploaddataService } from '../../../service/uploaddata.service';
 // import {FileUploader} from 'ng2-file-upload';
 
 
 // import  { Rawmaterial } from '../../../classes/rawmaterial';
 import  { Plant } from '../../../classes/plant';
+import  { File } from '../../../classes/file';
 // import  { Supplier } from '../../../classes/supplier';
 // import  { Broker } from '../../../classes/broker';
 // import  { Product } from '../../../classes/product';
@@ -56,46 +57,55 @@ export class RawmaterialComponent implements OnInit {
  @Input() plant=[];
   // public filesAddForm: FormGroup;
   // @Input() file=[];
-
+ 
+  UploadFiles:any="";
+   
+  public file: File;
+   public filesAddForm: FormGroup;
+  
   constructor(private fb : FormBuilder,
     // public suppliersservice:SupplierService,
     public plantservice:PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
+    public uploaddataservice:UploaddataService,
   ) {
-    // this.createForm();
+    this.createForm();
   }
 
-//   createForm() {
-//     this.filesAddForm = this.fb.group({
-//       files:this.fb.array([
-//          this.fb.group({
-//             file:['',],
-           
-//         })
-//       ])
-//     });
-//     // ]);    
-//   }
-// public addDocument(e:Event){
-//   e.preventDefault();
-//   let files=this.filesAddForm.controls.files as FormArray;
-//   files.push(
-//     this.fb.group({
-//         file:['',],
-       
-//     })
-//   );
-// }
-//     delete(e:Event,index: number) {
-//       e.preventDefault();
-//             const control = <FormArray>this.filesAddForm.controls['files'];
-//              if (control.length>1) {
-//                control.removeAt(index);
-//              }
-        
 
-//     }
+  createForm() {
+    this.filesAddForm = this.fb.group({
+      files:this.fb.array([
+         this.fb.group({
+            file:['',],
+            fname: ['',],
+           
+        })
+      ])
+    });
+    // ]);    
+  }
+public addFile(e:Event){
+  e.preventDefault();
+  let files=this.filesAddForm.controls.files as FormArray;
+  files.push(
+    this.fb.group({
+        file:['',],
+        fname: ['',],
+       
+    })
+  );
+}
+    delete(e:Event,index: number) {
+      e.preventDefault();
+            const control = <FormArray>this.filesAddForm.controls['files'];
+             if (control.length>1) {
+               control.removeAt(index);
+             }
+    }
+
+
 
 
   ngOnInit() {
@@ -139,6 +149,7 @@ export class RawmaterialComponent implements OnInit {
   // }
 
 
+
   public changePlant (plant:Plant):void {
     console.log("hi",this.plant);
     this.plantservice.getplant().subscribe((response: any) => {
@@ -146,7 +157,6 @@ export class RawmaterialComponent implements OnInit {
     });
   }
 
-  
   // onRecordCreate() {
   //   console.log('this.dataForm.value',this.dataForm.value);
   //   console.log(this.plant);
@@ -168,15 +178,12 @@ export class RawmaterialComponent implements OnInit {
   // };
 
 
-  // public uploadFile(){
-  //     let files=this.uploaddataservice.uploaddata('selectFile').files;
-  //     let formData=new FormData();
-  //     let file =files[0];
-  //     formData.append('selectFile',file,file.name);
-  //     this.uploaddataservice.uploaddata(formData)
-  //     .subscribe(res=>this.dataLoader(res));
-  //   }
-
+ 
+    public uploadFile = function (files) {
+      if (files && files.length) {
+        for (let i = 0; i < files.length; i++) {
+          UploadFiles.upload({data: {file: files[i]},});
+        }
   //    public loadsupplier():void {
   //    console.log(this.supplier)
   //     if(this.suppliersservice.get(this.supplier)){
@@ -206,3 +213,4 @@ export class RawmaterialComponent implements OnInit {
   // }    
 
 }
+

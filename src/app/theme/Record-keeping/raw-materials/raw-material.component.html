@@ -35,66 +35,121 @@
 </div> -->
 
 <div class="col-md-12 ">
-          <ngb-tabset>
-            <ngb-tab title="Document">
-              <ng-template ngbTabContent>
-                <div  class="m-t-15">
-                  <p class="col">
-                  	
-                  </p>
-                </div>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Sample Preparartion">
-              <ng-template ngbTabContent>
-                <div  class="m-t-15">
-                  <p class="m-4">
-                  	
-                  </p>
-                </div>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Sample 	Collection">
-              <ng-template ngbTabContent>
-                <div  class="m-t-15">
-                  <p class="col">
-                  	
-                  </p>
-                </div>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Quality Analysis">
-              <ng-template ngbTabContent>
-                <div  class="m-t-15">
-                  <p class="col">
-                  	
-                  </p>
-                </div>
-              </ng-template>
-            </ngb-tab>
-               <ngb-tab title="Micro and Chemical Analysis">
-              <ng-template ngbTabContent>
-                <div  class="m-t-15">
-                  <p class="col">
-                  	
-                  </p>
-                </div>
-              </ng-template>
-            </ngb-tab>
-               <ngb-tab title="Summary">
-              <ng-template ngbTabContent>
-                <div  class="m-t-15">
-                  <p class="col">
-                  	
-                  </p>
-                </div>
-              </ng-template>
-            </ngb-tab>
-          </ngb-tabset>
+   <ngb-tabset type="tabs">
+    <ngb-tab title="Simple">
+      <ng-template ngbTabContent>
+        <div class="table-responsive card">
+		        <table class="table table-framed ">
+		          <thead>
+		          <tr>
+		            <th>Document</th>
+		            <th>Attachment</th>          
+		          </tr>
+		          </thead>
+		          <tbody>
+		          <tr>
+		            <td>Bill of Lading</td>
+		            <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+		            </td>
+		          </tr>
+		          <tr>
+		            <td>Commercial Invoice</td>
+		             <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
+		             <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+
+		             </td>
+		          </tr>
+		          <tr>
+		            <td>Packing list</td>
+		             <td><input ng2FileSelect [uploader]="uploader"   type="file" name="" multiple="">
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+		             </td>
+		          </tr>
+		           <tr>
+		            <td>COA</td>
+		             <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
+		             <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+		             </td>
+		          </tr>
+		           <tr>
+		            <td>CCP verification records</td>
+		            <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+		            </td>
+		          </tr>
+		           <tr>
+		            <td>Environmental Monitoring records</td>
+		            <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+		            </td>
+		           <tr>
+		            <td>Other Supporting records</td>
+		             <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
+		             <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+
+		             </td>
+		          </tr>
+		          </tbody>
+		        </table>
+				  <button class="btn btn-info">
+					    <label for="browse">Add new document</label>
+					    <input  type="file" id="browse" name="browse" style="display: none">
+				  </button>
+			
+		        <div class=" row justify-content-center">
+					<p>
+					  <button  type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button>
+					  <button  autofocus="" type="button" class="btn btn-success" (click)="saveFile() ">Save</button>
+					  <button   type="button" class="btn btn-default" (click)="exit($event)">Exit</button> 
+					</p>
+				</div>				
+		</div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+      <ng-template ngbTabTitle><p>Sample Preparation</p></ng-template>
+      <ng-template ngbTabContent>
+        <p></p>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Sample Collection" >
+      <ng-template ngbTabContent>
+        <p></p>
+      </ng-template>
+    </ngb-tab>
+     <ngb-tab title="Quality Analysis" >
+      <ng-template ngbTabContent>
+        <p></p>
+      </ng-template>
+    </ngb-tab>
+     <ngb-tab title="Micro/Chemical Analysis" >
+      <ng-template ngbTabContent>
+        <p></p>
+      </ng-template>
+    </ngb-tab>
+     <ngb-tab title="Summary" >
+      <ng-template ngbTabContent>
+        <p></p>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
 </div>
 
-
-<div class="table-responsive card">
+<!-- <div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
           <tr>
@@ -141,7 +196,7 @@
 			</p>
 		</div>				
 </div>
-				<!-- || file.isUploading || file.isSuccess
+		 -->		<!-- || file.isUploading || file.isSuccess
 				<span *ngIf="file.isSuccess"><i class="fa fa-check"></i></span> -->
 
 
@@ -185,7 +240,7 @@
 		</div>
 	</form>
 
-	<a  href="#" (click)="addMember($event)" class="add-another"><span class="fa fa-plus"></span>Add a new Document</a>
+	<a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add a new Document</a>
 
 </div> -->
 
@@ -194,3 +249,27 @@
 <!-- *ngFor="let member of memberAddForm.controls; let i=index" -->
 <!-- (click)="addClicked($event)" -->
 <!-- <a class="" href="#"><span class="fa fa-trash" (click)="delete($event,i)"></span></a> -->
+<div class="file-add">
+	<form [formGroup]="filesAddForm"  novalidate >
+		<div formArrayName="files">
+			<div class="" *ngFor="let file of filesAddForm.controls['files'].controls; let i=index" >
+				<div [formGroupName]="i">
+						<div class="row">
+							<div class="col-md-5">
+									<div class="form-group">
+										 <input type="text" class="form-control"  formControlName="fname" placeholder="First Name"  >
+								    	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
+										<a  href="#" (click)="filesAddForm($event)" class="add-another"><span class="fa fa-plus"></span>Add Another</a>
+
+								  	</div>
+							</div> 
+						   			<a class="" href="#"><span class="fa fa-trash" (click)="delete($event,i)"></span></a>
+						</div>
+				</div>
+			</div>
+		</div>
+</form>
+</div>
+
+
+
