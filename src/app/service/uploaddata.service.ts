@@ -5,19 +5,23 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class UploaddataService {
 
-	 	public baseUrl='http://localhost:3000/upload'
+	 	public baseUrl='http://localhost:3000/attachment'
 
   constructor(private http:Http) { }
   	private headers= new Headers(
 		{
-			"Content-Type":"application/json",
+			"Content-Type":"multipart/form-data",
 			}
 
-		);
+		);	
 
 uploaddata (FormData:any){
 	return this.http
 	.post(this.baseUrl,{headers:this.headers})
+	// .then(response =>{
+	// 	console.log("upload sucess")
+ //         return response 
+ //          })
 	 	.catch(this.errorHandler);
 			 }
 			 private errorHandler(error:Response){
@@ -27,7 +31,7 @@ uploaddata (FormData:any){
 	 		}
 
  getdata(){
-	 	let baseUrl="";
+	 	let baseUrl="http://localhost:3000/record";
 
 	 	return this .http.get(baseUrl)
 	 	.catch(this. errorHandler);
