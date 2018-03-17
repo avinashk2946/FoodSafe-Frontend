@@ -38,7 +38,7 @@ import { BrokerService } from './service/broker.service';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -64,6 +64,7 @@ import { StyleComponent } from './style/style.component';
     HttpClientModule,
     AsyncLocalStorageModule,
     HttpModule,
+    FileUploadModule,
     ToastrModule.forRoot(),
     TreeviewModule.forRoot()
     // FormPickerRoutingModule

@@ -304,58 +304,95 @@
 		          <tbody>
 		          <tr>
 		            <td>Bill of Lading</td>
-		            <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		            <td>
+		            	<a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
+		            	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
+						<div class="file-add">
+							<form [formGroup]="filesAddForm"  novalidate >
+								<div formArrayName="files">
+									<div class="" *ngFor="let file of filesAddForm.controls['files'].controls; let i=index" >
+										<div [formGroupName]="i">
+												<div class="row">
+													<div class="col-md-5">
+													<div class="form-group">
+															
+														<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+														<!-- <a href=""> -->
+															<span>
+																<label for="browse" type="file" class="file " >
+																	
+																</label>
+															   <input  type="file" id="browse" name="browse" >
+															</span> 
+														<!-- </a> -->
+															
+														 <a class="" href="#"><span class="fa fa-trash" (click)="delete($event,i)"></span></a>																
+														</div>
+													</div> 
+												</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
 
 		            </td>
 		          </tr>
 		          <tr>
 		            <td>Commercial Invoice</td>
-		             <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
-		             <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		             <td>
+		             	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
+		             <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
 
 
 		             </td>
 		          </tr>
 		          <tr>
 		            <td>Packing list</td>
-		             <td><input ng2FileSelect [uploader]="uploader"   type="file" name="" multiple="">
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		             <td>
+		             	<!-- <input ng2FileSelect [uploader]="uploader"   type="file" name="" multiple=""> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
 
 		             </td>
 		          </tr>
 		           <tr>
 		            <td>COA</td>
-		             <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
-		             <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		             <td>
+		             	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
+		             <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
 
 		             </td>
+
 		          </tr>
 		           <tr>
 		            <td>CCP verification records</td>
-		            <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		            <td>
+		            	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="ccp_1" multiple=""> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
 
 		            </td>
 		          </tr>
 		           <tr>
 		            <td>Environmental Monitoring records</td>
-		            <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		            <td>
+		            	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
 
 
 		            </td>
 		           <tr>
 		            <td>Other Supporting records</td>
-		             <td><input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple="">
-		             <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a>
-		            <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a>
+		             <td>
+		             	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
+		             <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
+		            <!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
 
 		             </td>
 		          </tr>
@@ -369,7 +406,7 @@
 		        <div class=" row justify-content-center">
 					<p>
 					  <button  type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button>
-					  <button  autofocus="" type="button" class="btn btn-success" (click)="saveFile() ">Save</button>
+					  <button  autofocus="" type="button" class="btn btn-success" (click)="uploadFile(filesAddForm,$event) ">Save</button>
 					  <button   type="button" class="btn btn-default" (click)="exit($event)">Exit</button> 
 					</p>
 				</div>				
@@ -505,26 +542,5 @@
 <!-- *ngFor="let member of memberAddForm.controls; let i=index" -->
 <!-- (click)="addClicked($event)" -->
 <!-- <a class="" href="#"><span class="fa fa-trash" (click)="delete($event,i)"></span></a> -->
-<div class="file-add">
-	<form [formGroup]="filesAddForm"  novalidate >
-		<div formArrayName="files">
-			<div class="" *ngFor="let file of filesAddForm.controls['files'].controls; let i=index" >
-				<div [formGroupName]="i">
-						<div class="row">
-							<div class="col-md-5">
-									<div class="form-group">
-										 <input type="text" class="form-control"  formControlName="fname" placeholder="First Name"  >
-								    	<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
-										<a  href="#" (click)="filesAddForm($event)" class="add-another"><span class="fa fa-plus"></span>Add Another</a>
-
-								  	</div>
-							</div> 
-						   			<a class="" href="#"><span class="fa fa-trash" (click)="delete($event,i)"></span></a>
-						</div>
-				</div>
-			</div>
-		</div>
-</form>
-</div>
 
 

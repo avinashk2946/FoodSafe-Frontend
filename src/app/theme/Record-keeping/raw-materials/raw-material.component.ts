@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {FormBuilder, FormControl, FormArray, FormGroup , Validators } from '@angular/forms';
-
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 // import { RawMaterialsService } from '../../../service/raw-materials.service';
 import { PlantService } from '../../../service/plant.service';
 // import { SupplierService } from '../../../service/supplier.service';
@@ -58,9 +58,11 @@ export class RawmaterialComponent implements OnInit {
   // public filesAddForm: FormGroup;
   // @Input() file=[];
  
+
   UploadFiles:any="";
 
-  public file: File;
+   public files: File[];
+
    public filesAddForm: FormGroup;
   
   constructor(private fb : FormBuilder,
@@ -69,6 +71,7 @@ export class RawmaterialComponent implements OnInit {
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
     public uploaddataservice:UploaddataService,
+    public http:Http
   ) {
     this.createForm();
   }
@@ -79,7 +82,6 @@ export class RawmaterialComponent implements OnInit {
       files:this.fb.array([
          this.fb.group({
             file:['',],
-            fname: ['',],
            
         })
       ])
@@ -92,7 +94,6 @@ public addFile(e:Event){
   files.push(
     this.fb.group({
         file:['',],
-        fname: ['',],
        
     })
   );
@@ -175,7 +176,7 @@ public addFile(e:Event){
   // };
 
 
- 
+
    //  public uploadFile = function (files) {
    //    if (files && files.length) {
    //      for (let i = 0; i < files.length; i++) {
@@ -184,6 +185,29 @@ public addFile(e:Event){
    //      }
    //   }
    // }
+
+   uploadFile(filesAddForm,event) {
+     let fileList: FileList = event.target.files;  
+     console.log("FileList   ",filesAddForm.value.files);
+    const formData: any = new FormData();
+    const files: Array<File> = filesAddForm.value.files;
+    console.log("uploaded",files);
+
+    for(let i =0; i < files.length; i++){
+        formData.append("uploads[]", files[i], files[i]['name']);
+    }
+    console.log('form data variable :   '+ formData.toString());
+        this.http.post('http://localhost:3000/record/attachment', formData)
+        // .map(files => {
+        //   console.log("file map success");
+        //   files.json()
+
+        // })
+        .subscribe(files => {
+          console.log('files  subscribe success', files)
+        })
+}
+
   //    public loadsupplier():void {
   //    console.log(this.supplier)
   //     if(this.suppliersservice.get(this.supplier)){
