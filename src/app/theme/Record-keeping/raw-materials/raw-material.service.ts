@@ -45,4 +45,12 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+  getRecord (){
+    var reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    }
+    var url = API_ACTIONS.raw_material.record;
+    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 }

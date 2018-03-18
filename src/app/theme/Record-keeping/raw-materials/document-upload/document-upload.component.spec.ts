@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RawMaterialTableComponent } from './raw-material-table.component';
+import { CreateRecordComponent } from './create-record.component';
 
-describe('RawMaterialTableComponent', () => {
-  let component: RawMaterialTableComponent;
-  let fixture: ComponentFixture<RawMaterialTableComponent>;
+describe('CreateRecordComponent', () => {
+  let component: CreateRecordComponent;
+  let fixture: ComponentFixture<CreateRecordComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RawMaterialTableComponent ]
+      declarations: [ CreateRecordComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RawMaterialTableComponent);
+    fixture = TestBed.createComponent(CreateRecordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
