@@ -1,0 +1,90 @@
+<div class="justify-content-center ">
+	<div class="row m-t-5 ">
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary btn-block">
+				Create a record template
+			</button>
+		</div>
+		<div class="col-md-3">
+			<button [routerLink]="['./create']" type="button" class="btn btn-primary btn-block">
+				Add a new record
+			</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary btn-block">
+				Summary
+			</button>
+		</div>
+		<div class="col-md-3">
+			<button type="button" class="btn btn-primary btn-block">
+				Dashboard
+			</button>
+		</div>
+	</div>
+</div>
+<div class="card text-center">
+  <div class="card-header">
+    <div class="form-group row">
+      <div class="row col-sm-12">
+        <input type="text" class="form-control form-control-round" placeholder="Search..">
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-styling">
+          <thead>
+          <tr class="table-primary">
+            <th>Date Created</th>
+            <th>PO</th>
+            <th>Product</th>
+            <th>Supplier</th>
+            <th>Lot No</th>
+            <th>Container No</th>
+            <th>Country</th>
+            <th>Status</th>
+            <th>Options</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of recordList">
+            <td>{{item.createdDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{item.po}}</td>
+            <td>{{item.product}}</td>
+            <td>{{item.supplier}}</td>
+            <td>{{item.lotNo}}</td>
+            <td>{{item.containerNo}}</td>
+            <td>{{item.country}}</td>
+            <td>In Progress</td>
+          </tr>
+          <!-- <tr>
+            <td>12/03/2018</td>
+            <td>240521</td>
+            <td>Product One</td>
+            <td>Santosh</td>
+            <td>0111223</td>
+            <td>9898989898</td>
+            <td>USA</td>
+            <td>In Progress</td>
+          </tr>
+          <tr>
+            <td>12/03/2018</td>
+            <td>240521</td>
+            <td>Product One</td>
+            <td>Santosh</td>
+            <td>0111223</td>
+            <td>9898989898</td>
+            <td>USA</td>
+            <td>In Progress</td>
+          </tr> -->
+          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="card-footer text-muted">
+    2 days ago
+  </div> -->
+</div>

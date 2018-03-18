@@ -5,29 +5,20 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Rawmaterial',
+      title: 'Record Keeping',
       status: false
     },
     children: [
-      // {
-
-      //   path: 'rawmaterial',
-      //   loadChildren: './Record-keeping/raw-material.module#RawmaterialModule'
-      // },
-      // {
-
-      //   path: 'rawmaterial/rawmaterialdetails',
-      //   loadChildren: './Record-keeping/raw-material.module#RawmaterialModule'
-      // },
-      // {
-      //   path: 'rawmaterialdetails',
-      //   loadChildren: './Record-keeping/raw-materials/raw-materials-details/raw-material-details.module#RawmaterialdetailsModule'
-      // },
-      // {
-      //   path: 'rawmaterialtable',
-      //   loadChildren: './Record-keeping/raw-materials/raw-materials-details/raw-material-table.module#RawMaterialDetailsModule'
-      // },
-
+      {
+        path : '',
+        redirectTo : 'raw-matrial',
+        pathMatch : 'full'
+      },
+      {
+        path: 'raw-matrial',
+        loadChildren: './raw-materials/raw-material.module#RawMaterialsModule'
+      },
+      
     ]
   }
 ];

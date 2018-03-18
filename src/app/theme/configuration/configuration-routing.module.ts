@@ -9,11 +9,11 @@ const routes: Routes = [
       status: false
     },
     children: [
-    /*{
+      {
         path : '',
         redirectTo : 'login-page',
         pathMatch : 'full'
-    },*/
+      },
       {
         path: 'login-page',
         loadChildren: './login-page/login-page.module#LoginPageModule'

@@ -139,7 +139,7 @@ const MENUITEMS = [
         icon: 'icon-check-box',
         children: [
           {
-            state: 'rawmaterial',
+            state: 'raw-matrial',
             name: ' Raw Materials',
             
           }, 

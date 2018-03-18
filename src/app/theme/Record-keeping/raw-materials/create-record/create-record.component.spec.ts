@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RawmaterialComponent } from './raw-material.component';
+import { CreateRecordComponent } from './create-record.component';
 
-describe('RawmaterialComponent', () => {
-  let component: RawmaterialComponent;
-  let fixture: ComponentFixture<RawmaterialComponent>;
+describe('CreateRecordComponent', () => {
+  let component: CreateRecordComponent;
+  let fixture: ComponentFixture<CreateRecordComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RawmaterialComponent ]
+      declarations: [ CreateRecordComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RawmaterialComponent);
+    fixture = TestBed.createComponent(CreateRecordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
