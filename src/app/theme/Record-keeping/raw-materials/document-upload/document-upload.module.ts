@@ -8,6 +8,8 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {SelectModule} from 'ng-select';
 import {FileUploadModule} from 'ng2-file-upload';
+import {DataTableComponent} from '../data-table/data-table.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +21,10 @@ import {FileUploadModule} from 'ng2-file-upload';
     SimpleNotificationsModule.forRoot(),
     FileUploadModule
   ],
-  declarations: [DocumentUploadComponent],
+  declarations: [
+  DocumentUploadComponent,
+  // DataTableComponent
+  ],
   bootstrap:[DocumentUploadComponent]
 })
 export class DocumentUploadModule { }

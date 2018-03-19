@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -39,6 +39,8 @@ import { BrokerService } from './service/broker.service';
 import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
 import { FileUploadModule } from 'ng2-file-upload';
+// import {DataTableComponent} from './theme/Record-keeping/raw-materials/data-table/data-table.component';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     LoginComponent,
 
     StyleComponent,
+    // DataTableComponent,
 
     // FormPickerComponent,
     // RawMaterialComponent,

@@ -36,6 +36,8 @@ export class DocumentUploadComponent implements OnInit {
   public files: File[];
 
   public filesAddForm: FormGroup;
+  
+  @Input() recordDetails:any;
 
   constructor(
     private fb: FormBuilder,
@@ -70,7 +72,7 @@ export class DocumentUploadComponent implements OnInit {
     // });
 
     window.localStorage.setItem('Rawmatid', '-1');
-
+    this.getRecordDetails();
   }
   createForm() {
     this.filesAddForm = this.fb.group({
@@ -89,6 +91,7 @@ export class DocumentUploadComponent implements OnInit {
     files.push(
       this.fb.group({
         file: ['',],
+        
 
       })
     );
@@ -106,7 +109,7 @@ export class DocumentUploadComponent implements OnInit {
     const formData: any = new FormData();
     const files: Array<File> = filesAddForm.value.files;
     console.log("uploaded", files);
-
+    
     for (let i = 0; i < files.length; i++) {
       formData.append("uploads[]", files[i], files[i]['name']);
     }
@@ -121,9 +124,12 @@ export class DocumentUploadComponent implements OnInit {
         console.log('files  subscribe success', files)
       })
   }
+  getRecordDetails (){
 
+    //this.recordDetails = response;
+  }
 
-
+currentOrientation = 'horizontal';
 
 
 

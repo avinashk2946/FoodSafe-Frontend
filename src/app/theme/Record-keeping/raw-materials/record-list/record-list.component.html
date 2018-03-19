@@ -43,8 +43,8 @@
         [limit]="10"
         [selected]="selected"
         [selectionType]="'single'"
-        (activate)="onActivate($event)"
-        (select)='onSelect($event)' (dblclick)="showDetails()">
+        (activate)="onActivate($event)" 
+        (select)='onSelect($event)' (dblclick)="showDetails()">   
         <ngx-datatable-column name="Date Created">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span>
@@ -55,7 +55,7 @@
         <ngx-datatable-column name="PO">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span >
-              {{row.po}}
+              {{row.po}}     
             </span>
           </ng-template>
         </ngx-datatable-column>

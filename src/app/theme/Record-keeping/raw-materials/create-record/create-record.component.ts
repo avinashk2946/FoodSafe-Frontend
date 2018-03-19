@@ -216,7 +216,10 @@ export class CreateRecordComponent implements OnInit {
       // })
     }
   }
-
+onSubmit(){
+  console.log("submitted");
+ // this.router.navigate(['/document-upload/123']); 
+}
 
   // onFileSelected(event) {
   //   this.selectedFile = <File>event.target.files[0]
