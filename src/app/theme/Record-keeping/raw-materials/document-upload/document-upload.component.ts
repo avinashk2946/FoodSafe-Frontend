@@ -30,13 +30,18 @@ import { File } from '../../../../classes/file';
 
 })
 export class DocumentUploadComponent implements OnInit {
-  dataForm: FormGroup;
-  UploadFiles: any = "";
-
-  public files: File[];
-
-  public filesAddForm: FormGroup;
-
+  attchmentList = [{attachment:''}];
+  fileList = [
+    {'title':'Bill of Lading',"attachmentList":[{attachment:''}],'name':'billOfLanding'},
+    {'title':'Commercial Invoice',"attachmentList":[{attachment:''}],'name':'commercialInvoice'},
+    {'title':'Packing list',"attachmentList":[{attachment:''}],'name':'packingList'},
+    {'title':'COA',"attachmentList":[{attachment:''}],'name':'coa'},
+    {'title':'CCP verification records',"attachmentList":[{attachment:''}],'name':'ccpVerification'},
+    {'title':'Environmental Monitoring records',"attachmentList":[{attachment:''}],'name':'environmentalMonitoring'},
+    {'title':'Other Supporting records',"attachmentList":[{attachment:''}],'name':'otherSupporting'}
+  ];
+  recordId : any = '';
+  recordDetails:any = {};
   constructor(
     private fb: FormBuilder,
     public rawMatService: RawMaterialService,
@@ -44,74 +49,68 @@ export class DocumentUploadComponent implements OnInit {
     protected localStorage: AsyncLocalStorage,
     public router: Router,
     public http: Http,
-    public uploaddataservice: UploaddataService
+    public uploaddataservice: UploaddataService,
+    private route: ActivatedRoute
   ) {
-    this.createForm();
+      this.route.params.subscribe( params => {
+        this.recordId = params.id;
+        this.getRecordDetails();
+      });
   }
 
   ngOnInit() {
-    // this.dataForm = this.fb.group({
-    //   'plant' : ['', [Validators.required]],
-    //   'createdDate' : ['', [Validators.required]],
-    //   'createdBy' : ['', [Validators.required]],
-    //   'suplier' : ['', [Validators.required]],
-    //   'broker' : ['', [Validators.required]],
-    //   'coo' : ['', [Validators.required]],
-    //   'product' : ['', [Validators.required]],
-    //   'productCode' : ['', [Validators.required]],
-    //   'variety' : ['', [Validators.required]],
-    //   'approved' : ['', [Validators.required]],
-    //   'kosher' : ['', [Validators.required]],
-    //   'nonGMO' : ['', [Validators.required]],
-    //   'po' : ['', [Validators.required]],
-    //   'containerNo' : ['', [Validators.required]],
-    //   'lotNo' : ['', [Validators.required]],
-    //   'organic' : ['', [Validators.required]],
-    // });
-
-    window.localStorage.setItem('Rawmatid', '-1');
-
+    
   }
-  createForm() {
-    this.filesAddForm = this.fb.group({
-      files: this.fb.array([
-        this.fb.group({
-          file: ['',],
-
-        })
-      ])
-    });
-    // ]);    
+  getRecordDetails() {
+    this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
+      console.log(response);
+      this.recordDetails = response.data[0];
+    }, err => { 
+      if (err.status === 401) {
+      }
+    });  
   }
-  public addFile(e: Event) {
+  public addFile(e,list) {
     e.preventDefault();
-    let files = this.filesAddForm.controls.files as FormArray;
-    files.push(
-      this.fb.group({
-        file: ['',],
-
-      })
-    );
+    list.push({attachment:''});
   }
-  delete(e: Event, index: number) {
+  delete(e: Event, index: number,list) {
     e.preventDefault();
-    const control = <FormArray>this.filesAddForm.controls['files'];
-    if (control.length > 1) {
-      control.removeAt(index);
-    }
+    // const control = <FormArray>this.filesAddForm.controls['files'];
+    // if (control.length > 1) {
+    list.splice(index, 1);
+    // }
   }
-  uploadFile(filesAddForm, event) {
-    let fileList: FileList = event.target.files;
-    console.log("FileList   ", filesAddForm.value.files);
+  getFiles(event,item){ 
+    console.log(event.target.files);
+    item.attachment = event.target.files; 
+  } 
+  uploadFile() {
     const formData: any = new FormData();
-    const files: Array<File> = filesAddForm.value.files;
-    console.log("uploaded", files);
+    this.fileList.forEach(element => {
+      console.log(element.attachmentList);
+      let i = 1;
+      let name =  element.name;
+      element.attachmentList.forEach(obj => {
+        name = name+i;
+        formData.append(name, obj.attachment[0]);
+        i++;
+      })
+    });
+    formData.append('_id','5aa821d27cdb9a0ee929ed52');
+    console.log(formData);
 
-    for (let i = 0; i < files.length; i++) {
-      formData.append("uploads[]", files[i], files[i]['name']);
-    }
-    console.log('form data variable :   ' + formData.toString());
-    this.http.post('http://localhost:3000/record/attachment', formData)
+    // let fileList: FileList = event.target.files;
+    // console.log("FileList   ", filesAddForm.value.files);
+    // const formData: any = new FormData();
+    // const files: Array<File> = filesAddForm.value.files;
+    // console.log("uploaded", files);
+
+    // for (let i = 0; i < files.length; i++) {
+    //   formData.append("uploads[]", files[i], files[i]['name']);
+    // }
+    // console.log('form data variable :   ' + formData.toString());
+    this.http.post('http://ec2-18-216-185-118.us-east-2.compute.amazonaws.com:3000/record/attachment', formData)
       // .map(files => {
       //   console.log("file map success");
       //   files.json()
