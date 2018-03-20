@@ -121,7 +121,7 @@ export class CreateRecordComponent implements OnInit {
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
       // this.router.navigate("'/document-upload')
-      this.router.navigate(['/document-upload',123]);
+      this.router.navigate(['/recordkeeping/raw-matrial/document-upload',{'id':response.data._id}]);
     }, err => { 
       this.comonSrvc.showErrorMsg(err.message);
     });
