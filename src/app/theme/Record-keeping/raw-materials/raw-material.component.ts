@@ -53,7 +53,7 @@ export class RawmaterialComponent implements OnInit {
   // po : any = '';
   // containerNo : any = '';
   // lotNo : any = '';
- @Input() plant=[];
+   @Input() plant=[];
 
   constructor(private fb : FormBuilder,
     // public suppliersservice:SupplierService,

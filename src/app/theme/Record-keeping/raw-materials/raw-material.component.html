@@ -34,7 +34,7 @@
 					          </ng-select> -->
 					          <select class="form-control" formControlName="plant" (change)='changePlant()'  >
 								<option value="" >plant</option> 
-								<option *ngFor='let plant of plants' [value]="plants">{{plants.name}}</option> 
+								<option *ngFor='let p of plant.data' [value]="p.name">{{p.name}}</option> 
 				 			</select>
 				          </div>
 				  	</div>        
