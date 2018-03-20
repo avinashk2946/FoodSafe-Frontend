@@ -217,7 +217,7 @@ export class CreateRecordComponent implements OnInit {
     }
   }
 onSubmit(){
-  console.log("submitted");
+   
  // this.router.navigate(['/document-upload/123']); 
 }
 

@@ -8,7 +8,7 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {SelectModule} from 'ng-select';
 import {FileUploadModule} from 'ng2-file-upload';
-import {DataTableComponent} from '../data-table/data-table.component';
+// import {DataTableComponent} from '../data-table/data-table.component';
 
 @NgModule({
   imports: [
