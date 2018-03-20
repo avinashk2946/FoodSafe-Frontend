@@ -186,11 +186,12 @@
 						<div class="row table-row">
 							<div class="col-md-2 table-th ">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-6">  
 										Smapling Method
 									</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" name=""> {{recordDetails | json}}
+										<input type="text" class="form-control" name="">
+										<!-- {{supplier.samplingmethod}} -->
 									</div>
 								</div>
 							</div>
@@ -212,7 +213,7 @@
 									</div>
 									<div class="col-md-6">
 										<input type="text" class="form-control" name="">
-										<!-- {{broker.brokerId}} -->
+										<!-- {{supplier.brokerId}} -->
 									</div>
 								</div>
 							</div>
@@ -223,7 +224,7 @@
 									</div>
 									<div class="col-md-6">
 										<input type="text" class="form-control" name="">
-										<!-- {{country.countryid}} -->
+										<!-- {{supplier.countryid}} -->
 									</div>
 								</div>
 							</div>
@@ -238,8 +239,10 @@
 										Qc Analysis
 									</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" name="">
-										<!-- {{po.poid}} -->
+									    <select  type="text" class="form-control" name="">>
+											<option>Yes</option>
+											<option>No</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -249,8 +252,10 @@
 										Indicator test
 									</div>
 									<div class="col-md-6">
-										<input type="text" class="form-control" name="">
-										<!-- {{containerno.containerId}} -->
+										<select  type="text" class="form-control" name="">>
+											<option>Yes</option>
+											<option>No</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -261,7 +266,7 @@
 									</div>
 									<div class="col-md-6">
 										<input type="text" class="form-control" name="">
-										<!-- {{lotno.lotId}} -->
+										<!-- {{supplier.packinglist}} -->
 									</div>
 								</div>
 							</div>
@@ -272,15 +277,17 @@
 									</div>
 									<div class="col-md-6">
 										<input type="text" class="form-control" name="">
-										<!-- {{product.productId}} -->
+										<!-- {{supplier.preparedby}} -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			<!-- <pre>{{recordDetails | json}}</pre> -->
 
 				<!-- <app-data-table></app-data-table> -->
+
 				<div class="divtable raw">
 					<div class="table-head">
 						<div class="row table-row">
