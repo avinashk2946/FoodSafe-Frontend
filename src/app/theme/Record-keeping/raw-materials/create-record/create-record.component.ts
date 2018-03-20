@@ -2,9 +2,14 @@ import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from 
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
+
 import { Supplier } from '../../../../classes/supplier';
 import { Plant } from '../../../../classes/plant';
 import { Broker } from '../../../../classes/broker';
+
+
+// import { PlantService } from '../../../../service/plant.service';
+// import  { Plant } from '../../../../classes/plant';
 
 import {FileUploader} from 'ng2-file-upload';
 import { Http} from '@angular/http';
@@ -61,8 +66,10 @@ export class CreateRecordComponent implements OnInit {
   selectedFile:File = null;
 
  // @Input() plant=[];
- @Input() Broker=[];
- @Input() Supplier=[];
+ // @Input() Broker=[];
+ // @Input() Supplier=[];
+
+ // public plant:Plant;
 
 
   constructor(
@@ -72,7 +79,7 @@ export class CreateRecordComponent implements OnInit {
     protected localStorage: AsyncLocalStorage,
     public router:Router ,
     // public suppliersservice:SupplierService,
-    //public plantservice:PlantService,
+    // public plantservice:PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
   ) {}
@@ -149,9 +156,6 @@ export class CreateRecordComponent implements OnInit {
   }
   
   public changePlant ():void {
-    // this.plantservice.getplant().subscribe((response: any) => {
-    //   console.log(response);
-    // });
     this.supplierList = [];
     if(this.plant != '')
       this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
@@ -222,8 +226,18 @@ export class CreateRecordComponent implements OnInit {
       // })
     }
   }
+onSubmit(){
+   
+ // this.router.navigate(['/document-upload/123']); 
+}
 
 
+ // public changePlant (plant:Plant):void {
+ //    console.log("hi",this.plant);
+ //    this.plantservice.getplant().subscribe((response: any) => {
+ //      console.log(response);
+ //    });
+ //  }
   // onFileSelected(event) {
   //   this.selectedFile = <File>event.target.files[0]
   // }

@@ -1,14 +1,9 @@
-.doc-upload,.sample-prep  {     
+.doc-upload,.sample-prep  {		
     .card{
      border-radius:5px;
      box-shadow:rgba(4, 26, 55, 0.16);
      border: none; 
      border-top: 10px;
-     }  
-     .table-th,{
-          padding-top:8px;
-          padding-bottom: 8px;  
-
      }	
      .table-th,{
           padding-top:8px;
@@ -18,10 +13,10 @@
      .form-group{
           
            padding-top:8px;
-           padding-bottom: 8px;  
+           padding-bottom: 8px;	 
      }
      .btn{
-         margin-top: 10px;  
+         margin-top: 10px;	
          color: #fff;
          text-transform: uppercase;
          letter-spacing: 2px;
@@ -53,11 +48,7 @@
  }
  .dtable,.temp,.action{
      font-size: 12px;
-    font-weight: 700;
-    padding-top: 8px;
-    text-align: center;
-    text-transform: uppercase;
-
+     font-weight: 900;
  }
  .dtime{
      

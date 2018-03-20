@@ -30,6 +30,7 @@ import { File } from '../../../../classes/file';
 
 })
 export class DocumentUploadComponent implements OnInit {
+
   attchmentList = [{attachment:''}];
   fileList = [
     {'title':'Bill of Lading',"attachmentList":[{attachment:''}],'name':'billOfLanding'},
@@ -42,6 +43,16 @@ export class DocumentUploadComponent implements OnInit {
   ];
   recordId : any = '';
   recordDetails:any = {};
+  dataForm: FormGroup;
+  UploadFiles: any = "";
+
+  public files: File[];
+
+  public filesAddForm: FormGroup;
+  
+  // @Input() recordDetails:any;
+
+
   constructor(
     private fb: FormBuilder,
     public rawMatService: RawMaterialService,
@@ -59,7 +70,31 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   ngOnInit() {
+
     
+
+    // this.dataForm = this.fb.group({
+    //   'plant' : ['', [Validators.required]],
+    //   'createdDate' : ['', [Validators.required]],
+    //   'createdBy' : ['', [Validators.required]],
+    //   'suplier' : ['', [Validators.required]],
+    //   'broker' : ['', [Validators.required]],
+    //   'coo' : ['', [Validators.required]],
+    //   'product' : ['', [Validators.required]],
+    //   'productCode' : ['', [Validators.required]],
+    //   'variety' : ['', [Validators.required]],
+    //   'approved' : ['', [Validators.required]],
+    //   'kosher' : ['', [Validators.required]],
+    //   'nonGMO' : ['', [Validators.required]],
+    //   'po' : ['', [Validators.required]],
+    //   'containerNo' : ['', [Validators.required]],
+    //   'lotNo' : ['', [Validators.required]],
+    //   'organic' : ['', [Validators.required]],
+    // });
+
+    window.localStorage.setItem('Rawmatid', '-1');
+    this.getRecordDetails();
+
   }
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
@@ -73,6 +108,7 @@ export class DocumentUploadComponent implements OnInit {
   public addFile(e,list) {
     e.preventDefault();
     list.push({attachment:''});
+
   }
   delete(e: Event, index: number,list) {
     e.preventDefault();
@@ -111,6 +147,14 @@ export class DocumentUploadComponent implements OnInit {
     // }
     // console.log('form data variable :   ' + formData.toString());
     this.http.post('http://ec2-18-216-185-118.us-east-2.compute.amazonaws.com:3000/record/attachment', formData)
+    const files: Array<File> = this.filesAddForm.value.files;
+    console.log("uploaded", files);
+    
+    for (let i = 0; i < files.length; i++) {
+      formData.append("uploads[]", files[i], files[i]['name']);
+    }
+    console.log('form data variable :   ' + formData.toString());
+    this.http.post('http://localhost:3000/record/attachment', formData)
       // .map(files => {
       //   console.log("file map success");
       //   files.json()
@@ -120,9 +164,12 @@ export class DocumentUploadComponent implements OnInit {
         console.log('files  subscribe success', files)
       })
   }
+  // getRecordDetails (){
 
+  //   //this.recordDetails = response;
+  // }
 
-
+currentOrientation = 'horizontal';
 
 
 
