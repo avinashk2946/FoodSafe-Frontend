@@ -2,7 +2,8 @@ import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from 
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-
+// import { PlantService } from '../../../../service/plant.service';
+// import  { Plant } from '../../../../classes/plant';
 import {FileUploader} from 'ng2-file-upload';
 import { Http} from '@angular/http';
 import { HttpEventType} from '@angular/common/http';
@@ -57,7 +58,7 @@ export class CreateRecordComponent implements OnInit {
   submitted:boolean;
   selectedFile:File = null;
 
- //@Input() plant=[];
+ // public plant:Plant;
 
   constructor(
     private fb : FormBuilder,
@@ -66,7 +67,7 @@ export class CreateRecordComponent implements OnInit {
     protected localStorage: AsyncLocalStorage,
     public router:Router ,
     // public suppliersservice:SupplierService,
-    //public plantservice:PlantService,
+    // public plantservice:PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
   ) {}
@@ -143,9 +144,6 @@ export class CreateRecordComponent implements OnInit {
   }
   
   public changePlant ():void {
-    // this.plantservice.getplant().subscribe((response: any) => {
-    //   console.log(response);
-    // });
     this.supplierList = [];
     if(this.plant != '')
       this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
@@ -221,6 +219,13 @@ onSubmit(){
  // this.router.navigate(['/document-upload/123']); 
 }
 
+
+ // public changePlant (plant:Plant):void {
+ //    console.log("hi",this.plant);
+ //    this.plantservice.getplant().subscribe((response: any) => {
+ //      console.log(response);
+ //    });
+ //  }
   // onFileSelected(event) {
   //   this.selectedFile = <File>event.target.files[0]
   // }
