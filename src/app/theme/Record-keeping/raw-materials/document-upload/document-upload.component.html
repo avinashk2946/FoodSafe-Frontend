@@ -1,5 +1,126 @@
+<div class="doc-upload card">
+	<div class="table-head " *ngIf="recordDetails._id">
+		<div class="row table-row">
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Plant
+					</div>
+					<div class="col-md-6">
+						<input type="text" [readOnly]="true" class="form-control" name="" [(ngModel)]="recordDetails.plant.name">
+						<!-- {{recordDetails | json}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Supplier
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.supplier.name">
+						<!-- {{supplier.supplierId}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Broker
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.broker.name">
+						<!-- {{broker.brokerId}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Country
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.country">
+						<!-- {{country.countryid}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th email">
+				<div class="row">
+					<div class="col-md-6">
+						Product
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.name">
+						<!-- {{product.productId}} -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="table-head" *ngIf="recordDetails._id">
+		<div class="row table-row">
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Po
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.name">
+						<!-- {{po.poid}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Container No
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.containerNo">
+						<!-- {{containerno.containerId}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Lot No
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.lotNo">
+						<!-- {{lotno.lotId}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Approved
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.approved">
+						<!-- {{approved}} -->
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 table-th ">
+				<div class="row">
+					<div class="col-md-6">
+						Product Code
+					</div>
+					<div class="col-md-6">
+						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.productId">
+						<!-- {{productcode.productcodeid}} -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="col-md-12 ">
-	<ngb-tabset type="tabs">
+	<ngb-tabset type="pills">
 		<ngb-tab title="Simple">
 			<ng-template ngbTabContent>
 				<div class="table-responsive card">
@@ -11,35 +132,25 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Bill of Lading</td>
+							<tr *ngFor="let type of fileList">
+								<td>{{type.title}}</td>
 								<td>
-									<a href="#" (click)="addFile($event)" class="add-another">
-										<span class="fa fa-plus"></span>Add</a>
-									<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
+									<a href="" (click)="addFile($event,type.attachmentList)" class="add-another">
+									<span class="fa fa-plus"></span>Add</a>
 									<div class="file-add">
-										<form [formGroup]="filesAddForm" novalidate>
-											<div formArrayName="files">
-												<div class="" *ngFor="let file of filesAddForm.controls['files'].controls; let i=index">
-													<div [formGroupName]="i">
+										<form novalidate>
+											<div>
+												<div class="" *ngFor="let item of type.attachmentList; let i=index">
+													<div>
 														<div class="row">
 															<div class="col-md-5">
 																<div class="form-group">
-
-																	<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-																	<!-- <a href=""> -->
 																	<span>
-																		<label for="browse" type="file" class="file ">
-
-																		</label>
-																		<input type="file" id="browse" name="browse">
+																		<label for="browse" type="file" class="file "></label>
+																		<input type="file"  name="browse" (change)="getFiles($event,item)">
 																	</span>
-																	<!-- </a> -->
-
-																	<a class="" href="#">
-																		<span class="fa fa-trash" (click)="delete($event,i)"></span>
+																	<a *ngIf="type.attachmentList.length > 1" class="" href="" (click)="delete($event,i,type.attachmentList)">
+																		<span class="fa fa-trash"></span>
 																	</a>
 																</div>
 															</div>
@@ -52,69 +163,8 @@
 
 								</td>
 							</tr>
-							<tr>
-								<td>Commercial Invoice</td>
-								<td>
-									<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
-
-
-								</td>
-							</tr>
-							<tr>
-								<td>Packing list</td>
-								<td>
-									<!-- <input ng2FileSelect [uploader]="uploader"   type="file" name="" multiple=""> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
-
-								</td>
-							</tr>
-							<tr>
-								<td>COA</td>
-								<td>
-									<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
-
-								</td>
-
-							</tr>
-							<tr>
-								<td>CCP verification records</td>
-								<td>
-									<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="ccp_1" multiple=""> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
-
-								</td>
-							</tr>
-							<tr>
-								<td>Environmental Monitoring records</td>
-								<td>
-									<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-									<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
-
-
-								</td>
-								<tr>
-									<td>Other Supporting records</td>
-									<td>
-										<!-- <input ng2FileSelect [uploader]="uploader"  type="file" name="" multiple=""> -->
-										<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-plus"></span>Add</a> -->
-										<!-- <a  href="#" (click)="addFile($event)" class="add-another"><span class="fa fa-paperclip fa-2x"></span></a> -->
-
-									</td>
-								</tr>
 						</tbody>
 					</table>
-					<button class="btn btn-info">
-						<label for="browse">Add new document</label>
-						<input type="file" id="browse" name="browse" style="display: none">
-					</button>
-
 					<div class=" row justify-content-center">
 						<p>
 							<button type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button>
@@ -129,13 +179,179 @@
 			<ng-template ngbTabTitle>
 				<p>Sample Preparation</p>
 			</ng-template>
+
 			<ng-template ngbTabContent>
-				<p></p>
+				<div class="sample-prep card">
+					<div class="table-head">
+						<div class="row table-row">
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Smapling Method
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name=""> {{recordDetails | json}}
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Pathogen Test
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{supplier.supplierId}} -->
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Virus Test
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{broker.brokerId}} -->
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Pesticides Test
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{country.countryid}} -->
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="table-head">
+						<div class="row table-row">
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Qc Analysis
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{po.poid}} -->
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Indicator test
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{containerno.containerId}} -->
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 table-th ">
+								<div class="row">
+									<div class="col-md-6">
+										Packing List
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{lotno.lotId}} -->
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2 table-th email">
+								<div class="row">
+									<div class="col-md-6">
+										Prepared By
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="">
+										<!-- {{product.productId}} -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <app-data-table></app-data-table> -->
+				<div class="divtable raw">
+					<div class="table-head">
+						<div class="row table-row">
+							<div class="col-md-1 table-th action">
+								Supplier Lot
+							</div>
+							<div class="col-md-1 table-th action">
+								New Lot
+							</div>
+							<div class="col-md-2 table-th action">
+								If no Previous Po
+							</div>
+							<div class="col-md-1 table-th action">
+								Total Quality
+							</div>
+							<div class="col-md-1 table-th action">
+								Qc Analysys
+							</div>
+							<div class='col-md-1 table-th action'>
+								Indicator test
+							</div>
+							<div class='col-md-1 table-th action'>
+								Pathogen test
+							</div>
+							<div class='col-md-1 table-th action'>
+								Virus test
+							</div>
+							<div class='col-md-1 table-th action'>
+								Indicator test
+							</div>
+							<div class='col-md-1 table-th action'>
+								Pestiside test
+							</div>
+						</div>
+					</div>
+				</div>
 			</ng-template>
+
 		</ngb-tab>
 		<ngb-tab title="Sample Collection">
 			<ng-template ngbTabContent>
-				<p></p>
+				<div class="divtable raw">
+					<div class="table-head">
+						<div class="row table-row">
+							<div class="col-md-1 table-th action">
+								Samppling No
+							</div>
+							<div class="col-md-1 table-th action">
+								Supplier Lot
+							</div>
+							<div class="col-md-2 table-th action">
+								Picture Of case Label
+							</div>
+							<div class="col-md-2 table-th action">
+								Qc Analysis Sampling
+							</div>
+							<div class="col-md-1 table-th action">
+								Micro Sampling
+							</div>
+							<div class='col-md-1 table-th action'>
+								Virus Sampling
+							</div>
+							<div class='col-md-2 table-th action'>
+								Pesticide sampling
+							</div>
+							<div class='col-md-2 table-th action'>
+								Indicator Organism Sampling
+							</div>
+						</div>
+					</div>
+				</div>
 			</ng-template>
 		</ngb-tab>
 		<ngb-tab title="Quality Analysis">

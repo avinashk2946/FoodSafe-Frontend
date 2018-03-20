@@ -53,4 +53,17 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+  uploadAttachment (obj){
+    var url = API_ACTIONS.raw_material.record+'/attachment';
+    var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
+  getRecordData (id){
+    var reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    }
+    var url = API_ACTIONS.raw_material.record+'?_id='+id;
+    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 }
