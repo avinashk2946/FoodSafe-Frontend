@@ -27,7 +27,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Po</label>
+							<label for="name">Po</label>  
 						</div>
 						<div class="col-md-8 form group">
 							<input type="text" class="form-control" placeholder="Po" [(ngModel)]="po" formControlName="po">
@@ -99,7 +99,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Supplier</label>
+							<label for="name">Supplier</label>   <pre>{{supplier | json}}</pre>
 							
 						</div>
 						<div class="col-md-8 form group">
@@ -111,7 +111,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Broker</label>
+							<label for="name">Broker</label>  <pre>{{broker | json}}</pre>
 						</div>
 						<div class="col-md-8 form group">
 							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokerList" placeholder='Select Broker' [(ngModel)]="broker"

@@ -2,6 +2,9 @@ import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from 
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
+import { Supplier } from '../../../../classes/supplier';
+import { Plant } from '../../../../classes/plant';
+import { Broker } from '../../../../classes/broker';
 
 import {FileUploader} from 'ng2-file-upload';
 import { Http} from '@angular/http';
@@ -57,7 +60,10 @@ export class CreateRecordComponent implements OnInit {
   submitted:boolean;
   selectedFile:File = null;
 
- //@Input() plant=[];
+ // @Input() plant=[];
+ @Input() Broker=[];
+ @Input() Supplier=[];
+
 
   constructor(
     private fb : FormBuilder,
@@ -91,7 +97,7 @@ export class CreateRecordComponent implements OnInit {
       'organic' : ['', [Validators.required]],
     });
 
-     window.localStorage.setItem('Rawmatid','-1');
+     // window.localStorage.setItem('Rawmatid','-1');
     //this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
     this.getPlant();
     this.localStorage.getItem('user').subscribe((user) => {

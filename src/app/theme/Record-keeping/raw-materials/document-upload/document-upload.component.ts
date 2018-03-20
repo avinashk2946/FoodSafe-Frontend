@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
 import { FileUploader } from 'ng2-file-upload';
