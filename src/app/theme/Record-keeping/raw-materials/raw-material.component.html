@@ -16,7 +16,6 @@
 	        	<button [routerLink]="['./rawmaterialtable']"  type="button" class="btn btn-primary">
 	        	 Open completed Record
 	        	</button>
-	           
 	    </div>
 	</div>   
 </div>
@@ -27,10 +26,16 @@
 					<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
-				            <label for="name">Plant</label>    <!-- <pre>{{plant | json}}</pre> -->
+				            <label for="name">Plant</label>    <pre>{{plant | json}}</pre>
 				          </div>
 				          <div class= "col-md-8 form group">  
-					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant" (change)='changePlant(plant)' formControlName="plant"></ng-select>
+					          <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant" (change)='changePlant(plant)' formControlName="plant">
+					          	
+					          </ng-select> -->
+					          <select class="form-control" formControlName="plant" (change)='changePlant()'  >
+								<option value="" >plant</option> 
+								<option *ngFor='let plant of plants' [value]="plants">{{plants.name}}</option> 
+				 			</select>
 				          </div>
 				  	</div>        
 			 	 </div>
@@ -263,7 +268,7 @@
 </div> -->
 
 
-<div class="table-responsive card">
+<!-- <div class="table-responsive card">
         <table class="table table-framed ">
           <thead>
           <tr>
@@ -325,9 +330,8 @@
 			</p>
 		</div>
 				
-				<!-- || file.isUploading || file.isSuccess
-				<span *ngIf="file.isSuccess"><i class="fa fa-check"></i></span> -->
-</div>
+				
+</div> -->
 
 <!-- 			<td><a href="" class="link">Attach</a></td>
             <td><a href="" class="link">Attach</a></td>
