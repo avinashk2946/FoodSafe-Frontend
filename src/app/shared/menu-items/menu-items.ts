@@ -67,7 +67,7 @@ const MENUITEMS = [
       {
         state: 'basic',
         short_label: 'B',
-        name: 'GFSC',
+        name: 'GFSI',
         type: 'sub',
         icon: 'icon-layout-grid2-alt'
       }

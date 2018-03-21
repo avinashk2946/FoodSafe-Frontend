@@ -30,7 +30,13 @@ export class SupplierService {
 		.then(response =>{ return response.json() as Supplier ;})
 	  		
 	}
-	
+
+
+	  // samplePreparation(): Observable<Response> {
+   //     return this.http.get("/assets/json/sample-preparation.json");
+   // }}
+
+ 
 	 // list(extradata=undefined):Promise<Supplier>{
   //         return list(extradata)
   //         .toPromise()

@@ -10,6 +10,13 @@ import {SelectModule} from 'ng-select';
 import {FileUploadModule} from 'ng2-file-upload';
 import { SamplePreparationComponent } from './sample-preparation/sample-preparation.component';
 import { SampleCollectionComponent } from './sample-collection/sample-collection.component';
+import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';
+import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
+import { SummaryComponent } from './summary/summary.component';
+import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-details.component';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +28,15 @@ import { SampleCollectionComponent } from './sample-collection/sample-collection
     SimpleNotificationsModule.forRoot(),
     FileUploadModule
   ],
-  declarations: [DocumentUploadComponent, SamplePreparationComponent, SampleCollectionComponent],
+  declarations: [
+   DocumentUploadComponent,
+   SamplePreparationComponent,
+   SampleCollectionComponent,
+   QualityAnalysisComponent, 
+   MicroAnalysisComponent, 
+   SummaryComponent,
+   RawmaterialDetailsComponent
+      ],
   bootstrap:[DocumentUploadComponent]
 })
 export class DocumentUploadModule { }

@@ -12,4 +12,13 @@ export class SampleCollectionComponent implements OnInit {
   ngOnInit() {
   }
 
+sampplingno: string = "1"; 
+supplierlot: string = "123525653"; 
+pictureofcaselabel: string = ""; 
+qcanalysissampling: string = "Yes"; 
+microsampling: string = "Yes"; 
+virussampling: string = "Yes"; 
+pesticidesampling: string = "Yes"; 
+indicatororganismsampling: string = "No"; 
+
 }
