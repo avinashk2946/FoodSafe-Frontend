@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PoComponent } from './po.component';
+import { StyleComponent } from './style.component';
 
-describe('PoComponent', () => {
-  let component: PoComponent;
-  let fixture: ComponentFixture<PoComponent>;
+describe('StyleComponent', () => {
+  let component: StyleComponent;
+  let fixture: ComponentFixture<StyleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PoComponent ]
+      declarations: [ StyleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PoComponent);
+    fixture = TestBed.createComponent(StyleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

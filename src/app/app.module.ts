@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -25,8 +25,6 @@ import { HttpModule } from '@angular/http';
 import { AuthService } from './common/auth.service';
 import { LoadingService } from './common/loading.service';
 
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { PoComponent } from './components/po/po.component';
 // import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
 // import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
 // import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
@@ -39,8 +37,8 @@ import { BrokerService } from './service/broker.service';
 // import {FormPickerComponent} from './theme/form-picker/form-picker.component';
 // import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
 import { UploaddataService } from './service/uploaddata.service';
-
-
+import { StyleComponent } from './style/style.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -48,8 +46,9 @@ import { UploaddataService } from './service/uploaddata.service';
     AdminComponent,
     BreadcrumbsComponent,
     LoginComponent,
-    SidebarComponent,
-    PoComponent,
+
+    StyleComponent,
+
     // FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,
@@ -63,7 +62,9 @@ import { UploaddataService } from './service/uploaddata.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AsyncLocalStorageModule,
     HttpModule,
+    FileUploadModule,
     ToastrModule.forRoot(),
     TreeviewModule.forRoot()
     // FormPickerRoutingModule

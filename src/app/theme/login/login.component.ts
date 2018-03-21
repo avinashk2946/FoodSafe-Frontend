@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DataService } from '../../service/data.service';
 import { LoginService } from './login.service';
 import { CommonService } from '../../common/common.service';
 import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
   logoUrl : any;
   backgroundImgUrl : any;
 
-  constructor(private _dataService : DataService, private _router : Router, private fb : FormBuilder,private loginSrvc: LoginService,private comonSrvc: CommonService,private locationStrategy: LocationStrategy) { 
+  constructor(private _dataService : DataService, private _router : Router, private fb : FormBuilder,private loginSrvc: LoginService,private comonSrvc: CommonService,private locationStrategy: LocationStrategy,protected localStorage: AsyncLocalStorage) { 
     var absUrl = (<any>this.locationStrategy)._platformLocation.location.href;
     var splittedArray = absUrl.split(':')[0].split('/');
     this.companyId = splittedArray[0];
@@ -53,6 +55,9 @@ export class LoginComponent implements OnInit {
     this.loginSrvc.verifyUser(this.loginForm.value).subscribe(
       (resData: any) => {
       console.log('res',resData);
+      let user = resData.data;
+ 
+      this.localStorage.setItem('user', user).subscribe(() => {});
       this.comonSrvc.showSuccessMsg(resData.message);
       this._router.navigate(['/configuration']);
     }, err => { 
