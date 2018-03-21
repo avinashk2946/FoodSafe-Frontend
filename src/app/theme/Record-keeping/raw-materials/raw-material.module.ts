@@ -7,6 +7,7 @@ import {RawMaterialsRoutingModule} from './raw-material-routing.module';
     CommonModule,
     RawMaterialsRoutingModule,
   ],
-  declarations: []
+  declarations: [
+  ]
 })
 export class RawMaterialsModule { }

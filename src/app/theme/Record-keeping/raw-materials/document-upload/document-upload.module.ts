@@ -8,8 +8,18 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {SelectModule} from 'ng-select';
 import {FileUploadModule} from 'ng2-file-upload';
+
+import {DataTableComponent} from '../data-table/data-table.component';
+
 import { SamplePreparationComponent } from './sample-preparation/sample-preparation.component';
 import { SampleCollectionComponent } from './sample-collection/sample-collection.component';
+import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';
+import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
+import { SummaryComponent } from './summary/summary.component';
+import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-details.component';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +31,18 @@ import { SampleCollectionComponent } from './sample-collection/sample-collection
     SimpleNotificationsModule.forRoot(),
     FileUploadModule
   ],
-  declarations: [DocumentUploadComponent, SamplePreparationComponent, SampleCollectionComponent],
+
+
+  declarations: [
+   DocumentUploadComponent,
+   SamplePreparationComponent,
+   SampleCollectionComponent,
+   QualityAnalysisComponent, 
+   MicroAnalysisComponent, 
+   SummaryComponent,
+   RawmaterialDetailsComponent
+      ],
+      
   bootstrap:[DocumentUploadComponent]
 })
 export class DocumentUploadModule { }

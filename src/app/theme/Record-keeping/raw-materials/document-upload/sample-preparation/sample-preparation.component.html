@@ -1,46 +1,47 @@
-<div class="sample-prep card">
+<div class="sample-preparation card">
     <div class="table-head">
       <div class="row table-row">
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
-              Smapling Method
+            <div class="col-md-6 action">
+              Sampling Method
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" name=""> {{recordDetails | json}}
+              <input type="text" class="form-control" name=""> 
+              <p>{{samplingmethod}}</p> 
             </div>
           </div>
         </div>
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Pathogen Test
             </div>
             <div class="col-md-6">
               <input type="text" class="form-control" name="">
-              <!-- {{supplier.supplierId}} -->
+              <p>{{pathogentest}}</p>          
             </div>
           </div>
         </div>
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Virus Test
             </div>
             <div class="col-md-6">
               <input type="text" class="form-control" name="">
-              <!-- {{broker.brokerId}} -->
+              <p>{{virustest}}</p> 
             </div>
           </div>
         </div>
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Pesticides Test
             </div>
             <div class="col-md-6">
               <input type="text" class="form-control" name="">
-              <!-- {{country.countryid}} -->
+              <p>{{ pesticidestest}}</p> 
             </div>
           </div>
         </div>
@@ -51,61 +52,65 @@
       <div class="row table-row">
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Qc Analysis
             </div>
             <div class="col-md-6">
-              <input type="text" class="form-control" name="">
-              <!-- {{po.poid}} -->
+               <select type="text" class="form-control" name="">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
             </div>
           </div>
         </div>
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Indicator test
             </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="">
-              <!-- {{containerno.containerId}} -->
+            <div class="col-md-6 ">
+              <select type="text" class="form-control" name="">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
             </div>
           </div>
         </div>
         <div class="col-md-2 table-th ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Packing List
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 ">
               <input type="text" class="form-control" name="">
-              <!-- {{lotno.lotId}} -->
+              <!-- {{sample.test1}} -->
             </div>
           </div>
         </div>
         <div class="col-md-2 table-th email">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 action">
               Prepared By
             </div>
             <div class="col-md-6">
               <input type="text" class="form-control" name="">
-              <!-- {{product.productId}} -->
+              {{preparedby}}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="divtable raw">
+  <div class="sample-preparation card">
       <div class="table-head">
         <div class="row table-row">
-          <div class="col-md-1 table-th action">
-            Supplier Lot
+          <div class="col-md-2 table-th action">
+            Supplier Lot 
           </div>
           <div class="col-md-1 table-th action">
             New Lot
           </div>
-          <div class="col-md-2 table-th action">
+          <div class="col-md-1 table-th action">
             If no Previous Po
           </div>
           <div class="col-md-1 table-th action">
@@ -113,6 +118,10 @@
           </div>
           <div class="col-md-1 table-th action">
             Qc Analysys
+          </div>
+          <div class="col-md-1 table-th action">
+            Quality Planned For Sampling
+            
           </div>
           <div class='col-md-1 table-th action'>
             Indicator test
@@ -124,11 +133,57 @@
             Virus test
           </div>
           <div class='col-md-1 table-th action'>
-            Indicator test
-          </div>
-          <div class='col-md-1 table-th action'>
             Pestiside test
           </div>
         </div>
       </div>
     </div>
+
+      <div class="table-head">
+        <div class="row table-row">
+          <div class="col-md-2 table-th actionraw">
+            {{supplierlot}} 
+          </div>
+          <div class="col-md-1 table-th actionraw">
+            {{newlot}}
+          </div>
+          <div class="col-md-1 table-th actionraw">
+           {{ifnopreviouspo}}
+          </div>
+          <div class="col-md-1 table-th actionraw">
+            {{totalquality}}
+          </div>
+          <div class="col-md-1 table-th actionraw">
+           {{qcanalysys}}
+          </div>
+          <div class="col-md-1 table-th actionraw">
+          {{qualityplannedforsampling}}
+            
+          </div>
+          <div class='col-md-1 table-th actionraw'>
+            {{indicatortest}}
+          </div>
+          <div class='col-md-1 table-th actionraw'>
+           
+          </div>
+          <div class='col-md-1 table-th actionraw'>
+          
+          </div>
+          <div class='col-md-1 table-th actionraw'>
+            {{Pestisidetest}}
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+<!-- 
+<select class="form-control dropdown" (ngModel)="samplePreparation" 
+                name="samplePreparation" id="samplePreparation" required>
+              <option *ngFor="let samplePreparation of samplePreparations">
+                {{ samplePreparation.name }}
+              </option>
+</select> -->

@@ -34,7 +34,13 @@ export class PlantService {
 		return this.http.get(this.APIUrl)
 		.map((response:Response)=>response.json())
 	}
-
+	
+   // getplant(): Observable<tbl_language[]> {  
+   //      return this.http.get('api/languageAPI)  
+   //          .map(res => res.json())  
+   //          .catch(this.handleError);  
+   //  }    
+     
 	// view(id: number):Promise<Plant>{
 	// 	 const baseUrl = `${this.APIUrl}/${id}`;
 	// 	 return this.http.get(APIUrl,{headers:this.headers})

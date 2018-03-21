@@ -102,4 +102,11 @@ export class RecordListComponent implements OnInit {
         }
       }).catch(swal.noop);
     }
+
+  // public changePlant (plant:Plant):void {
+  //   console.log("hi",this.plant);
+  //   this.plantservice.getplant().subscribe((response: any) => {
+  //     console.log(response);
+  //   });
+  // }
 }
