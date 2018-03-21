@@ -8,7 +8,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" [readOnly]="true" class="form-control" name="" [(ngModel)]="recordDetails.plant.name">
-						<!-- {{recordDetails | json}} -->
 					</div>
 				</div>
 			</div>
@@ -19,7 +18,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.supplier.name">
-						<!-- {{supplier.supplierId}} -->
 					</div>
 				</div>
 			</div>
@@ -30,7 +28,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.broker.name">
-						<!-- {{broker.brokerId}} -->
 					</div>
 				</div>
 			</div>
@@ -41,7 +38,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.country">
-						<!-- {{country.countryid}} -->
 					</div>
 				</div>
 			</div>
@@ -52,7 +48,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.name">
-						<!-- {{product.productId}} -->
 					</div>
 				</div>
 			</div>
@@ -67,7 +62,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.name">
-						<!-- {{po.poid}} -->
 					</div>
 				</div>
 			</div>
@@ -78,7 +72,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.containerNo">
-						<!-- {{containerno.containerId}} -->
 					</div>
 				</div>
 			</div>
@@ -89,7 +82,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.lotNo">
-						<!-- {{lotno.lotId}} -->
 					</div>
 				</div>
 			</div>
@@ -100,7 +92,6 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.approved">
-						<!-- {{approved}} -->
 					</div>
 				</div>
 			</div>
@@ -111,14 +102,12 @@
 					</div>
 					<div class="col-md-6">
 						<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.productId">
-						<!-- {{productcode.productcodeid}} -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 <div class="col-md-12 ">
 	<ngb-tabset type="pills">
 		<ngb-tab title="Simple">
@@ -194,7 +183,7 @@
 		</ngb-tab>
 		<ngb-tab title="Quality Analysis">
 			<ng-template ngbTabContent>
-				<app-data-table></app-data-table>
+				<!-- <app-data-table></app-data-table> -->
 			</ng-template>
 		</ngb-tab>
 		<ngb-tab title="Micro/Chemical Analysis">

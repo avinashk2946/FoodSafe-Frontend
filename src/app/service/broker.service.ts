@@ -6,7 +6,7 @@ import  { Broker } from '../classes/broker';
 
 @Injectable()
 export class BrokerService {
-	private baseUrl="http://localhost/3000/broker"
+	private baseUrl="http://localhost:4200/assets/json/sample-preparation.json"
 
   constructor(private http:Http) { }
 	private headers= new Headers(
@@ -30,7 +30,10 @@ export class BrokerService {
 		.then(response =>{ return response.json() as Broker ;})
 	  		
 	}
+
 	
+ 
+ 
 	 // list(extradata=undefined):Promise<Supplier>{
   //         return list(extradata)
   //         .toPromise()

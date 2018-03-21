@@ -4,5 +4,4 @@ export class Broker {
 
    plant:string; 
    name: string; 
-   
 }

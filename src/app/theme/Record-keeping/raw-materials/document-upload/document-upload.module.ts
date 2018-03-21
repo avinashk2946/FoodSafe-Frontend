@@ -13,6 +13,11 @@ import {DataTableComponent} from '../data-table/data-table.component';
 
 import { SamplePreparationComponent } from './sample-preparation/sample-preparation.component';
 import { SampleCollectionComponent } from './sample-collection/sample-collection.component';
+import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';
+import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
+import { SummaryComponent } from './summary/summary.component';
+import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-details.component';
+
 
 
 @NgModule({
@@ -29,14 +34,15 @@ import { SampleCollectionComponent } from './sample-collection/sample-collection
 
 
   declarations: [
-  DocumentUploadComponent,
-  SamplePreparationComponent,
-  SampleCollectionComponent,
-  DataTableComponent
-  ],
-
-  bootstrap:[
-  DocumentUploadComponent
-  ]
+   DocumentUploadComponent,
+   SamplePreparationComponent,
+   SampleCollectionComponent,
+   QualityAnalysisComponent, 
+   MicroAnalysisComponent, 
+   SummaryComponent,
+   RawmaterialDetailsComponent
+      ],
+      
+  bootstrap:[DocumentUploadComponent]
 })
 export class DocumentUploadModule { }

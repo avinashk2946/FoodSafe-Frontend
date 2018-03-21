@@ -1,5 +1,6 @@
-export class Supplier {	
+import {SamplePreparation} from './sample-preparation'; 
 
+export class Supplier {	
    id:number;
    name: string ;
    country:string;
@@ -10,4 +11,6 @@ export class Supplier {
    phone: string; 
    contactSalutation :string;
    contactFirstName  : string;
+   samplepreparation:SamplePreparation;
+
 }
