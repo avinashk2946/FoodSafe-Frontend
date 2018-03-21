@@ -26,7 +26,9 @@
   <div class="card-header">
     <div class="form-group row">
       <div class="row col-sm-12">
-        <input type="text" class="form-control form-control-round" placeholder="Search..">
+          <tag-input [ngClass]="'tag-select'" theme='bootstrap' [placeholder] = "'Search...'" [ngModel]="[]" [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [displayBy]="'value'" [identifyBy]="'id'" [autocompleteItems]="autocompleteItemsAsObjects"></tag-input-dropdown>
+            </tag-input>
       </div>
     </div>
   </div>

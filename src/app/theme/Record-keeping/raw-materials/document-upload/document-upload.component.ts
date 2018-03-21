@@ -99,26 +99,15 @@ export class DocumentUploadComponent implements OnInit {
     });
     formData.append('_id','5aa821d27cdb9a0ee929ed52');
     console.log(formData);
-
-    // let fileList: FileList = event.target.files;
-    // console.log("FileList   ", filesAddForm.value.files);
-    // const formData: any = new FormData();
-    // const files: Array<File> = filesAddForm.value.files;
-    // console.log("uploaded", files);
-
-    // for (let i = 0; i < files.length; i++) {
-    //   formData.append("uploads[]", files[i], files[i]['name']);
-    // }
-    // console.log('form data variable :   ' + formData.toString());
-    this.http.post('http://ec2-18-216-185-118.us-east-2.compute.amazonaws.com:3000/record/attachment', formData)
-      // .map(files => {
-      //   console.log("file map success");
-      //   files.json()
-
-      // })
-      .subscribe(files => {
-        console.log('files  subscribe success', files)
-      })
+    this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+    }, err => { 
+      this.comonSrvc.showErrorMsg(err.message);
+    });  
+    // this.http.post('http://ec2-18-216-185-118.us-east-2.compute.amazonaws.com:3000/record/attachment', formData)
+    //   .subscribe(files => {
+    //     console.log('files  subscribe success', files)
+    //   })
   }
 
 

@@ -1,14 +1,14 @@
-import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from '@angular/core';
-import {animate, style, transition, trigger} from '@angular/animations';
+import { Component, ElementRef, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
-import {FileUploader} from 'ng2-file-upload';
-import { Http} from '@angular/http';
-import { HttpEventType} from '@angular/common/http';
+import { FileUploader } from 'ng2-file-upload';
+import { Http } from '@angular/http';
+import { HttpEventType } from '@angular/common/http';
 
 
-import { Router , ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
@@ -24,110 +24,100 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
     './create-record.component.scss',
     '../../../../../assets/icon/icofont/css/icofont.scss'
   ],
-  providers:[RawMaterialService]
+  providers: [RawMaterialService]
 
 })
 export class CreateRecordComponent implements OnInit {
-  dataForm : FormGroup;
+  dataForm: FormGroup;
   // plant : Plant;
   rawmaterial: any = 'rawmaterials[]';
-  createdDate : any = new Date();
+  createdDate: any = new Date();
   plantList = [];
   brokerList = [];
   supplierList = [];
   productList = [];
-  createdBy : any = '';
-  createdById : any = '';
-  broker : any = '';
-  coo : any = '';
-  product : any = '';
-  productCode : any = '';
-  variety : any = '';
-  isApproved : any = "false";
-  kosher : any = 'false';
-  nonGMO : any = 'false';
-  po : any = '';
-  containerNo : any = '';
-  lotNo : any = '';
-  plant : any = '';
-  supplier : any = '';
-  selectedSupplier : any = '';
-  selectedProduct : any = '';
+  createdBy: any = '';
+  createdById: any = '';
+  broker: any = '';
+  coo: any = '';
+  product: any = '';
+  productCode: any = '';
+  variety: any = '';
+  isApproved: any = "false";
+  kosher: any = 'false';
+  nonGMO: any = 'false';
+  po: any = '';
+  containerNo: any = '';
+  lotNo: any = '';
+  plant: any = '';
+  supplier: any = '';
+  selectedSupplier: any = '';
+  selectedProduct: any = '';
 
-  submitted:boolean;
-  selectedFile:File = null;
+  submitted: boolean;
+  selectedFile: File = null;
 
- //@Input() plant=[];
+  //@Input() plant=[];
 
   constructor(
-    private fb : FormBuilder,
-    public rawMatService:RawMaterialService,
-    public comonSrvc:CommonService,
+    private fb: FormBuilder,
+    public rawMatService: RawMaterialService,
+    public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage,
-    public router:Router ,
-    // public suppliersservice:SupplierService,
-    //public plantservice:PlantService,
-    // public productservice:ProductService,
-    // public brokerservice:BrokerService,
-  ) {}
+    public router: Router,
+  ) { }
 
   ngOnInit() {
     this.dataForm = this.fb.group({
-      'plant' : ['', [Validators.required]],
-      'createdDate' : ['', [Validators.required]],
-      'createdBy' : ['', [Validators.required]],
-      'suplier' : ['', [Validators.required]],
-      'broker' : ['', [Validators.required]],
-      'coo' : ['', [Validators.required]],
-      'product' : ['', [Validators.required]],
-      'productCode' : ['', [Validators.required]],
-      'variety' : ['', [Validators.required]],
-      'approved' : ['', [Validators.required]],
-      'kosher' : ['', [Validators.required]],
-      'nonGMO' : ['', [Validators.required]],
-      'po' : ['', [Validators.required]],
-      'containerNo' : ['', [Validators.required]],
-      'lotNo' : ['', [Validators.required]],
-      'organic' : ['', [Validators.required]],
+      'plant': ['', [Validators.required]],
+      'suplier': ['', [Validators.required]],
+      'broker': ['', [Validators.required]],
+      'coo': ['', [Validators.required]],
+      'product': ['', [Validators.required]],
+      'productCode': ['', [Validators.required]],
+      'variety': ['', [Validators.required]],
+      'approved': ['', [Validators.required]],
+      'kosher': ['', [Validators.required]],
+      'nonGMO': ['', [Validators.required]],
+      'po': ['', [Validators.required]],
+      'containerNo': ['', [Validators.required]],
+      'lotNo': ['', [Validators.required]],
+      'organic': ['', [Validators.required]],
     });
-
-     window.localStorage.setItem('Rawmatid','-1');
-    //this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
     this.getPlant();
     this.localStorage.getItem('user').subscribe((user) => {
-      console.log(user) // should be 'Henri'
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
-
     });
-  } 
+  }
   onRecordCreate() {
     let obj = {
-      plant : this.plant,
-      supplier : this.supplier,
-      broker : this.broker,
-      country : this.coo,
-      product : this.product,
-      approved : (this.isApproved == 'true') ? true : false,
-      po : this.po,
-      containerNo : this.containerNo,
-      lotNo : this.lotNo,
-      variety : this.variety,
-      nonGmo : this.nonGMO,
-      createdBy : this.createdById,
-      isDelete : false
+      plant: this.plant,
+      supplier: this.supplier,
+      broker: this.broker,
+      country: this.coo,
+      product: this.product,
+      approved: (this.isApproved == 'true') ? true : false,
+      po: this.po,
+      containerNo: this.containerNo,
+      lotNo: this.lotNo,
+      variety: this.variety,
+      nonGmo: this.nonGMO,
+      createdBy: this.createdById,
+      isDelete: false
     }
-    console.log('this.dataForm.value',obj);
+    console.log('this.dataForm.value', obj);
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      // this.router.navigate("'/document-upload')
-      this.router.navigate(['/recordkeeping/raw-matrial/document-upload',{'id':response.data._id}]);
-    }, err => { 
+      this.router.navigate(['/recordkeeping/raw-matrial/document-upload', response.data._id]).then(nav => {
+
+      });
+    }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
     //this.dataForm.reset();
   };
-  getPlant () {
+  getPlant() {
     this.rawMatService.getPlant().subscribe((response: any) => {
       console.log(response);
       this.plantList = response.data;
@@ -136,18 +126,15 @@ export class CreateRecordComponent implements OnInit {
         element.value = element._id;
       });
 
-    }, err => { 
+    }, err => {
       if (err.status === 401) {
       }
     });
   }
-  
-  public changePlant ():void {
-    // this.plantservice.getplant().subscribe((response: any) => {
-    //   console.log(response);
-    // });
+
+  public changePlant(): void {
     this.supplierList = [];
-    if(this.plant != '')
+    if (this.plant != '')
       this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
         console.log(response);
         this.supplierList = response.data;
@@ -155,21 +142,21 @@ export class CreateRecordComponent implements OnInit {
           element.label = element.name;
           element.value = element._id;
         });
-      }, err => { 
+      }, err => {
         if (err.status === 401) {
         }
       });
   }
 
 
-  public changeSupplier ():void {
+  public changeSupplier(): void {
     this.brokerList = [];
-    if(this.supplier != ''){
+    if (this.supplier != '') {
       var obj = {
-        plantId : this.plant,
-        supplierId:this.supplier
+        plantId: this.plant,
+        supplierId: this.supplier
       }
-      this.selectedSupplier = _.find(this.supplierList,{"_id":this.supplier});
+      this.selectedSupplier = _.find(this.supplierList, { "_id": this.supplier });
       this.selectedSupplier.address.forEach(element => {
         element.label = element.country;
         element.value = element.country;
@@ -180,60 +167,36 @@ export class CreateRecordComponent implements OnInit {
           element.label = element.name;
           element.value = element._id;
         });
-      }, err => { 
+      }, err => {
         if (err.status === 401) {
         }
       });
     }
   }
 
-  public changeBroker ():void {
+  public changeBroker(): void {
     this.productList = [];
-    if(this.supplier != ''){
-     var obj = {
-       plantId : this.plant,
-       supplierId:this.supplier,
-       brokerId:this.broker
-     }
+    if (this.supplier != '') {
+      var obj = {
+        plantId: this.plant,
+        supplierId: this.supplier,
+        brokerId: this.broker
+      }
       this.rawMatService.getProduct(obj).subscribe((response: any) => {
         this.productList = response.data;
         this.productList.forEach(element => {
           element.label = element.name;
           element.value = element._id;
         });
-      }, err => { 
+      }, err => {
         if (err.status === 401) {
         }
       });
     }
   }
-  public changeProduct ():void {
-    if(this.product != ''){
-      this.selectedProduct = _.find(this.productList,{"_id":this.product});
-      // this.selectedProduct.variety.forEach(element => {
-      //   element.label = element.country;
-      //   element.value = element._id;
-      // })
+  public changeProduct(): void {
+    if (this.product != '') {
+      this.selectedProduct = _.find(this.productList, { "_id": this.product });
     }
   }
-
-
-  // onFileSelected(event) {
-  //   this.selectedFile = <File>event.target.files[0]
-  // }
-
-
-  // public onSubmit(){
-  //   this.submitted=true;
-  //   if (this.dataForm.valid) {
-  //     let requetsdata=this.dataForm.value;
-  //     requetsdata.rawmaterial_type = 2;
-  //     this.rawmaterialsservice.create(requetsdata).then((responseRawmat )=>{
-  //       window.localStorage.setItem('Rawmatid',responseRawmat.id+'');
-  //       this.router.navigate(['/']); 
-  //     })
-  //   } 
-  // }
-
-
 }
