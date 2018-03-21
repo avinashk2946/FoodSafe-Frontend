@@ -39,7 +39,6 @@ import { BrokerService } from './service/broker.service';
 import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
 import { FileUploadModule } from 'ng2-file-upload';
-// import {DataTableComponent} from './theme/Record-keeping/raw-materials/data-table/data-table.component';
 
 
 @NgModule({
@@ -50,7 +49,6 @@ import { FileUploadModule } from 'ng2-file-upload';
     LoginComponent,
 
     StyleComponent,
-    // DataTableComponent,
 
     // FormPickerComponent,
     // RawMaterialComponent,
