@@ -75,7 +75,7 @@ export class CreateRecordComponent implements OnInit {
       'po' : ['', [Validators.required]],
       'containerNo' : ['', [Validators.required]],
       'lotNo' : ['', [Validators.required]],
-      'organic' : ['', [Validators.required]],
+      'organic' : ['', [Validators.required]]
     });
     this.getPlant();
     this.localStorage.getItem('user').subscribe((user) => {
@@ -104,7 +104,9 @@ export class CreateRecordComponent implements OnInit {
     console.log('this.dataForm.value',obj);
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      this.router.navigate(['/recordkeeping/raw-matrial/document-upload',:response.data._id]).then(nav =>{});
+      this.router.navigate(['/recordkeeping/raw-matrial/document-upload',response.data._id]).then(nav =>{
+
+      });
     }, err => { 
       this.comonSrvc.showErrorMsg(err.message);
     });
