@@ -17,6 +17,9 @@ import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.co
 import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
 import { SummaryComponent } from './summary/summary.component';
 import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-details.component';
+import { SampleImageComponent } from './sample-image/sample-image.component';
+import {NgxCarouselModule} from 'ngx-carousel';
+import 'hammerjs';
 
 
 
@@ -29,7 +32,8 @@ import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-d
     FormsModule,ReactiveFormsModule,
     SelectModule,
     SimpleNotificationsModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    NgxCarouselModule
   ],
 
 
@@ -40,7 +44,8 @@ import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-d
    QualityAnalysisComponent, 
    MicroAnalysisComponent, 
    SummaryComponent,
-   RawmaterialDetailsComponent
+   RawmaterialDetailsComponent,
+   SampleImageComponent
       ],
       
   bootstrap:[DocumentUploadComponent]

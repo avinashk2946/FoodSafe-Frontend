@@ -1,4 +1,4 @@
-.raw-materials {    
+.raw-materials ,.doc-upload{    
    .card{
     border-radius:5px;
   box-shadow:rgba(4, 26, 55, 0.16);
@@ -8,6 +8,7 @@
   .data-table{
      padding-top:8px;
      padding-bottom: 8px;  
+     margin-left: 8px;
   }
   .form-group{
      
@@ -45,10 +46,14 @@
 .intable{
 
 }
-.dtable,.temp{
-  font-size: 12px;
-  font-weight: 900;
-}
+  .action{
+     font-size: 11px;
+    font-weight: 700;
+    padding-top: 8px;
+    text-align: center;
+    text-transform: uppercase;
+
+ }
 .dtime{
   
 }

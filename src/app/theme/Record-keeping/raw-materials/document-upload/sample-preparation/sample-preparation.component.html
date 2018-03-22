@@ -1,53 +1,53 @@
-<div class="sample-preparation card">
-    <div class="table-head">
-      <div class="row table-row">
-        <div class="col-md-2 table-th ">
-          <div class="row">
-            <div class="col-md-6 action">
-              Sampling Method
+<div class="sample-preparation">
+  <div class="sample-preparation card">
+      <div class="table-head">
+        <div class="row table-row">
+          <div class="col-md-2 table-th ">
+            <div class="row">
+              <div class="col-md-6 action">
+                Sampling Method
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name=""> 
+                <p>{{samplingmethod}}</p> 
+              </div>
             </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name=""> 
-              <p>{{samplingmethod}}</p> 
+          </div>
+          <div class="col-md-2 table-th ">
+            <div class="row">
+              <div class="col-md-6 action">
+                Pathogen Test
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="">
+                <p>{{pathogentest}}</p>          
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 table-th ">
+            <div class="row">
+              <div class="col-md-6 action">
+                Virus Test
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="">
+                <p>{{virustest}}</p> 
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 table-th ">
+            <div class="row">
+              <div class="col-md-6 action">
+                Pesticides Test
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="">
+                <p>{{ pesticidestest}}</p> 
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-2 table-th ">
-          <div class="row">
-            <div class="col-md-6 action">
-              Pathogen Test
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="">
-              <p>{{pathogentest}}</p>          
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 table-th ">
-          <div class="row">
-            <div class="col-md-6 action">
-              Virus Test
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="">
-              <p>{{virustest}}</p> 
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2 table-th ">
-          <div class="row">
-            <div class="col-md-6 action">
-              Pesticides Test
-            </div>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="">
-              <p>{{ pesticidestest}}</p> 
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
     <div class="table-head">
       <div class="row table-row">
         <div class="col-md-2 table-th ">
@@ -141,51 +141,47 @@
 
       <div class="table-head">
         <div class="row table-row">
-          <div class="col-md-2 table-th actionraw">
+          <div class="col-md-2 table-bdy actionraw">
             <input type="text" class="form-control" name="" value="9778362637" > 
           </div>
-          <div class="col-md-1 table-th actionraw">
+          <div class="col-md-1 table-bdy actionraw">
             {{newlot}}
           </div>
-          <div class="col-md-1 table-th actionraw">
+          <div class="col-md-1 table-bdy actionraw">
            {{ifnopreviouspo}}
           </div>
-          <div class="col-md-1 table-th actionraw">
+          <div class="col-md-1 table-bdy actionraw">
             {{totalquality}}
           </div>
-          <div class="col-md-1 table-th actionraw">
+          <div class="col-md-1 table-bdy actionraw">
            {{qcanalysys}}
           </div>
-          <div class="col-md-1 table-th actionraw">
+          <div class="col-md-1 table-bdy actionraw">
           {{qualityplannedforsampling}}
             
           </div>
-          <div class='col-md-1 table-th actionraw'>
+          <div class='col-md-1 table-bdy actionraw'>
             {{indicatortest}}
           </div>
-          <div class='col-md-1 table-th actionraw'>
+          <div class='col-md-1 table-bdy actionraw'>
            
           </div>
-          <div class='col-md-1 table-th actionraw'>
+          <div class='col-md-1 table-bdy actionraw'>
           
           </div>
-          <div class='col-md-1 table-th actionraw'>
+          <div class='col-md-1 table-bdy actionraw'>
             {{Pestisidetest}}
           </div>
         </div>
       </div>
-
-
-
-  <div class="pull-right btn">
-            <p>
-              <button type="button" class="btn btn-warning">Cancel</button>
-              <button autofocus="" type="button" class="btn btn-success" >Save</button>
-              <button type="button" class="btn btn-default" >Exit</button>
-            </p>
-  </div>
-
-
+        <div class="button pull-right">
+                <span>
+                  <button type="button" class="btn btn-warning">Cancel</button>
+                  <button autofocus="" type="button" class="btn btn-success" >Save</button>
+                  <button type="button" class="btn btn-default" >Exit</button>
+               </span>
+        </div>
+</div>
 <!-- 
 <select class="form-control dropdown" (ngModel)="samplePreparation" 
                 name="samplePreparation" id="samplePreparation" required>
