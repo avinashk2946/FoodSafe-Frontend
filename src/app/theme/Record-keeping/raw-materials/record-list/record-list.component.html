@@ -26,7 +26,9 @@
   <div class="card-header">
     <div class="form-group row">
       <div class="row col-sm-12">
-        <input type="text" class="form-control form-control-round" placeholder="Search..">
+          <tag-input [ngClass]="'tag-select'" theme='bootstrap' [placeholder] = "'Search...'" [ngModel]="[]" [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [displayBy]="'value'" [identifyBy]="'id'" [autocompleteItems]="autocompleteItemsAsObjects"></tag-input-dropdown>
+            </tag-input>
       </div>
     </div>
   </div>
@@ -43,8 +45,8 @@
         [limit]="10"
         [selected]="selected"
         [selectionType]="'single'"
-        (activate)="onActivate($event)"
-        (select)='onSelect($event)' (dblclick)="showDetails()">
+        (activate)="onActivate($event)" 
+        (select)='onSelect($event)' (dblclick)="showDetails()">   
         <ngx-datatable-column name="Date Created">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span>
@@ -55,7 +57,7 @@
         <ngx-datatable-column name="PO">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span >
-              {{row.po}}
+              {{row.po}}     
             </span>
           </ng-template>
         </ngx-datatable-column>

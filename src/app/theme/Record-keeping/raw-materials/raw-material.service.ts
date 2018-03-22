@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { CommonService } from '../../../common/common.service';
 import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../common/common.constant';
 import { HttpRequestModal } from '../../../common/httpRequest.modal';
+import { Http } from '@angular/http';
+import { HttpEventType } from '@angular/common/http';
 
 @Injectable()
 export class RawMaterialService {
-  constructor(private comonSrvc: CommonService) {
-  }
+  constructor(
+    private comonSrvc: CommonService,
+    public http: Http
+  ) { }
 
   getPlant() {
     var reqPayload = {
@@ -54,9 +58,9 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
   uploadAttachment (obj){
-    var url = API_ACTIONS.raw_material.record+'/attachment';
-    var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
-    return this.comonSrvc.createHttpRequest(httpRequest);
+    var url = GLOBAL_PROPERTIES.BASE_API_URL + API_ACTIONS.raw_material.record+'/attachment';
+    console.log(url);
+    return this.http.post(url,obj);
   }
   getRecordData (id){
     var reqPayload = {

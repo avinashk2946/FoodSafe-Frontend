@@ -2,7 +2,6 @@ import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from 
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-
 import {FileUploader} from 'ng2-file-upload';
 import { Http} from '@angular/http';
 import { HttpEventType} from '@angular/common/http';
@@ -29,7 +28,6 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
 })
 export class CreateRecordComponent implements OnInit {
   dataForm : FormGroup;
-  // plant : Plant;
   rawmaterial: any = 'rawmaterials[]';
   createdDate : any = new Date();
   plantList = [];
@@ -54,28 +52,17 @@ export class CreateRecordComponent implements OnInit {
   selectedSupplier : any = '';
   selectedProduct : any = '';
 
-  submitted:boolean;
-  selectedFile:File = null;
-
- //@Input() plant=[];
-
   constructor(
     private fb : FormBuilder,
     public rawMatService:RawMaterialService,
     public comonSrvc:CommonService,
     protected localStorage: AsyncLocalStorage,
-    public router:Router ,
-    // public suppliersservice:SupplierService,
-    //public plantservice:PlantService,
-    // public productservice:ProductService,
-    // public brokerservice:BrokerService,
+    public router:Router,
   ) {}
 
   ngOnInit() {
     this.dataForm = this.fb.group({
       'plant' : ['', [Validators.required]],
-      'createdDate' : ['', [Validators.required]],
-      'createdBy' : ['', [Validators.required]],
       'suplier' : ['', [Validators.required]],
       'broker' : ['', [Validators.required]],
       'coo' : ['', [Validators.required]],
@@ -88,11 +75,8 @@ export class CreateRecordComponent implements OnInit {
       'po' : ['', [Validators.required]],
       'containerNo' : ['', [Validators.required]],
       'lotNo' : ['', [Validators.required]],
-      'organic' : ['', [Validators.required]],
+      'organic' : ['', [Validators.required]]
     });
-
-     window.localStorage.setItem('Rawmatid','-1');
-    //this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
     this.getPlant();
     this.localStorage.getItem('user').subscribe((user) => {
       console.log(user) // should be 'Henri'
@@ -120,8 +104,9 @@ export class CreateRecordComponent implements OnInit {
     console.log('this.dataForm.value',obj);
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      // this.router.navigate("'/document-upload')
-      this.router.navigate(['/recordkeeping/raw-matrial/document-upload',{'id':response.data._id}]);
+      this.router.navigate(['/recordkeeping/raw-matrial/document-upload',response.data._id]).then(nav =>{
+
+      });
     }, err => { 
       this.comonSrvc.showErrorMsg(err.message);
     });
@@ -143,9 +128,6 @@ export class CreateRecordComponent implements OnInit {
   }
   
   public changePlant ():void {
-    // this.plantservice.getplant().subscribe((response: any) => {
-    //   console.log(response);
-    // });
     this.supplierList = [];
     if(this.plant != '')
       this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
@@ -216,24 +198,4 @@ export class CreateRecordComponent implements OnInit {
       // })
     }
   }
-
-
-  // onFileSelected(event) {
-  //   this.selectedFile = <File>event.target.files[0]
-  // }
-
-
-  // public onSubmit(){
-  //   this.submitted=true;
-  //   if (this.dataForm.valid) {
-  //     let requetsdata=this.dataForm.value;
-  //     requetsdata.rawmaterial_type = 2;
-  //     this.rawmaterialsservice.create(requetsdata).then((responseRawmat )=>{
-  //       window.localStorage.setItem('Rawmatid',responseRawmat.id+'');
-  //       this.router.navigate(['/']); 
-  //     })
-  //   } 
-  // }
-
-
 }
