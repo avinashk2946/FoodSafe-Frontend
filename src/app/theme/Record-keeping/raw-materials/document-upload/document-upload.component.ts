@@ -16,8 +16,10 @@ import { AuthService } from '../../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import * as _ from "lodash";
 import { AsyncLocalStorage } from 'angular-async-local-storage';
-import { UploaddataService } from '../../../../service/uploaddata.service';
-import { File } from '../../../../classes/file';
+
+// import { UploaddataService } from '../../../../service/uploaddata.service';
+// import { File } from '../../../../classes/file';
+
 
 @Component({
   selector: 'app-document-upload',
@@ -32,14 +34,15 @@ import { File } from '../../../../classes/file';
 export class DocumentUploadComponent implements OnInit {
 
   attchmentList = [{attachment:''}];
+  uploader: FileUploader = new FileUploader({});
   fileList = [
-    {'title':'Bill of Lading',"attachmentList":[{attachment:''}],'name':'billOfLanding'},
-    {'title':'Commercial Invoice',"attachmentList":[{attachment:''}],'name':'commercialInvoice'},
-    {'title':'Packing list',"attachmentList":[{attachment:''}],'name':'packingList'},
-    {'title':'COA',"attachmentList":[{attachment:''}],'name':'coa'},
-    {'title':'CCP verification records',"attachmentList":[{attachment:''}],'name':'ccpVerification'},
-    {'title':'Environmental Monitoring records',"attachmentList":[{attachment:''}],'name':'environmentalMonitoring'},
-    {'title':'Other Supporting records',"attachmentList":[{attachment:''}],'name':'otherSupporting'}
+    {'title':'Bill of Lading',"attachmentList":new FileUploader({isHTML5: true}),'name':'billOfLanding'},
+    {'title':'Commercial Invoice',"attachmentList":new FileUploader({}),'name':'commercialInvoice'},
+    {'title':'Packing list',"attachmentList":new FileUploader({}),'name':'packingList'},
+    {'title':'COA',"attachmentList":new FileUploader({}),'name':'coa'},
+    {'title':'CCP verification records',"attachmentList":new FileUploader({}),'name':'ccpVerification'},
+    {'title':'Environmental Monitoring records',"attachmentList":new FileUploader({}),'name':'environmentalMonitoring'},
+    {'title':'Other Supporting records',"attachmentList":new FileUploader({}),'name':'otherSupporting'}
   ];
   recordId : any = '';
   recordDetails:any = {};
@@ -60,7 +63,7 @@ export class DocumentUploadComponent implements OnInit {
     protected localStorage: AsyncLocalStorage,
     public router: Router,
     public http: Http,
-    public uploaddataservice: UploaddataService,
+    // public uploaddataservice: UploaddataService,
     private route: ActivatedRoute
   ) {
       this.route.params.subscribe( params => {
@@ -70,31 +73,8 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
-
-    // this.dataForm = this.fb.group({
-    //   'plant' : ['', [Validators.required]],
-    //   'createdDate' : ['', [Validators.required]],
-    //   'createdBy' : ['', [Validators.required]],
-    //   'suplier' : ['', [Validators.required]],
-    //   'broker' : ['', [Validators.required]],
-    //   'coo' : ['', [Validators.required]],
-    //   'product' : ['', [Validators.required]],
-    //   'productCode' : ['', [Validators.required]],
-    //   'variety' : ['', [Validators.required]],
-    //   'approved' : ['', [Validators.required]],
-    //   'kosher' : ['', [Validators.required]],
-    //   'nonGMO' : ['', [Validators.required]],
-    //   'po' : ['', [Validators.required]],
-    //   'containerNo' : ['', [Validators.required]],
-    //   'lotNo' : ['', [Validators.required]],
-    //   'organic' : ['', [Validators.required]],
-    // });
-
     window.localStorage.setItem('Rawmatid', '-1');
     this.getRecordDetails();
-
   }
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
@@ -108,7 +88,6 @@ export class DocumentUploadComponent implements OnInit {
   public addFile(e,list) {
     e.preventDefault();
     list.push({attachment:''});
-
   }
   delete(e: Event, index: number,list) {
     e.preventDefault();
@@ -121,15 +100,20 @@ export class DocumentUploadComponent implements OnInit {
     console.log(event.target.files);
     item.attachment = event.target.files; 
   } 
+  fileSelected(event){ 
+    console.log(event);
+    // item.attachment = event.target.files; 
+  } 
   uploadFile() {
     const formData: any = new FormData();
+    console.log(this.fileList);
     this.fileList.forEach(element => {
       console.log(element.attachmentList);
       let i = 1;
       let name =  element.name;
-      element.attachmentList.forEach(obj => {
+      element.attachmentList.queue.forEach(obj => {
         name = name+i;
-        formData.append(name, obj.attachment[0]);
+        formData.append(name, obj.file.rawFile);
         i++;
       })
     });

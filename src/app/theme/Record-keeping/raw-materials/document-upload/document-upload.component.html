@@ -109,7 +109,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-12 ">
 		<ngb-tabset type="pills">
 			<ngb-tab title="Document">
@@ -126,28 +126,34 @@
 								<tr *ngFor="let type of fileList">
 									<td>{{type.title}}</td>
 									<td>
-										<a href="" (click)="addFile($event,type.attachmentList)" class="add-another">
-										<span class="fa fa-plus"></span>Add</a>
+										<!-- <a href="" (click)="addFile($event,type.attachmentList)" class="add-another">
+										<span class="fa fa-plus"></span>Add</a> -->
 										<div class="file-add">
 											<form novalidate>
 												<div>
-													<div class="" *ngFor="let item of type.attachmentList; let i=index">
-														<div>
-															<div class="row">
-																<div class="col-md-5">
-																	<div class="form-group">
-																		<span>
-																			<label for="browse" type="file" class="file "></label>
-																			<input type="file"  name="browse" (change)="getFiles($event,item)">
-																		</span>
-																		<a *ngIf="type.attachmentList.length > 1" class="" href="" (click)="delete($event,i,type.attachmentList)">
-																			<span class="fa fa-trash"></span>
-																		</a>
-																	</div>
+													<!-- <div class="" *ngFor="let item of type.attachmentList; let i=index"> -->
+													<div>
+														<div class="row">
+															<div class="col-md-5">
+																<div class="form-group">
+																	<label class="custom-file mb-3">
+																		<input (onFileDrop)="fileSelected($event)" type="file" ng2FileSelect ng2FileDrop [uploader]="type.attachmentList" multiple
+																		 class="custom-file-input">
+																		<span class="custom-file-control"></span>
+																	</label>
+
+																	<ul class="list-inline">
+																		<li class="list-group-item media-left" *ngFor="let item of type.attachmentList.queue">
+																			<img src="" imgPreview [image]="item?._file" class="media-object" />
+																			<span class="fa fa-trash" (click)="delete($event,index,type.attachmentList.queue)"></span>
+																		</li>
+																	</ul>
+
 																</div>
 															</div>
 														</div>
 													</div>
+													<!-- </div> -->
 												</div>
 											</form>
 										</div>
