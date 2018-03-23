@@ -21,6 +21,7 @@ import { SampleImageComponent } from './sample-image/sample-image.component';
 import { NgxCarouselModule } from 'ngx-carousel';
 import { ImagePreview } from '../../../../directives/image-preview-directive';
 import 'hammerjs';
+import { SliderComponent } from './slider/slider.component';
 
 
 
@@ -47,7 +48,8 @@ import 'hammerjs';
     SummaryComponent,
     RawmaterialDetailsComponent,
     SampleImageComponent,
-    ImagePreview
+    ImagePreview,
+    SliderComponent
   ],
 
   bootstrap: [DocumentUploadComponent]

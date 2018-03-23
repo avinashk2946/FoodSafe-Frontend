@@ -12,4 +12,23 @@ export class SampleImageComponent implements OnInit {
   ngOnInit() {
   }
 
+	//   public slideone:any[]=
+	// [
+	//   {
+	//     "url": "assets/images/slider/slide2.jpg",
+	//     "name": "Slide",
+	//     "desc": "",
+	//     // "routerLink":"/search",
+	//     "queryParams":{'query':'slide'},
+	    
+	//   },
+	//    {
+	//     "url": "assets/images/slider/slide4.jpg",
+	//     "name": "Slide",
+	//     "desc": "",
+	//     // "routerLink":"/search",
+	//     "queryParams":{'query':'slide'},
+	   
+	//   },
+ //  	]
 }
