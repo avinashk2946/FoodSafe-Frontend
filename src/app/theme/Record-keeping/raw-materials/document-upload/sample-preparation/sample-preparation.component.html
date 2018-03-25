@@ -30,10 +30,8 @@
                 Virus Test
               </div>
               <div class="col-md-6">
-              <select type="text" class="form-control" name="">
-                <option>Yes</option>
-                <option>No</option>
-              </select>
+             <input type="text" class="form-control" name="">
+                <p>{{virustest}}</p>   
               </div>
             </div>
           </div>
@@ -140,40 +138,59 @@
       </div>
     </div>
 
-      <div class="table-head">
-        <div class="row table-row" *ngFor="let sample of samples">
-          <div class="col-md-2 table-bdy actionraw"  >
-            <input type="text" class="form-control" name="" [(ngModel)]="sample.supplierLot" > 
-          </div>
-          <div class="col-md-1 table-bdy actionraw">
-                {{sample.newLot}}
-          </div>
-          <div class="col-md-1 table-bdy actionraw">
-            <input type="text" class="form-control" name="" value="" > 
-          </div>
-          <div class="col-md-1 table-bdy actionraw">
-             {{sample.po}}
-          </div>
-          <div class="col-md-1 table-bdy actionraw " >
-           <input type="text" class="form-control" name="" [(ngModel)]="sample.totalQuantity"> 
-         </div>
-          <div class="col-md-1 table-bdy actionraw">
-                {{sample.indicatorTest}}
-          </div>
-          <div class='col-md-1 table-bdy actionraw'>
-                 {{sample.pathogenTest}}
-          </div>
-          <div class='col-md-1 table-bdy actionraw'>
-                {{sample.indicatorTest}}
-          </div>
-          <div class='col-md-1 table-bdy actionraw'>
-                {{sample.virusTest}}
-          </div>
-          <div class='col-md-1 table-bdy actionraw'>
-                 {{sample.pesticideTest}}
-          </div>
+
+<div class="add-item raw">
+  <form [formGroup]="itemAddForm"  novalidate >
+    <div formArrayName="items">
+      <div class="" *ngFor="let item of itemAddForm.controls['items'].controls; let i=index" >
+        <div [formGroupName]="i">
+            <div class="table-head">
+              <div class="row table-row" *ngFor="let sample of samples">
+                <div class="col-md-2 table-bdy actionraw"  >
+                  <input type="text" class="form-control" name="" [(ngModel)]="sample.supplierLot" > 
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                    <!--   {{sample.newLot}} -->
+                    <select type="text" class="form-control" [(ngModel)]="test" name="" (ngModelChange)='changeTest()'>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                  <input type="text" class="form-control" name="" value="" > 
+                </div>
+                <div class="col-md-1 table-bdy actionraw">
+                   {{sample.po}}
+                </div>
+                <div class="col-md-1 table-bdy actionraw " >
+                 <input type="text" class="form-control" name="" [(ngModel)]="sample.totalQuantity"> 
+               </div>
+                <div class="col-md-1 table-bdy actionraw">
+                      {{sample.quantityPlanned}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                       {{sample.pathogenTest}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                      {{sample.indicatorTest}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                      {{sample.virusTest}}
+                </div>
+                <div class='col-md-1 table-bdy actionraw'>
+                       {{sample.pesticideTest}}
+                </div>
+              </div>
+            </div>
         </div>
       </div>
+    </div>
+  </form>
+</div>
+
+  <a  href="#" (click)="addMember($event)" class="add-another"><span class="fa fa-plus"></span>Add Another</a>
+   <a class="" href="#"><span class="fa fa-trash" (click)="delete($event,i)"></span></a>
+
         <div class="button pull-right">
                 <span>
                   <button type="button" class="btn btn-warning">Cancel</button>
