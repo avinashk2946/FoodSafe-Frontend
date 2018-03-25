@@ -44,13 +44,18 @@ export class CreateRecordComponent implements OnInit {
   isApproved : any = "false";
   kosher : any = 'false';
   nonGMO : any = 'false';
+  organicValue : any = 'false';
   po : any = '';
   containerNo : any = '';
   lotNo : any = '';
   plant : any = '';
   supplier : any = '';
   selectedSupplier : any = '';
-  selectedProduct : any = '';
+  selectedMaterial : any = '';
+  materialGrpList = [];
+  materialGrp='';
+  materialList = [];
+  material = '';
 
   constructor(
     private fb : FormBuilder,
@@ -66,7 +71,7 @@ export class CreateRecordComponent implements OnInit {
       'suplier' : ['', [Validators.required]],
       'broker' : ['', [Validators.required]],
       'coo' : ['', [Validators.required]],
-      'product' : ['', [Validators.required]],
+      'materialGrp' : ['', [Validators.required]],
       'productCode' : ['', [Validators.required]],
       'variety' : ['', [Validators.required]],
       'approved' : ['', [Validators.required]],
@@ -75,7 +80,9 @@ export class CreateRecordComponent implements OnInit {
       'po' : ['', [Validators.required]],
       'containerNo' : ['', [Validators.required]],
       'lotNo' : ['', [Validators.required]],
-      'organic' : ['', [Validators.required]]
+      'organic' : ['', [Validators.required]],
+      'material' : ['', [Validators.required]],
+
     });
     this.getPlant();
     this.localStorage.getItem('user').subscribe((user) => {
@@ -177,25 +184,42 @@ export class CreateRecordComponent implements OnInit {
        supplierId:this.supplier,
        brokerId:this.broker
      }
-      this.rawMatService.getProduct(obj).subscribe((response: any) => {
-        this.productList = response.data;
-        this.productList.forEach(element => {
-          element.label = element.name;
-          element.value = element._id;
-        });
+      this.rawMatService.getRawMatrialGroup(obj).subscribe((response: any) => {
+        this.materialGrpList = response.data;
       }, err => { 
         if (err.status === 401) {
         }
       });
     }
   }
-  public changeProduct ():void {
-    if(this.product != ''){
-      this.selectedProduct = _.find(this.productList,{"_id":this.product});
-      // this.selectedProduct.variety.forEach(element => {
-      //   element.label = element.country;
-      //   element.value = element._id;
-      // })
+  public changeMaterialGroup ():void {
+    if(this.materialGrp != ''){
+      var obj = {
+        plantId : this.plant,
+        supplierId:this.supplier,
+        brokerId:this.broker,
+        matrialGrp:this.materialGrp
+      }
+       this.rawMatService.getRawMatrial(obj).subscribe((response: any) => {
+         this.materialList = response.data;
+         this.materialList.forEach(element => {
+          element.label = element.name;
+          element.value = element._id;
+        });
+       }, err => { 
+         if (err.status === 401) {
+         }
+       });
     }
   }
+  public changeMaterial ():void {
+    if(this.material != ''){
+      this.selectedMaterial = _.find(this.materialList,{"_id":this.material});
+      this.nonGMO = (this.selectedMaterial.nonGmo) ? 'true' : 'false';
+      this.organicValue = (this.selectedMaterial.organic) ? 'true' : 'false';
+      this.isApproved = (this.selectedMaterial.isApproved) ? 'true' : 'false';
+      this.kosher = (this.selectedMaterial.kosher) ? 'true' : 'false';
+    }
+  }
+
 }

@@ -35,10 +35,11 @@ export const API_ACTIONS = Object.freeze({
     },
     raw_material:{
         plant : 'plant',
+        record:'record',
         supplier : 'supplier',
         broker:"broker",
         product:'product',
-        record:'record',
-        samplepreparation:'SamplePreparation'
+        samplepreparation:'SamplePreparation',
+        rawmaterial:"rawMaterial"
     }
 });
