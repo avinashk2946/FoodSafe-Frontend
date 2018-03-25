@@ -71,8 +71,7 @@ export class CreateRecordComponent implements OnInit {
       'suplier' : ['', [Validators.required]],
       'broker' : ['', [Validators.required]],
       'coo' : ['', [Validators.required]],
-      'materialGrp' : ['', [Validators.required]],
-      'productCode' : ['', [Validators.required]],
+      'materialGrp' : [],
       'variety' : ['', [Validators.required]],
       'approved' : ['', [Validators.required]],
       'kosher' : ['', [Validators.required]],
@@ -98,15 +97,14 @@ export class CreateRecordComponent implements OnInit {
       supplier : this.supplier,
       broker : this.broker,
       country : this.coo,
-      product : this.product,
-      approved : (this.isApproved == 'true') ? true : false,
       po : this.po,
       containerNo : this.containerNo,
       lotNo : this.lotNo,
       variety : this.variety,
-      nonGmo : this.nonGMO,
-      createdBy : this.createdById,
-      isDelete : false
+      rawMaterial : this.material
+      // nonGmo : this.nonGMO,
+      // createdBy : this.createdById,
+      // isDelete : false
     }
     console.log('this.dataForm.value',obj);
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {

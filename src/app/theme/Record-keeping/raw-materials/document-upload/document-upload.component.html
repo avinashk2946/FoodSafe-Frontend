@@ -42,7 +42,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2 data-table email">
+				<!-- <div class="col-md-2 data-table email">
 					<div class="row">
 						<div class="col-md-5 action">
 							Product
@@ -51,7 +51,7 @@
 							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.name">
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 		<div class="table-head" *ngIf="recordDetails._id">
@@ -62,7 +62,7 @@
 							Po
 						</div>
 						<div class="col-md-7">
-							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.name">
+							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.poa">
 						</div>
 					</div>
 				</div>
@@ -96,7 +96,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2 data-table ">
+				<!-- <div class="col-md-2 data-table ">
 					<div class="row">
 						<div class="col-md-5 action">
 							Product Code
@@ -105,7 +105,7 @@
 							<input type="text" class="form-control" name="" [readOnly]="true" [(ngModel)]="recordDetails.product.productId">
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -137,9 +137,9 @@
 															<div class="col-md-5">
 																<div class="form-group">
 																	<label class="custom-file mb-3">
-																		<input (onFileDrop)="fileSelected($event)" type="file" ng2FileSelect ng2FileDrop [uploader]="type.attachmentList" multiple
+																		<input type="file" ng2FileSelect ng2FileDrop [uploader]="type.attachmentList" multiple
 																		 class="custom-file-input">
-																		<span class="custom-file-control">Drag your Files</span>
+																		<span class="custom-file-control">Drag $ drop your files here</span>
 																	</label>
 
 																	<ul class="list-inline">
