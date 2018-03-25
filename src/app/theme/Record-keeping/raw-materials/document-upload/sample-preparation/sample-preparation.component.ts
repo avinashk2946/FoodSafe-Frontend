@@ -1,7 +1,8 @@
 import { Component,Input, OnInit } from '@angular/core';
 import  { Supplier } from '../../../../../classes/supplier';
+// import  { SamplePreparation } from '../../../../../classes/sample-preparation';
 import { SupplierService } from '../../../../../service/supplier.service';
-import { FormBuilder  , FormGroup ,FormArray ,Validators }  from '@angular/forms';
+import { FormBuilder, FormGroup ,FormArray ,Validators }  from '@angular/forms';
 
 
 @Component({
@@ -20,43 +21,88 @@ export class SamplePreparationComponent implements OnInit {
   	 }
 
 
-	@Input() supplier: Supplier;
+    @Input() sample: String = "abc"
+
+
+
+    public ngOnChanges(){
+      console.log("changed",);
+    }
+
+
+    
+
+	// @Input() supplier: Supplier;
+  // @Input () samplepreparation:SamplePreparation;
 
   	ngOnInit() {
 
-       // this.brokerservice.samplePreparation()
+       // this.supplierservice.samplePreparation()
        // .subscribe(function(response) {
        //   this.samplePreparation = response.json();
        //   console.log(this.samplePreparation);
        // });
   	}
 
-  // samplePreparationId : any = '';
-  // samplePreparation:any = {};
 
-//  menus =[
-//     {
-//         sate: "Test1",
-//         name: 'Test1'
-//     },
 
-// ]
+ samples =[
+           {
+       supplierLot         : "supplierLot1",
+       newLot              :true,
+       po                  :"po1",
+       totalQuantity       :100,
+       quantityPlanned       :200,
+       qualityAnalysis     :false,
 
-  samplingmethod: string = "test1";  
-  pathogentest:string = "test2";
-  virustest:string = "test3";
-  pesticidestest:string = "test4";
-  preparedby:string="admin";
+       // tests
+       indicatorTest       :false,
+       pathogenTest       :false,
+       virusTest       :false,
+       pesticideTest       :false,
 
- 
-  supplierlot:string="1233212132";
-  newlot:string="yes";
-  ifnopreviouspo:string="";
-  totalquality:string="500";
-  qcanalysys:string="yes";
-  qualityplannedforsampling:string="10";
-  indicatortest:string="No";
-  // pathogentest:string="admin";
-  // virustest:string="admin";
-  Pestisidetest:string="Yes";
+       // picture of case, to be used in sample collection
+       caseImg           :{type:String},
+
+
+     },
+     {
+       supplierLot         : "supplierLot2",
+       newLot              :true,
+       po                  :"po2",
+       totalQuantity       :20,
+       quantityPlanned       :2,
+       qualityAnalysis     :false,
+
+       // tests
+       indicatorTest       :false,
+       pathogenTest       :false,
+       virusTest       :false,
+       pesticideTest       :false,
+
+       // picture of case, to be used in sample collection
+       caseImg           :{type:String},
+
+     },
+        {
+       supplierLot         : "supplierLot3",
+       newLot              :true,
+       po                  :"po3",
+       totalQuantity       :30,
+       quantityPlanned      :2,
+       qualityAnalysis     :false,
+
+       // tests
+       indicatorTest       :false,
+       pathogenTest        :false,
+       virusTest           :false,
+       pesticideTest       :false,
+
+       // picture of case, to be used in sample collection
+       caseImg           :{type:String},
+
+     }
+
+     ];
+
 }

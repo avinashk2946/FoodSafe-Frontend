@@ -30,8 +30,10 @@
                 Virus Test
               </div>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="">
-                <p>{{virustest}}</p> 
+              <select type="text" class="form-control" name="">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
               </div>
             </div>
           </div>
@@ -132,44 +134,43 @@
             Virus test
           </div>
           <div class='col-md-1 table-th action'>
-            Pestiside test
+            Pesticides test
           </div>
         </div>
       </div>
     </div>
 
       <div class="table-head">
-        <div class="row table-row">
-          <div class="col-md-2 table-bdy actionraw">
-            <input type="text" class="form-control" name="" value="9778362637" > 
+        <div class="row table-row" *ngFor="let sample of samples">
+          <div class="col-md-2 table-bdy actionraw"  >
+            <input type="text" class="form-control" name="" [(ngModel)]="sample.supplierLot" > 
           </div>
           <div class="col-md-1 table-bdy actionraw">
-            {{newlot}}
+                {{sample.newLot}}
           </div>
           <div class="col-md-1 table-bdy actionraw">
-           {{ifnopreviouspo}}
+            <input type="text" class="form-control" name="" value="" > 
           </div>
           <div class="col-md-1 table-bdy actionraw">
-            {{totalquality}}
+             {{sample.po}}
           </div>
+          <div class="col-md-1 table-bdy actionraw " >
+           <input type="text" class="form-control" name="" [(ngModel)]="sample.totalQuantity"> 
+         </div>
           <div class="col-md-1 table-bdy actionraw">
-           {{qcanalysys}}
-          </div>
-          <div class="col-md-1 table-bdy actionraw">
-          {{qualityplannedforsampling}}
-            
+                {{sample.indicatorTest}}
           </div>
           <div class='col-md-1 table-bdy actionraw'>
-            {{indicatortest}}
+                 {{sample.pathogenTest}}
           </div>
           <div class='col-md-1 table-bdy actionraw'>
-           
+                {{sample.indicatorTest}}
           </div>
           <div class='col-md-1 table-bdy actionraw'>
-          
+                {{sample.virusTest}}
           </div>
           <div class='col-md-1 table-bdy actionraw'>
-            {{Pestisidetest}}
+                 {{sample.pesticideTest}}
           </div>
         </div>
       </div>

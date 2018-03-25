@@ -43,6 +43,7 @@ export class DocumentUploadComponent implements OnInit {
     {'title':'CCP verification records',"attachmentList":new FileUploader({}),'name':'ccpVerification'},
     {'title':'Environmental Monitoring records',"attachmentList":new FileUploader({}),'name':'environmentalMonitoring'},
     {'title':'Other Supporting records',"attachmentList":new FileUploader({}),'name':'otherSupporting'}
+    
   ];
   recordId : any = '';
   recordDetails:any = {};

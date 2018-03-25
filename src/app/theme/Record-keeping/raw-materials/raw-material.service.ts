@@ -4,13 +4,25 @@ import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../common/common.constant'
 import { HttpRequestModal } from '../../../common/httpRequest.modal';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
+import  { SamplePreparation } from '../../../classes/sample-preparation';
 
 @Injectable()
 export class RawMaterialService {
   constructor(
+
     private comonSrvc: CommonService,
     public http: Http
   ) { }
+
+  // private headers= new Headers(
+  //   {
+  //     "Content-Type":"application/json",
+  //     }
+
+  //   );
+
+
+// private baseUrl="http://localhost:4200/assets/json/sample-preparation.json"
 
   getPlant() {
     var reqPayload = {
@@ -36,6 +48,16 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+
+  //   getSamplePreparation(obj) {
+  //   var reqPayload = {
+  //     channel: GLOBAL_PROPERTIES.CHANNEL
+  //   }
+  //   var url = API_ACTIONS.raw_material.samplepreparation+'?supplierlot='+obj.supplierlot+'&supplier='+obj.supplierlot;
+  //   var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+  //   return this.comonSrvc.createHttpRequest(httpRequest);
+  // }
+
   getProduct(obj) {
     var reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
@@ -70,4 +92,12 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+
+
+    //   get(samplepreparation:SamplePreparation):Promise<SamplePreparation>{
+    //   return this.http
+    //     .get(this.baseUrl,{headers:this.headers})
+    //     .toPromise()
+    //     .then(res=>res.json()as SamplePreparation)  
+    // }
 }
