@@ -16,10 +16,7 @@ import { AuthService } from '../../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import * as _ from "lodash";
 import { AsyncLocalStorage } from 'angular-async-local-storage';
-
-// import { UploaddataService } from '../../../../service/uploaddata.service';
-// import { File } from '../../../../classes/file';
-
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-document-upload',
@@ -32,8 +29,8 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 })
 export class DocumentUploadComponent implements OnInit {
-
-  attchmentList = [{attachment:''}];
+  public onlineOffline: boolean = navigator.onLine;
+  attchmentList = [{ attachment: '' }];
   uploader: FileUploader = new FileUploader({});
   fileList = [
     {'title':'Bill of Lading',"attachmentList":new FileUploader({isHTML5: true}),'name':'billOfLanding'},
@@ -43,19 +40,16 @@ export class DocumentUploadComponent implements OnInit {
     {'title':'CCP verification records',"attachmentList":new FileUploader({}),'name':'ccpVerification'},
     {'title':'Environmental Monitoring records',"attachmentList":new FileUploader({}),'name':'environmentalMonitoring'},
     {'title':'Other Supporting records',"attachmentList":new FileUploader({}),'name':'otherSupporting'}
-    
+
   ];
-  recordId : any = '';
-  recordDetails:any = {};
+  recordId: any = '';
+  recordDetails: any = {};
   dataForm: FormGroup;
   UploadFiles: any = "";
-
+  online$ = Observable.fromEvent(window, 'online');
+  offline$ = Observable.fromEvent(window, 'offline');
   public files: File[];
-
   public filesAddForm: FormGroup;
-  
-  // @Input() recordDetails:any;
-
 
   constructor(
     private fb: FormBuilder,
@@ -64,69 +58,76 @@ export class DocumentUploadComponent implements OnInit {
     protected localStorage: AsyncLocalStorage,
     public router: Router,
     public http: Http,
-    // public uploaddataservice: UploaddataService,
     private route: ActivatedRoute
   ) {
-      this.route.params.subscribe( params => {
-        this.recordId = params.id;
-        this.getRecordDetails();
-      });
+    this.route.params.subscribe(params => {
+      this.recordId = params.id;
+      this.getRecordDetails();
+    });
+    
   }
 
   ngOnInit() {
-    window.localStorage.setItem('Rawmatid', '-1');
     this.getRecordDetails();
+    this.online$.subscribe(e => this.syncWithServer());
+  }
+  syncWithServer() {
+    console.log(12121);
+    alert(1);
+    // cons
+    // this.localStorage.getItem('recordFiles').subscribe((formData) => {
+    //   console.log(formData);
+    //   this.updateAttachment(formData);
+    // });
+    // this.localStorage.getItem('testOne').subscribe((formData1) => {
+    //   console.log(formData1);
+    //   //this.updateAttachment(formData);
+    // });
   }
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
-      console.log(response);
       this.recordDetails = response.data[0];
-    }, err => { 
+    }, err => {
       if (err.status === 401) {
       }
-    });  
+    });
   }
-  public addFile(e,list) {
+  public addFile(e, list) {
     e.preventDefault();
-    list.push({attachment:''});
+    list.push({ attachment: '' });
   }
-  delete(e: Event, index: number,list) {
+  delete(e: Event, index: number, list) {
     e.preventDefault();
-    // const control = <FormArray>this.filesAddForm.controls['files'];
-    // if (control.length > 1) {
     list.splice(index, 1);
-    // }
   }
-  getFiles(event,item){ 
-    console.log(event.target.files);
-    item.attachment = event.target.files; 
-  } 
-  fileSelected(event){ 
-    console.log(event);
-    // item.attachment = event.target.files; 
-  } 
   uploadFile() {
     const formData: any = new FormData();
-    console.log(this.fileList);
     this.fileList.forEach(element => {
-      console.log(element.attachmentList);
       let i = 1;
-      let name =  element.name;
+      let name = element.name;
       element.attachmentList.queue.forEach(obj => {
-        name = name+i;
+        name = name + i;
         formData.append(name, obj.file.rawFile);
         i++;
       })
     });
-    formData.append('_id',this.recordId);
-    console.log(formData);
-    this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
-      this.comonSrvc.showSuccessMsg(response.message);
-    }, err => { 
-      this.comonSrvc.showErrorMsg(err.message);
-    });  
-    
-
+    formData.append('_id', this.recordId);
+    this.updateAttachment(formData);
   }
-  currentOrientation = 'horizontal';
+  updateAttachment (formData){
+    this.onlineOffline = navigator.onLine;
+    if(this.onlineOffline){
+      this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
+        this.comonSrvc.showSuccessMsg(response.message);
+      }, err => {
+        this.comonSrvc.showErrorMsg(err.message);
+      });
+    }
+    else{
+      let data = formData;
+      let data1 = this.fileList;
+      this.localStorage.setItem('recordFiles', JSON.stringify(formData));
+      this.localStorage.setItem('testOne', JSON.stringify(this.fileList));
+    }
+  }
 }

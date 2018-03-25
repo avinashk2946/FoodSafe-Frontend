@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <div class="card-body">
+  <div class="card-body" *ngIf="recordList.length > 0">
     <div class="row">
       <div class="table-responsive">
         <ngx-datatable
@@ -61,13 +61,13 @@
             </span>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Product">
+        <!-- <ngx-datatable-column name="Product">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span>
               {{row.product.name}}
             </span>
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
         <ngx-datatable-column name="Supplier">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span>

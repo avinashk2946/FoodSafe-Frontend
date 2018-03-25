@@ -10,7 +10,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/timeout'
 import { Observable } from 'rxjs/Observable';
 import { ToastrService } from 'ngx-toastr';
-import {HttpRequestModal} from './httpRequest.modal';
+import { HttpRequestModal } from './httpRequest.modal';
 
 
 @Injectable()
@@ -18,24 +18,24 @@ export class CommonService {
 
     private _options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    constructor(public http: HttpClient,private toastr: ToastrService) {
+    constructor(public http: HttpClient, private toastr: ToastrService) {
     }
-    createHttpRequest(dataObject : HttpRequestModal) {
+    createHttpRequest(dataObject: HttpRequestModal) {
 
         /*dataObject.payload['feSessionId'] = this.generateFeSessionId();*/
-console.log('BASE_API_URL',GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName);
-        if(dataObject.method == 'POST'){
-           return this.http.post(
-            GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,
-            dataObject.payload, 
-            this._options).timeout(GLOBAL_PROPERTIES.REQUEST_TIMEOUT * 1000); 
-        }else if (dataObject.method == 'GET') {
+        console.log('BASE_API_URL', GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName);
+        if (dataObject.method == 'POST') {
+            return this.http.post(
+                GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,
+                dataObject.payload,
+                this._options).timeout(GLOBAL_PROPERTIES.REQUEST_TIMEOUT * 1000);
+        } else if (dataObject.method == 'GET') {
             //let baseUrl = "http://localhost/FS_Resource/api/";
             let baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
-           return this.http.get(baseUrl + dataObject.actionName);
+            return this.http.get(baseUrl + dataObject.actionName);
         }
     }
-    
+
     showSuccessMsg(msg): void {
         setTimeout(() => this.toastr.success(msg, 'Success!', { timeOut: 2000, closeButton: true }));
     }

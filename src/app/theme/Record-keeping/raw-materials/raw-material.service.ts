@@ -93,11 +93,20 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-
-    //   get(samplepreparation:SamplePreparation):Promise<SamplePreparation>{
-    //   return this.http
-    //     .get(this.baseUrl,{headers:this.headers})
-    //     .toPromise()
-    //     .then(res=>res.json()as SamplePreparation)  
-    // }
+  getRawMatrialGroup (obj){
+    var reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    }
+    var url = API_ACTIONS.raw_material.rawmaterial+'/groups?plant='+obj.plantId+'&supplier='+obj.supplierId+'&brokerId='+obj.brokerId;
+    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
+  getRawMatrial (obj){
+    var reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    }
+    var url = API_ACTIONS.raw_material.rawmaterial+'?plant='+obj.plantId+'&supplier='+obj.supplierId+'&brokerId='+obj.brokerId+'rmGroupName'+obj.matrialGrp;
+    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 }
