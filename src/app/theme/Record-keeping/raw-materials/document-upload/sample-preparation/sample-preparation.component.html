@@ -143,16 +143,16 @@
           <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot">
         </div>
         <div class="col-md-1 table-bdy actionraw">
-          <select class="form-control" [(ngModel)]="item.newlot" name=""  (ngModelChange)='changeTest()'>
+          <select class="form-control" [(ngModel)]="item.newLot" name=""  (ngModelChange)='changeNewLot(item)'>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </select>
         </div>
         <div class="col-md-1 table-bdy actionraw">
-          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.ifnopreviouspo">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.po">
         </div>
         <div class="col-md-1 table-bdy actionraw">
-          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.totalquality">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.totalQuantity">
         </div>
         <!-- <div class="col-md-1 table-bdy actionraw">
           <input type="text" class="form-control" name="" value="" [(ngModel)]="totalquality">
@@ -161,46 +161,46 @@
           <input type="text" class="form-control" name="" value="" [(ngModel)]="qcanalysys">
         </div> -->
         <div class="col-md-1 table-bdy actionraw">
-            <select class="form-control" [(ngModel)]="item.qcanalysys" name="">
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+            <select class="form-control" [(ngModel)]="item.qualityAnalysis" name="">
+              <option [ngValue]="true">Yes</option>
+              <option [ngValue]="false">No</option>
             </select>
         </div>
         <div class="col-md-1 table-bdy actionraw">
-          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.qualityplannedforsampling">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned">
         </div>
         <div class="col-md-1 table-bdy actionraw">
-          <select class="form-control" [(ngModel)]="item.indicatortest" name="">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+          <select class="form-control" [(ngModel)]="item.indicatorTest" name="">
+            <option [ngValue]="true">Yes</option>
+            <option [ngValue]="false">No</option>
           </select>
         </div>
         <div class="col-md-1 table-bdy actionraw">
-         {{item.newlot}}
+         {{item.pathogenTest}}
         </div>
         <div class="col-md-1 table-bdy actionraw">
-         {{item.newlot}}
+         {{item.virusTest}}
         </div>
         <div class="col-md-1 table-bdy actionraw">
-         {{item.newlot}}
+         {{item.pesticideTest}}
         </div>
         <div class="col-md-1 table-bdy actionraw">
        <span>
-         <a class="" href="#" *ngIf="samples.length > 1" (click)="removeRow(index)"><span class="fa fa-trash" (click)="delete($event,i)" ></span></a>
+         <a class="" href="" *ngIf="samples.length > 1" (click)="removeRow($event,index)"><span class="fa fa-trash"></span></a>
        </span>
 
         </div>
       </div>
     </div>
     <span>
-        <a  href="#" (click)="addRow($event)" class="add-another"><span class="fa fa-plus-circle fa-2x "></span></a> 
+        <a  href="" (click)="addRow($event)" class="add-another"><span class="fa fa-plus-circle fa-2x "></span></a> 
     </span>
 
   </div>
   <div class="button pull-right">
       <span>
         <button type="button" class="btn btn-warning">Cancel</button>
-        <button autofocus="" type="button" class="btn btn-success">Save</button>
+        <button autofocus="" type="button" class="btn btn-success" (click)="saveSampleRecord()">Save</button>
         <button type="button" class="btn btn-default">Exit</button>
       </span>
     </div>

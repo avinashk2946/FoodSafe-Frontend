@@ -1,9 +1,10 @@
 import { Component, Input, OnInit,OnChanges,SimpleChange } from '@angular/core';
-import { Supplier } from '../../../../../classes/supplier';
-// import  { SamplePreparation } from '../../../../../classes/sample-preparation';
-import { SupplierService } from '../../../../../service/supplier.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
-
+import { RawMaterialService } from '../../raw-material.service';
+import { CommonService } from '../../../../../common/common.service';
+import { AuthService } from '../../../../../common/auth.service';
+import { LocationStrategy } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sample-preparation',
@@ -12,140 +13,73 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
     '../../../../../../assets/icon/icofont/css/icofont.scss']
 })
 export class SamplePreparationComponent implements OnInit {
-
-  constructor(
-    private supplierservice: SupplierService,
-    public fb: FormBuilder,
-
-  ) {
-    this.createForm();
-  }
-
+  
   public itemAddForm: FormGroup;
   @Input() sample: String = "abc"
-
-
-
   selectedTest: any = '';
   pathogenTest: any = "false";
   indicatorTest: any = 'false';
   virusTest: any = 'false';
   pesticideTest: any = 'false';
- 
   test = '';
   public item: any = "";
-
-
-  //  ngOnChanges(changes:SimpleChange):void {
-  //   console.log("changed", );
-  // }
-
-
-
-
-  // @Input() supplier: Supplier;
-  // @Input () samplepreparation:SamplePreparation;
-
-  ngOnInit() {
-
-    // this.supplierservice.samplePreparation()
-    // .subscribe(function(response) {
-    //   this.samplePreparation = response.json();
-    //   console.log(this.samplePreparation);
-    // });
-  }
-
-
+  recordId = '';
   samples = [
     {
       supplierLot: "",
-      newlot: true,
-      ifnopreviouspo: "",
-      totalquality: "",
-      qcanalysys: '',
-      qualityplannedforsampling: '',
-      indicatorTest:  Boolean(true),
+      newLot: 'false',
+      po: "",
+      totalQuantity: "",
+      qualityAnalysis: false,
+      quantityPlanned: '',
+      indicatorTest:  false,
       pathogenTest: false,
       virusTest: false,
-      pestisideTest: Boolean(true),
-      caseImg: { type: String },
-
-
-    },
-    // {
-    //   supplierLot         : "supplierLot2",
-    //   newLot              :true,
-    //   po                  :"po2",
-    //   totalQuantity       :20,
-    //   quantityPlanned       :2,
-    //   qualityAnalysis     :false,
-
-    //   // tests
-    //   indicatorTest       :false,
-    //   pathogenTest       :false,
-    //   virusTest       :false,
-    //   pesticideTest       :false,
-
-    //   // picture of case, to be used in sample collection
-    //   caseImg           :{type:String},
-
-    // },
-    //    {
-    //   supplierLot         : "supplierLot3",
-    //   newLot              :true,
-    //   po                  :"po3",
-    //   totalQuantity       :30,
-    //   quantityPlanned      :2,
-    //   qualityAnalysis     :false,
-
-    //   // tests
-    //   indicatorTest       :false,
-    //   pathogenTest        :false,
-    //   virusTest           :false,
-    //   pesticideTest       :false,
-
-    //   // picture of case, to be used in sample collection
-    //   caseImg           :{type:String},
-
-    // }
-
+      pesticideTest: false
+    }
   ];
 
-  public changeTest(): void {
-    if (this.test != '') {
+  constructor(
+    public fb: FormBuilder,
+    public rawMatService:RawMaterialService,
+    public comonSrvc:CommonService,
+    public router: Router,
+    
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe(params => {
+      this.recordId = params.id;
+    });
+  }
 
-      this.samples.forEach(element => {
-        element.pathogenTest = (this.test == "true") ? true : false;
-        element.indicatorTest = (this.test == "true") ? true : false;
-        // element.pesticideTest = (this.test == "true") ? true : false;
-        element.virusTest = (this.test == "true") ? true : false;
-      })
+  ngOnInit() {
+  }
+
+  public changeNewLot(item): void {
+    if (item.newLot != '') {
+      item.pathogenTest = (item.newLot == "true") ? true : false;
+      item.pesticideTest = (item.newLot == "true") ? true : false;
+      item.virusTest = (item.newLot == "true") ? true : false;
     }
   }
-
-
-  onChange(sample) {
-    alert(sample.test);
-  }
-
   createForm() {
-    this.itemAddForm = this.fb.group({
-      items: this.fb.array([
-        this.fb.group({
-          supplierlot: ['',],
-          newlot: [''],
-          ifnopreviouspo: [''],
-          totalquality: [''],
-          qcanalysys: [''],
-          qualityplannedforsampling: [''],
-          indicatortest: [''],
-          pathogentest: [''],
-          virustest: [''],
-          Pestisidetest: [''],
+    // this.itemAddForm = this.fb.group({
+    //   items: this.fb.array([
+    //     this.fb.group({
+    //       supplierlot: ['',],
+    //       newlot: [''],
+    //       ifnopreviouspo: [''],
+    //       totalquality: [''],
+    //       qcanalysys: [''],
+    //       qualityplannedforsampling: [''],
+    //       indicatortest: [''],
+    //       pathogentest: [''],
+    //       virustest: [''],
+    //       Pestisidetest: [''],
 
-        })
-      ])
-    });
+    //     })
+    //   ])
+    // });
     // ]);    
   }
   public addRow(e: Event) {
@@ -167,20 +101,32 @@ export class SamplePreparationComponent implements OnInit {
     // );
     this.samples.push({
       supplierLot: "",
-      newlot: true,
-      ifnopreviouspo: "",
-      totalquality: "",
-      qcanalysys: '',
-      qualityplannedforsampling: '',
-      indicatorTest:  Boolean(true),
+      newLot: 'false',
+      po: "",
+      totalQuantity: "",
+      qualityAnalysis: false,
+      quantityPlanned: '',
+      indicatorTest:  false,
       pathogenTest: false,
       virusTest: false,
-      pestisideTest: Boolean(true),
-      caseImg: { type: String },
+      pesticideTest: false
     })
   }
 
-  removeRow(index: number) {
+  removeRow(e,index: number) {
+    e.preventDefault();
     this.samples.splice(index,1);
   }
+  saveSampleRecord () {
+    let obj = {
+      record : this.recordId,
+      samples : this.samples
+    }
+    this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+    }, err => { 
+      this.comonSrvc.showErrorMsg(err.message);
+    });
+  }
+
 }
