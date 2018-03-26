@@ -111,12 +111,12 @@ export class SamplePreparationComponent implements OnInit {
   public changeTest(): void {
     if (this.test != '') {
 
-      // this.samples.forEach(element => {
-      //   element.pathogenTest = (this.test == "true") ? true : false;
-      //   element.indicatorTest = (this.test == "true") ? true : false;
-      //   element.pesticideTest = (this.test == "true") ? true : false;
-      //   element.virusTest = (this.test == "true") ? true : false;
-      // })
+      this.samples.forEach(element => {
+        element.pathogenTest = (this.test == "true") ? true : false;
+        // element.indicatorTest = (this.test == "true") ? true : false;
+        // element.pesticideTest = (this.test == "true") ? true : false;
+        element.virusTest = (this.test == "true") ? true : false;
+      })
     }
   }
 
