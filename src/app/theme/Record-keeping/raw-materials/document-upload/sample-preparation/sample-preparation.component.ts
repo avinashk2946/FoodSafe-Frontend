@@ -24,14 +24,14 @@ export class SamplePreparationComponent implements OnInit {
   public itemAddForm: FormGroup;
   @Input() sample: String = "abc"
 
-  @Input() changeTest;
+
 
   selectedTest: any = '';
   pathogenTest: any = "false";
   indicatorTest: any = 'false';
   virusTest: any = 'false';
   pesticideTest: any = 'false';
-
+ 
   test = '';
   public item: any = "";
 
@@ -61,13 +61,13 @@ export class SamplePreparationComponent implements OnInit {
       supplierLot: "",
       newlot: true,
       ifnopreviouspo: "",
-      totalquality: 100,
+      totalquality: "",
       qcanalysys: '',
       qualityplannedforsampling: '',
-      indicatorTest: '',
+      indicatorTest:  Boolean(true),
       pathogenTest: false,
       virusTest: false,
-      pestisideTest: false,
+      pestisideTest: Boolean(true),
       caseImg: { type: String },
 
 
@@ -111,28 +111,23 @@ export class SamplePreparationComponent implements OnInit {
 
   ];
 
-  // public changeTest(): void {
-  //   if (this.test != '') {
+  public changeTest(): void {
+    if (this.test != '') {
 
-  //     this.samples.forEach(element => {
-  //       element.pathogenTest = (this.test == "true") ? true : false;
-  //       // element.indicatorTest = (this.test == "true") ? true : false;
-  //       // element.pesticideTest = (this.test == "true") ? true : false;
-  //       element.virusTest = (this.test == "true") ? true : false;
-  //     })
-  //   }
-  // }
-// public changeTest ():void {
-//     if(this.test != ''){
+      this.samples.forEach(element => {
+        element.pathogenTest = (this.test == "true") ? true : false;
+        element.indicatorTest = (this.test == "true") ? true : false;
+        // element.pesticideTest = (this.test == "true") ? true : false;
+        element.virusTest = (this.test == "true") ? true : false;
+      })
+    }
+  }
 
-//       this.samples.forEach(element => {
-//         element.pathogenTest = (this.test == "true") ? true : false;
-//         element.indicatorTest = (this.test == "true") ? true : false;
-//         element.pesticideTest = (this.test == "true") ? true : false;
-//         element.virusTest = (this.test == "true") ? true : false;
-//       })
-//   }
-// }
+
+  onChange(sample) {
+    alert(sample.test);
+  }
+
   createForm() {
     this.itemAddForm = this.fb.group({
       items: this.fb.array([
@@ -174,13 +169,13 @@ export class SamplePreparationComponent implements OnInit {
       supplierLot: "",
       newlot: true,
       ifnopreviouspo: "",
-      totalquality: 100,
+      totalquality: "",
       qcanalysys: '',
       qualityplannedforsampling: '',
-      indicatorTest: '',
+      indicatorTest:  Boolean(true),
       pathogenTest: false,
       virusTest: false,
-      pestisideTest: false,
+      pestisideTest: Boolean(true),
       caseImg: { type: String },
     })
   }
