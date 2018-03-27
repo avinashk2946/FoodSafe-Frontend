@@ -103,7 +103,7 @@
   <div class="sample-preparation card">
     <div class="table-head">
       <div class="row table-row">
-        <div class="col-md-2 table-th action">
+        <div class="col-md-1 table-th action">
           Supplier Lot
         </div>
         <div class="col-md-1 table-th action">
@@ -135,17 +135,18 @@
           Pesticides test
         </div>
         <div class='col-md-1 table-th action'>
-          
+          Comments
         </div>
       </div>
       <div class="row table-row" *ngFor="let item of samples">
-        <div class="col-md-2 table-bdy actionraw">
+        <div class="col-md-1 table-bdy actionraw">
           <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot">
         </div>
         <div class="col-md-1 table-bdy actionraw">
           <select class="form-control" [(ngModel)]="item.newLot" name=""  (ngModelChange)='changeNewLot(item)'>
             <option value="true">Yes</option>
             <option value="false">No</option>
+
           </select>
         </div>
         <div class="col-md-1 table-bdy actionraw">
@@ -183,6 +184,9 @@
         </div>
         <div class="col-md-1 table-bdy actionraw">
          {{item.pesticideTest}}
+        </div>
+         <div class='col-md-1 table-th action'>
+           <textarea type="text" class="form-control" name="" value=""></textarea> 
         </div>
         <div class="col-md-1 table-bdy actionraw">
        <span>

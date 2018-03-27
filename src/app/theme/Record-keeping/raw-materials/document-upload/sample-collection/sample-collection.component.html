@@ -8,7 +8,7 @@
           <div class="col-md-1 table-th action">
             Supplier Lot
           </div>
-          <div class="col-md-2 table-th action">
+          <div class="col-md-1 table-th action">
             Picture Of case Label
           </div>
           <div class="col-md-2 table-th action">
@@ -26,6 +26,9 @@
           <div class='col-md-2 table-th action'>
             Indicator Organism Sampling
           </div>
+           <div class='col-md-1 table-th action'>
+            Comments
+        </div>
         </div>
       </div>
   </div>
@@ -35,27 +38,38 @@
       <div class="row table-row">
         <div class="col-md-1 table-th action">
           {{sampplingno}}
+
         </div>
         <div class="col-md-1 table-th action">
           {{supplierlot}}
         </div>
-        <div class="col-md-2 table-th action">
+        <div class="col-md-1 table-th action">
           {{pictureofcaselabel}}
         </div>
         <div class="col-md-2 table-th action">
-          {{qcanalysissampling}}
+         <span>             
+             <input type="checkbox" calss="checkbox">
+             <label>{{qcanalysissampling}}</label> 
+         </span> 
         </div>
         <div class="col-md-1 table-th action">
-          {{microsampling}}
+           <input type="checkbox" calss="checkbox">
+         <label> {{microsampling}}</label> 
         </div>
         <div class='col-md-1 table-th action'>
-          {{virussampling}}
+           <input type="checkbox" calss="checkbox">
+         <label> {{virussampling}}</label> 
         </div>
         <div class='col-md-2 table-th action'>
-          {{pesticidesampling}}
+           <input type="checkbox" calss="checkbox">
+          <label>{{pesticidesampling}}</label> 
         </div>
         <div class='col-md-2 table-th action'>
-          {{indicatororganismsampling}}
+           <input type="checkbox" calss="checkbox">
+         <label> {{indicatororganismsampling}}</label> 
+        </div>
+         <div class='col-md-1 table-th action'>
+           <textarea type="text" class="form-control" name="" value=""></textarea> 
         </div>
       </div>
     </div>
