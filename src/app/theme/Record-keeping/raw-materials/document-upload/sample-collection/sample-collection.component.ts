@@ -13,7 +13,7 @@ export class SampleCollectionComponent implements OnInit {
   }
 
 sampplingno: string = "1"; 
-supplierlot: string = "123525653"; 
+supplierlot: string = "1235"; 
 pictureofcaselabel: string = ""; 
 qcanalysissampling: string = "Yes"; 
 microsampling: string = "Yes"; 
