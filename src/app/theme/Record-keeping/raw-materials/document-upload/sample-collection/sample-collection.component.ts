@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RawMaterialService } from '../../raw-material.service';
+
 
 @Component({
   selector: 'app-sample-collection',
@@ -7,18 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SampleCollectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  	  public rawMatService:RawMaterialService,
+  	) { }
 
   ngOnInit() {
+     // this.rawMatService.sampleCollection.get()
+    //      .then((sample_response)=>{
+    //        this.sample=smaple_response;
+    //      });
   }
+  
+  samples = [
+    {
+      sampplingno: "1",
+      supplierlot: "32123",
+      pictureofcaselabel: "",
+      qcanalysissampling: false,
+      microsampling:  false,
+      virussampling: false,
+      pesticidesampling: false,
+      indicatororganismsampling: false
+    }
+  ];
 
-sampplingno: string = "1"; 
-supplierlot: string = "1235"; 
-pictureofcaselabel: string = ""; 
-qcanalysissampling: string = "Yes"; 
-microsampling: string = "Yes"; 
-virussampling: string = "Yes"; 
-pesticidesampling: string = "Yes"; 
-indicatororganismsampling: string = "No"; 
+
+
 
 }

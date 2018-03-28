@@ -127,6 +127,7 @@ export class SamplePreparationComponent implements OnInit {
     }, err => { 
       this.comonSrvc.showErrorMsg(err.message);
     });
+    // this.router.navigate(['/']);
   }
 
 }

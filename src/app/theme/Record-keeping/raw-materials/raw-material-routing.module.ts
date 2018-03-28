@@ -20,8 +20,7 @@ const routes: Routes = [
       {
         path: 'document-upload/:id',
         loadChildren: './document-upload/document-upload.module#DocumentUploadModule'
-      },
-      
+      },      
     ]
   }
 ];

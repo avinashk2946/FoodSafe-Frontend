@@ -35,41 +35,41 @@
 
 
      <div class="table-head">
-      <div class="row table-row">
+      <div class="row table-row" *ngFor="let sample of samples">
         <div class="col-md-1 table-th action">
-          {{sampplingno}}
+          {{sample.sampplingno}}
 
         </div>
         <div class="col-md-1 table-th action">
             <select type="text" class="form-control" name="" >
-                    <option >{{supplierlot}}</option>
-                  
+               <option >{{supplierlot}}</option>      
           </select>
         </div>
         <div class="col-md-1 table-th action">
-          {{pictureofcaselabel}}
+      <a  href="./recordkeeping/raw-matrial/document-upload/123" class="image"><span class="fa fa-camera fa-2x "></span></a> 
+          {{sample.pictureofcaselabel}}
         </div>
         <div class="col-md-2 table-th action">
          <span>             
              <input type="checkbox" calss="checkbox">
-             <label>{{qcanalysissampling}}</label> 
+             <label>{{sample.qcanalysissampling}}</label> 
          </span> 
         </div>
         <div class="col-md-1 table-th action">
            <input type="checkbox" calss="checkbox">
-         <label> {{microsampling}}</label> 
+         <label> {{sample.microsampling}}</label> 
         </div>
         <div class='col-md-1 table-th action'>
            <input type="checkbox" calss="checkbox">
-         <label> {{virussampling}}</label> 
+         <label> {{sample.virussampling}}</label> 
         </div>
         <div class='col-md-2 table-th action'>
            <input type="checkbox" calss="checkbox">
-          <label>{{pesticidesampling}}</label> 
+          <label>{{sample.pesticidesampling}}</label> 
         </div>
         <div class='col-md-2 table-th action'>
            <input type="checkbox" calss="checkbox">
-         <label> {{indicatororganismsampling}}</label> 
+         <label> {{sample.indicatororganismsampling}}</label> 
         </div>
          <div class='col-md-1 table-th action'>
            <textarea type="text" class="form-control" name="" value=""></textarea> 

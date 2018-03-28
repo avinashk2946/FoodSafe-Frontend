@@ -114,4 +114,10 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+
+   sampleCollection (obj){
+    var url = API_ACTIONS.raw_material.record+'/';
+    var httpRequest = new  HttpRequestModal(url, 'GET',obj,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 }
