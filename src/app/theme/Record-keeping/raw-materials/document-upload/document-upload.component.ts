@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, Output, EventEmitter ,ViewChild, ViewEncapsulation } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -25,6 +25,19 @@ import { Observable } from "rxjs/Observable";
     './document-upload.component.scss',
     '../../../../../assets/icon/icofont/css/icofont.scss'
   ],
+    animations: [
+    trigger('fadeInOutTranslate', [
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('400ms ease-in-out', style({opacity: 1}))
+      ]),
+      transition(':leave', [
+        style({transform: 'translate(0)'}),
+        animate('400ms ease-in-out', style({opacity: 0}))
+      ])
+    ])
+  ],
+
   providers: [RawMaterialService]
 
 })
@@ -66,6 +79,9 @@ export class DocumentUploadComponent implements OnInit {
     });
     
   }
+
+
+
 
   ngOnInit() {
     this.getRecordDetails();
@@ -130,4 +146,9 @@ export class DocumentUploadComponent implements OnInit {
       this.localStorage.setItem('testOne', JSON.stringify(this.fileList));
     }
   }
+
+
+
+
+
 }

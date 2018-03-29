@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,OnChanges,SimpleChange } from '@angular/core';
+import { Component, Input, OnInit,Output,OnChanges,EventEmitter,ViewChild,SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { RawMaterialService } from '../../raw-material.service';
 import { CommonService } from '../../../../../common/common.service';
@@ -15,7 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SamplePreparationComponent implements OnInit {
   
   public itemAddForm: FormGroup;
-  @Input() sample: String = "abc"
+  // @Input() sample: String = "abc"
   selectedTest: any = '';
   pathogenTest: any = "false";
   indicatorTest: any = 'false';
@@ -38,6 +38,9 @@ export class SamplePreparationComponent implements OnInit {
       pesticideTest: false
     }
   ];
+
+
+    @Output() public sampleadded:EventEmitter<any>= new EventEmitter(); 
 
   constructor(
     public fb: FormBuilder,
@@ -128,6 +131,10 @@ export class SamplePreparationComponent implements OnInit {
       this.comonSrvc.showErrorMsg(err.message);
     });
     // this.router.navigate(['/']);
+  }
+  
+  public handleEvent(sampleadded:any){
+    this.item = sampleadded;
   }
 
 }

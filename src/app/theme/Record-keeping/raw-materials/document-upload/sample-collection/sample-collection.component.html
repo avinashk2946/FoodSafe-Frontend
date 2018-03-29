@@ -12,21 +12,21 @@
             Picture Of case Label
           </div>
           <div class="col-md-2 table-th action">
-            Qc Analysis Sampling
+            Quality Analysis Sampling
           </div>
-          <div class="col-md-1 table-th action">
-            Micro Sampling
-          </div>
-          <div class='col-md-1 table-th action'>
-            Virus Sampling
+          <div class="col-md-3 table-th action">
+            Pathogen/Virus/Indicator <br> Organism Sampling
           </div>
           <div class='col-md-2 table-th action'>
+            Pesticides Sampling
+          </div>
+         <!--  <div class='col-md-2 table-th action'>
             Pesticide sampling
-          </div>
-          <div class='col-md-2 table-th action'>
+          </div> -->
+         <!--  <div class='col-md-2 table-th action'>
             Indicator Organism Sampling
-          </div>
-           <div class='col-md-1 table-th action'>
+          </div> -->
+           <div class='col-md-2 table-th action'>
             Comments
         </div>
         </div>
@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-1 table-th action">
             <select type="text" class="form-control" name="" >
-               <option >{{supplierlot}}</option>      
+               <option >{{sample.testLot1}}</option>      
           </select>
         </div>
         <div class="col-md-1 table-th action">
@@ -51,28 +51,24 @@
         </div>
         <div class="col-md-2 table-th action">
          <span>             
-             <input type="checkbox" calss="checkbox">
              <label>{{sample.qcanalysissampling}}</label> 
+             <input type="checkbox" calss="checkbox">
          </span> 
         </div>
-        <div class="col-md-1 table-th action">
-           <input type="checkbox" calss="checkbox">
-         <label> {{sample.microsampling}}</label> 
-        </div>
-        <div class='col-md-1 table-th action'>
-           <input type="checkbox" calss="checkbox">
-         <label> {{sample.virussampling}}</label> 
+        <div class="col-md-3 table-th action">         
+         <label> {{sample.pesticidesampling}}</label>
+          <input type="checkbox" calss="checkbox"> 
         </div>
         <div class='col-md-2 table-th action'>
-           <input type="checkbox" calss="checkbox">
-          <label>{{sample.pesticidesampling}}</label> 
+           <label> {{sample.virussampling}}</label> 
+            <input type="checkbox" calss="checkbox">
         </div>
-        <div class='col-md-2 table-th action'>
-           <input type="checkbox" calss="checkbox">
-         <label> {{sample.indicatororganismsampling}}</label> 
-        </div>
-         <div class='col-md-1 table-th action'>
-           <textarea type="text" class="form-control" name="" value=""></textarea> 
+        <!-- <div class='col-md-2 table-th action'> -->
+        <!--    <input type="checkbox" calss="checkbox">
+         <label> {{sample.indicatororganismsampling}}</label>  -->
+        <!-- </div> -->
+         <div class='col-md-2 table-th action'>
+           <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea> 
         </div>
       </div>
     </div>
