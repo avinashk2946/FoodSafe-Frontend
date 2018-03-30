@@ -11,16 +11,21 @@ export class SampleCollectionComponent implements OnInit {
 
   constructor(
   	  public rawMatService:RawMaterialService,
-  	) { }
+  	) {
+ 
+     }
 
    @ViewChild('addsample') public addsample;
 
+  public supplierLot:any="";
 
   ngOnInit() {
      // this.rawMatService.sampleCollection.get()
     //      .then((sample_response)=>{
     //        this.sample=smaple_response;
     //      });
+      this.supplierLot = Array(6).fill(4).map((x,i)=>i); 
+      this.samples = Array(6).fill(4);
   }
   
   samples = [
@@ -35,11 +40,12 @@ export class SampleCollectionComponent implements OnInit {
     //   indicatororganismsampling: false
     // },
   {
+    
        "supplierLot"         :"testLot1",
        "newLot"              :"true",
        "po"                  :"po1",
        "totalQuantity"       : 10,
-       "quantityPlanned"     :10,
+       "quantityPlanned"     :1,
        "qualityAnalysis"     :false,
 
      
@@ -55,7 +61,7 @@ export class SampleCollectionComponent implements OnInit {
        "newLot"              :"false",
        "po"                  :"po234",
        "totalQuantity"       : 9,
-       "quantityPlanned"     :10,
+       "quantityPlanned"     :2,
        "qualityAnalysis"     :true,
 
      
@@ -64,16 +70,13 @@ export class SampleCollectionComponent implements OnInit {
        "virusTest"           :true,
        "pesticideTest"       :true,
        "comment":"samples are uploaded properly"
-
-       
-
      },
      {
-       "supplierLot"         :"testLot2",
+       "supplierLot"         :"testLot3",
        "newLot"              :"false",
        "po"                  :"Po123",
        "totalQuantity"       : 10,
-       "quantityPlanned"     :10,
+       "quantityPlanned"     :3,
        "qualityAnalysis"     :false,
 
      

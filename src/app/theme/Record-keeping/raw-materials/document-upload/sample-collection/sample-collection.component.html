@@ -37,13 +37,12 @@
      <div class="table-head">
       <div class="row table-row" *ngFor="let sample of samples">
         <div class="col-md-1 table-th action">
-          <!-- {{sample.sampplingno}} -->
-
+         <!-- {{sample.quantityPlanned}} -->
         </div>
         <div class="col-md-1 table-th action">
             <select type="text" class="form-control" name="" >
-               <option >{{sample.supplierLot}}</option>      
-          </select>
+               <option *ngFor='let sample of samples' [value]="sample.supplierLot">{{sample.supplierLot}}</option>           </select>
+          <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true"  placeholder='Supplier Lot'  [value]="sample.supplierLot" [(ngModel)]="sample.supplierLot"></ng-select> -->
         </div>
         <div class="col-md-1 table-th action">
       <a  href="./recordkeeping/raw-matrial/document-upload/123" class="image"><span class="fa fa-camera fa-2x "></span></a> 
@@ -65,18 +64,21 @@
         </div>
         <!-- <div class='col-md-2 table-th action'> -->
         <!--    <input type="checkbox" calss="checkbox">
-         <label> {{sample.indicatororganismsampling}}</label>  -->
+         <label> {{sample.comment}}</label>  -->
         <!-- </div> -->
          <div class='col-md-2 table-th action'>
-           <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea> 
+           <textarea type="text" class="form-control" name=""  placeholder="your text here">
+           
+         </textarea> 
         </div>
       </div>
     </div>
-  <div class="button pull-right">
+        <div class="button pull-right">
                 <span>
                   <button type="button" class="btn btn-warning">Cancel</button>
                   <button autofocus="" type="button" class="btn btn-success" >Save</button>
-                  <button type="button" class="btn btn-default" >Exit</button>
+                  <button type="button" class="btn btn-default">Exit</button>
                </span>
-      </div>
+        </div>
 </div>
+
