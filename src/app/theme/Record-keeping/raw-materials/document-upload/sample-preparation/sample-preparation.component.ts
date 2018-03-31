@@ -40,7 +40,7 @@ export class SamplePreparationComponent implements OnInit {
   ];
 
 
-    @Output() public sampleadded:EventEmitter<any>= new EventEmitter(); 
+    // @Output() public sampleadded:EventEmitter<any>= new EventEmitter(); 
 
   constructor(
     public fb: FormBuilder,

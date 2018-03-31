@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-1 table-th action">
             <select type="text" class="form-control" name="" >
-               <option *ngFor='let sample of samples' [value]="sample.supplierLot">{{sample.supplierLot}}</option>           </select>
+               <option *ngFor='let sample of samplecollection' [value]="samplecollection.supplierLot">{{sample.supplierLot}}</option>           </select>
           <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true"  placeholder='Supplier Lot'  [value]="sample.supplierLot" [(ngModel)]="sample.supplierLot"></ng-select> -->
         </div>
         <div class="col-md-1 table-th action">
@@ -50,16 +50,16 @@
         </div>
         <div class="col-md-2 table-th action">
          <span>             
-             <label>{{sample.qualityAnalysis}}</label> 
+             <label>{{samplecollection.qualityAnalysis}}</label> 
              <input type="checkbox" calss="checkbox">
          </span> 
         </div>
         <div class="col-md-3 table-th action">         
-         <label> {{sample.virusTest }}</label>
+         <label> {{samplecollection.virusTest }}</label>
           <input type="checkbox" calss="checkbox"> 
         </div>
         <div class='col-md-2 table-th action'>
-           <label> {{sample.pesticideTest}}</label> 
+           <label> {{samplecollection.pesticideTest}}</label> 
             <input type="checkbox" calss="checkbox">
         </div>
         <!-- <div class='col-md-2 table-th action'> -->
@@ -67,9 +67,7 @@
          <label> {{sample.comment}}</label>  -->
         <!-- </div> -->
          <div class='col-md-2 table-th action'>
-           <textarea type="text" class="form-control" name=""  placeholder="your text here">
-           
-         </textarea> 
+          <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea>  
         </div>
       </div>
     </div>
