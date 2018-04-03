@@ -63,7 +63,8 @@ export class LoginPageComponent {
   onSubmit() {
     const formModel = this.loginCofigurationForm.value;
     this.loading = true;
-  	var requestData={themeColor:this.themeColor,logoImg:this.loginCofigurationForm.value.logoImage,backgroundImg:this.loginCofigurationForm.value.backgroungImage};
+  	var requestData={themeColor:this.themeColor,logoImg:this.loginCofigurationForm.value.logoImage,
+      backgroundImg:this.loginCofigurationForm.value.backgroungImage};
     this.LoginPageSrvc.setLoginPageConfig(requestData).subscribe(
       (resData: any) => {
         this.loading = false;

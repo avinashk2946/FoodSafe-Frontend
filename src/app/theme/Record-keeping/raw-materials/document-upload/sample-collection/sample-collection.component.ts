@@ -19,6 +19,8 @@ export class SampleCollectionComponent implements OnInit {
    // @ViewChild('addsample') public addsample;
 
   public supplierLot:any="";
+  public item: any = "";
+  public selectedsupplierLot: any = "";
 
   ngOnInit() {
      // this.rawMatService.sampleCollection.get()
@@ -108,7 +110,7 @@ export class SampleCollectionComponent implements OnInit {
 
     samplecollection = [
           {         
-               "supplierLot"         :"testLot1",
+               "supplierLot"         :"test1",
                "newLot"              :"true",
                "po"                  :"po1",
                "totalQuantity"       : 10,
@@ -124,7 +126,7 @@ export class SampleCollectionComponent implements OnInit {
                
              },
                 {
-               "supplierLot"         :"testLot2",
+               "supplierLot"         :"test2",
                "newLot"              :"false",
                "po"                  :"po234",
                "totalQuantity"       : 9,
@@ -139,7 +141,7 @@ export class SampleCollectionComponent implements OnInit {
                "comment":"samples are uploaded properly"
              },
                   {
-               "supplierLot"         :"testLot3",
+               "supplierLot"         :"test3",
                "newLot"              :"false",
                "po"                  :"po234",
                "totalQuantity"       : 9,
@@ -154,6 +156,35 @@ export class SampleCollectionComponent implements OnInit {
                "comment":"samples are uploaded properly"
         },
   ];
-}
 
- 
+
+
+  //  public onSelect(selectedsupplierLot): void {
+  //   if (selectedsupplierLot.supplierLot != '') {
+  //     selectedsupplierLot.pathogenTest = (selectedsupplierLot.supplierLot == "true") ? true : false;
+  //     selectedsupplierLot.qualityAnalysis = (selectedsupplierLot.supplierLot == "true") ? true : false;
+  //     selectedsupplierLot.pesticideTest = (selectedsupplierLot.supplierLot == "true") ? true : false;
+  //   }
+  // }
+public getsupplierLot(){
+      let total=0;
+      if(this.samplecollection instanceof Array){
+          this.samplecollection.forEach(function(e){
+              // this.supplierLot=supplierLot;
+              // let index=supplierLot.findIndex(x=>x.supplierLot===samplecollection.supplierLot);
+          })
+      }
+      return total;
+  }
+onSelect(supplierLot) { 
+    this.selectedsupplierLot = null;
+    for (let i = 0; i < this.supplierLot.length; i++)
+    {
+      if (this.supplierLot[i].id == this.supplierLot) {
+        this.selectedsupplierLot = this.supplierLot[i];
+      }
+    }
+
+  }
+
+}
