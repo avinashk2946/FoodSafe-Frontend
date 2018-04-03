@@ -35,13 +35,13 @@
 
 
      <div class="table-head">
-      <div class="row table-row" *ngFor="let sample of samples">
+      <div class="row table-row" *ngFor="let s of sampleArr">
         <div class="col-md-1 table-th action">
          <!-- {{sample.quantityPlanned}} -->
         </div>
         <div class="col-md-1 table-th action">
             <select type="text" class="form-control" name="" >
-               <option *ngFor='let sample of samplecollection' [value]="samplecollection.supplierLot">{{sample.supplierLot}}</option>  
+               <option *ngFor='let s of samplecollection'  [value]="s.supplierLot">{{s.supplierLot}}</option>  
             </select>
           <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true"  placeholder='Supplier Lot'  [value]="sample.supplierLot" [(ngModel)]="sample.supplierLot"></ng-select> -->
         </div>
@@ -51,16 +51,16 @@
         </div>
         <div class="col-md-2 table-th action">
          <span>             
-             <label>{{samplecollection.qualityAnalysis}}</label> 
+             <label>{{s.qualityAnalysis}}</label> 
              <input type="checkbox" calss="checkbox">
          </span> 
         </div>
         <div class="col-md-3 table-th action">         
-         <label> {{samplecollection.virusTest }}</label>
+         <label> {{s.virusTest }}</label>
           <input type="checkbox" calss="checkbox"> 
         </div>
         <div class='col-md-2 table-th action'>
-           <label> {{samplecollection.pesticideTest}}</label> 
+           <label> {{s.pesticideTest}}</label> 
             <input type="checkbox" calss="checkbox">
         </div>
         <!-- <div class='col-md-2 table-th action'> -->

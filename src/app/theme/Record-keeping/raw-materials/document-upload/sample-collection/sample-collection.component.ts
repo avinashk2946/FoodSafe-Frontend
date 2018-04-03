@@ -15,6 +15,7 @@ export class SampleCollectionComponent implements OnInit {
  
      }
 
+  public sampleArr:any="";   
    // @ViewChild('addsample') public addsample;
 
   public supplierLot:any="";
@@ -25,8 +26,8 @@ export class SampleCollectionComponent implements OnInit {
     //        this.sample=smaple_response;
     //      });
       this.getSampleCount();     
-      this.supplierLot = Array(8).fill(4).map((x,i)=>i); 
-      this.samples = Array(this.getSampleCount()).fill(4);
+      this.supplierLot = Array({}).fill(4).map((x,i)=>i); 
+      this.sampleArr = Array(this.getSampleCount()).fill(4);
   }
   
   samples = [
@@ -82,7 +83,7 @@ export class SampleCollectionComponent implements OnInit {
        "newLot"              :"false",
        "po"                  :"Po123",
        "totalQuantity"       : 50,
-       "quantityPlanned"     :2,
+       "quantityPlanned"     :1,
        "qualityAnalysis"     :false,
 
      
