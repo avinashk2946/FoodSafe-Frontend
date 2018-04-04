@@ -27,20 +27,20 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Po</label>  
+							<label for="name">Purchase Order</label>  
 						</div>
 						<div class="col-md-8 form group">
-							<input type="text" class="form-control" placeholder="Po" [(ngModel)]="po" formControlName="po">
+							<input type="text" class="form-control" placeholder="Purchase Order" [(ngModel)]="po" formControlName="po">
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Lot No</label>
+							<label for="name">Lot Number</label>
 						</div>
 						<div class="col-md-8 form group">
-							<input type="text" class="form-control" placeholder="Lot No" [(ngModel)]="lotNo" formControlName="lotNo">
+							<input type="text" class="form-control" placeholder="Lot Number" [(ngModel)]="lotNo" formControlName="lotNo">
 
 						</div>
 					</div>
@@ -48,10 +48,10 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Container No</label>
+							<label for="name">Container Number</label>
 						</div>
 						<div class="col-md-8 form group">
-							<input type="text" class="form-control" placeholder=" Container No" [(ngModel)]="containerNo" formControlName="containerNo">
+							<input type="text" class="form-control" placeholder=" Container Number" [(ngModel)]="containerNo" formControlName="containerNo">
 
 						</div>
 					</div>
@@ -99,7 +99,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">Supplier</label>
+							<label for="name">Supplier Name</label>
 						</div>
 						<div class="col-md-8 form group">
 							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supplierList" placeholder='Select Supplier' [(ngModel)]="supplier"
@@ -121,7 +121,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-6 data-table">
 					<div class="row ">
 						<div class="col-md-4 form group">
-							<label for="name">COO</label>
+							<label for="name">Country Of Origin</label>
 						</div>
 						<div class="col-md-8 form group">
 							<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="selectedSupplier.address" placeholder='Select COO' [(ngModel)]="coo"

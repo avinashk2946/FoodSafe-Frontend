@@ -4,6 +4,16 @@ import {CreateRecordComponent} from './create-record.component';
 
 
 const routes: Routes = [
+ {
+    path: '',
+    component: CreateRecordComponent,
+    data: {
+      title: 'Create',
+      icon: 'icon-receipt',
+      status: true
+    }
+  },
+
   {
     path: '',
     component: CreateRecordComponent,

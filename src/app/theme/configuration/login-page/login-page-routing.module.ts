@@ -7,9 +7,8 @@ const routes: Routes = [
     path: '',
     component: LoginPageComponent,
     data: {
-      title: 'Form Select',
+      title: 'Login Page',
       icon: 'icon-shortcode',
-      caption: 'lorem ipsum dolor sit amet, consectetur adipisicing elit - form select',
       status: true
     }
   }

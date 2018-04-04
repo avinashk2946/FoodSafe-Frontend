@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     data: {
       title: 'Configuration Components',
-      status: false
+      status: true
     },
     children: [
       {

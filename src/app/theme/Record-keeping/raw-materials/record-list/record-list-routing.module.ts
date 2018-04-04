@@ -4,6 +4,16 @@ import {RecordListComponent} from './record-list.component';
 
 
 const routes: Routes = [
+ {
+    path: '',
+    component: RecordListComponent,
+    data: {
+      title: 'Raw Material',
+      icon: 'icon-receipt',
+      status: true
+    }
+  },
+
   {
     path: '',
     component: RecordListComponent,

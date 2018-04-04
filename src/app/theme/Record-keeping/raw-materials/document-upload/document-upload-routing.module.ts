@@ -4,6 +4,16 @@ import {DocumentUploadComponent} from './document-upload.component';
 
 
 const routes: Routes = [
+ {
+    path: '',
+    component: DocumentUploadComponent,
+    data: {
+      title: 'Document Upload',
+      icon: 'icon-receipt',
+      status: true
+    }
+  },
+
   {
     path: '',
     component: DocumentUploadComponent,

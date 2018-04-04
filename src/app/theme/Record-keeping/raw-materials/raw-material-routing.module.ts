@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Raw material',
+      title: 'Raw Materials',
       status: false
     },
     children: [
