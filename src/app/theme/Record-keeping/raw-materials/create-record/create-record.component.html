@@ -29,7 +29,7 @@
 						<div class="col-md-4 form group">
 							<label for="name">Purchase Order</label>  
 						</div>
-						<div class="col-md-8 form group">
+						<div class="col-md-8 form group"> 
 							<input type="text" class="form-control" placeholder="Purchase Order" [(ngModel)]="po" formControlName="po">
 						</div>
 					</div>
@@ -134,7 +134,7 @@
 						<div class="col-md-4 form group">
 							<label for="name">Raw Material Group</label>
 						</div>
-						<div class="col-md-8 form group">
+						<div class="col-md-8 form group"> 
 							<!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="materialGrpList" placeholder='Select Product' [(ngModel)]="materialGrp"
 							 (ngModelChange)='changeProduct()' formControlName="materialGrp"></ng-select> -->
 							 <select name="select" class="form-control form-control-default" [(ngModel)]="materialGrp" formControlName="materialGrp" (ngModelChange)='changeMaterialGroup()'>

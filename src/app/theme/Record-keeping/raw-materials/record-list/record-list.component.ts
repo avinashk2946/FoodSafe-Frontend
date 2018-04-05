@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
 import swal from 'sweetalert2';
+import { ActivatedRoute, Params ,Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-record-list',
@@ -12,6 +14,16 @@ import swal from 'sweetalert2';
   providers:[RawMaterialService]
 })
 export class RecordListComponent implements OnInit {
+
+    public dblclick=[
+      {
+        name : "",
+        action: "dblclick",
+        path : "/document-upload/5ac618d6ea13d618cfdf6342",
+      },
+  
+    ];
+
   recordList = [];
   selected = [];
   autocompleteItemsAsObjects = [
@@ -54,6 +66,8 @@ export class RecordListComponent implements OnInit {
   constructor(
     public rawMatService:RawMaterialService,
     public comonSrvc:CommonService,
+    public activatedRoute: ActivatedRoute,
+    public router:Router
   ) { }
   ngOnInit() {
     this.getRecordList();
@@ -61,17 +75,31 @@ export class RecordListComponent implements OnInit {
   getRecordList() {
     this.rawMatService.getRecord().subscribe((response: any) => {
       console.log(response.data);
+      
       this.recordList = response.data;
     }, err => { 
       this.comonSrvc.showErrorMsg(err.message);
     });
   }
-  onSelect({ selected }) {}
+  onSelect({ selected }) {
+    
+  }
+    clickaction(action:any){
+      console.log('mouse btn clicked', action);
+      // if(action==="deleteclick"){
+      //   this.deleterecord.show();
+      // }
+      
+      if(action==="dblclick" ){
+        this.router.navigate(['/document-upload/5ac618d6ea13d618cfdf6342']);
+      }
+    }
   
     onActivate(event) {}
     showDetails(){
       alert(1);
     }
+
     openConfirmsSwal(selected) {
       let selectedRecord = this.selected[0];
       swal({

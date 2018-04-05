@@ -52,7 +52,8 @@
         [selected]="selected"
         [selectionType]="'single'"
         (activate)="onActivate($event)" 
-        (select)='onSelect($event)' (dblclick)="showDetails()" >   
+        (select)='onSelect($event)' 
+        (dblclick)="clickaction($event)" >   
         <ngx-datatable-column name="Created Date">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span class="table-head" >
