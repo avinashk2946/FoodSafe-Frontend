@@ -220,4 +220,11 @@ export class CreateRecordComponent implements OnInit {
     }
   }
 
+  // public recordlist(id : number): void{
+  //     this.rawMatService.recorddelete(id)
+  //     .then(message =>{ this.reload();
+  //     });
+  //   }
+
+
 }

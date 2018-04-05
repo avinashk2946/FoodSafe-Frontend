@@ -14,13 +14,13 @@ export class RawMaterialService {
     public http: Http
   ) { }
 
-  // private headers= new Headers(
-  //   {
-  //     "Content-Type":"application/json",
-  //     }
+  private headers= new Headers(
+    {
+      "Content-Type":"application/json",
+      }
 
-  //   );
-
+    );
+ private url;
 
 // private baseUrl="http://localhost:4200/assets/json/sample-preparation.json"
 
@@ -120,4 +120,11 @@ export class RawMaterialService {
     var httpRequest = new  HttpRequestModal(url, 'GET',obj,true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+
+//   recorddelete(id: number): Promise<void>{
+//   const url=`${this.url}/${id}`;
+//   return this.http.delete(url,{headers:this.headers})
+//   .catch(this.handleError);
+// }
+
 }
