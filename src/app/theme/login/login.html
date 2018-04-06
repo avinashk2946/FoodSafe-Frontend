@@ -14,7 +14,7 @@
               <div class="row m-b-20">
                 <div class="row">
                   <div class="col-md-10">
-                    <h3 class="text-left ">Log in to your account</h3>
+                    <h3 class="text-left ">Log in</h3>
                   </div>
                   <div class="col-md-2">
                     <img [src]="logoUrl"  class="float-right re-size" alt="small-logo.png" >
@@ -48,7 +48,7 @@
                     </label> -->
                   </div>
                   <div class="sub-text right f-right">
-                    <a [routerLink]="['/auth/forgot']" class="text-right f-w-600 text-inverse"> Reset Password?</a>
+                    <a href [routerLink]="['/auth/resetPassword']" class="text-right f-w-600 text-inverse" ng-click="showResetPassword()" > Forgot Password?</a>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                     <label>
                       <input type="checkbox" value="">
                       <!-- <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span> -->
-                      <span class="sub-text text-inverse">Remember my email address on this computer</span>
+                      <span class="sub-text text-inverse">Remember me</span>
                     </label>
                   </div>
                   <div class="forgot-phone text-right f-right">
