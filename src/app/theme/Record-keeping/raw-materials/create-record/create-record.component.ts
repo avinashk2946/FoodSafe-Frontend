@@ -28,6 +28,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
 })
 export class CreateRecordComponent implements OnInit {
   dataForm : FormGroup;
+  id:number;  
   rawmaterial: any = 'rawmaterials[]';
   createdDate : any = new Date();
   plantList = [];

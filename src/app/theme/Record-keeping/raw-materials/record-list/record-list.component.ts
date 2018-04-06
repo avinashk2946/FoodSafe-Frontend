@@ -15,15 +15,15 @@ import { ActivatedRoute, Params ,Router } from '@angular/router';
 })
 export class RecordListComponent implements OnInit {
 
-    public dblclick=[
-      {
-        name : "",
-        action: "dblclick",
-        path : "/document-upload/5ac618d6ea13d618cfdf6342",
-      },
+    // public dblclick=[
+    //   {
+    //     name : "",
+    //     action: "dblclick",
+    //     path : "/document-upload/5ac618d6ea13d618cfdf6342",
+    //   },
   
-    ];
-
+    // ];
+  
   recordList = [];
   selected = [];
   autocompleteItemsAsObjects = [
@@ -71,6 +71,7 @@ export class RecordListComponent implements OnInit {
   ) { }
   ngOnInit() {
     this.getRecordList();
+      // this.rawMatService.getRecordList().subscribe(data => {this.record = data })
   }
   getRecordList() {
     this.rawMatService.getRecord().subscribe((response: any) => {
@@ -82,6 +83,7 @@ export class RecordListComponent implements OnInit {
     });
   }
   onSelect({ selected }) {
+    console.log("selectedRow",);
     
   }
     clickaction(action:any){
@@ -91,7 +93,7 @@ export class RecordListComponent implements OnInit {
       // }
       
       if(action==="dblclick" ){
-        this.router.navigate(['/document-upload/5ac618d6ea13d618cfdf6342']);
+        let router=this.router.navigate(['document-upload/5aa582ea8067d717e0108f89'])
       }
     }
   
@@ -104,7 +106,7 @@ export class RecordListComponent implements OnInit {
       let selectedRecord = this.selected[0];
       swal({
         title: 'Are you sure?',
-        text: 'You wont be able to revert',
+        text: 'Do you want to delete?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
