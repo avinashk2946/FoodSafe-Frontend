@@ -9,6 +9,7 @@ import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
+//import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
 
 @Component({
   selector: 'app-login',
@@ -72,3 +73,20 @@ export class LoginComponent implements OnInit {
   };
 
 }
+
+
+    // Submit Data to Backend
+    // showResetPassword() {
+
+    //     this.output = null;
+
+    //     this._tokenService.resetPassword(this.updatePasswordData).subscribe(
+    //         res => {
+    //             this.updatePasswordData    = <UpdatePasswordData>{};
+    //             this.output                = res;
+    //         }, error => {
+    //             this.updatePasswordData    = <UpdatePasswordData>{};
+    //             this.output                = error;
+    //         }
+    //     );
+    // }
