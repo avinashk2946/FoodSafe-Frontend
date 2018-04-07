@@ -36,6 +36,17 @@
   </div>
 
 
+
+  <!--Buttons on top off tables  -->
+  <div class="form-group">
+    <div class="col-md-12">
+      <button type="button" [disabled]="selected.length == 0" class="btn btn-danger pull-right" (click)="openConfirmsSwal(selected)">
+        <i class="icofont icofont-delete-alt"></i>
+      </button>
+<!--       <button type="button" [disabled]="selected.length == 0" class="btn btn-default pull-right" (click)="editSelectedRow(selected)">
+        <i class="icofont icofont-edit-alt"></i>
+      </button> -->
+
         <div class="modal-popup pull-right">
           <button type="button" class="btn btn-default pull-right" (click)="modalLarge.show()"><i class="icofont icofont-edit-alt"></i></button>     
             <app-modal-basic #modalLarge [dialogClass]="'modal-lg'">
@@ -54,20 +65,9 @@
                 <button type="button" class="btn btn-primary waves-effect waves-light ">Save changes</button>
               </div>
             </app-modal-basic>
-        </div>
-          <!-- <button type="button" class="btn btn-default pull-right"><i class="icofont icofont-edit-alt"></i></button>      -->
+           </div>
          </div> 
-
-  <!--Buttons on top off tables  -->
-  <div class="form-group">
-    <div class="col-md-12">
-      <button type="button" [disabled]="selected.length == 0" class="btn btn-danger pull-right" (click)="openConfirmsSwal(selected)">
-        <i class="icofont icofont-delete-alt"></i>
-      </button>
-      <button type="button" [disabled]="selected.length == 0" class="btn btn-default pull-right" (click)="editSelectedRow(selected)">
-        <i class="icofont icofont-edit-alt"></i>
-      </button>
-
+         
     </div>
   </div>
 
@@ -149,5 +149,3 @@
       </div>
     </div>
   </div>
-
-</div>
