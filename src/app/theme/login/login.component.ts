@@ -9,16 +9,17 @@ import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
-//import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
+//import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
-  providers: [LoginService]
+  providers: [LoginService],
+  //provider: [LocalStorageService]
 })
 export class LoginComponent implements OnInit {
-
+  //@LocalStorage() public username:string;
   loginForm: FormGroup;
   companyId: string;
   logoUrl: any;
@@ -71,22 +72,10 @@ export class LoginComponent implements OnInit {
 
       });
   };
-
 }
 
-
-    // Submit Data to Backend
-    // showResetPassword() {
-
-    //     this.output = null;
-
-    //     this._tokenService.resetPassword(this.updatePasswordData).subscribe(
-    //         res => {
-    //             this.updatePasswordData    = <UpdatePasswordData>{};
-    //             this.output                = res;
-    //         }, error => {
-    //             this.updatePasswordData    = <UpdatePasswordData>{};
-    //             this.output                = error;
-    //         }
-    //     );
-    // }
+ 
+//   getCookie(key: string){
+//     return this._cookieService.get(key);
+//   }
+// }
