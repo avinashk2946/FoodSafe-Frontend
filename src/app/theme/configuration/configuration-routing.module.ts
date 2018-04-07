@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Configuration Components',
+      title: 'Configuration',
       status: true
     },
     children: [

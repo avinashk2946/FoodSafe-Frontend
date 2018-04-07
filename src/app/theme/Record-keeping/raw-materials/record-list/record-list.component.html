@@ -35,15 +35,39 @@
     </div>
   </div>
 
+
+
   <!--Buttons on top off tables  -->
   <div class="form-group">
     <div class="col-md-12">
       <button type="button" [disabled]="selected.length == 0" class="btn btn-danger pull-right" (click)="openConfirmsSwal(selected)">
         <i class="icofont icofont-delete-alt"></i>
       </button>
-      <button type="button" [disabled]="selected.length == 0" class="btn btn-default pull-right" (click)="editSelectedRow(selected)">
+<!--       <button type="button" [disabled]="selected.length == 0" class="btn btn-default pull-right" (click)="editSelectedRow(selected)">
         <i class="icofont icofont-edit-alt"></i>
-      </button>
+      </button> -->
+
+        <div class="modal-popup pull-right">
+          <button type="button" class="btn btn-default pull-right" (click)="modalLarge.show()"><i class="icofont icofont-edit-alt"></i></button>     
+            <app-modal-basic #modalLarge [dialogClass]="'modal-lg'">
+              <div class="app-modal-header">
+                <h4 class="modal-title">Modal title</h4>
+                <button type="button" class="close basic-close" (click)="modalLarge.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="app-modal-body">
+                <h5>Data</h5>
+                BODY COMPONENT SELECTOR
+              </div>
+              <div class="app-modal-footer">
+                <button type="button" class="btn btn-default waves-effect" (click)="modalLarge.hide()">Close</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light ">Save changes</button>
+              </div>
+            </app-modal-basic>
+           </div>
+         </div> 
+         
     </div>
   </div>
 
@@ -125,5 +149,3 @@
       </div>
     </div>
   </div>
-
-</div>

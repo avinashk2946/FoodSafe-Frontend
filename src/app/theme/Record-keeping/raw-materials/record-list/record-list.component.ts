@@ -64,7 +64,7 @@ export class RecordListComponent implements OnInit {
 
   ngOnInit() {
     this.getRecordList();
-      // this.rawMatService.getRecordList().subscribe(data => {this.record = data })
+      // this.rawMatService.getRecordList().subscribe(list => {this.record = list })
   }
   getRecordList() {
     this.rawMatService.getRecord().subscribe((response: any) => {

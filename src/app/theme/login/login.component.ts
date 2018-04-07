@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   companyId: string;
   logoUrl: any;
   backgroundImgUrl: any;
+  // private logo = require("./assets/images/logo.png");
 
   constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder, 
     private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy, 
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
     const splittedArray = absUrl.split(':')[0].split('/');
     this.companyId = splittedArray[0];
     console.log('this.companyId', this.companyId);
+
+
   }
 
   ngOnInit() {
@@ -66,7 +69,8 @@ export class LoginComponent implements OnInit {
 
         this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
         this.comonSrvc.showSuccessMsg(resData.message);
-        this._router.navigate(['/configuration']);
+
+        this._router.navigate(['/configuration/login-page']);
 
       }, err => {
         if (err.status === 401) {
@@ -76,6 +80,8 @@ export class LoginComponent implements OnInit {
         }
 
       });
-  }
+  };
 
-}
+ }
+
+
