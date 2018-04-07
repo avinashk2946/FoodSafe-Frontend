@@ -33,13 +33,13 @@ export const API_ACTIONS = Object.freeze({
     register: {
         registerUser: 'ecomRegisterUser.action'
     },
-    raw_material:{
+    raw_material: {
         plant : 'plant',
-        record:'record',
+        record: 'record',
         supplier : 'supplier',
-        broker:"broker",
-        product:'product',
-        samplepreparation:'SamplePreparation',
-        rawmaterial:"rawMaterial"
+        broker: 'broker',
+        product: 'product',
+        samplepreparation: 'SamplePreparation',
+        rawmaterial: 'rawMaterial'
     }
 });

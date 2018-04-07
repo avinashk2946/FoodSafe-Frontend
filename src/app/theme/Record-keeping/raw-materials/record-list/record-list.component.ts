@@ -2,30 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
 import swal from 'sweetalert2';
-import { ActivatedRoute, Params ,Router } from '@angular/router';
+import { ActivatedRoute, Params , Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list.component.html',
-  styleUrls: ['./record-list.component.scss',
-  '../../../../../assets/icon/icofont/css/icofont.scss'
+  styleUrls: [
+    './record-list.component.scss',
+    '../../../../../assets/icon/icofont/css/icofont.scss'
   ],
-  providers:[RawMaterialService]
+  providers: [RawMaterialService]
 })
 export class RecordListComponent implements OnInit {
 
-    // public dblclick=[
-    //   {
-    //     name : "",
-    //     action: "dblclick",
-    //     path : "/document-upload/5ac618d6ea13d618cfdf6342",
-    //   },
-  
-    // ];
-  
   recordList = [];
   selected = [];
+
+  // For search bar autocomplete
   autocompleteItemsAsObjects = [
     {value: 'Alabama', id: 0},
     {value: 'Wyoming', id: 1},
@@ -63,80 +57,64 @@ export class RecordListComponent implements OnInit {
     {value: 'Samon', id: 33},
     {value: 'John Doe', id:  34}
   ];
-  constructor(
-    public rawMatService:RawMaterialService,
-    public comonSrvc:CommonService,
-    public activatedRoute: ActivatedRoute,
-    public router:Router
-  ) { }
+
+  constructor( public rawMatService: RawMaterialService, public comonSrvc: CommonService, public activatedRoute: ActivatedRoute,
+    public router: Router ) { }
+
+
   ngOnInit() {
     this.getRecordList();
       // this.rawMatService.getRecordList().subscribe(list => {this.record = list })
   }
   getRecordList() {
     this.rawMatService.getRecord().subscribe((response: any) => {
-      console.log(response.data);
-      
+      // console.log(response.data);
       this.recordList = response.data;
-    }, err => { 
+    }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
   }
-  onSelect({ selected }) {
-    console.log("selectedRow",);
-    
+  onSelect({selected}) { }
+
+  doubleClickAction(selectedRow) {
+    // console.log('selected Id : ', selectedRow[0]._id);
+    this.router.navigate(['/recordkeeping/raw-matrial/document-upload/' + selectedRow[0]._id]);
   }
-    clickaction(action:any){
-      console.log('mouse btn clicked', action);
-      // if(action==="deleteclick"){
-      //   this.deleterecord.show();
-      // }
-      
-      if(action==="dblclick" ){
-        let router=this.router.navigate(['document-upload/5aa582ea8067d717e0108f89'])
+
+  onActivate(event) {}
+
+  editSelectedRow(selectedRow) {
+    console.log(selectedRow);
+   }
+
+  openConfirmsSwal(selectedRow) {
+    swal({
+      title: 'Are you sure?',
+      text: 'Do you want to delete?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      allowOutsideClick: false
+    }).then(function (response) {
+      console.log(response);
+      if (response.dismiss === 'cancel') {
+        swal(
+           'Cancelled',
+           'Your imaginary file is safe :)',
+           'error'
+         );
+      }else {
+        console.log(selectedRow);
+        swal(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
       }
-    }
-  
-    onActivate(event) {}
-    showDetails(){
-      alert(1);
-    }
+    }).catch(swal.noop);
+  }
 
-    openConfirmsSwal(selected) {
-      let selectedRecord = this.selected[0];
-      swal({
-        title: 'Are you sure?',
-        text: 'Do you want to delete?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!',
-        allowOutsideClick: false
-      }).then(function (response) {
-        console.log(response)
-        if (response.dismiss === 'cancel') {
-          // swal(
-          //   'Cancelled',
-          //   'Your imaginary file is safe :)',
-          //   'error'
-          // );
-        }
-        else{
-          console.log(selectedRecord);
-          swal(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          );
-        }
-      }).catch(swal.noop);
-    }
-
-  // public changePlant (plant:Plant):void {
-  //   console.log("hi",this.plant);
-  //   this.plantservice.getplant().subscribe((response: any) => {
-  //     console.log(response);
-  //   });
-  // }
 }
+

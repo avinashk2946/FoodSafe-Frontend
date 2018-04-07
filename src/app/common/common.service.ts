@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/timeout'
+import 'rxjs/add/operator/timeout';
 import { Observable } from 'rxjs/Observable';
 import { ToastrService } from 'ngx-toastr';
 import { HttpRequestModal } from './httpRequest.modal';
@@ -18,20 +18,19 @@ export class CommonService {
 
     private _options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    constructor(public http: HttpClient, private toastr: ToastrService) {
-    }
+    constructor(public http: HttpClient, private toastr: ToastrService) { }
+
     createHttpRequest(dataObject: HttpRequestModal) {
 
         /*dataObject.payload['feSessionId'] = this.generateFeSessionId();*/
         console.log('BASE_API_URL', GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName);
-        if (dataObject.method == 'POST') {
+        if (dataObject.method === 'POST') {
             return this.http.post(
                 GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,
                 dataObject.payload,
                 this._options).timeout(GLOBAL_PROPERTIES.REQUEST_TIMEOUT * 1000);
-        } else if (dataObject.method == 'GET') {
-            //let baseUrl = "http://localhost/FS_Resource/api/";
-            let baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
+        } else if (dataObject.method === 'GET') {
+            const baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
             return this.http.get(baseUrl + dataObject.actionName);
         }
     }
@@ -45,14 +44,15 @@ export class CommonService {
     }
 
     generateFeSessionId() {
-        var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        var length = 11;
-        var string = '', rnd;
+        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        let length = 11;
+        let string = '';
+        let rnd = 0;
         while (length > 0) {
             rnd = Math.floor(Math.random() * chars.length);
             string += chars.charAt(rnd);
             length--;
-        };
+        }
         return GLOBAL_PROPERTIES.FE_SESSIONID_PREFIX + string;
     }
 

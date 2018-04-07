@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit,Input, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, OnInit, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { PlantService } from '../../../service/plant.service';
 
 
 // import  { Rawmaterial } from '../../../classes/rawmaterial';
-import  { Plant } from '../../../classes/plant';
+import { Plant } from '../../../classes/plant';
 // import  { Supplier } from '../../../classes/supplier';
 // import  { Broker } from '../../../classes/broker';
 // import  { Product } from '../../../classes/product';
@@ -35,7 +35,7 @@ import { LocationStrategy } from '@angular/common';
 
 })
 export class RawmaterialComponent implements OnInit {
-  dataForm : FormGroup;
+  dataForm: FormGroup;
   // plant : Plant;
   // rawmaterial: any = 'rawmaterials[]';
   // plantList = [];
@@ -55,9 +55,9 @@ export class RawmaterialComponent implements OnInit {
   // lotNo : any = '';
    @Input() plant=[];
 
-  constructor(private fb : FormBuilder,
+  constructor(private fb: FormBuilder,
     // public suppliersservice:SupplierService,
-    public plantservice:PlantService,
+    public plantservice: PlantService,
     // public productservice:ProductService,
     // public brokerservice:BrokerService,
   ) {}
@@ -80,7 +80,7 @@ export class RawmaterialComponent implements OnInit {
       'containerNo' : ['', [Validators.required]],
       'lotNo' : ['', [Validators.required]]
     });
-    this.plantservice.getplant().subscribe(responseplants=>this.plant=responseplants);
+    this.plantservice.getplant().subscribe(responseplants => this.plant = responseplants);
   }
   // getPlant () {
   //   this.rawMatService.getPlant().subscribe((response: any) => {
@@ -98,14 +98,13 @@ export class RawmaterialComponent implements OnInit {
   // }
 
 
-  public changePlant (plant:Plant):void {
-    console.log("hi",this.plant);
+  public changePlant (plant: Plant): void {
+    console.log('hi', this.plant);
     this.plantservice.getplant().subscribe((response: any) => {
       console.log(response);
     });
   }
 
-  
   // onRecordCreate() {
   //   console.log('this.dataForm.value',this.dataForm.value);
   //   console.log(this.plant);
