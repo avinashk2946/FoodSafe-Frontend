@@ -12,21 +12,10 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        /*for json mock start*/
-        /*if (req.responseType == 'json') {
-            req = req.clone({ responseType: 'text' });
+        const token = this.auth.getToken();
 
-            return next.handle(req).map(response => {
-                if (response instanceof HttpResponse) {
-                    response = response.clone<any>({ body: JSON.parse(response.body) });
-                }
-
-                return response;
-            });
-        }*/
-        /*for json mock start*/
-        let token = this.auth.getToken();
         this.loadingSrvc.showLoader();
+
         if (token) {
             return next.handle(req.clone({ setHeaders: { 'x-access-token': token } })).do(response => {
                 if (response instanceof HttpResponse) {

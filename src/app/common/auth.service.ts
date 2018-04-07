@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
 
-    intialAuth: boolean = false;
+    intialAuth  = false;
     token: any;
 
     constructor() {

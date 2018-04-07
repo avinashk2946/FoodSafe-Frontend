@@ -9,7 +9,6 @@ import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
-//import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
 
 @Component({
   selector: 'app-login',
@@ -24,31 +23,36 @@ export class LoginComponent implements OnInit {
   logoUrl: any;
   backgroundImgUrl: any;
 
-  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder, private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy, protected localStorage: AsyncLocalStorage) {
-    var absUrl = (<any>this.locationStrategy)._platformLocation.location.href;
-    var splittedArray = absUrl.split(':')[0].split('/');
+  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder, 
+    private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy, 
+    protected localStorage: AsyncLocalStorage) {
+
+    const absUrl = (<any>this.locationStrategy)._platformLocation.location.href;
+    const splittedArray = absUrl.split(':')[0].split('/');
     this.companyId = splittedArray[0];
     console.log('this.companyId', this.companyId);
   }
 
   ngOnInit() {
-    //this.logoUrl = "http://localhost/FS_Resource/images/Logo-small-bottom.png";
+
     this.onFetchConfig(this.companyId);
+
     this.loginForm = this.fb.group({
       'username': ['', [Validators.required, Validators.minLength(5)]],
       'password': ['', [Validators.required, Validators.minLength(5)]]
     });
+
   }
 
   onFetchConfig(companyId) {
+
     this.loginSrvc.fetchConfig(companyId).subscribe(
       (resData: any) => {
-        console.log('resData  ', resData)
+        console.log('resData  ', resData);
         this.logoUrl = GLOBAL_PROPERTIES.BASE_API_URL + resData.data[0].logoImg.substr(2);
-        this.backgroundImgUrl = resData.data[0].backgroundImg ? GLOBAL_PROPERTIES.BASE_API_URL + resData.data[0].backgroundImg.substr(2) : "";
+        this.backgroundImgUrl = resData.data[0].backgroundImg ? GLOBAL_PROPERTIES.BASE_API_URL
+        + resData.data[0].backgroundImg.substr(2) : '';
       }, err => {
-        if (err.status === 401) {
-        }
 
       });
   };
@@ -56,12 +60,14 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loginSrvc.verifyUser(this.loginForm.value).subscribe(
       (resData: any) => {
+
         console.log('res', resData);
-        let user = resData.data;
+        const user = resData.data;
 
         this.localStorage.setItem('user', user).subscribe(() => { });
         this.comonSrvc.showSuccessMsg(resData.message);
         this._router.navigate(['/configuration']);
+
       }, err => {
         if (err.status === 401) {
           this.comonSrvc.showErrorMsg(err.message);
@@ -70,23 +76,6 @@ export class LoginComponent implements OnInit {
         }
 
       });
-  };
+  }
 
 }
-
-
-    // Submit Data to Backend
-    // showResetPassword() {
-
-    //     this.output = null;
-
-    //     this._tokenService.resetPassword(this.updatePasswordData).subscribe(
-    //         res => {
-    //             this.updatePasswordData    = <UpdatePasswordData>{};
-    //             this.output                = res;
-    //         }, error => {
-    //             this.updatePasswordData    = <UpdatePasswordData>{};
-    //             this.output                = error;
-    //         }
-    //     );
-    // }
