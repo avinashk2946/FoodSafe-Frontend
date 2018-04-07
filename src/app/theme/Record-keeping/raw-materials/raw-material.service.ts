@@ -4,48 +4,39 @@ import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../common/common.constant'
 import { HttpRequestModal } from '../../../common/httpRequest.modal';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-import  { SamplePreparation } from '../../../classes/sample-preparation';
+import { SamplePreparation } from '../../../classes/sample-preparation';
 
 @Injectable()
 export class RawMaterialService {
-  constructor(
 
-    private comonSrvc: CommonService,
-    public http: Http
-  ) { }
+  constructor(private comonSrvc: CommonService, public http: Http) { }
 
-  private headers= new Headers(
-    {
-      "Content-Type":"application/json",
-      }
+  private headers = new Headers({'Content-Type': 'application/json'});
 
-    );
- private url;
-
-// private baseUrl="http://localhost:4200/assets/json/sample-preparation.json"
+  private url;
 
   getPlant() {
-    var reqPayload = {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.plant;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.plant;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
   getSupplier(id) {
-    var reqPayload = {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.supplier+'?plant='+id;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.supplier + '?plant=' + id;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
   getBroker(obj) {
-    var reqPayload = {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.broker+'?plant='+obj.plantId+'&supplier='+obj.supplierId;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.broker + '?plant=' + obj.plantId + '&supplier=' + obj.supplierId;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
@@ -59,72 +50,67 @@ export class RawMaterialService {
   // }
 
   getProduct(obj) {
-    var reqPayload = {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.product+'?plant='+obj.plantId+'&supplier='+obj.supplierId+'&brokerId='+obj.brokerId;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.product + '?plant=' + obj.plantId + '&supplier=' + obj.supplierId + '&brokerId=' + obj.brokerId;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  saveRecord (obj){
-    var url = API_ACTIONS.raw_material.record;
-    var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
+  saveRecord(obj) {
+    const url = API_ACTIONS.raw_material.record;
+    const httpRequest = new HttpRequestModal(url, 'POST', obj, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  getRecord (){
-    var reqPayload = {
+  getRecord() {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.record;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.record;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  uploadAttachment (obj){
-    var url = GLOBAL_PROPERTIES.BASE_API_URL + API_ACTIONS.raw_material.record+'/attachment';
+  uploadAttachment(obj) {
+    const url = GLOBAL_PROPERTIES.BASE_API_URL + API_ACTIONS.raw_material.record + '/attachment';
     console.log(url);
-    return this.http.post(url,obj);
+    return this.http.post(url, obj);
   }
-  getRecordData (id){
-    var reqPayload = {
+  getRecordData(id) {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.record+'?_id='+id;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.record + '?_id=' + id;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-  getRawMatrialGroup (obj){
-    var reqPayload = {
+  getRawMatrialGroup(obj) {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.rawmaterial+'/groups?plant='+obj.plantId+'&supplier='+obj.supplierId+'&brokerId='+obj.brokerId;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.rawmaterial + '/groups?plant=' + obj.plantId
+     + '&supplier=' + obj.supplierId + '&brokerId=' + obj.brokerId;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  getRawMatrial (obj){
-    var reqPayload = {
+  getRawMatrial(obj) {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
-    }
-    var url = API_ACTIONS.raw_material.rawmaterial+'?plant='+obj.plantId+'&supplier='+obj.supplierId+'&brokerId='+obj.brokerId+'rmGroupName'+obj.matrialGrp;
-    var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
+    };
+    const url = API_ACTIONS.raw_material.rawmaterial + '?plant=' + obj.plantId
+    + '&supplier=' + obj.supplierId + '&brokerId=' + obj.brokerId + 'rmGroupName' + obj.matrialGrp;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  saveSamplePreparation (obj){
-    var url = API_ACTIONS.raw_material.record+'/samplePreparation';
-    var httpRequest = new  HttpRequestModal(url, 'POST',obj,true);
-    return this.comonSrvc.createHttpRequest(httpRequest);
-  }
-
-   sampleCollection (obj){
-    var url = API_ACTIONS.raw_material.record+'/';
-    var httpRequest = new  HttpRequestModal(url, 'GET',obj,true);
+  saveSamplePreparation(obj) {
+    const url = API_ACTIONS.raw_material.record + '/samplePreparation';
+    const httpRequest = new HttpRequestModal(url, 'POST', obj, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-//   recorddelete(id: number): Promise<void>{
-//   const url=`${this.url}/${id}`;
-//   return this.http.delete(url,{headers:this.headers})
-//   .catch(this.handleError);
-// }
-
+  sampleCollection(obj) {
+    const url = API_ACTIONS.raw_material.record + '/';
+    const httpRequest = new HttpRequestModal(url, 'GET', obj, true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 }

@@ -13,7 +13,6 @@ const routes: Routes = [
       status: true
     }
   },
-
   {
     path: '',
     component: RecordListComponent,
@@ -21,16 +20,15 @@ const routes: Routes = [
   {
     path: 'create',
     loadChildren: '../create-record/create-record.module#CreateRecordModule'
-  },
+  }
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),
-  
+  imports: [
+    RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
 })
-export class RecordListRoutingModule { 
-}
+export class RecordListRoutingModule { }
 

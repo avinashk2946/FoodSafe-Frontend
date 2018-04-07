@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/timeout'
+import 'rxjs/add/operator/timeout';
 import { Observable } from 'rxjs/Observable';
 import { ToastrService } from 'ngx-toastr';
 import { HttpRequestModal } from './httpRequest.modal';

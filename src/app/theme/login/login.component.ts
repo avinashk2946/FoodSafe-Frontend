@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
         console.log('res', resData);
         const user = resData.data;
 
-        this.localStorage.setItem('user', user).subscribe(() => { });
+        this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
         this.comonSrvc.showSuccessMsg(resData.message);
         this._router.navigate(['/configuration']);
 
