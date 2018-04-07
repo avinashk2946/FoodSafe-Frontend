@@ -32,20 +32,19 @@
             </div>
             <div class="col-md-8 form group">
               <input type="text" class="form-control" placeholder=" Container Number" [(ngModel)]="containerNo" formControlName="containerNo">
-
             </div>
           </div>
         </div>
-        <!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table">
-					<div class="row ">
-						<div class="col-md-4 form group">
-							<label for="name">Created By</label>
-						</div>
-						<div class="col-md-8 form group">
-							<input type="text" [readOnly]="true" name="input" class="form-control form-control-primary" [(ngModel)]="createdBy" formControlName="createdBy">
-						</div>
-					</div>
-				</div> -->
+        <div class="col-xs-12 col-sm-6 col-md-6 data-table">
+          <div class="row ">
+            <div class="col-md-4 form group">
+              <label for="name">Created By</label>
+            </div>
+            <div class="col-md-8 form group">
+              <input type="text" class="form-control" [readOnly]="true" name="input" [(ngModel)]="createdBy" formControlName="createdBy">
+            </div>
+          </div>
+        </div>
         <div class="col-xs-12 col-sm-6 col-md-6 data-table">
           <div class="row ">
             <div class="col-md-4 form group">
@@ -114,9 +113,7 @@
             <div class="col-md-4 form group">
               <label for="name">Raw Material Group</label>
             </div>
-            <div class="col-md-8 form group">
-              <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="materialGrpList" placeholder='Select Product' [(ngModel)]="materialGrp"
-							 (ngModelChange)='changeProduct()' formControlName="materialGrp"></ng-select> -->
+            <div class="col-md-8 form group">             
               <select name="select" class="form-control form-control-default" [(ngModel)]="materialGrp" formControlName="materialGrp" (ngModelChange)='changeMaterialGroup()'>
                 <option *ngFor="let item of materialGrpList" value={{item}}>
                   {{item}}

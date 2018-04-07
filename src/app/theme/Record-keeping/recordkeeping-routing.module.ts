@@ -18,7 +18,6 @@ const routes: Routes = [
         path: 'raw-matrial',
         loadChildren: './raw-materials/raw-material.module#RawMaterialsModule'
       },
-      
     ]
   }
 ];

@@ -36,6 +36,8 @@ export class CreateRecordComponent implements OnInit {
   brokerList = [];
   supplierList = [];
   productList = [];
+  materialGrpList = [];
+  materialList = [];
 
   createdDate: any = new Date();
   createdBy: any = '';
@@ -55,10 +57,8 @@ export class CreateRecordComponent implements OnInit {
   plant: any = '';
   supplier: any = '';
   selectedSupplier: any = '';
-  selectedMaterial: any = '';
-  materialGrpList = [];
-  materialGrp = '';
-  materialList = [];
+  selectedMaterial: any = ''; 
+  materialGrp = ''; 
   material = '';
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
@@ -78,10 +78,11 @@ export class CreateRecordComponent implements OnInit {
       'nonGMO': ['', [Validators.required]],
       'po': ['', [Validators.required]],
       'containerNo': ['', [Validators.required]],
+      'createdBy': ['', [Validators.required]],
       'lotNo': ['', [Validators.required]],
       'organic': ['', [Validators.required]],
       'material': ['', [Validators.required]],
-
+      'materialGrp': ['', [Validators.required]]
     });
 
     this.getPlant();
@@ -104,13 +105,13 @@ export class CreateRecordComponent implements OnInit {
       containerNo: this.containerNo,
       lotNo: this.lotNo,
       variety: this.variety,
-      rawMaterial: this.material
-      // nonGmo : this.nonGMO,
-      // createdBy : this.createdById,
+      rawMaterial: this.material,
+      nonGmo : this.nonGMO,
+      createdBy : this.createdById,
+      materialGrp : this.materialGrp
       // isDelete : false
     };
     console.log('this.dataForm.value', obj);
-
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
       this.router.navigate(['/recordkeeping/raw-matrial/document-upload', response.data._id]);
