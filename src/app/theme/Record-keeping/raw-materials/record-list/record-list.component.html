@@ -34,6 +34,7 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 
 
 
@@ -72,10 +73,40 @@
   </div>
 
   <!-- Table to display -->
+=======
+  <div class="form-group">
+    <div class="col-md-12   action">
+      <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right" (click)="openConfirmsSwal()"><i class="icofont icofont-delete-alt"></i></button>
+
+                <!-- <div class="modal-popup pull-right">
+                  <button type="button" class="btn btn-primary waves-effect" (click)="modalLarge.show()">Add</button>
+                    <app-modal-basic #modalLarge [dialogClass]="'modal-lg'">
+                      <div class="app-modal-header">
+                        <h4 class="modal-title">Modal title</h4>
+                        <button type="button" class="close basic-close" (click)="modalLarge.hide()">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="app-modal-body">
+                        <h5>Images</h5>
+                        BODY COMPONENT SELECTOR
+                      </div>
+                      <div class="app-modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" (click)="modalLarge.hide()">Close</button>
+                        <button type="button" class="btn btn-primary waves-effect waves-light ">Save changes</button>
+                      </div>
+                    </app-modal-basic>
+                </div> -->
+
+      <button [disabled]="selected.length > 1" type="button" class="btn btn-default pull-right"><i class="icofont icofont-edit-alt"></i></button>     
+    </div> 
+  </div>
+>>>>>>> origin/Eliza_7thApril
   <div class="card-body" *ngIf="recordList.length > 0">
 
     <div class="row ">
       <div class="table-responsive ">
+<<<<<<< HEAD
 
         <ngx-datatable class="data-table fullscreen" [rows]="recordList" [columnMode]="'force'" [headerHeight]="50" 
           [footerHeight]="50" [rowHeight]="50" [limit]="10" [selected]="selected" [selectionType]="'single'" 
@@ -98,6 +129,47 @@
           </ngx-datatable-column>
 
           <!-- <ngx-datatable-column name="Product">
+=======
+        <ngx-datatable
+        
+        class="data-table fullscreen "
+        [rows]="recordList"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [limit]="10"
+        [selected]="selected"
+        [selectionType]="'multi'"
+        (activate)="onActivate($event)" 
+        (select)='onSelect($event)' 
+        (dblclick)="clickaction($event)" >  
+        
+        <!-- <ngx-datatable-column  [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" >
+          <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+            <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+            
+          </ng-template>
+          <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+            <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)" (click)="show"/>
+          </ng-template>
+        </ngx-datatable-column> -->
+        <ngx-datatable-column name="Created Date">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span class="table-head" >
+              {{row.createdDate | date:'dd/MM/yyyy'}}
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Purchase Order" >
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span class="table-head">
+              {{row.po}}     
+            </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- <ngx-datatable-column name="Product">
+>>>>>>> origin/Eliza_7thApril
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span>
               {{row.product.name}}

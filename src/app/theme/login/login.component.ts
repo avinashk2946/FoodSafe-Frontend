@@ -9,24 +9,28 @@ import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
+// import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
   providers: [LoginService],
-  //provider: [LocalStorageService]
+  // provider: [LocalStorageService]
 })
 export class LoginComponent implements OnInit {
-  //@LocalStorage() public username:string;
+  // @LocalStorage() public username:string;
   loginForm: FormGroup;
   companyId: string;
   logoUrl: any;
   backgroundImgUrl: any;
   // private logo = require("./assets/images/logo.png");
 
-  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder, 
-    private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy, 
+  user;
+
+  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder,
+    private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy,
     protected localStorage: AsyncLocalStorage) {
 
     const absUrl = (<any>this.locationStrategy)._platformLocation.location.href;
@@ -55,20 +59,20 @@ export class LoginComponent implements OnInit {
         console.log('resData  ', resData);
         this.logoUrl = GLOBAL_PROPERTIES.BASE_API_URL + resData.data[0].logoImg.substr(2);
         this.backgroundImgUrl = resData.data[0].backgroundImg ? GLOBAL_PROPERTIES.BASE_API_URL
-        + resData.data[0].backgroundImg.substr(2) : '';
+          + resData.data[0].backgroundImg.substr(2) : '';
       }, err => {
 
       });
-  };
+  }
 
   onSubmit() {
     this.loginSrvc.verifyUser(this.loginForm.value).subscribe(
       (resData: any) => {
 
         console.log('res', resData);
-        const user = resData.data;
+        this.user = resData.data;
 
-        this.localStorage.setItem('user', user).subscribe(() => {}, () => {});
+        this.localStorage.setItem('user', this.user).subscribe(() => { }, () => { });
         this.comonSrvc.showSuccessMsg(resData.message);
 
         this._router.navigate(['/configuration/login-page']);
@@ -81,8 +85,12 @@ export class LoginComponent implements OnInit {
         }
 
       });
-  };
+  }
 
- }
+  onRememberME() {
+    this.localStorage.setItem('user', this.user.username).subscribe(() => { });
+    this.localStorage.setItem('user', this.user.password).subscribe(() => { });
+  }
+}
 
 

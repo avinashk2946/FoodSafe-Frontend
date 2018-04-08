@@ -13,28 +13,27 @@ export class LoginService {
       password: data.password
     };
 
-    const httpRequest = new  HttpRequestModal(API_ACTIONS.login.loginUser, 'POST', reqPayload, true);
+    const httpRequest = new HttpRequestModal(API_ACTIONS.login.loginUser, 'POST', reqPayload, true);
 
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-  fetchConfig(data){
+  fetchConfig(data) {
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL,
       companyId: data
     }
 
-    const httpRequest = new  HttpRequestModal(API_ACTIONS.configuration.loginConfig, 'GET', reqPayload, true);
+    const httpRequest = new HttpRequestModal(API_ACTIONS.configuration.loginConfig, 'GET', reqPayload, true);
 
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-
-  resetPassword(data){
-    var reqPayload = {
+  resetPassword(data) {
+    const reqPayload = {
       username: data.username,
       password: data.password
     }
-    var httpRequest = new  HttpRequestModal(API_ACTIONS.login.resetPassword, 'POST', reqPayload,true);
+    const httpRequest = new HttpRequestModal(API_ACTIONS.login.resetPassword, 'POST', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 }

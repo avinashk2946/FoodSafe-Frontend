@@ -13,7 +13,7 @@ export const API_ACTIONS = Object.freeze({
         fetchConfig: 'fetchConfig.json',
         verifyOtp: 'ecomVerifyOtp.action',
         verifymPin: 'ecomVerifyMpin.action',
-        resetPassword:'user/resetPassword'
+        resetPassword: 'user/resetPassword'
     },
     summary: {
         savecardsInitiate: 'encryptedEcomStoredCards.action',
@@ -35,9 +35,9 @@ export const API_ACTIONS = Object.freeze({
         registerUser: 'ecomRegisterUser.action'
     },
     raw_material: {
-        plant : 'plant',
+        plant: 'plant',
         record: 'record',
-        supplier : 'supplier',
+        supplier: 'supplier',
         broker: 'broker',
         product: 'product',
         samplepreparation: 'SamplePreparation',

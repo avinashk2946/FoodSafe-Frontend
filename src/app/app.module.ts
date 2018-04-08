@@ -5,16 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SharedModule} from './shared/shared.module';
-import { MenuItems} from './shared/menu-items/menu-items';
-import { BreadcrumbsComponent} from './layout/admin/breadcrumbs/breadcrumbs.component';
-import { DataService} from './service/data.service';
-import { FormsModule,FormGroup, FormBuilder, FormControl, Validators,ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { MenuItems } from './shared/menu-items/menu-items';
+import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
+import { DataService } from './service/data.service';
+import { FormsModule, FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TreeviewModule } from 'ngx-treeview';
 
-import {LoginComponent} from './theme/login/login.component';
+import { LoginComponent } from './theme/login/login.component';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -39,9 +39,10 @@ import { BrokerService } from './service/broker.service';
 import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
 import { FileUploadModule } from 'ng2-file-upload';
-//import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
-import {Component} from '@angular/core';
-//import {LocalStorageService, LocalStorage} from '@Deprecated ng2-webstorage';//ng2-webstorage';
+// import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
+// import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
+import { Component } from '@angular/core';
+// import {LocalStorageService, LocalStorage} from '@Deprecated ng2-webstorage';//ng2-webstorage';
 
 
 @NgModule({
@@ -52,6 +53,8 @@ import {Component} from '@angular/core';
     LoginComponent,
 
     StyleComponent,
+
+    // ResetPasswordComponent,
 
     // FormPickerComponent,
     // RawMaterialComponent,
@@ -74,20 +77,20 @@ import {Component} from '@angular/core';
     // FormPickerRoutingModule
   ],
   providers: [
-  MenuItems,
-  DataService,
-  CommonService,
-   AuthService,
-   RawMaterialsService,
-   SupplierService,
-   PlantService,
-   //LocalStorage,   
-   //LocalStorageService,
-   ProductService,
-  BrokerService,
-  UploaddataService,
-   { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
-   LoadingService],
+    MenuItems,
+    DataService,
+    CommonService,
+    AuthService,
+    RawMaterialsService,
+    SupplierService,
+    PlantService,
+    //LocalStorage,   
+    //LocalStorageService,
+    ProductService,
+    BrokerService,
+    UploaddataService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
+    LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
