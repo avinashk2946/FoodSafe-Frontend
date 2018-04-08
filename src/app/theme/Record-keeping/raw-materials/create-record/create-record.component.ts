@@ -80,7 +80,8 @@ export class CreateRecordComponent implements OnInit {
       'createdBy': ['', [Validators.required]],
       'lotNo': ['', [Validators.required]],
       'organic': ['', [Validators.required]],
-      'material': ['', [Validators.required]]
+      'material': ['', [Validators.required]],
+      'materialGrp': ['', [Validators.required]]
     });
 
     this.getPlant();
@@ -104,9 +105,9 @@ export class CreateRecordComponent implements OnInit {
       lotNo: this.lotNo,
       variety: this.variety,
       rawMaterial: this.material,
-      nonGmo : this.nonGMO,
-      createdBy : this.createdById,
-      materialGrp : this.materialGrp
+      nonGmo: this.nonGMO,
+      createdBy: this.createdById,
+      materialGrp: this.materialGrp
       // isDelete : false
     };
     console.log('this.dataForm.value', obj);

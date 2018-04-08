@@ -115,6 +115,11 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
+  getSamplePreparation(recordId) {
+    const url = API_ACTIONS.raw_material.record + '/samplePreparation/' + recordId;
+    return this.http.get(GLOBAL_PROPERTIES.BASE_API_URL + url);
+  }
+
   sampleCollection(obj) {
     const url = API_ACTIONS.raw_material.record + '/';
     const httpRequest = new HttpRequestModal(url, 'GET', obj, true);

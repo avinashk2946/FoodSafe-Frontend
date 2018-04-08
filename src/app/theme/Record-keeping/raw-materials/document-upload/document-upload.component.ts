@@ -18,6 +18,9 @@ import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Observable } from 'rxjs/Observable';
 
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+
+
 @Component({
   selector: 'app-document-upload',
   templateUrl: './document-upload.component.html',
@@ -42,6 +45,9 @@ import { Observable } from 'rxjs/Observable';
 
 })
 export class DocumentUploadComponent implements OnInit {
+
+  @ViewChild('tabs')
+  private tabs: NgbTabset;
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, public router: Router, public http: Http, private route: ActivatedRoute) {
@@ -82,6 +88,7 @@ export class DocumentUploadComponent implements OnInit {
     this.getRecordDetails();
     this.online$.subscribe(e => this.syncWithServer());
   }
+
   syncWithServer() {
     // cons
     // this.localStorage.getItem('recordFiles').subscribe((formData) => {
@@ -93,10 +100,11 @@ export class DocumentUploadComponent implements OnInit {
     //   //this.updateAttachment(formData);
     // });
   }
+
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
       this.recordDetails = response.data[0];
-      this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => {}, () => {});
+      this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
     }, err => {
       if (err.status === 401) {
       }
@@ -114,6 +122,7 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   uploadFile() {
+    debugger;
     const formData: any = new FormData();
     this.fileList.forEach(element => {
       let i = 1;
@@ -133,6 +142,7 @@ export class DocumentUploadComponent implements OnInit {
     if (this.onlineOffline) {
       this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
         this.comonSrvc.showSuccessMsg(response.message);
+        this.tabs.select('samplepreparationid');
       }, err => {
         this.comonSrvc.showErrorMsg(err.message);
       });

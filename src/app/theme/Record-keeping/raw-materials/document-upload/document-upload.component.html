@@ -18,8 +18,8 @@
         <strong> {{recordDetails.country}}</strong>
       </div>
       <div class="col-md-4">
-        Raw Material :
-        <strong> {{recordDetails.rawmaterial}}</strong>
+        Raw Material Group :
+        <strong> {{recordDetails.rawMaterial.rmGroupName}}</strong>
 	  </div>
 	  <div class="col-md-4">
 			Purchase Order :
@@ -38,15 +38,15 @@
         <strong> {{recordDetails.approved}}</strong>
       </div>
       <div class="col-md-4">
-        Raw Material Code :
-        <strong> {{recordDetails.rawMaterialCode}}</strong>
+        Raw Material :
+        <strong> {{recordDetails.rawMaterial.name}}</strong>
       </div>
     </div>
   </div>
 
   <div class="col-md-12 ">
-    <ngb-tabset type="tabs">
-      <ngb-tab title="Document">
+    <ngb-tabset type="tabs"  #tabs>
+      <ngb-tab title="Document" id="documentUploadid1">
         <ng-template ngbTabContent>
           <table class="table table-framed table-responsive">
             <thead>
@@ -67,9 +67,9 @@
                       </label>
 
                       <ul class="list-inline">
-                        <li class="list-group-item media-left" *ngFor="let item of type.attachmentList.queue">
+                        <li class="list-group-item media-left" *ngFor="let item of type.attachmentList.queue; let i=index">
                           <img src="" imgPreview [image]="item?._file" class="media-object" />
-                          <span class="fa fa-trash" (click)="delete($event,index,type.attachmentList.queue)"></span>
+                          <span class="fa fa-trash" (click)="delete($event,i,type.attachmentList.queue)"></span>
                         </li>
                       </ul>
                     </div>
@@ -85,27 +85,27 @@
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Sample Preparation">
+      <ngb-tab title="Sample Preparation" id="samplepreparationid">
         <ng-template ngbTabContent>
           <app-sample-preparation></app-sample-preparation>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Sample Collection">
+      <ngb-tab title="Sample Collection" id="samplecollectionid">
         <ng-template ngbTabContent>
           <app-sample-collection></app-sample-collection>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Quality Analysis">
+      <ngb-tab title="Quality Analysis" id="qualityanalysisid">
         <ng-template ngbTabContent>
           <app-quality-analysis></app-quality-analysis>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Micro/Chemical Analysis">
+      <ngb-tab title="Micro/Chemical Analysis" id="microchemicalanalysid">
         <ng-template ngbTabContent>
           <p></p>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Summary">
+      <ngb-tab title="Summary" id="summaryid">
         <ng-template ngbTabContent>
           <p></p>
         </ng-template>

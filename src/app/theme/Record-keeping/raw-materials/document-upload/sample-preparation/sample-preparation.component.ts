@@ -20,7 +20,7 @@ export class SamplePreparationComponent implements OnInit {
 
   tempSearchTerm = '';
   searchTerm = new Subject<string>();
-
+  ifPurchaseorderEmpty = false;
   results: Object;
   public itemAddForm: FormGroup;
   recordDetails: any = {};
@@ -64,7 +64,8 @@ export class SamplePreparationComponent implements OnInit {
       this.recordDetails = recordDetails;
 
       // Planned to place in constructor but  we are depenedent on supplier id
-      this.rawMatService.searchSupplier(this.searchTerm, this.recordDetails.supplier._id, 'Apple')
+      this.rawMatService.searchSupplier(this.searchTerm, this.recordDetails.supplier._id,
+        this.recordDetails.rawMaterial.rmCode)
         .subscribe((response: any) => {
           console.log(response.data);
           const index = _.findIndex(this.samples, { 'supplierLot': this.tempSearchTerm });
@@ -72,6 +73,14 @@ export class SamplePreparationComponent implements OnInit {
         }, err => {
 
         });
+
+      this.rawMatService.getSamplePreparation(this.recordDetails.supplier._id)
+        .subscribe((response: any) => {
+           console.log(response);
+        }, err => {
+
+        });
+
     });
   }
 
@@ -133,7 +142,6 @@ export class SamplePreparationComponent implements OnInit {
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
-    // this.router.navigate(['/']);
   }
 
   public handleEvent(sampleadded: any) {
@@ -151,5 +159,10 @@ export class SamplePreparationComponent implements OnInit {
     this.samples[index].pathogenTest = response.pathogenTest;
     this.samples[index].pesticideTest = response.pesticideTest;
     this.samples[index].virusTest = response.virusTest;
+    if (this.samples[index].po === '') {
+      this.ifPurchaseorderEmpty = true;
+    } else {
+      this.ifPurchaseorderEmpty = false;
+    }
   }
 }
