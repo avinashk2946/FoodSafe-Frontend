@@ -29,5 +29,13 @@ export class LoginService {
 
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
+  resetPassword(data){
+    var reqPayload = {
+      username: data.username,
+      password: data.password
+    }
+    var httpRequest = new  HttpRequestModal(API_ACTIONS.login.resetPassword, 'POST', reqPayload,true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
 
 }

@@ -1,7 +1,7 @@
 <section class="login p-fixed d-flex text-center bg-primary common-img-bg" [ngStyle]="{'background-image': 'url(' + backgroundImgUrl + ')'}">
   <!-- <img src="assets/images/auth/pic.png" class="img-fluid"> -->
   <!-- Container-fluid starts -->
-  <div class="container">
+  <div class="container" >
     <div class="row">
       <div class="col-sm-12">
         <!-- Authentication card start -->
@@ -45,7 +45,8 @@
                     </label> -->
                   </div>
                   <div class="sub-text right f-right">
-                    <a href [routerLink]="['/auth/resetPassword']" class="text-right f-w-600 text-inverse" ng-click="showResetPassword()" > Forgot Password?</a>
+                    <a [routerLink]="['/resetPassword']" class="text-right f-w-600 text-inverse" > Forgot Password?</a>
+                    <p>
                   </div>
                 </div>
               </div>
@@ -60,7 +61,7 @@
                 <div class="col-12">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="">
+                      <input type="checkbox" [checked]="isSelected" value="" ng-submit="onRememberME()" >
                       <!-- <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span> -->
                       <span class="sub-text text-inverse">Remember me</span>
                     </label>
@@ -68,7 +69,7 @@
                   <div class="forgot-phone text-right f-right">
                     <!-- <a [routerLink]="['/auth/forgot']" class="text-right f-w-600 text-inverse"> Forgot Password?</a> -->
                     <!--  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button> -->
-                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" >
                     Sign in</button>
 
                   </div>

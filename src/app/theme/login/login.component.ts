@@ -9,6 +9,8 @@ import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+
 
 @Component({
   selector: 'app-login',
@@ -76,6 +78,18 @@ export class LoginComponent implements OnInit {
         }
 
       });
+  }
+  onRememberME(){
+    (resData: any) => {
+
+      console.log('res', resData);
+      const user = resData.data;
+
+      this.localStorage.setItem('user', user.username).subscribe(() => { });
+      this.localStorage.setItem('user', user.password).subscribe(() => { });
+      
+    }
+
   }
 
 }

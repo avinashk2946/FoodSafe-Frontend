@@ -72,20 +72,20 @@
         [rowHeight]="50"
         [limit]="10"
         [selected]="selected"
-        [selectionType]="'checkbox'"
+        [selectionType]="'multi'"
         (activate)="onActivate($event)" 
         (select)='onSelect($event)' 
         (dblclick)="clickaction($event)" >  
         
-        <ngx-datatable-column  [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" >
+        <!-- <ngx-datatable-column  [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false" >
           <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
             <input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
-            <!-- class="hidden" or class="invisible" to hide -->
+            
           </ng-template>
           <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
             <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)" (click)="show"/>
           </ng-template>
-        </ngx-datatable-column>
+        </ngx-datatable-column> -->
         <ngx-datatable-column name="Created Date">
           <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span class="table-head" >
