@@ -74,9 +74,14 @@ export class SamplePreparationComponent implements OnInit {
 
         });
 
-      this.rawMatService.getSamplePreparation(this.recordDetails.supplier._id)
+      this.rawMatService.getSamplePreparation(this.recordDetails._id)
         .subscribe((response: any) => {
-           console.log(response);
+          if (response.data.length !== 0) {
+            this.samples = [];
+          }
+          response.data.forEach(element => {
+            this.samples.push(element.samples[0]);
+          });
         }, err => {
 
         });

@@ -116,8 +116,13 @@ export class RawMaterialService {
   }
 
   getSamplePreparation(recordId) {
+    const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
     const url = API_ACTIONS.raw_material.record + '/samplePreparation/' + recordId;
-    return this.http.get(GLOBAL_PROPERTIES.BASE_API_URL + url);
+    console.log(url);
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
   sampleCollection(obj) {
