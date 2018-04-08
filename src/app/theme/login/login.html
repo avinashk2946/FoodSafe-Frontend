@@ -35,20 +35,20 @@
                 </div>
               </div>
 
-              <div class="row m-t-25 text-left">
+              <!-- <div class="row m-t-25 text-left">
                 <div class="col-12">
                   <div class="checkbox">
-                    <!-- <label>
+                     <label>
                       <input type="checkbox" value="">
                       <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span>
                       <span class="text-inverse">Remember me</span>
-                    </label> -->
-                  </div>
+                    </label> 
+                   </div> --> 
                   <div class="sub-text right f-right">
-                    <a href [routerLink]="['/auth/resetPassword']" class="text-right f-w-600 text-inverse" ng-click="showResetPassword()" > Forgot Password?</a>
+                     <a  href [routerLink]="['/auth/resetPassword']" >Forgot Password?</a>
+                    <!--<div class="cta"><a href="#">Forgot your password?</a></div>-->
+                    <p *ngIf="loginForm.controls.userType.admin.required"></p>
                   </div>
-                </div>
-              </div>
               <div class="row m-t-30">
                 <div class="col-md-12">
                   <!-- <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button> -->
@@ -62,7 +62,7 @@
                     <label>
                       <input type="checkbox" value="">
                       <!-- <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span> -->
-                      <span class="sub-text text-inverse">Remember me</span>
+                      <span class="sub-text text-inverse" [(ngModel)]="Formdata.rememberme">Remember me</span>
                     </label>
                   </div>
                   <div class="forgot-phone text-right f-right">

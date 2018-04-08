@@ -40,6 +40,8 @@ import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
 import { FileUploadModule } from 'ng2-file-upload';
 //import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
+import {Component} from '@angular/core';
+//import {LocalStorageService, LocalStorage} from '@Deprecated ng2-webstorage';//ng2-webstorage';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { FileUploadModule } from 'ng2-file-upload';
    RawMaterialsService,
    SupplierService,
    PlantService,
+   //LocalStorage,   
+   //LocalStorageService,
    ProductService,
   BrokerService,
   UploaddataService,

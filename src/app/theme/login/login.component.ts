@@ -14,10 +14,11 @@ import { GLOBAL_PROPERTIES } from './../../common/common.constant';
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
-  providers: [LoginService]
+  providers: [LoginService],
+  //provider: [LocalStorageService]
 })
 export class LoginComponent implements OnInit {
-
+  //@LocalStorage() public username:string;
   loginForm: FormGroup;
   companyId: string;
   logoUrl: any;
