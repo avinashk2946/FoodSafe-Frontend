@@ -96,6 +96,7 @@ export class DocumentUploadComponent implements OnInit {
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
       this.recordDetails = response.data[0];
+      this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => {}, () => {});
     }, err => {
       if (err.status === 401) {
       }

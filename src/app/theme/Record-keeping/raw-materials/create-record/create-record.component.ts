@@ -57,8 +57,8 @@ export class CreateRecordComponent implements OnInit {
   plant: any = '';
   supplier: any = '';
   selectedSupplier: any = '';
-  selectedMaterial: any = ''; 
-  materialGrp = ''; 
+  selectedMaterial: any = '';
+  materialGrp = '';
   material = '';
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
@@ -71,7 +71,6 @@ export class CreateRecordComponent implements OnInit {
       'suplier': ['', [Validators.required]],
       'broker': ['', [Validators.required]],
       'coo': ['', [Validators.required]],
-      'materialGrp': [],
       'variety': ['', [Validators.required]],
       'approved': ['', [Validators.required]],
       'kosher': ['', [Validators.required]],
@@ -81,8 +80,7 @@ export class CreateRecordComponent implements OnInit {
       'createdBy': ['', [Validators.required]],
       'lotNo': ['', [Validators.required]],
       'organic': ['', [Validators.required]],
-      'material': ['', [Validators.required]],
-      'materialGrp': ['', [Validators.required]]
+      'material': ['', [Validators.required]]
     });
 
     this.getPlant();
