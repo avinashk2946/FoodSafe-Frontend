@@ -22,7 +22,7 @@ export class LoginService {
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL,
       companyId: data
-    }
+    };
 
     const httpRequest = new HttpRequestModal(API_ACTIONS.configuration.loginConfig, 'GET', reqPayload, true);
 
@@ -32,7 +32,7 @@ export class LoginService {
     const reqPayload = {
       username: data.username,
       password: data.password
-    }
+    };
     const httpRequest = new HttpRequestModal(API_ACTIONS.login.resetPassword, 'POST', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }

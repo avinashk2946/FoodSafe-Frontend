@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   companyId: string;
   logoUrl: any;
   backgroundImgUrl: any;
-  isFetchConfig:Boolean;
+  isFetchConfig: Boolean;
   // private logo = require("./assets/images/logo.png");
 
   user;
@@ -54,8 +54,7 @@ export class LoginComponent implements OnInit {
 
   }
   getDefaultLogoImg(event) {
-    alert(1231)
-    this.logoUrl = GLOBAL_PROPERTIES.BASE_API_URL + String("./upload/default-logo.jpg").substr(2);
+    this.logoUrl = GLOBAL_PROPERTIES.BASE_API_URL + String('./upload/default-logo.jpg').substr(2);
   }
   onFetchConfig(companyId) {
 
@@ -64,7 +63,7 @@ export class LoginComponent implements OnInit {
         this.isFetchConfig = true;
         this.logoUrl = GLOBAL_PROPERTIES.BASE_API_URL + resData.data[0].logoImg.substr(2);
         this.backgroundImgUrl = resData.data[0].backgroundImg ? GLOBAL_PROPERTIES.BASE_API_URL
-        + resData.data[0].backgroundImg.substr(2) : '';
+          + resData.data[0].backgroundImg.substr(2) : '';
         console.log('resData  ', resData);
         console.log('this.logoUrl  ', this.logoUrl);
         console.log('this.backgroundImgUrl  ', this.backgroundImgUrl);
