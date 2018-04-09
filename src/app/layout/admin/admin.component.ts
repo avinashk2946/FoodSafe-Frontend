@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
-import {MenuItems} from '../../shared/menu-items/menu-items';
-
+import { animate, AUTO_STYLE, state, style, transition, trigger } from '@angular/animations';
+import { MenuItems } from '../../shared/menu-items/menu-items';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
 
 @Component({
   selector: 'app-admin',
@@ -55,12 +55,12 @@ import {MenuItems} from '../../shared/menu-items/menu-items';
     ]),
     trigger('fadeInOutTranslate', [
       transition(':enter', [
-        style({opacity: 0}),
-        animate('400ms ease-in-out', style({opacity: 1}))
+        style({ opacity: 0 }),
+        animate('400ms ease-in-out', style({ opacity: 1 }))
       ]),
       transition(':leave', [
-        style({transform: 'translate(0)'}),
-        animate('400ms ease-in-out', style({opacity: 0}))
+        style({ transform: 'translate(0)' }),
+        animate('400ms ease-in-out', style({ opacity: 0 }))
       ])
     ])
   ]
@@ -120,7 +120,9 @@ export class AdminComponent implements OnInit {
 
   public config: any;
 
-  constructor(public menuItems: MenuItems) {
+  public createdBy;
+
+  constructor(public menuItems: MenuItems, protected localStorage: AsyncLocalStorage) {
     this.navType = 'st2';
     this.themeLayout = 'vertical';
     this.verticalPlacement = 'left';
@@ -174,8 +176,11 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.setBackgroundPattern('pattern1');
-    console.log('menuItems',this.menuItems.getAll());
-    /*document.querySelector('body').classList.remove('dark');*/
+    console.log('menuItems', this.menuItems.getAll());
+    this.localStorage.getItem('user').subscribe((user) => {
+      console.log(user);
+      this.createdBy = user.user.username;
+    });
   }
 
   onResize(event) {

@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
         this.localStorage.setItem('user', this.user).subscribe(() => { }, () => { });
         this.comonSrvc.showSuccessMsg(resData.message);
 
-        this._router.navigate(['/configuration/login-page']);
+        this._router.navigate(['/dashboard']);
 
       }, err => {
         if (err.status === 401) {
