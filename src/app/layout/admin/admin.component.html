@@ -173,7 +173,7 @@
                           <ul class="pcoded-submenu">
                             <ng-template ngFor let-asideChildrenSub [ngForOf]="asideChildren.children">
                               <li [routerLinkActive]="['active']">
-                                <a [routerLink]="['/',  asideChildren.state]" target="{{asideChildrenlink.target ? '_blank' : '_self'}}">
+                                <a [routerLink]="['/',  asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
                                   <span class="pcoded-micon">
                                     <i class="icon-angle-right"></i>
                                   </span>

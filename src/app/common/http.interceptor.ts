@@ -19,24 +19,23 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
         if (token) {
             return next.handle(req.clone({ setHeaders: { 'x-access-token': token } })).do(response => {
                 if (response instanceof HttpResponse) {
-                      this.loadingSrvc.hideLoader();
-                   this.auth.setupJWTToken(response.body);
+                    this.loadingSrvc.hideLoader();
+                    this.auth.setupJWTToken(response.body);
                 }
             }, (err: any) => {
                 if (err instanceof HttpErrorResponse && err.status === 401) {
-                      this.loadingSrvc.hideLoader();
+                    this.loadingSrvc.hideLoader();
                     // redirect to the login route// or show a modal
                 }
             });
-        }
-        else {
+        } else {
             return next.handle(req).do(response => {
-                  this.loadingSrvc.hideLoader();
+                this.loadingSrvc.hideLoader();
                 if (response instanceof HttpResponse) {
                     this.auth.setupJWTToken(response.body);
                 }
             }, (err: any) => {
-                 this.loadingSrvc.hideLoader();
+                this.loadingSrvc.hideLoader();
                 if (err instanceof HttpErrorResponse && err.status === 401) {
                     // redirect to the login route// or show a modal
                 }

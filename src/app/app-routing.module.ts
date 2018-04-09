@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AdminComponent} from './layout/admin/admin.component';
-import {LoginComponent} from './theme/login/login.component';
-import {CorporateComponent} from './theme/dashboard/corporate-dashboard/corporate.component';
+import { AdminComponent } from './layout/admin/admin.component';
+import { LoginComponent } from './theme/login/login.component';
+import { CorporateComponent } from './theme/dashboard/corporate-dashboard/corporate.component';
 
 const routes: Routes = [
-  {  path : '',redirectTo : 'login', pathMatch : 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  { path: '',component: AdminComponent,
-  
+  {
+    path: '', component: AdminComponent,
+
     children: [
-     {
-      path: 'dashboard',
-      loadChildren: './theme/dashboard/dashboard.module#DashboardModule'
+      {
+        path: 'dashboard',
+        loadChildren: './theme/dashboard/dashboard.module#DashboardModule'
       },
 
-        // { path: '',   
-        //   redirectTo: 'dashboard/corporate',pathMatch: 'full' 
-        // },
-     
+      // { path: '',   
+      //   redirectTo: 'dashboard/corporate',pathMatch: 'full' 
+      // },
+
       // { path: 'dashboard/corporate',
       //   loadChildren: './theme/dashboard/corporate-dashboard/corporate.module#CorporateModule' 
       // },
@@ -41,9 +42,9 @@ const routes: Routes = [
       }
     ]
   },
-  {path: 'login',component : LoginComponent},
+  { path: 'login', component: LoginComponent },
 
-  {path : '**', redirectTo : 'login',pathMatch : 'full'}
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
