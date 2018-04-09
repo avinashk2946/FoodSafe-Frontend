@@ -24,15 +24,7 @@
           <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot" (ngModelChange)="searchForSupplier(item.supplierLot)">
         </td>
         <td>{{item.newLot}}</td>
-        <td>
-          <div *ngIf="!ifPurchaseorderEmpty">
-            {{item.po}}
-          </div>
-          <div *ngIf="ifPurchaseorderEmpty">
-            <input type="text" class="form-control" name="" value="" [(ngModel)]="item.po">
-          </div>
-        </td>
-
+        <td>{{item.po}} </td>
         <td>
           <input type="text" class="form-control" name="" value="" [(ngModel)]="item.totalQuantity">
         </td>

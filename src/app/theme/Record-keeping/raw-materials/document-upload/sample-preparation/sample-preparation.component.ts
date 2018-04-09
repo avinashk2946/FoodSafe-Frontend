@@ -165,9 +165,7 @@ export class SamplePreparationComponent implements OnInit {
     this.samples[index].pesticideTest = response.pesticideTest;
     this.samples[index].virusTest = response.virusTest;
     if (this.samples[index].po === '') {
-      this.ifPurchaseorderEmpty = true;
-    } else {
-      this.ifPurchaseorderEmpty = false;
+      this.samples[index].po = this.recordDetails.po;
     }
   }
 }
