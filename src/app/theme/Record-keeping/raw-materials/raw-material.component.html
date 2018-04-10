@@ -109,9 +109,9 @@
 				  		<div class="col-md-4 form group">
 				            <label for="name">Approved</label>
 				          </div>
-				          <div class= "col-md-8 form group">
+				          <div class= "col-md-8 form group" *ngif="value">
 					          <select name="select" class="form-control form-control-primary" [(ngModel)]="approved" formControlName="approved" >
-					            <option value="Yes">Yes</option>
+					            <option  value="Yes">Yes</option>
 					             <option value="No">No</option>
 					          </select>  
 				          </div>

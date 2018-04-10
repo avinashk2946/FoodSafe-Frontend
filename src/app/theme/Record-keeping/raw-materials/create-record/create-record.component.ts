@@ -29,6 +29,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
 export class CreateRecordComponent implements OnInit {
 
   dataForm: FormGroup;
+  // public value: boolean = null;
 
   id: number;
   rawmaterial: any = 'rawmaterials[]';
@@ -47,10 +48,10 @@ export class CreateRecordComponent implements OnInit {
   product: any = '';
   productCode: any = '';
   variety: any = '';
-  isApproved: any = false;
-  kosher: any = false;
-  nonGMO: any = false;
-  organicValue: any = false;
+  isApproved: any = undefined;
+  kosher: any = undefined;
+  nonGMO: any = undefined;
+  organicValue: any = undefined;
   po: any = '';
   containerNo: any = '';
   lotNo: any = '';
@@ -91,7 +92,12 @@ export class CreateRecordComponent implements OnInit {
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
     });
-
+    
+ // if (this.value == true) {
+        
+ //      } else {
+ //        this.value = false;
+ //      }
   }
 
   onRecordCreate() {
@@ -227,6 +233,7 @@ export class CreateRecordComponent implements OnInit {
       this.organicValue = (this.selectedMaterial.organic) ? 'true' : 'false';
       this.isApproved = (this.selectedMaterial.isApproved) ? 'true' : 'false';
       this.kosher = (this.selectedMaterial.kosher) ? 'true' : 'false';
+      console.log(this.organicValue);
     }
   }
 }

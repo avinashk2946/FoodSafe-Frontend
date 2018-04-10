@@ -70,6 +70,7 @@ export class RecordListComponent implements OnInit {
       // this.rawMatService.getRecordList().subscribe(list => {this.record = list })
   }
   getRecordList() {
+    console.log("first record ");
     this.rawMatService.getRecord().subscribe((response: any) => {
       // console.log(response.data);
       this.recordList = response.data;
@@ -105,7 +106,7 @@ export class RecordListComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
       allowOutsideClick: false
-    }).then(function (returnData) {
+    }).then((function (returnData) {
       console.log(returnData);
       if (returnData.dismiss === 'cancel') {
         console.log("If");
@@ -116,7 +117,12 @@ export class RecordListComponent implements OnInit {
          );
       }else {
         // console.log(targetId);
-        
+        this.rawMatService.deleterecordList(targetId).subscribe((response: any) => {
+          // alert("delete success");
+          this.getRecordList();
+        }, err => {
+         alert("delete error");
+        });
         console.log("else");
         swal(
           'Deleted!',
@@ -124,12 +130,8 @@ export class RecordListComponent implements OnInit {
           'success'
         );
       }
-    }).catch(swal.noop);
-    this.rawMatService.deleterecordList(targetId).subscribe((response: any) => {
-          alert("delete success");
-        }, err => {
-         alert("delete error");
-        });
+    }).bind(this)).catch(swal.noop);
+    
   }
 
     public deleteClick(_id){ 
@@ -138,19 +140,24 @@ export class RecordListComponent implements OnInit {
         this.rawMatService.deleterecordList(this.recordSelected.selected[0]._id)
         .subscribe((response: any) => {
       // alert("delete success");
-    },
-     // .then(message =>{ this.reload()
-     //  });
-     err => {
-     alert("delete error");
-    });
+        this.getRecordList();
+        console.log("after delete");
+      // this.reload();
+        },
+
+         // .then(message =>{ this.reload()
+         //  });
+         err => {
+         alert("delete error");
+        });
     }
 
   // public reload():void{
   //     this.rawMatService.getRecordData(this.recordSelected).subscribe(
   //       record_response =>{
-  //         this.getRecordData = record_response as recordList[];       
+  //         this.getRecordData = record_response as any[];       
   //       }
   //     );
   //   }
+   
  }
