@@ -16,8 +16,10 @@ import { ActivatedRoute, Params , Router } from '@angular/router';
 })
 export class RecordListComponent implements OnInit {
 
-  recordList = [];
-  selected = [];
+  recordList : any =[];
+  selected : any =[];
+  recordSelected : any = [];
+  getRecordData: any = [];
 
   // For search bar autocomplete
   autocompleteItemsAsObjects = [
@@ -64,6 +66,7 @@ export class RecordListComponent implements OnInit {
 
   ngOnInit() {
     this.getRecordList();
+    // this.reload();
       // this.rawMatService.getRecordList().subscribe(list => {this.record = list })
   }
   getRecordList() {
@@ -74,7 +77,10 @@ export class RecordListComponent implements OnInit {
       this.comonSrvc.showErrorMsg(err.message);
     });
   }
-  onSelect({selected}) { }
+  onSelect(selected) { 
+    this.recordSelected = selected;
+    console.log("selected ",this.recordSelected);
+  }
 
   doubleClickAction(selectedRow) {
     // console.log('selected Id : ', selectedRow[0]._id);
@@ -87,7 +93,9 @@ export class RecordListComponent implements OnInit {
     console.log(selectedRow);
    }
 
-  openConfirmsSwal(selectedRow) {
+  public openConfirmsSwal(_id) {
+    console.log("abi");
+    let targetId = this.recordSelected.selected[0]._id;
     swal({
       title: 'Are you sure?',
       text: 'Do you want to delete?',
@@ -97,16 +105,19 @@ export class RecordListComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
       allowOutsideClick: false
-    }).then(function (response) {
-      console.log(response);
-      if (response.dismiss === 'cancel') {
+    }).then(function (returnData) {
+      console.log(returnData);
+      if (returnData.dismiss === 'cancel') {
+        console.log("If");
         swal(
            'Cancelled',
            'Your imaginary file is safe :)',
            'error'
          );
       }else {
-        console.log(selectedRow);
+        // console.log(targetId);
+        
+        console.log("else");
         swal(
           'Deleted!',
           'Your file has been deleted.',
@@ -114,7 +125,32 @@ export class RecordListComponent implements OnInit {
         );
       }
     }).catch(swal.noop);
+    this.rawMatService.deleterecordList(targetId).subscribe((response: any) => {
+          alert("delete success");
+        }, err => {
+         alert("delete error");
+        });
   }
 
-}
+    public deleteClick(_id){ 
+     console.log("abinash");  
+       console.log("this.recordSelected  ",this.recordSelected.selected[0]._id);
+        this.rawMatService.deleterecordList(this.recordSelected.selected[0]._id)
+        .subscribe((response: any) => {
+      // alert("delete success");
+    },
+     // .then(message =>{ this.reload()
+     //  });
+     err => {
+     alert("delete error");
+    });
+    }
 
+  // public reload():void{
+  //     this.rawMatService.getRecordData(this.recordSelected).subscribe(
+  //       record_response =>{
+  //         this.getRecordData = record_response as recordList[];       
+  //       }
+  //     );
+  //   }
+ }

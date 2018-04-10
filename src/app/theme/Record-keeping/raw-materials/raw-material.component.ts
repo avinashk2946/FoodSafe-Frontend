@@ -42,6 +42,7 @@ export class RawmaterialComponent implements OnInit {
       'lotNo' : ['', [Validators.required]]
     });
     this.plantservice.getplant().subscribe(responseplants => this.plant = responseplants);
+    
   }
 
   public changePlant (plant: Plant): void {  

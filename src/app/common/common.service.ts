@@ -33,6 +33,11 @@ export class CommonService {
             const baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
             return this.http.get(baseUrl + dataObject.actionName);
         }
+          else if (dataObject.method === 'DELETE') {
+            console.log("calling delete service")
+            const baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
+            return this.http.delete(baseUrl + dataObject.actionName);
+        }
     }
 
     showSuccessMsg(msg): void {

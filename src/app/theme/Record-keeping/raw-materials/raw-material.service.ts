@@ -151,4 +151,15 @@ export class RawMaterialService {
   }
 
 
+    deleterecordList(id) {   
+      console.log("deleterecordList  ",id);
+   const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
+
+    const url = API_ACTIONS.raw_material.record + '/'+id;
+    const httpRequest = new HttpRequestModal(url, 'DELETE', reqPayload, true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
+  
 }

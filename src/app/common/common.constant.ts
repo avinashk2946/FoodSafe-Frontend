@@ -41,6 +41,7 @@ export const API_ACTIONS = Object.freeze({
         broker: 'broker',
         product: 'product',
         samplepreparation: 'SamplePreparation',
-        rawmaterial: 'rawMaterial'
+        rawmaterial: 'rawMaterial',
+        recorddelete: 'deleterecordList',
     }
 });

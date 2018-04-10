@@ -26,7 +26,7 @@
 					<div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
-				            <label for="name">Plant</label>    <pre>{{plant | json}}</pre>
+				            <label for="name">Plant</label>   
 				          </div>
 				          <div class= "col-md-8 form group">  
 					          <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant" (change)='changePlant(plant)' formControlName="plant">
@@ -110,7 +110,7 @@
 				            <label for="name">Approved</label>
 				          </div>
 				          <div class= "col-md-8 form group">
-					          <select name="select" class="form-control form-control-primary" [(ngModel)]="approved" formControlName="approved">
+					          <select name="select" class="form-control form-control-primary" [(ngModel)]="approved" formControlName="approved" >
 					            <option value="Yes">Yes</option>
 					             <option value="No">No</option>
 					          </select>  
@@ -162,7 +162,7 @@
 				          <div class= "col-md-8 form group">
 					          <select name="select" class="form-control form-control-primary" [(ngModel)]="kosher" formControlName="kosher">
 					            <option value="Yes">Yes</option>
-					             <option value="No">No</option>
+					            <option value="No">No</option>
 					          </select>  
 				          </div>
 				  	</div>        
