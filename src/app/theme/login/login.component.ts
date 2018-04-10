@@ -21,11 +21,13 @@ import { GLOBAL_PROPERTIES } from './../../common/common.constant';
 })
 export class LoginComponent implements OnInit {
   // @LocalStorage() public username:string;
+
   loginForm: FormGroup;
   companyId: string;
   logoUrl: any;
   backgroundImgUrl: any;
   isFetchConfig: Boolean;
+  
   // private logo = require("./assets/images/logo.png");
 
   user;
