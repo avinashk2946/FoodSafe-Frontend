@@ -57,6 +57,8 @@ export class SamplePreparationComponent implements OnInit {
 
   }
 
+ // public sampleCollForm: FormGroup;
+
   ngOnInit() {
     // this is not right approach, we should be using sharing betwen component.
     this.localStorage.getItem('recordDetails').subscribe((recordDetails) => {
@@ -168,4 +170,6 @@ export class SamplePreparationComponent implements OnInit {
       this.samples[index].po = this.recordDetails.po;
     }
   }
+
+
 }

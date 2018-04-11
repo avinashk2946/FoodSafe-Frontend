@@ -61,7 +61,8 @@ export class CreateRecordComponent implements OnInit {
   selectedMaterial: any = '';
   materialGrp = '';
   material = '';
-
+ @Input() disabled: boolean;
+ 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, public router: Router) { }
 

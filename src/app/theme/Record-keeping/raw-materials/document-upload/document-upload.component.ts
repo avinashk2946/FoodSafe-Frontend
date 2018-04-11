@@ -122,7 +122,6 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   uploadFile() {
-    debugger;
     const formData: any = new FormData();
     this.fileList.forEach(element => {
       let i = 1;
