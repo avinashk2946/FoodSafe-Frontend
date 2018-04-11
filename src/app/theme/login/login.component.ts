@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { DataService } from '../../service/data.service';
 import { LoginService } from './login.service';
 import { CommonService } from '../../common/common.service';
-import { AuthService } from '../../common/auth.service';
+// import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   user;
 
-  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder,
+  constructor( private _dataService: DataService, private _router: Router, private fb: FormBuilder,
     private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy,
     protected localStorage: AsyncLocalStorage) {
 

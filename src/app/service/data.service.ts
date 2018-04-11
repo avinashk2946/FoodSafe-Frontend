@@ -5,7 +5,7 @@ export class DataService {
 
   constructor() { }
 
-  str : String = 'sample data';
+  str : string = 'sample data';
 
   getData(){
   	return this.str;

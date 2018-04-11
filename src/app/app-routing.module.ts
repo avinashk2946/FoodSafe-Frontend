@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './layout/admin/admin.component';
 import { LoginComponent } from './theme/login/login.component';
+import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
 // import { CorporateComponent } from './theme/dashboard/corporate-dashboard/corporate.component';
 
 const routes: Routes = [
@@ -43,6 +44,8 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
+
+  { path: 'resetPassword', component: ForgotPasswordComponent },
 
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
