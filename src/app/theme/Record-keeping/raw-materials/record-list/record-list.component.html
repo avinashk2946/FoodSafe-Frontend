@@ -55,7 +55,7 @@
           (dblclick)='doubleClickAction(selected)'>
 
           <ngx-datatable-column name="Created Date">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 {{row.createdDate | date:'dd/MM/yyyy'}}
               </span>
@@ -63,7 +63,7 @@
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Purchase Order">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 {{row.po}}
               </span>
@@ -79,7 +79,7 @@
         </ngx-datatable-column> -->
 
           <ngx-datatable-column name="Supplier Name">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row "ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 {{row.supplier.name}}
               </span>
@@ -87,7 +87,7 @@
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Lot Number">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 {{row.lotNo}}
               </span>
@@ -95,7 +95,7 @@
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Container Number">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 {{row.containerNo}}
               </span>
@@ -103,7 +103,7 @@
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Country">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 {{row.country}}
               </span>
@@ -111,7 +111,7 @@
           </ngx-datatable-column>
 
           <ngx-datatable-column name="Status">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
               <span class="table-head">
                 In Progress
               </span>

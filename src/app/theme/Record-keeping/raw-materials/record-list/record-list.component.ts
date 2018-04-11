@@ -3,6 +3,7 @@ import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
 import swal from 'sweetalert2';
 import { ActivatedRoute, Params , Router } from '@angular/router';
+import {Input, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
 
 
 @Component({
@@ -62,6 +63,19 @@ export class RecordListComponent implements OnInit {
 
   constructor( public rawMatService: RawMaterialService, public comonSrvc: CommonService, public activatedRoute: ActivatedRoute,
     public router: Router ) { }
+
+
+
+    @Input('sortable-column')
+    columnName: string;
+
+    @Input('sort-direction')
+    sortDirection: string = '';
+
+    @HostListener('click')
+    sort() {
+        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    }
 
 
   ngOnInit() {

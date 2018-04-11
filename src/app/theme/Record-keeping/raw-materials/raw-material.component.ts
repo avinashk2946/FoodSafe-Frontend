@@ -18,7 +18,9 @@ import { LocationStrategy } from '@angular/common';
 })
 export class RawmaterialComponent implements OnInit {
   dataForm: FormGroup;
-
+   
+  public hitCancel:boolean=false;
+  
    @Input() plant=[];
 
   constructor(private fb: FormBuilder, public plantservice: PlantService) {}
@@ -42,13 +44,56 @@ export class RawmaterialComponent implements OnInit {
       'lotNo' : ['', [Validators.required]]
     });
     this.plantservice.getplant().subscribe(responseplants => this.plant = responseplants);
-    
   }
-
+    
   public changePlant (plant: Plant): void {  
     this.plantservice.getplant().subscribe((response: any) => {
       console.log(response);
     });
+
+
+    this.dataForm = this.fb.group({
+      'plant' : '',
+      'createdDate' : '', 
+      'createdBy' : '', 
+      'suplier' : '', 
+      'broker' : '', 
+      'coo' : '', 
+      'product' : '', 
+      'productCode' : '', 
+      'variety' : '', 
+      'approved' : '', 
+      'kosher' : '', 
+      'nonGMO' : '', 
+      'po' : '', 
+      'containerNo' : '', 
+      'lotNo' : ''
+  });
+  
+  this.dataForm.controls[ 'plant' ].setValidators([ Validators.required]);
+  this.dataForm.controls[ 'createdDate' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'createdBy' ].setValidators([Validators.required ]);
+  this.dataForm.controls[ 'suplier' ].setValidators([ Validators.required]);
+  this.dataForm.controls[ 'broker' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'coo' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'product' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'productCode' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'variety' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'approved' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'kosher' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'nonGMO' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'po' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'containerNo' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'lotNo' ].setValidators([Validators.required]);
+
   }
+
+cancel()
+{
+ this.hitCancel=true;
 }
+  }
+
+  
+
 
