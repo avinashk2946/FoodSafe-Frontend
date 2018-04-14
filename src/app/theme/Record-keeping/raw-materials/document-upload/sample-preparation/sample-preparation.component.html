@@ -49,7 +49,7 @@
 
         <td> {{item.pesticideTest}}</td>
         <td>
-          <textarea type="text" class="form-control" name="" [(ngModel)]="item.conmment" placeholder="your text here"></textarea>
+          <textarea type="text" class="form-control" name="" [(ngModel)]="item.comment" placeholder="your text here"></textarea> 
         </td>
         <td>
           <span>
@@ -71,7 +71,8 @@
 <div class="button pull-right">
   <span>
     <button type="button" class="btn btn-warning">Cancel</button>
-    <button autofocus="" type="button" class="btn btn-success" (item)='handleEvent($event)' (click)="saveSampleRecord()">Save</button>
+    <button autofocus="" type="button" class="btn btn-success" 
+    (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Save</button>
     <button type="button" class="btn btn-default">Exit</button>
   </span>
 </div>

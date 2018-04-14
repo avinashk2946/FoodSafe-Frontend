@@ -8,7 +8,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Subject } from 'rxjs/Subject';
 import * as _ from 'lodash';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { FileUploader } from 'ng2-file-upload';
+import { Http } from '@angular/http';
+import { HttpEventType } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sample-preparation',
@@ -32,6 +38,15 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
+  @ViewChild('tabs')
+
+     private tabs :any;
+    @Input() activeTab: string = ''; 
+
+  online$ = Observable.fromEvent(window, 'online');
+  offline$ = Observable.fromEvent(window, 'offline');
+  public onlineOffline: boolean = navigator.onLine;
+
   samples = [
     {
       supplierLot: '',
@@ -52,6 +67,7 @@ export class SamplePreparationComponent implements OnInit {
     public router: Router, private route: ActivatedRoute, protected localStorage: AsyncLocalStorage) {
     this.route.params.subscribe(params => {
       this.recordId = params.id;
+
     });
 
 
@@ -89,7 +105,12 @@ export class SamplePreparationComponent implements OnInit {
         });
 
     });
+
+    this.online$.subscribe(e => this.syncWithServer());
   }
+   syncWithServer() {
+      
+    }
 
   public changeNewLot(item): void {
     if (item.newLot !== '') {
@@ -140,17 +161,21 @@ export class SamplePreparationComponent implements OnInit {
     this.samples.splice(index, 1);
   }
   saveSampleRecord() {
+    this.onlineOffline = navigator.onLine;
+     if (this.onlineOffline){
     const obj = {
       record: this.recordId,
       samples: this.samples
     };
     this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
+      //console.log("sss");
+      this.tabs.select('samplecollectionid'); 
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
   }
-
+}
   public handleEvent(sampleadded: any) {
     this.item = sampleadded;
   }

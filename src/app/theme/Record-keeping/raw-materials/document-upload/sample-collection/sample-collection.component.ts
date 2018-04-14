@@ -1,5 +1,14 @@
 import { Component, OnInit,Input,Output,EventEmitter,ViewChild} from '@angular/core';
 import { RawMaterialService } from '../../raw-material.service';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { CommonService } from '../../../../../common/common.service';
+import { AuthService } from '../../../../../common/auth.service';
+import { LocationStrategy } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AsyncLocalStorage } from 'angular-async-local-storage';
+import { Subject } from 'rxjs/Subject';
+import * as _ from 'lodash';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -9,12 +18,17 @@ import { RawMaterialService } from '../../raw-material.service';
 })
 export class SampleCollectionComponent implements OnInit {
 
-  constructor(
-  	  public rawMatService:RawMaterialService,
-  	) {
- 
-     }
+  constructor(public fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+    public router: Router, private route: ActivatedRoute, protected localStorage: AsyncLocalStorage) {
+    this.route.params.subscribe(params => {
+      this.recordId = params.id;
+    });
 
+
+  }
+
+  public onlineOffline: boolean = navigator.onLine;
+  recordId = '';
   public sampleArr:any="";   
    // @ViewChild('addsample') public addsample;
 

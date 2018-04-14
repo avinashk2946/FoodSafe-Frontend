@@ -50,7 +50,7 @@ export class CreateRecordComponent implements OnInit {
   variety: any = '';
   isApproved: any = undefined;
   kosher: any = undefined;
-  nonGMO: any = undefined;
+  nonGMO: any = false;
   organicValue: any = undefined;
   po: any = '';
   containerNo: any = '';

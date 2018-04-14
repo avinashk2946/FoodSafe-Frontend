@@ -1,3 +1,11 @@
+<style type="text/css">
+  .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057 !important;
+  background-color: #fff !important;
+  border-color: #ddd #ddd #fff !important;
+}
+</style>
 <div class="doc-upload">
   <div class="doc-upload card">
     <div class="row data-table" *ngIf="recordDetails._id">
@@ -45,7 +53,7 @@
   </div>
 
   <div class="col-md-12 ">
-    <ngb-tabset type="tabs"  #tabs>
+    <ngb-tabset type="tabs"  #tabs   >
       <ngb-tab title="Document" id="documentUploadid1">
         <ng-template ngbTabContent>
           <table class="table table-framed table-responsive">
@@ -80,7 +88,7 @@
           </table>
           <div class=" row justify-content-center">
             <button type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button>
-            <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile(filesAddForm,$event) ">Save</button>
+            <button autofocus="" type="button" class="btn btn-success"                                                   (click)="uploadFile(filesAddForm,$event)">Save</button>
             <button type="button" class="btn btn-default" (click)="exit($event)">Exit</button>
           </div>
         </ng-template>
@@ -113,3 +121,13 @@
     </ngb-tabset>
   </div>
 </div>
+
+
+<!-- [ngClass]="{'active': activeTab === tab.value, 'disabled':tab.disabled ? tab.disabled : false}" -->
+<!-- [ngbTabContent]="['bg-warning','text-white']" -->
+<!-- <ngb-tab>
+  <template ngbTabTitle ><b>Fancy</b> title</template>
+  <template ngbTabContent>content</template>
+</ngb-tab>
+ -->
+

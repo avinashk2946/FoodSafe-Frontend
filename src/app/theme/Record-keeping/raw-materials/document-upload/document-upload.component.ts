@@ -47,7 +47,15 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 export class DocumentUploadComponent implements OnInit {
 
   @ViewChild('tabs')
-  private tabs: NgbTabset;
+
+     private tabs :any;
+    // @Input() tabs: NgbTabset;
+    @Input() activeTab: string = '';
+    // @Output() activeTabChange: EventEmitter<string> = new EventEmitter<string>();
+    // @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
+
+ currentOrientation = 'horizontal';
+
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, public router: Router, public http: Http, private route: ActivatedRoute) {
@@ -141,7 +149,8 @@ export class DocumentUploadComponent implements OnInit {
     if (this.onlineOffline) {
       this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
         this.comonSrvc.showSuccessMsg(response.message);
-        this.tabs.select('samplepreparationid');
+        //console.log("asd");
+        this.tabs.select('samplepreparationid'); 
       }, err => {
         this.comonSrvc.showErrorMsg(err.message);
       });
@@ -152,5 +161,16 @@ export class DocumentUploadComponent implements OnInit {
       this.localStorage.setItem('testOne', JSON.stringify(this.fileList));
     }
   }
+
+
+   // tabClick($event){
+   //      if (!tab.disabled) {
+   //          this.active = tab.value;
+   //          this.activeTabChange.emit(tab.value);
+   //          this.onClick.emit(tab.value);
+   //      }
+   //  }
+
+
 }
 
