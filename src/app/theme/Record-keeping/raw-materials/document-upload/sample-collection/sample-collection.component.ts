@@ -1,190 +1,204 @@
-import { Component, OnInit,Input,Output,EventEmitter,ViewChild} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { RawMaterialService } from '../../raw-material.service';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
+import { Router, ActivatedRoute } from '@angular/router';
+// import { SamplePreparation } from '../../../../../classes/sample-preparation';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-sample-collection',
   templateUrl: './sample-collection.component.html',
-  styleUrls: ['./sample-collection.component.scss']
+  styleUrls: ['./sample-collection.component.scss',
+    '../../../../../../assets/icon/icofont/css/icofont.scss']
 })
 export class SampleCollectionComponent implements OnInit {
 
-  constructor(
-  	  public rawMatService:RawMaterialService,
-  	) {
- 
-     }
 
-  public sampleArr:any="";   
-   // @ViewChild('addsample') public addsample;
+  public supplierLotlist: any = [];
 
-  public supplierLot:any="";
-  public item: any = "";
-  public selectedsupplierLot: any = "";
+  public showEditFields = false;
+
+  public sampleForm: FormGroup;
+
+  public recordId: string;
+
+  public sampleList = [];
+
+  public samplePreparations = []; /// : SamplePreparation[];
+
+  public totalSamples = 0;
+
+  uploader: FileUploader = new FileUploader({});
+
+  public current = new Sample('', '', new FileUploader({}), false, false, false, '');
+
+  constructor(public rawMatService: RawMaterialService, fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
+    this.sampleForm = fb.group({
+      'supplierLot': ['', Validators.required],
+      'qaAnalysis': ['', Validators.required],
+      'pathvirsuFcon': ['', Validators.required],
+      'pestcidesFcon': ['', Validators.required],
+      'comments': []
+    });
+
+    this.route.params.subscribe(params => {
+      this.recordId = params.id;
+      this.getSamplePreparations();
+      this.getSampleCollections();
+    });
+  }
 
   ngOnInit() {
-     // this.rawMatService.sampleCollection.get()
-    //      .then((sample_response)=>{
-    //        this.sample=smaple_response;
-    //      });
-      this.getSampleCount();     
-      this.supplierLot = Array({}).fill(4).map((x,i)=>i); 
-      this.sampleArr = Array(this.getSampleCount()).fill(4);
-  }
-  
-  samples = [
-      {
-    
-       "supplierLot"         :"testLot1",
-       "newLot"              :"true",
-       "po"                  :"po1",
-       "totalQuantity"       : 10,
-       "quantityPlanned"     :2,
-       "qualityAnalysis"     :false,
 
-     
-       "indicatorTest"       :false,
-       "pathogenTest"        :false,
-       "virusTest"           :false,
-       "pesticideTest"       :false,
-        "comment" :"samples are uploaded properly"
-       
-     },
-        {
-       "supplierLot"         :"testLot2",
-       "newLot"              :"false",
-       "po"                  :"po234",
-       "totalQuantity"       : 9,
-       "quantityPlanned"     :2,
-       "qualityAnalysis"     :true,
-
-     
-       "indicatorTest"       :true,
-       "pathogenTest"        :true,
-       "virusTest"           :true,
-       "pesticideTest"       :true,
-       "comment":"samples are uploaded properly"
-     },
-     {
-       "supplierLot"         :"testLot3",
-       "newLot"              :"false",
-       "po"                  :"Po123",
-       "totalQuantity"       : 10,
-       "quantityPlanned"     :2,
-       "qualityAnalysis"     :false,
-
-     
-       "indicatorTest"       :false,
-       "pathogenTest"        :false,
-       "virusTest"           :false,
-       "pesticideTest"       :false,
-       "comment":"some samples are uploaded properly"
-     },
-      {
-       "supplierLot"         :"testLot4",
-       "newLot"              :"false",
-       "po"                  :"Po123",
-       "totalQuantity"       : 50,
-       "quantityPlanned"     :1,
-       "qualityAnalysis"     :false,
-
-     
-       "indicatorTest"       :false,
-       "pathogenTest"        :false,
-       "virusTest"           :false,
-       "pesticideTest"       :false,
-       "comment":"some samples are uploaded properly"
-     },
-
-  ];
-
-    public getSampleCount(){
-      let total=0;
-      if(this.samples instanceof Array){
-          this.samples.forEach(function(e){
-              total+=e.quantityPlanned?e.quantityPlanned:0
-          })
-      }
-      return total;
   }
 
-    samplecollection = [
-          {         
-               "supplierLot"         :"test1",
-               "newLot"              :"true",
-               "po"                  :"po1",
-               "totalQuantity"       : 10,
-               "quantityPlanned"     :1,
-               "qualityAnalysis"     :false,
-
-             
-               "indicatorTest"       :false,
-               "pathogenTest"        :false,
-               "virusTest"           :false,
-               "pesticideTest"       :false,
-                "comment" :"samples are uploaded properly"
-               
-             },
-                {
-               "supplierLot"         :"test2",
-               "newLot"              :"false",
-               "po"                  :"po234",
-               "totalQuantity"       : 9,
-               "quantityPlanned"     :3,
-               "qualityAnalysis"     :true,
-
-             
-               "indicatorTest"       :true,
-               "pathogenTest"        :true,
-               "virusTest"           :true,
-               "pesticideTest"       :true,
-               "comment":"samples are uploaded properly"
-             },
-                  {
-               "supplierLot"         :"test3",
-               "newLot"              :"false",
-               "po"                  :"po234",
-               "totalQuantity"       : 9,
-               "quantityPlanned"     :3,
-               "qualityAnalysis"     :true,
-
-             
-               "indicatorTest"       :true,
-               "pathogenTest"        :true,
-               "virusTest"           :true,
-               "pesticideTest"       :true,
-               "comment":"samples are uploaded properly"
-        },
-  ];
-
-
-
-  //  public onSelect(selectedsupplierLot): void {
-  //   if (selectedsupplierLot.supplierLot != '') {
-  //     selectedsupplierLot.pathogenTest = (selectedsupplierLot.supplierLot == "true") ? true : false;
-  //     selectedsupplierLot.qualityAnalysis = (selectedsupplierLot.supplierLot == "true") ? true : false;
-  //     selectedsupplierLot.pesticideTest = (selectedsupplierLot.supplierLot == "true") ? true : false;
-  //   }
-  // }
-public getsupplierLot(){
-      let total=0;
-      if(this.samplecollection instanceof Array){
-          this.samplecollection.forEach(function(e){
-              // this.supplierLot=supplierLot;
-              // let index=supplierLot.findIndex(x=>x.supplierLot===samplecollection.supplierLot);
-          })
-      }
-      return total;
+  public addNewSample() {
+    this.showEditFields = true;
+    this.current = new Sample('', '', new FileUploader({}), false, false, false, '');
   }
-onSelect(supplierLot) { 
-    this.selectedsupplierLot = null;
-    for (let i = 0; i < this.supplierLot.length; i++)
-    {
-      if (this.supplierLot[i].id == this.supplierLot) {
-        this.selectedsupplierLot = this.supplierLot[i];
-      }
+
+  public addFile(e, list) {
+    e.preventDefault();
+    list.push({ attachment: '' });
+  }
+
+  delete(e: Event, index: number, list) {
+    e.preventDefault();
+    list.splice(index, 1);
+  }
+
+  public changeSupplierLot() {
+    console.log(this.current.supplierLot);
+    const sampleobj = _.find(this.samplePreparations, { '_id': this.current.supplierLot });
+    if (sampleobj !== undefined) {
+      this.current.quaAnalsisIndicator = sampleobj.qualityAnalysis ? 'true' : 'false';
+      this.current.pesticideIndicator = sampleobj.pesticideTest ? 'true' : 'false';
+      this.current.paViIndIndicator = this.getPaVirIndicator(sampleobj) ? 'true' : 'false';
     }
+    console.log(sampleobj);
+  }
 
+  // based on pathogen virus and indictor test 
+  getPaVirIndicator(sampleobj) {
+
+    if (sampleobj.pathogenTest === false && sampleobj.indicatorTest === false && sampleobj.virusTest === false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public saveUpdateSample(current) {
+    console.log(current);
+    this.showEditFields = false;
+    this.current.id = 'sample_supplierlot_1'; // this.createId();
+    this.sampleList.push({
+      id: this.current.id,
+      attachments: this.current.attachments.queue[0]._file.name,
+      supplierLot: _.find(this.samplePreparations, { '_id': this.current.supplierLot }).supplierLot,
+      quaAnalsisIndicator: this.current.quaAnalsisIndicator,
+      paViIndIndicator: this.current.paViIndIndicator,
+      pesticideIndicator: this.current.pesticideIndicator,
+      conmment: this.current.conmment
+    });
+    return false;
+  }
+
+  public deleteSelected(event: Event, index: number, attachmentsQueue) {
+    event.preventDefault();
+    attachmentsQueue.splice(index, 1);
+  }
+
+  getSamplePreparations() {
+    this.rawMatService.getSamplePreparation(this.recordId)
+      .subscribe((response: any) => {
+        response.data.forEach(element => {
+
+          for (let i = 0; i < element.samples.length; i++) {
+            this.samplePreparations.push(element.samples[i]);
+            console.log(element.samples[i].quantityPlanned);
+            this.totalSamples = this.totalSamples + element.samples[i].quantityPlanned;
+            this.supplierLotlist.push({ label: element.samples[i].supplierLot, value: element.samples[i]._id });
+          }
+          console.log(this.samplePreparations);
+        });
+      }, err => {
+        console.log('Error occured while getting sample preparation from db.');
+      });
+  }
+
+  getSampleCollections() {
+    this.rawMatService.getSampleCollection(this.recordId)
+      .subscribe((response: any) => {
+
+        console.log('Existing sample collection :' + response);
+
+
+        /* response.data.forEach(element => {
+
+          for (let i = 0; i < element.samples.length; i++) {
+            this.sampleList.push(element.samples[i]);
+            console.log(element.samples[i].quantityPlanned);
+            this.totalSamples = this.totalSamples + element.samples[i].quantityPlanned;
+          }
+          console.log(this.samplePreparations);
+        }); */
+      }, err => {
+        console.log('Error occured while getting sample preparation from db.');
+      });
+  }
+
+}
+
+export class Sample {
+  id: string;
+  attachments: FileUploader;
+  supplierLot: string;
+  quaAnalsisIndicator: string;
+  paViIndIndicator: string;
+  pesticideIndicator: string;
+  conmment: string;
+
+  constructor(id, supplierLot, attachments, quaAnalsisIndicator, paViIndIndicator, pesticideIndicator, comments) {
+    this.id = id;
+    this.attachments = attachments;
+    this.supplierLot = supplierLot;
+    this.quaAnalsisIndicator = quaAnalsisIndicator;
+    this.paViIndIndicator = paViIndIndicator;
+    this.pesticideIndicator = pesticideIndicator;
+    this.conmment = comments;
+  }
+}
+
+export class SamplePreparation {
+  id: string;
+  supplierLot: string;
+  newLot: boolean;
+  po: string;
+  totalQuantity: number;
+  qualityAnalysis: boolean;
+  quantityPlanned: boolean;
+  indicatorTest: boolean;
+  pathogenTest: boolean;
+  virusTest: boolean;
+  pesticideTest: boolean;
+  conmment: string;
+
+  constructor(id, supplierlot, newlot, po, totalqantity, qaulityanalysis, quantityplanned,
+    indictortest, pathogentest, virustest, pestcidestest, comments) {
+    this.id = id;
+    this.supplierLot = supplierlot;
+    this.newLot = newlot;
+    this.po = po;
+    this.totalQuantity = totalqantity;
+    this.qualityAnalysis = qaulityanalysis;
+    this.quantityPlanned = quantityplanned;
+    this.indicatorTest = indictortest;
+    this.pathogenTest = pathogentest;
+    this.virusTest = virustest;
+    this.pesticideTest = pestcidestest;
+    this.conmment = comments;
   }
 
 }

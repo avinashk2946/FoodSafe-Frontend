@@ -80,7 +80,9 @@ export class SamplePreparationComponent implements OnInit {
             this.samples = [];
           }
           response.data.forEach(element => {
-            this.samples.push(element.samples[0]);
+            for (let i = 0; i < element.samples.length; i++) {
+              this.samples.push(element.samples[i]);
+            }
           });
         }, err => {
 
