@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
 import swal from 'sweetalert2';
-import { ActivatedRoute, Params , Router } from '@angular/router';
+import { ActivatedRoute, Params , Router , NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -83,9 +83,20 @@ export class RecordListComponent implements OnInit {
     console.log("selected ",this.recordSelected);
   }
 
-  doubleClickAction(selectedRow) {
-    // console.log('selected Id : ', selectedRow[0]._id);
-    this.router.navigate(['/recordkeeping/raw-matrial/document-upload/' + selectedRow[0]._id]);
+  enableEditRow(selectedRow) {
+    console.log("selectedr",selectedRow[0])
+    //TODO: Default dropdown value selection
+    this.router.navigate(['/recordkeeping/raw-matrial/create/'], 
+    { queryParams:
+    { 
+     'selectedRow': selectedRow[0]._id,
+     'plant': selectedRow[0].plant['name'],
+     'supplierName': selectedRow[0].supplier['name'],
+     'po':selectedRow[0].po,
+     'lotNo':selectedRow[0].lotNo,
+     'containerNo':selectedRow[0].containerNo
+    } 
+    });
   }
 
   onActivate(event) {}

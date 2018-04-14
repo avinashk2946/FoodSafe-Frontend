@@ -5,9 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-
-
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute ,Params} from '@angular/router';
 
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
@@ -64,7 +62,7 @@ export class CreateRecordComponent implements OnInit {
   disabled: true;
  
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, public router: Router) { }
+    protected localStorage: AsyncLocalStorage, public router: Router,public route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -83,9 +81,9 @@ export class CreateRecordComponent implements OnInit {
       'lotNo': ['', [Validators.required]],
       'organic': [{value: 'organicValue',disabled: true}, [Validators.required]],
       'material': ['', [Validators.required]],
-      'materialGrp': ['', [Validators.required]]
-    });
-
+      'materialGrp': ['', [Validators.required]]   
+    }); 
+    
     this.getPlant();
 
     this.localStorage.getItem('user').subscribe((user) => {
@@ -94,11 +92,20 @@ export class CreateRecordComponent implements OnInit {
       this.createdById = user.user._id;
     });
     
- // if (this.value == true) {
+    // if (this.value == true) {
         
  //      } else {
  //        this.value = false;
  //      }
+  
+    this.route.queryParams.subscribe(params => {
+       //params all  the records been found onclick of edit
+        this.po=params.po;
+        this.containerNo=params.containerNo;
+        this.lotNo=params.lotNo; 
+       
+      });
+ 
   }
 
   onRecordCreate() {
