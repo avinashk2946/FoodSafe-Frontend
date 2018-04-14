@@ -92,6 +92,12 @@ export class DocumentUploadComponent implements OnInit {
   public files: File[];
   public filesAddForm: FormGroup;
 
+
+  public  samplepreparation:any[];
+  public  samplecollection:any[];
+  public  qualityanalysisid:any[];
+
+
   ngOnInit() {
     this.getRecordDetails();
     this.online$.subscribe(e => this.syncWithServer());
@@ -149,7 +155,7 @@ export class DocumentUploadComponent implements OnInit {
     if (this.onlineOffline) {
       this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
         this.comonSrvc.showSuccessMsg(response.message);
-        //console.log("asd");
+        console.log("prep");
         this.tabs.select('samplepreparationid'); 
       }, err => {
         this.comonSrvc.showErrorMsg(err.message);

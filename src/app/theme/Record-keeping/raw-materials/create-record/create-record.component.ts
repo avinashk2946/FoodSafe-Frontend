@@ -61,7 +61,7 @@ export class CreateRecordComponent implements OnInit {
   selectedMaterial: any = '';
   materialGrp = '';
   material = '';
- @Input() disabled: boolean;
+  disabled: true;
  
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, public router: Router) { }
@@ -74,14 +74,14 @@ export class CreateRecordComponent implements OnInit {
       'broker': ['', [Validators.required]],
       'coo': ['', [Validators.required]],
       'variety': ['', [Validators.required]],
-      'approved': ['', [Validators.required]],
-      'kosher': ['', [Validators.required]],
-      'nonGMO': ['', [Validators.required]],
+      'approved': [{value: 'isApproved',disabled: true}, [Validators.required]],
+      'kosher': [{value: 'kosher',disabled: true}, [Validators.required]],
+      'nonGMO': [{value: 'nonGMO',disabled: true}, [Validators.required]],
       'po': ['', [Validators.required]],
       'containerNo': ['', [Validators.required]],
       'createdBy': ['', [Validators.required]],
       'lotNo': ['', [Validators.required]],
-      'organic': ['', [Validators.required]],
+      'organic': [{value: 'organicValue',disabled: true}, [Validators.required]],
       'material': ['', [Validators.required]],
       'materialGrp': ['', [Validators.required]]
     });
@@ -89,7 +89,7 @@ export class CreateRecordComponent implements OnInit {
     this.getPlant();
 
     this.localStorage.getItem('user').subscribe((user) => {
-      console.log(user); // should be 'Henri'
+      console.log(user); // 
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
     });

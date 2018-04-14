@@ -169,7 +169,7 @@ export class SamplePreparationComponent implements OnInit {
     };
     this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      //console.log("sss");
+        console.log("coll");
       this.tabs.select('samplecollectionid'); 
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);

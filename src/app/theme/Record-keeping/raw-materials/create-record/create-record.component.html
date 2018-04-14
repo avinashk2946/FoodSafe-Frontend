@@ -1,4 +1,4 @@
-<form [formGroup]="dataForm" (ngSubmit)="onRecordCreate()" novalidate>
+<form [formGroup]="dataForm" (ngSubmit)="onRecordCreate()" novalidate autocomplete="off">
 
   <div class="raw-materials justify-content-center">
 
@@ -98,7 +98,7 @@
         <div class="col-xs-12 col-sm-6 col-md-6 data-table">
           <div class="row ">
             <div class="col-md-4 form group">
-              <label for="name">Broker</label>
+              <label for="name">Broker</label>   
             </div>
             <div class="col-md-8 form group">
               <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokerList" placeholder='Select Broker' [(ngModel)]="broker"
@@ -164,13 +164,13 @@
             <div class="col-md-8 form-radio" >
               <div class="radio radiofill radio-inline" >
                 <label  >
-                  <input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="true" disabled="kosher">
+                  <input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="true" >
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label >
-                  <input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="false" disabled="kosher">
+                  <input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="false">
                   <i class="helper"></i>No
                 </label>
               </div>
@@ -185,13 +185,13 @@
             <div class="col-md-8 form-radio" >
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="approved" [(ngModel)]="isApproved" value="true" disabled="isApproved">
+                  <input type="radio" formControlName="approved" [(ngModel)]="isApproved" value="true" >
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label >
-                  <input type="radio" formControlName="approved" [(ngModel)]="isApproved" value="false" disabled="isApproved">
+                  <input type="radio" formControlName="approved" [(ngModel)]="isApproved" value="false" >
                   <i class="helper"></i>No
                 </label>
               </div>
@@ -206,13 +206,13 @@
             <div class="col-md-8 form-radio" >
               <div class="radio radiofill radio-inline"  >
                 <label >
-                  <input type="radio" formControlName="organic" [(ngModel)]="organicValue" value="true" disabled="organicValue">
+                  <input type="radio" formControlName="organic" [(ngModel)]="organicValue" value="true" >
                   <i class="helper" ></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="organic" [(ngModel)]="organicValue" value="false" disabled="organicValue">
+                  <input type="radio" formControlName="organic" [(ngModel)]="organicValue" value="false" >
                   <i class="helper" ></i>No
                 </label>
               </div>
@@ -239,13 +239,13 @@
             <div class="col-md-8 form-radio" >
               <div class="radio radiofill radio-inline">
                 <label >
-                  <input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="true" disabled="nonGMO">
+                  <input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="true" >
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label >
-                  <input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="false" disabled="nonGMO">
+                  <input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="false" >
                   <i class="helper"></i>No
                 </label>
               </div>
@@ -260,5 +260,3 @@
     </div>
   </div>
 </form>
-
-<input type="radio" name="foo" value="N" disabled>
