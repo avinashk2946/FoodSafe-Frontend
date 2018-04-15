@@ -28,9 +28,8 @@ export class LoginService {
 
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  
-  
 }
+
 
 
 

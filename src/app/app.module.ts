@@ -17,19 +17,11 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
 import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
 import { LoginComponent } from './theme/login/login.component';
-import { StyleComponent } from './style/style.component';
 
-import { DataService } from './service/data.service';
+
 import { CommonService } from './common/common.service';
 import { AuthService } from './common/auth.service';
 import { LoadingService } from './common/loading.service';
-import { RawMaterialsService } from './service/raw-materials.service';
-import { SupplierService } from './service/supplier.service';
-import { PlantService } from './service/plant.service';
-import { ProductService } from './service/product.service';
-import { BrokerService } from './service/broker.service';
-import { UploaddataService } from './service/uploaddata.service';
-
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpsRequestInterceptor } from './common/http.interceptor';
@@ -43,7 +35,6 @@ import { MenuItems } from './shared/menu-items/menu-items';
     AdminComponent,
     BreadcrumbsComponent,
     LoginComponent,
-    StyleComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,15 +53,8 @@ import { MenuItems } from './shared/menu-items/menu-items';
   ],
   providers: [
     MenuItems,
-    DataService,
     CommonService,
     AuthService,
-    RawMaterialsService,
-    SupplierService,
-    PlantService,
-    ProductService,
-    BrokerService,
-    UploaddataService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpsRequestInterceptor, multi: true },
     LoadingService],
   bootstrap: [AppComponent]

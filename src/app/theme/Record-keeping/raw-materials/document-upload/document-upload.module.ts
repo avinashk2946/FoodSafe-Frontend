@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocumentUploadComponent } from './document-upload.component';
 import { DocumentUploadRoutingModule } from './document-upload-routing.module';
+
 import { SharedModule } from '../../../../shared/shared.module';
+
 import { ChartModule } from 'angular2-chartjs';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { SelectModule } from 'ng-select';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -14,10 +17,6 @@ import { SampleCollectionComponent } from './sample-collection/sample-collection
 import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';
 import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
 import { SummaryComponent } from './summary/summary.component';
-import 'hammerjs';
-
-
-
 
 @NgModule({
   imports: [
@@ -38,8 +37,7 @@ import 'hammerjs';
     SampleCollectionComponent,
     QualityAnalysisComponent,
     MicroAnalysisComponent,
-    SummaryComponent,
-
+    SummaryComponent
   ],
 
   bootstrap: [DocumentUploadComponent]

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../../service/data.service';
 import { LoginService } from './login.service';
 import { CommonService } from '../../common/common.service';
 // import { AuthService } from '../../common/auth.service';
@@ -27,12 +26,12 @@ export class LoginComponent implements OnInit {
   logoUrl: any;
   backgroundImgUrl: any;
   isFetchConfig: Boolean;
-  
+
   // private logo = require("./assets/images/logo.png");
 
   user;
 
-  constructor( private _dataService: DataService, private _router: Router, private fb: FormBuilder,
+  constructor(private _router: Router, private fb: FormBuilder,
     private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy,
     protected localStorage: AsyncLocalStorage) {
 

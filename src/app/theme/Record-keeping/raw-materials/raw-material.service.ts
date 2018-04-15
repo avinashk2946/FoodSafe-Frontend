@@ -4,7 +4,6 @@ import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../common/common.constant'
 import { HttpRequestModal } from '../../../common/httpRequest.modal';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-import { SamplePreparation } from '../../../classes/sample-preparation';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -155,7 +154,6 @@ export class RawMaterialService {
 
 
   deleterecordList(id) {
-    console.log("deleterecordList  ", id);
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
     };
