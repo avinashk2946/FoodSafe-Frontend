@@ -4,6 +4,8 @@ import { DocumentUploadComponent } from './document-upload.component';
 import { DocumentUploadRoutingModule } from './document-upload-routing.module';
 
 import { SharedModule } from '../../../../shared/shared.module';
+import { ImagePreviewDirective } from '../../../../directives/image-preview-directive';
+
 
 import { ChartModule } from 'angular2-chartjs';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -37,7 +39,8 @@ import { SummaryComponent } from './summary/summary.component';
     SampleCollectionComponent,
     QualityAnalysisComponent,
     MicroAnalysisComponent,
-    SummaryComponent
+    SummaryComponent,
+    ImagePreviewDirective
   ],
 
   bootstrap: [DocumentUploadComponent]

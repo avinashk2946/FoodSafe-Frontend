@@ -17,6 +17,7 @@ import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
 
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
@@ -48,13 +49,13 @@ export class DocumentUploadComponent implements OnInit {
 
   @ViewChild('tabs')
 
-     private tabs :any;
-    // @Input() tabs: NgbTabset;
-    @Input() activeTab: string = '';
-    // @Output() activeTabChange: EventEmitter<string> = new EventEmitter<string>();
-    // @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
+  private tabs: any;
+  // @Input() tabs: NgbTabset;
+  @Input() activeTab  = '';
+  // @Output() activeTabChange: EventEmitter<string> = new EventEmitter<string>();
+  // @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
 
- currentOrientation = 'horizontal';
+  currentOrientation = 'horizontal';
 
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
@@ -93,9 +94,9 @@ export class DocumentUploadComponent implements OnInit {
   public filesAddForm: FormGroup;
 
 
-  public  samplepreparation:any[];
-  public  samplecollection:any[];
-  public  qualityanalysisid:any[];
+  public samplepreparation: any[];
+  public samplecollection: any[];
+  public qualityanalysisid: any[];
 
 
   ngOnInit() {
@@ -155,8 +156,7 @@ export class DocumentUploadComponent implements OnInit {
     if (this.onlineOffline) {
       this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
         this.comonSrvc.showSuccessMsg(response.message);
-        console.log("prep");
-        this.tabs.select('samplepreparationid'); 
+        this.tabs.select('samplepreparationid');
       }, err => {
         this.comonSrvc.showErrorMsg(err.message);
       });
@@ -169,13 +169,13 @@ export class DocumentUploadComponent implements OnInit {
   }
 
 
-   // tabClick($event){
-   //      if (!tab.disabled) {
-   //          this.active = tab.value;
-   //          this.activeTabChange.emit(tab.value);
-   //          this.onClick.emit(tab.value);
-   //      }
-   //  }
+  // tabClick($event){
+  //      if (!tab.disabled) {
+  //          this.active = tab.value;
+  //          this.activeTabChange.emit(tab.value);
+  //          this.onClick.emit(tab.value);
+  //      }
+  //  }
 
 
 }

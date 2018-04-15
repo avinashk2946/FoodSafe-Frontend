@@ -46,15 +46,6 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-  //   getSamplePreparation(obj) {
-  //   var reqPayload = {
-  //     channel: GLOBAL_PROPERTIES.CHANNEL
-  //   }
-  //   var url = API_ACTIONS.raw_material.samplepreparation+'?supplierlot='+obj.supplierlot+'&supplier='+obj.supplierlot;
-  //   var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
-  //   return this.comonSrvc.createHttpRequest(httpRequest);
-  // }
-
   getProduct(obj) {
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
