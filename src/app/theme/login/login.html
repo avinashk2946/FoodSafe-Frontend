@@ -36,7 +36,7 @@
               </div>
 
               <div class="sub-text right f-right">
-                <a [routerLink]="['/resetPassword']" (click) = "goToResetPassword()" class="text-right f-w-600 text-inverse"> Forgot Password?</a>
+                <a [routerLink]="['/forgotPassword']"  class="text-right f-w-600 text-inverse"> Forgot Password?</a>
                 <p>
               </div>
               <div class="row m-t-30">
@@ -57,7 +57,9 @@
                       <span class="sub-text text-inverse">Remember me</span>
                     </label>
                   </div>
-                  <div class="forgot-phone text-right f-right">
+                  <br>
+                  <br>
+                  <div class="forgot ">
                     <!-- <a [routerLink]="['/auth/forgot']" class="text-right f-w-600 text-inverse"> Forgot Password?</a> -->
                     <!--  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign in</button> -->
                     <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">

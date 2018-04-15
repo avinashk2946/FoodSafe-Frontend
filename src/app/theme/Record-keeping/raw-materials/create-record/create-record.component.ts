@@ -5,9 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-
-
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute ,Params} from '@angular/router';
 
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
@@ -50,7 +48,7 @@ export class CreateRecordComponent implements OnInit {
   variety: any = '';
   isApproved: any = undefined;
   kosher: any = undefined;
-  nonGMO: any = undefined;
+  nonGMO: any = false;
   organicValue: any = undefined;
   po: any = '';
   containerNo: any = '';
@@ -61,9 +59,10 @@ export class CreateRecordComponent implements OnInit {
   selectedMaterial: any = '';
   materialGrp = '';
   material = '';
-
+  disabled: true;
+ 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, public router: Router) { }
+    protected localStorage: AsyncLocalStorage, public router: Router,public route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -73,31 +72,40 @@ export class CreateRecordComponent implements OnInit {
       'broker': ['', [Validators.required]],
       'coo': ['', [Validators.required]],
       'variety': ['', [Validators.required]],
-      'approved': ['', [Validators.required]],
-      'kosher': ['', [Validators.required]],
-      'nonGMO': ['', [Validators.required]],
+      'approved': [{value: 'isApproved',disabled: true}, [Validators.required]],
+      'kosher': [{value: 'kosher',disabled: true}, [Validators.required]],
+      'nonGMO': [{value: 'nonGMO',disabled: true}, [Validators.required]],
       'po': ['', [Validators.required]],
       'containerNo': ['', [Validators.required]],
       'createdBy': ['', [Validators.required]],
       'lotNo': ['', [Validators.required]],
-      'organic': ['', [Validators.required]],
+      'organic': [{value: 'organicValue',disabled: true}, [Validators.required]],
       'material': ['', [Validators.required]],
-      'materialGrp': ['', [Validators.required]]
-    });
-
+      'materialGrp': ['', [Validators.required]]   
+    }); 
+    
     this.getPlant();
 
     this.localStorage.getItem('user').subscribe((user) => {
-      console.log(user); // should be 'Henri'
+      console.log(user); // 
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
     });
     
- // if (this.value == true) {
+    // if (this.value == true) {
         
  //      } else {
  //        this.value = false;
  //      }
+  
+    this.route.queryParams.subscribe(params => {
+       //params all  the records been found onclick of edit
+        this.po=params.po;
+        this.containerNo=params.containerNo;
+        this.lotNo=params.lotNo; 
+       
+      });
+ 
   }
 
   onRecordCreate() {

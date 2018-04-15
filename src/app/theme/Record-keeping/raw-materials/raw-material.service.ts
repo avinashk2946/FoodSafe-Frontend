@@ -125,9 +125,12 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-  sampleCollection(obj) {
-    const url = API_ACTIONS.raw_material.record + '/';
-    const httpRequest = new HttpRequestModal(url, 'GET', obj, true);
+  getSampleCollection(recordId) {
+    const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
+    const url = API_ACTIONS.raw_material.record + '/sampleCollection/' + recordId;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
@@ -151,15 +154,15 @@ export class RawMaterialService {
   }
 
 
-    deleterecordList(id) {   
-      console.log("deleterecordList  ",id);
-   const reqPayload = {
+  deleterecordList(id) {
+    console.log("deleterecordList  ", id);
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
     };
 
-    const url = API_ACTIONS.raw_material.record + '/'+id;
+    const url = API_ACTIONS.raw_material.record + '/' + id;
     const httpRequest = new HttpRequestModal(url, 'DELETE', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  
+
 }

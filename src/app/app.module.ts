@@ -18,7 +18,7 @@ import { AdminComponent } from './layout/admin/admin.component';
 import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
 import { LoginComponent } from './theme/login/login.component';
 import { StyleComponent } from './style/style.component';
-import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './theme/forgot-password/forgot-password.component';
 
 
 import { DataService } from './service/data.service';
@@ -36,6 +36,7 @@ import { UploaddataService } from './service/uploaddata.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpsRequestInterceptor } from './common/http.interceptor';
 import { MenuItems } from './shared/menu-items/menu-items';
+import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
 // import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
 // import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
 // import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
@@ -53,6 +54,7 @@ import { MenuItems } from './shared/menu-items/menu-items';
     LoginComponent,
     StyleComponent,
     ForgotPasswordComponent,
+    ResetPasswordComponent,
     // FormPickerComponent,
     // RawMaterialComponent,
     // RawMaterialDetailsComponent,

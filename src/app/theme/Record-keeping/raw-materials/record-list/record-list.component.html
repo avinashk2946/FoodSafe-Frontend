@@ -39,7 +39,7 @@
       <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right" (click)="openConfirmsSwal($event)">
         <i class="icofont icofont-delete-alt"></i>
       </button>
-      <button [disabled]="selected.length > 1" type="button" class="btn btn-default pull-right">
+      <button [disabled]="selected.length ==0 " type="button" class="btn btn-default pull-right" (click)="enableEditRow(selected)">
         <i class="icofont icofont-edit-alt"></i>
       </button>
     </div>
@@ -54,7 +54,7 @@
           [rowHeight]="50" [limit]="10" [selected]="selected" [selectionType]="'multi'" (activate)="onActivate($event)" (select)='onSelect($event)'
           (dblclick)='doubleClickAction(selected)'>
 
-          <ngx-datatable-column name="Created Date">
+          <ngx-datatable-column name="Created Date">  
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
               <span class="table-head">
                 {{row.createdDate | date:'dd/MM/yyyy'}}
