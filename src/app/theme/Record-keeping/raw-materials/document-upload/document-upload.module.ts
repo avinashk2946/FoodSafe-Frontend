@@ -14,12 +14,8 @@ import { SampleCollectionComponent } from './sample-collection/sample-collection
 import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';
 import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
 import { SummaryComponent } from './summary/summary.component';
-import { RawmaterialDetailsComponent } from './rawmaterial-details/rawmaterial-details.component';
-import { SampleImageComponent } from './sample-image/sample-image.component';
-import { NgxCarouselModule } from 'ngx-carousel';
-import { ImagePreview } from '../../../../directives/image-preview-directive';
 import 'hammerjs';
-import { SliderComponent } from './slider/slider.component';
+
 
 
 
@@ -32,8 +28,7 @@ import { SliderComponent } from './slider/slider.component';
     FormsModule, ReactiveFormsModule,
     SelectModule,
     SimpleNotificationsModule.forRoot(),
-    FileUploadModule,
-    NgxCarouselModule,
+    FileUploadModule
   ],
 
 
@@ -44,10 +39,7 @@ import { SliderComponent } from './slider/slider.component';
     QualityAnalysisComponent,
     MicroAnalysisComponent,
     SummaryComponent,
-    RawmaterialDetailsComponent,
-    SampleImageComponent,
-    ImagePreview,
-    SliderComponent
+
   ],
 
   bootstrap: [DocumentUploadComponent]
