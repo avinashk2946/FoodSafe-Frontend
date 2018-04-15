@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './layout/admin/admin.component';
 import { LoginComponent } from './theme/login/login.component';
-// import { ForgotPasswordComponent } from './theme/forgot-password/forgot-password.component';
+import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
 // /import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
 
-  // { path: 'forgotPassword', component: ForgotPasswordComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
 
   // { path: 'resetPassword', component: ResetPasswordComponent },
 
