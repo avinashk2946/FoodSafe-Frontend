@@ -13,21 +13,18 @@ import { GLOBAL_PROPERTIES } from './../../common/common.constant';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss'],
-  providers: [LoginService],
-  // provider: [LocalStorageService]
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  // @LocalStorage() public username:string;
+
 
   loginForm: FormGroup;
   companyId: string;
   logoUrl: any;
   backgroundImgUrl: any;
   isFetchConfig: Boolean;
-
-  // private logo = require("./assets/images/logo.png");
 
   user;
 
@@ -39,9 +36,6 @@ export class LoginComponent implements OnInit {
     const splittedArray = absUrl.split(':')[0].split('/');
     this.companyId = splittedArray[0];
     this.isFetchConfig = false;
-    console.log('this.companyId', this.companyId);
-
-
   }
 
   ngOnInit() {

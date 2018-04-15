@@ -18,8 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private loginSrvc: LoginService) { }
 
-   ngOnInit() {
-     console.log("forgot");
+  ngOnInit() {
 
     this.onFetchConfig(this.companyId);
 
@@ -28,18 +27,9 @@ export class ForgotPasswordComponent implements OnInit {
     });
 
   }
-  
+
   onFetchConfig(companyId) {
 
-    // this.loginSrvc.fetchConfig(companyId).subscribe(
-    //   (resData: any) => {
-    //     this.isFetchConfig = true;
-        
-    //     console.log('resData  ', resData);
-        
-    //   }, err => {
-
-    //   });
   }
   onSubmit() {
 
