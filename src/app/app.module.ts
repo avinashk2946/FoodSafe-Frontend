@@ -27,6 +27,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpsRequestInterceptor } from './common/http.interceptor';
 import { MenuItems } from './shared/menu-items/menu-items';
 
+import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
+
+
 
 
 @NgModule({
@@ -35,6 +38,7 @@ import { MenuItems } from './shared/menu-items/menu-items';
     AdminComponent,
     BreadcrumbsComponent,
     LoginComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
