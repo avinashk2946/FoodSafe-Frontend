@@ -9,8 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from 'ng-select';
 import { FileUploadModule } from 'ng2-file-upload';
 
-import { DataTableComponent } from '../data-table/data-table.component';
-
 import { SamplePreparationComponent } from './sample-preparation/sample-preparation.component';
 import { SampleCollectionComponent } from './sample-collection/sample-collection.component';
 import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';

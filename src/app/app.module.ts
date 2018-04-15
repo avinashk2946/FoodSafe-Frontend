@@ -18,8 +18,6 @@ import { AdminComponent } from './layout/admin/admin.component';
 import { BreadcrumbsComponent } from './layout/admin/breadcrumbs/breadcrumbs.component';
 import { LoginComponent } from './theme/login/login.component';
 import { StyleComponent } from './style/style.component';
-import { ForgotPasswordComponent } from './theme/forgot-password/forgot-password.component';
-
 
 import { DataService } from './service/data.service';
 import { CommonService } from './common/common.service';
@@ -36,14 +34,7 @@ import { UploaddataService } from './service/uploaddata.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpsRequestInterceptor } from './common/http.interceptor';
 import { MenuItems } from './shared/menu-items/menu-items';
-import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
-// import { RawMaterialComponent } from './theme/Record-keeping/raw-materials/raw-material/raw-material.component';
-// import { RawMaterialDetailsComponent } from './theme/Record-keeping/raw-materials/raw-material-details/raw-material-details.component';
-// import { RawMaterialTableComponent } from './theme/Record-keeping/raw-materials/raw-material-table/raw-material-table.component';
-// import {FormPickerComponent} from './theme/form-picker/form-picker.component';
-// import {FormPickerRoutingModule} from './theme/form-picker/form-picker-routing.module';
-// import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
-// import {LocalStorageService, LocalStorage} from '@Deprecated ng2-webstorage';//ng2-webstorage';
+
 
 
 @NgModule({
@@ -53,12 +44,6 @@ import { ResetPasswordComponent } from './theme/login/reset-password/reset-passw
     BreadcrumbsComponent,
     LoginComponent,
     StyleComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent,
-    // FormPickerComponent,
-    // RawMaterialComponent,
-    // RawMaterialDetailsComponent,
-    // RawMaterialTableComponent
   ],
   imports: [
     BrowserModule,
@@ -83,8 +68,6 @@ import { ResetPasswordComponent } from './theme/login/reset-password/reset-passw
     RawMaterialsService,
     SupplierService,
     PlantService,
-    //LocalStorage,   
-    //LocalStorageService,
     ProductService,
     BrokerService,
     UploaddataService,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateRecordComponent } from './create-record.component';
-import { CreateRecordRoutingModule } from './create-record-routing.module'
+import { CreateRecordRoutingModule } from './create-record-routing.module';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ChartModule } from 'angular2-chartjs';
 import { SimpleNotificationsModule } from 'angular2-notifications';
