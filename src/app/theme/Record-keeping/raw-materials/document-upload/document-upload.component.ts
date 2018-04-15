@@ -9,7 +9,7 @@ import { HttpEventType } from '@angular/common/http';
 
 
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { TabsSevice} from './tabs.service';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
 import { AuthService } from '../../../../common/auth.service';
@@ -20,6 +20,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -50,24 +51,24 @@ export class DocumentUploadComponent implements OnInit {
   @ViewChild('tabs')
 
   private tabs: any;
-  // @Input() tabs: NgbTabset;
-  @Input() activeTab  = '';
-  // @Output() activeTabChange: EventEmitter<string> = new EventEmitter<string>();
+  // @Input() tabs: any;
+  //@Input() activeTab  = '';
+ 
   // @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
 
   currentOrientation = 'horizontal';
+  
 
-
-  constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+  constructor(private fb: FormBuilder,private tabService:TabsSevice, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, public router: Router, public http: Http, private route: ActivatedRoute) {
 
     this.route.params.subscribe(params => {
       this.recordId = params.id;
       this.getRecordDetails();
     });
-
+  
   }
-
+    
   public onlineOffline: boolean = navigator.onLine;
 
   attchmentList = [{ attachment: '' }];
@@ -157,6 +158,7 @@ export class DocumentUploadComponent implements OnInit {
       this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
         this.comonSrvc.showSuccessMsg(response.message);
         this.tabs.select('samplepreparationid');
+        this.tabService.sendMessage(this.tabs);      
       }, err => {
         this.comonSrvc.showErrorMsg(err.message);
       });
@@ -168,7 +170,7 @@ export class DocumentUploadComponent implements OnInit {
     }
   }
 
-
+ 
   // tabClick($event){
   //      if (!tab.disabled) {
   //          this.active = tab.value;
@@ -176,7 +178,7 @@ export class DocumentUploadComponent implements OnInit {
   //          this.onClick.emit(tab.value);
   //      }
   //  }
-
+ 
 
 }
 

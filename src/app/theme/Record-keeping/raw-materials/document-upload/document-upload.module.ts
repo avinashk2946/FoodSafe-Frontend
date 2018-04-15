@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocumentUploadComponent } from './document-upload.component';
 import { DocumentUploadRoutingModule } from './document-upload-routing.module';
-
+import { TabsSevice} from './tabs.service';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ImagePreviewDirective } from '../../../../directives/image-preview-directive';
 
@@ -42,7 +42,7 @@ import { SummaryComponent } from './summary/summary.component';
     SummaryComponent,
     ImagePreviewDirective
   ],
-
+providers:[TabsSevice],
   bootstrap: [DocumentUploadComponent]
 })
 export class DocumentUploadModule { }

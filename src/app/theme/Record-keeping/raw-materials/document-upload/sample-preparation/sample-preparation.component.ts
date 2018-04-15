@@ -13,8 +13,9 @@ import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
+import { TabsSevice} from './../tabs.service';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { ISubscription } from "rxjs/Subscription";
 
 @Component({
   selector: 'app-sample-preparation',
@@ -39,14 +40,12 @@ export class SamplePreparationComponent implements OnInit {
   public item: any = '';
   recordId = '';
   @ViewChild('tabs')
-
-     private tabs :any;
-    @Input() activeTab: string = ''; 
-
+  //@Input() tabs;
+  private tabs :any;
   online$ = Observable.fromEvent(window, 'online');
   offline$ = Observable.fromEvent(window, 'offline');
   public onlineOffline: boolean = navigator.onLine;
-
+  private subscription: ISubscription;
   samples = [
     {
       supplierLot: '',
@@ -63,7 +62,7 @@ export class SamplePreparationComponent implements OnInit {
     }
   ];
 
-  constructor(public fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+  constructor(public fb: FormBuilder,private tabService:TabsSevice, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     public router: Router, private route: ActivatedRoute, protected localStorage: AsyncLocalStorage) {
     this.route.params.subscribe(params => {
       this.recordId = params.id;
@@ -172,7 +171,10 @@ export class SamplePreparationComponent implements OnInit {
     this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
         console.log("coll");
-      this.tabs.select('samplecollectionid'); 
+        this.subscription=this.tabService.getMessage().subscribe(tabState => { 
+          this.tabs = tabState.value;
+          this.tabs.select('samplecollectionid');
+        }); 
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
@@ -197,6 +199,6 @@ export class SamplePreparationComponent implements OnInit {
       this.samples[index].po = this.recordDetails.po;
     }
   }
-
+ 
 
 }
