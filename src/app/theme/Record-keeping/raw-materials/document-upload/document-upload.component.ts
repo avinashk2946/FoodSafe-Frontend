@@ -93,9 +93,11 @@ export class DocumentUploadComponent implements OnInit {
   public filesAddForm: FormGroup;
 
 
-  public  samplepreparation:any[];
-  public  samplecollection:any[];
-  public  qualityanalysisid:any[];
+  public  samplepreparationid: boolean;
+  public  samplecollectionid: boolean;
+  public  qualityanalysisid: boolean;
+  public  isSetDocument: boolean;
+
 
 
   ngOnInit() {
@@ -118,7 +120,9 @@ export class DocumentUploadComponent implements OnInit {
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
       this.recordDetails = response.data[0];
+
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
+      // console.log(this.recordDetails.isQualityAnalysis);
     }, err => {
       if (err.status === 401) {
       }
@@ -168,6 +172,18 @@ export class DocumentUploadComponent implements OnInit {
     }
   }
 
+// public getdata(){
+//       if(this.samplecollection instanceof Array){
+//           this.samplecollection.forEach(function(e){
+//               // this.supplierLot=supplierLot;
+//               // let index=supplierLot.findIndex(x=>x.supplierLot===samplecollection.supplierLot);
+//           })
+//       }
+//       return total;
+//   }
+// public getTabColor(){
+//    this.recordDetails.isQualityAnalysis = true 
+// }
 
    // tabClick($event){
    //      if (!tab.disabled) {

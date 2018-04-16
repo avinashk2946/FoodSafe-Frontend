@@ -1,11 +1,3 @@
-<style type="text/css">
-  .nav-tabs .nav-link.active,
-.nav-tabs .nav-item.show .nav-link {
-  color: #495057 !important;
-  background-color: #fff !important;
-  border-color: #ddd #ddd #fff !important;
-}
-</style>
 <div class="doc-upload">
   <div class="doc-upload card">
     <div class="row data-table" *ngIf="recordDetails._id">
@@ -64,7 +56,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let type of fileList">
+              <tr *ngFor="let type of fileList"> 
                 <td>{{type.title}}</td>
                 <td>
                   <form novalidate>
@@ -93,7 +85,7 @@
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Sample Preparation" id="samplepreparationid">
+      <ngb-tab title="Sample Preparation" id="samplepreparationid" *ngIf="!undefined">
         <ng-template ngbTabContent>
           <app-sample-preparation></app-sample-preparation>
         </ng-template>
