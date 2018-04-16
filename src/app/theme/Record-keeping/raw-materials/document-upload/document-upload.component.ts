@@ -9,19 +9,15 @@ import { HttpEventType } from '@angular/common/http';
 
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { TabsSevice} from './tabs.service';
+import { TabsSevice } from './tabs.service';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
-import { AuthService } from '../../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
 
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
-
 
 @Component({
   selector: 'app-document-upload',
@@ -49,29 +45,17 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 export class DocumentUploadComponent implements OnInit {
 
   @ViewChild('tabs')
-
   private tabs: any;
-  // @Input() tabs: any;
-  //@Input() activeTab  = '';
- 
-  // @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
 
-  currentOrientation = 'horizontal';
-  
-
-  constructor(private fb: FormBuilder,private tabService:TabsSevice, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, public router: Router, public http: Http, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private tabService: TabsSevice, public rawMatService: RawMaterialService,
+    public comonSrvc: CommonService, protected localStorage: AsyncLocalStorage, public router: Router,
+    public http: Http, private route: ActivatedRoute) {
 
     this.route.params.subscribe(params => {
       this.recordId = params.id;
       this.getRecordDetails();
     });
-  
   }
-    
-  public onlineOffline: boolean = navigator.onLine;
-
-  attchmentList = [{ attachment: '' }];
 
   uploader: FileUploader = new FileUploader({});
 
@@ -87,34 +71,9 @@ export class DocumentUploadComponent implements OnInit {
 
   recordId: any = '';
   recordDetails: any = {};
-  dataForm: FormGroup;
-  UploadFiles: any = '';
-  online$ = Observable.fromEvent(window, 'online');
-  offline$ = Observable.fromEvent(window, 'offline');
-  public files: File[];
-  public filesAddForm: FormGroup;
-
-
-  public samplepreparation: any[];
-  public samplecollection: any[];
-  public qualityanalysisid: any[];
-
 
   ngOnInit() {
     this.getRecordDetails();
-    this.online$.subscribe(e => this.syncWithServer());
-  }
-
-  syncWithServer() {
-    // cons
-    // this.localStorage.getItem('recordFiles').subscribe((formData) => {
-    //   console.log(formData);
-    //   this.updateAttachment(formData);
-    // });
-    // this.localStorage.getItem('testOne').subscribe((formData1) => {
-    //   console.log(formData1);
-    //   //this.updateAttachment(formData);
-    // });
   }
 
   getRecordDetails() {
@@ -122,8 +81,7 @@ export class DocumentUploadComponent implements OnInit {
       this.recordDetails = response.data[0];
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
     }, err => {
-      if (err.status === 401) {
-      }
+      this.comonSrvc.showErrorMsg('Document upload - Error in getting a list of record');
     });
   }
 
@@ -153,32 +111,12 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   updateAttachment(formData) {
-    this.onlineOffline = navigator.onLine;
-    if (this.onlineOffline) {
-      this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
-        this.comonSrvc.showSuccessMsg(response.message);
-        this.tabs.select('samplepreparationid');
-        this.tabService.sendMessage(this.tabs);      
-      }, err => {
-        this.comonSrvc.showErrorMsg(err.message);
-      });
-    } else {
-      const data = formData;
-      const data1 = this.fileList;
-      this.localStorage.setItem('recordFiles', JSON.stringify(formData));
-      this.localStorage.setItem('testOne', JSON.stringify(this.fileList));
-    }
+    this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+      this.tabs.select('samplepreparationid');
+      this.tabService.sendMessage(this.tabs);
+    }, err => {
+      this.comonSrvc.showErrorMsg(err.message);
+    });
   }
-
- 
-  // tabClick($event){
-  //      if (!tab.disabled) {
-  //          this.active = tab.value;
-  //          this.activeTabChange.emit(tab.value);
-  //          this.onClick.emit(tab.value);
-  //      }
-  //  }
- 
-
 }
-
