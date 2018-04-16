@@ -1,84 +1,136 @@
-<div class="sample-collection">
-  <div class="sample-collection  card">
-      <div class="table-head">
-        <div class="row table-row">
-          <div class="col-md-1 table-th action">
-            Samppling No
-          </div>
-          <div class="col-md-1 table-th action">
-            Supplier Lot
-          </div>
-          <div class="col-md-1 table-th action">
-            Picture Of case Label
-          </div>
-          <div class="col-md-2 table-th action">
-            Quality Analysis Sampling
-          </div>
-          <div class="col-md-3 table-th action">
-            Pathogen/Virus/Indicator <br> Organism Sampling
-          </div>
-          <div class='col-md-2 table-th action'>
-            Pesticides Sampling
-          </div>
-         <!--  <div class='col-md-2 table-th action'>
-            Pesticide sampling
-          </div> -->
-         <!--  <div class='col-md-2 table-th action'>
-            Indicator Organism Sampling
-          </div> -->
-           <div class='col-md-2 table-th action'>
-            Comments
-        </div>
-        </div>
-      </div>
+<div class="container-fluid sample-collection card">
+  <br>
+  <div class="row">
+    <div class="col-sm-2">
+      Total Samples : {{totalSamples}}
+    </div>
+    <div class="col-sm-2">
+      Remaining Samples : 10
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-primary btn-sm" (click)="addNewSample()">Add new Samples</button>
+    </div>
   </div>
+  <br>
+  <form [formGroup]="sampleForm" *ngIf="showEditFields" (ngSubmit)="saveUpdateSample(current)">
+    <div class="row">
+      <div class="col-sm-3">
+        <ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="current.supplierLot"
+          (ngModelChange)='changeSupplierLot()' [formControl]="sampleForm.controls['supplierLot']"></ng-select>
+      </div>
+      <div class="col-sm-9">
+        <div class="form-group">
+          <label class="custom-file col-sm-5">
+            <input type="file" ng2FileSelect ng2FileDrop [uploader]="current.attachments" multiple class="custom-file-input">
+            <span class="custom-file-control">Drag and drop your files here</span>
+          </label>
 
-
-     <div class="table-head">
-      <div class="row table-row" *ngFor="let s of sampleArr">
-        <div class="col-md-1 table-th action">
-         <!-- {{sample.quantityPlanned}} -->
-        </div>
-        <div class="col-md-1 table-th action">
-            <select type="text" class="form-control"  [(ngModel)]="selectedsupplierLot.supplierLot" name=""   >
-               <option *ngFor='let s of samplecollection' value={{s.supplierLot}} (change)="onSelect($event.target.value)"
-              >{{s.supplierLot}}</option>  
-            </select>
-          <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true"  placeholder='Supplier Lot'  [value]="sample.supplierLot" [(ngModel)]="sample.supplierLot"></ng-select> -->
-        </div>
-        <div class="col-md-1 table-th action">
-      <a  href="./recordkeeping/raw-matrial/document-upload/123" class="image"><span class="fa fa-camera fa-2x "></span></a> 
-          <!-- {{sample.pictureofcaselabel}} -->
-        </div>
-        <div class="col-md-2 table-th action">
-         <span>             
-             <label>{{selectedsupplierLot.qualityAnalysis}}</label> 
-             <input type="checkbox" calss="checkbox">
-         </span> 
-        </div>
-        <div class="col-md-3 table-th action">         
-         <label> {{selectedsupplierLot.virusTest }}</label>
-          <input type="checkbox" calss="checkbox"> 
-        </div>
-        <div class='col-md-2 table-th action'>
-           <label> {{selectedsupplierLot.pesticideTest}}</label> 
-            <input type="checkbox" calss="checkbox">
-        </div>
-        <!-- <div class='col-md-2 table-th action'> -->
-        <!--    <input type="checkbox" calss="checkbox">
-         <label> {{sample.comment}}</label>  -->
-        <!-- </div> -->
-         <div class='col-md-2 table-th action'>
-          <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea>  
+          <ul class="list-inline">
+            <li class="list-group-item media-left" *ngFor="let item of current.attachments.queue; let i=index">
+              <img src="" imgPreview [image]="item?._file" class="media-object" />
+              <span class="fa fa-trash" (click)="deleteSelected($event,i,current.attachments.queue)"></span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-        <div class="button pull-right">
-                <span>
-                  <button type="button" class="btn btn-warning">Cancel</button>
-                  <button autofocus="" type="button" class="btn btn-success" >Save</button>
-                  <button type="button" class="btn btn-default">Exit</button>
-               </span>
+    <div class="row">
+      <div class="col-sm-2">
+        <label for="qaIndicator">Quality Analysis</label>
+      </div>
+      <div class="col-sm-2 form-radio">
+        <div class="radio radiofill radio-inline">
+          <label>
+            <input type="radio" name="qaIndicator" [(ngModel)]="current.quaAnalsisIndicator" value="true" [formControl]="sampleForm.controls['qaAnalysis']" readonly>
+            <i class="helper"></i>Yes
+          </label>
         </div>
-</div>
+        <div class="radio radiofill radio-inline">
+          <label>
+            <input type="radio" name="qaIndicator" [(ngModel)]="current.quaAnalsisIndicator" value="false" [formControl]="sampleForm.controls['qaAnalysis']" readonly>
+            <i class="helper"></i>No
+          </label>
+        </div>
+      </div>
 
+      <div class="col-sm-2">
+        <label style="display:block" for="paViInIndicator">Pathogen/Virus/Indicator Test</label>
+      </div>
+      <div class="col-sm-2 form-radio">
+        <div class="radio radiofill radio-inline">
+          <label>
+            <input type="radio" name="paViInIndicator" [(ngModel)]="current.paViIndIndicator" value="true" [formControl]="sampleForm.controls['pathvirsuFcon']">
+            <i class="helper"></i>Yes
+          </label>
+        </div>
+        <div class="radio radiofill radio-inline">
+          <label>
+            <input type="radio" name="paViInIndicator" [(ngModel)]="current.paViIndIndicator" value="false" [formControl]="sampleForm.controls['pathvirsuFcon']">
+            <i class="helper"></i>No
+          </label>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+      <br>
+      <div class="col-sm-2">
+        <label for="pestIndicator">Pesticide Test</label>
+      </div>
+      <div class="col-sm-2 form-radio">
+        <div class="radio radiofill radio-inline">
+          <label>
+            <input type="radio" name="pestIndicator" [(ngModel)]="current.pesticideIndicator" value="true" [formControl]="sampleForm.controls['pestcidesFcon']">
+            <i class="helper"></i>Yes
+          </label>
+        </div>
+        <div class="radio radiofill radio-inline">
+          <label>
+            <input type="radio" name="pestIndicator" [(ngModel)]="current.pesticideIndicator" value="false" [formControl]="sampleForm.controls['pestcidesFcon']">
+            <i class="helper"></i>No
+          </label>
+        </div>
+      </div>
+      <div class="col-sm-8"></div>
+      <br>
+      <div class="col-sm-2" style="vertical-align: middle">
+        Comments
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" name="" [(ngModel)]="current.conmment" placeholder="your text here" [formControl]="sampleForm.controls['comments']"> 
+      </div>
+      <div class="col-sm-2 offset-sm-2">
+        <button type="submit" class="btn btn-primary btn-sm">Save</button>
+      </div>
+    </div>
+  </form>
+  <br>
+  <div class="row" *ngIf="sampleList.length === 0">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Sample Id</th>
+          <th scope="col">Supplier Lot</th>
+          <th scope="col">Picture of the Label</th>
+          <th scope="col">Quality Analysis</th>
+          <th scope="col">Pathogen/Virus/Indictor Test</th>
+          <th scope="col">Pesticide Test</th>
+          <th scope="col">Comments</th>
+          <th scope="col">Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sample of sampleList">
+          <th>{{sample.id}}</th>
+          <td>{{sample.supplierLot}}</td>
+          <td>
+            <a> Preview </a>
+          </td>
+          <td>{{sample.quaAnalsisIndicator}}</td>
+          <td>{{sample.paViIndIndicator}}</td>
+          <td>{{sample.pesticideIndicator}}e</td>
+          <td>{{sample.conmment}}</td>
+          <td>Edit/ Delete</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

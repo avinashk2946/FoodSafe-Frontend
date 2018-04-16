@@ -12,7 +12,8 @@ export const API_ACTIONS = Object.freeze({
         fetchConfig: 'fetchConfig.json',
         verifyOtp: 'ecomVerifyOtp.action',
         verifymPin: 'ecomVerifyMpin.action',
-        resetPassword: 'user/resetPassword'
+        verifyEmail: 'resetPassword/verifyEmail/:email',
+        resetPassword: 'resetPasswordByToken'
     },
     summary: {
         savecardsInitiate: 'encryptedEcomStoredCards.action',

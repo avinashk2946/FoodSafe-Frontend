@@ -4,7 +4,6 @@ import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../common/common.constant'
 import { HttpRequestModal } from '../../../common/httpRequest.modal';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-import { SamplePreparation } from '../../../classes/sample-preparation';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -46,15 +45,6 @@ export class RawMaterialService {
     const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-
-  //   getSamplePreparation(obj) {
-  //   var reqPayload = {
-  //     channel: GLOBAL_PROPERTIES.CHANNEL
-  //   }
-  //   var url = API_ACTIONS.raw_material.samplepreparation+'?supplierlot='+obj.supplierlot+'&supplier='+obj.supplierlot;
-  //   var httpRequest = new  HttpRequestModal(url, 'GET',reqPayload,true);
-  //   return this.comonSrvc.createHttpRequest(httpRequest);
-  // }
 
   getProduct(obj) {
     const reqPayload = {
@@ -125,9 +115,12 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
-  sampleCollection(obj) {
-    const url = API_ACTIONS.raw_material.record + '/';
-    const httpRequest = new HttpRequestModal(url, 'GET', obj, true);
+  getSampleCollection(recordId) {
+    const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
+    const url = API_ACTIONS.raw_material.record + '/sampleCollection/' + recordId;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
@@ -151,15 +144,14 @@ export class RawMaterialService {
   }
 
 
-    deleterecordList(id) {   
-      console.log("deleterecordList  ",id);
-   const reqPayload = {
+  deleterecordList(id) {
+    const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL
     };
 
-    const url = API_ACTIONS.raw_material.record + '/'+id;
+    const url = API_ACTIONS.raw_material.record + '/' + id;
     const httpRequest = new HttpRequestModal(url, 'DELETE', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
-  
+
 }

@@ -5,13 +5,9 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-
-
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { RawMaterialService } from '../raw-material.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonService } from '../../../../common/common.service';
-import { AuthService } from '../../../../common/auth.service';
+import { RawMaterialService } from '../raw-material.service';
 import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
@@ -62,9 +58,9 @@ export class CreateRecordComponent implements OnInit {
   materialGrp = '';
   material = '';
   disabled: true;
- 
+
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, public router: Router) { }
+    protected localStorage: AsyncLocalStorage, public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -74,14 +70,14 @@ export class CreateRecordComponent implements OnInit {
       'broker': ['', [Validators.required]],
       'coo': ['', [Validators.required]],
       'variety': ['', [Validators.required]],
-      'approved': [{value: 'isApproved',disabled: true}, [Validators.required]],
-      'kosher': [{value: 'kosher',disabled: true}, [Validators.required]],
-      'nonGMO': [{value: 'nonGMO',disabled: true}, [Validators.required]],
+      'approved': [{ value: 'isApproved', disabled: true }, [Validators.required]],
+      'kosher': [{ value: 'kosher', disabled: true }, [Validators.required]],
+      'nonGMO': [{ value: 'nonGMO', disabled: true }, [Validators.required]],
       'po': ['', [Validators.required]],
       'containerNo': ['', [Validators.required]],
       'createdBy': ['', [Validators.required]],
       'lotNo': ['', [Validators.required]],
-      'organic': [{value: 'organicValue',disabled: true}, [Validators.required]],
+      'organic': [{ value: 'organicValue', disabled: true }, [Validators.required]],
       'material': ['', [Validators.required]],
       'materialGrp': ['', [Validators.required]]
     });
@@ -89,16 +85,18 @@ export class CreateRecordComponent implements OnInit {
     this.getPlant();
 
     this.localStorage.getItem('user').subscribe((user) => {
-      console.log(user); // 
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
     });
-    
- // if (this.value == true) {
-        
- //      } else {
- //        this.value = false;
- //      }
+
+    this.route.queryParams.subscribe(params => {
+
+      this.po = params.po;
+      this.containerNo = params.containerNo;
+      this.lotNo = params.lotNo;
+
+    });
+
   }
 
   onRecordCreate() {
@@ -117,7 +115,7 @@ export class CreateRecordComponent implements OnInit {
       materialGrp: this.materialGrp
       // isDelete : false
     };
-    console.log('this.dataForm.value', obj);
+
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
       this.router.navigate(['/recordkeeping/raw-matrial/document-upload', response.data._id]);
