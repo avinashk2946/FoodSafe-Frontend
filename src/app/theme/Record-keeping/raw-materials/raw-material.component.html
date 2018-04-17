@@ -34,16 +34,16 @@
 					          </ng-select> -->
 					          <select class="form-control" formControlName="plant" (change)='changePlant()'  >
 								<option value="" >plant</option> 
-								<option *ngFor='let p of plant.data' [value]="p.name">{{p.name}}</option> 
+								<option *ngFor='let p of plant.data' [value]=" ">{{p.name}}></option> 
 				 			</select>
 				          </div>
 				  	</div>        
 			 	 </div>
-			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
+			 	 <!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
-				            <label for="name">Date Created</label>
-				          </div>
+				        <label for="name">Date Created</label>
+				      </div>
 				          <div class= "col-md-8 form group">	
 					            <div class="form-group ">
 					              <div class="input-group">
@@ -55,7 +55,7 @@
 					            </div>
 				          </div>
 				  	</div>        
-			 	 </div>
+			 	 </div> -->
 			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
@@ -76,7 +76,8 @@
 				            <label for="name">Supplier</label>  <!-- <pre>{{supplier | json}}</pre> -->
 				          </div>
 				          <div class= "col-md-8 form group">
-					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier" (change)='loadsupplier()'  formControlName="suplier"></ng-select>
+										<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supliers" placeholder='select suplier' [(ngModel)]="suplier" 
+										(change)='loadsupplier()'  formControlName="suplier"></ng-select>
 				          </div>
 				  	</div>        
 			 	 </div>
@@ -86,7 +87,8 @@
 				            <label for="name">Broker</label>
 				          </div>
 				          <div class= "col-md-8 form group">
-					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokers" placeholder='select broker' [(ngModel)]="broker" (change)='loadbroker()' formControlName="broker"></ng-select>
+										<ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokers" placeholder='select broker' [(ngModel)]="broker" 
+										(change)='loadbroker()' formControlName="broker"></ng-select>
 				          </div>
 				  	</div>        
 			 	 </div>
@@ -120,20 +122,20 @@
 			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
-				            <label for="name">Product</label>
+				            <label for="name">rawMaterial</label>
 				          </div>
 				          <div class= "col-md-8 form group">
-					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="products" placeholder='select product' [(ngModel)]="product"  (change)='loadproduct()' formControlName="product"></ng-select>
+					          <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="rawMaterial" placeholder='select rawMaterial' [(ngModel)]="rawMaterial"  (change)='loadrawMaterial()' formControlName="rawMaterial"></ng-select>
 				          </div>
 				  	</div>        
 			 	 </div>
 			 	 <div class="col-xs-12 col-sm-6 col-md-6 data-table" >
 				  	<div class="row ">
 				  		<div class="col-md-4 form group">
-				            <label for="name">Product Code</label>
+				            <label for="name">'rawMaterial Code</label>
 				          </div>
 				          <div class= "col-md-8 form group">
-					         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="productCodes" placeholder='select product' [(ngModel)]="productCode" formControlName="productCode"></ng-select>
+					         <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="'rawMaterialCodes" placeholder='select rawMaterial' [(ngModel)]="rawMaterialCode" formControlName="rawMaterialCode"></ng-select>
 				          </div>
 				  	</div>        
 			 	 </div>
@@ -204,7 +206,7 @@
 				  		<div class="col-md-4 form group" [ngClass]="{'-sort': column != 'CategoryID', 
 							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
 							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
-aria-hidden="true">>
+aria-hidden="true">
 				            <label for="name">Container No</label>
 				          </div>
 				          <div class= "col-md-8 form group">
@@ -218,7 +220,7 @@ aria-hidden="true">>
 				  		<div class="col-md-4 form group" [ngClass]="{'-sort': column != 'CategoryID', 
 							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
 							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
-aria-hidden="true">>
+aria-hidden="true">
 				            <label for="name">Lot No</label>
 				          </div>
 				          <div class= "col-md-8 form group">
@@ -235,7 +237,7 @@ aria-hidden="true">>
 				<p>
 				  <!-- <button  type="button" class="btn btn-primary">Save</button> -->
 				  <button  [disabled]="!dataForm.valid"  type="submit" class="btn btn-success">Save & Submit</button>
-					<button  (click) = "dataForm.reset()" type="button" class="btn btn-default">Cancel</button> 
+					<button  (click) = "dataForm.reset()" type="button" class="btn btn-warning">Cancel</button> 
 					
 					</div>
 				</p>

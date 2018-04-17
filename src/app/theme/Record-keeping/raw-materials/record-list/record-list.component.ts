@@ -13,6 +13,7 @@ import {Input, Output, EventEmitter, OnDestroy, HostListener } from '@angular/co
     './record-list.component.scss',
     '../../../../../assets/icon/icofont/css/icofont.scss'
   ],
+  
   providers: [RawMaterialService]
 })
 export class RecordListComponent implements OnInit {
@@ -62,22 +63,9 @@ export class RecordListComponent implements OnInit {
   ];
 
   constructor( public rawMatService: RawMaterialService, public comonSrvc: CommonService, public activatedRoute: ActivatedRoute,
-    public router: Router ) { }
-
-
-
-    @Input('sortable-column')
-    columnName: string;
-
-    @Input('sort-direction')
-    sortDirection: string = '';
-
-    @HostListener('click')
-    sort() {
-        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-    }
-
-
+    public router: Router ) 
+{
+}
   ngOnInit() {
     this.getRecordList();
     // this.reload();
@@ -86,12 +74,26 @@ export class RecordListComponent implements OnInit {
   getRecordList() {
     console.log("first record ");
     this.rawMatService.getRecord().subscribe((response: any) => {
-      // console.log(response.data);
+      console.log(response.data);
       this.recordList = response.data;
     }, err => {
-      this.comonSrvc.showErrorMsg(err.message);
+      this.comonSrvc.showErrorMsg(err.message); 
     });
+    
   }
+
+  
+   @Input('sortable-column')
+    columnName: string;
+    
+    @Input('sort-direction')
+     sortDirection: string = '';
+
+    @HostListener('click')
+     sort() {
+        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+
   onSelect(selected) { 
     this.recordSelected = selected;
     console.log("selected ",this.recordSelected);

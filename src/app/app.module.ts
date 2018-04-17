@@ -39,11 +39,13 @@ import { BrokerService } from './service/broker.service';
 import { UploaddataService } from './service/uploaddata.service';
 import { StyleComponent } from './style/style.component';
 import { FileUploadModule } from 'ng2-file-upload';
-// import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
 // import { Angular2TokenService, UpdatePasswordData } from 'angular2-token';
 import { Component } from '@angular/core';
+// import { NewPasswordComponent } from './theme/login/new-password/new-password.component';
+import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
 // import {LocalStorageService, LocalStorage} from '@Deprecated ng2-webstorage';//ng2-webstorage';
-
+//import {Control} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import { Component } from '@angular/core';
     LoginComponent,
 
     StyleComponent,
+    ForgotPasswordComponent,
+    // NewPasswordComponent,
+    ResetPasswordComponent
 
     // ResetPasswordComponent,
 
@@ -84,6 +89,7 @@ import { Component } from '@angular/core';
     RawMaterialsService,
     SupplierService,
     PlantService,
+   // Control,
     //LocalStorage,   
     //LocalStorageService,
     ProductService,

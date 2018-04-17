@@ -33,8 +33,8 @@ export class RawmaterialComponent implements OnInit {
       'suplier' : ['', [Validators.required]],
       'broker' : ['', [Validators.required]],
       'coo' : ['', [Validators.required]],
-      'product' : ['', [Validators.required]],
-      'productCode' : ['', [Validators.required]],
+      'rawMaterial' : ['', [Validators.required]],
+      'rawMaterialCode' : ['', [Validators.required]],
       'variety' : ['', [Validators.required]],
       'approved' : ['', [Validators.required]],
       'kosher' : ['', [Validators.required]],
@@ -59,8 +59,8 @@ export class RawmaterialComponent implements OnInit {
       'suplier' : '', 
       'broker' : '', 
       'coo' : '', 
-      'product' : '', 
-      'productCode' : '', 
+      'rawMaterial' : '', 
+      'rawMaterialCode' : '', 
       'variety' : '', 
       'approved' : '', 
       'kosher' : '', 
@@ -69,15 +69,14 @@ export class RawmaterialComponent implements OnInit {
       'containerNo' : '', 
       'lotNo' : ''
   });
-  
   this.dataForm.controls[ 'plant' ].setValidators([ Validators.required]);
   this.dataForm.controls[ 'createdDate' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'createdBy' ].setValidators([Validators.required ]);
   this.dataForm.controls[ 'suplier' ].setValidators([ Validators.required]);
   this.dataForm.controls[ 'broker' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'coo' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'product' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'productCode' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'rawMaterial' ].setValidators([Validators.required]);
+  this.dataForm.controls[ 'rawMaterialCode' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'variety' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'approved' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'kosher' ].setValidators([Validators.required]);
@@ -85,14 +84,12 @@ export class RawmaterialComponent implements OnInit {
   this.dataForm.controls[ 'po' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'containerNo' ].setValidators([Validators.required]);
   this.dataForm.controls[ 'lotNo' ].setValidators([Validators.required]);
-
   }
-
-cancel()
-{
- this.hitCancel=true;
+reset()
+  {
+     this.hitCancel=true;
+  }
 }
-  }
 
   
 

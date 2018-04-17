@@ -47,24 +47,33 @@
 
   <!-- Table to display -->
   <div class="card-body" *ngIf="recordList.length > 0">
-    <div class="row ">
+      <i class="fa fa-chevron-up" *ngIf="sortDirection === 'asc'" ></i>
+      <i class="fa fa-chevron-down" *ngIf="sortDirection === 'desc'"></i>
+      <ng-content>
+    <div class="row "(sorted)="onSorted($event)">
       <div class="table-responsive ">
 
         <ngx-datatable class="data-table fullscreen" [rows]="recordList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
           [rowHeight]="50" [limit]="10" [selected]="selected" [selectionType]="'multi'" (activate)="onActivate($event)" (select)='onSelect($event)'
           (dblclick)='doubleClickAction(selected)'>
 
-          <ngx-datatable-column name="Created Date">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+          <ngx-datatable-column  name="Created Date" sortable-column="Created Date">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'_id':false">
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">
                 {{row.createdDate | date:'dd/MM/yyyy'}}
               </span>
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Purchase Order">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+          <ngx-datatable-column name="Purchase Order" sortable-column="Purchase Order">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'_id':false" >
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">
                 {{row.po}}
               </span>
             </ng-template>
@@ -78,47 +87,63 @@
           </ng-template>
         </ngx-datatable-column> -->
 
-          <ngx-datatable-column name="Supplier Name">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row "ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+          <ngx-datatable-column  name="Supplier Name">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row "ng-repeat="row in record | orderBy:'_id':false">
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">>
                 {{row.supplier.name}}
               </span>
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Lot Number">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+          <ngx-datatable-column  name="Lot Number">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'_id.row.lotNo':false">
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">
                 {{row.lotNo}}
               </span>
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Container Number">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+          <ngx-datatable-column  name="Container Number">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'_id':false">
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">
                 {{row.containerNo}}
               </span>
             </ng-template>
           </ngx-datatable-column>
 
-          <ngx-datatable-column name="Country">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+          <ngx-datatable-column  name="Country">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'_id':false">
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">
                 {{row.country}}
               </span>
             </ng-template>
           </ngx-datatable-column>
-
+        </ng-content>
           <ngx-datatable-column name="Status">
-            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'id':false">
-              <span class="table-head">
+            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" ng-repeat="row in record | orderBy:'_id.':false">
+              <span class="table-head" [ngClass]="{'-sort': column != 'CategoryID', 
+							'fa-sort-asc': (column == 'CategoryID' && !isDesc), 
+							'fa-sort-desc': (column == 'CategoryID' && isDesc) }"
+aria-hidden="true">
                 In Progress
               </span>
             </ng-template>
           </ngx-datatable-column>
 
         </ngx-datatable>
+    
       </div>
     </div>
   </div>

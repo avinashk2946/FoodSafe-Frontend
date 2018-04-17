@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './layout/admin/admin.component';
 import { LoginComponent } from './theme/login/login.component';
 // import { CorporateComponent } from './theme/dashboard/corporate-dashboard/corporate.component';
+import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -43,7 +45,8 @@ const routes: Routes = [
     ]
   },
   { path: 'login', component: LoginComponent },
-
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
+  { path: 'resetPassword', component: ResetPasswordComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
