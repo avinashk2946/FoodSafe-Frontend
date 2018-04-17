@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation,Directive
+ } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -46,6 +47,11 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
   providers: [RawMaterialService]
 
 })
+
+// @Directive({
+//   selector: '[ngIF]'
+// })
+
 export class DocumentUploadComponent implements OnInit {
 
   @ViewChild('tabs')
@@ -60,7 +66,12 @@ export class DocumentUploadComponent implements OnInit {
   
 
   constructor(private fb: FormBuilder,private tabService:TabsSevice, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, public router: Router, public http: Http, private route: ActivatedRoute) {
+    protected localStorage: AsyncLocalStorage, 
+    public router: Router, public http: Http,
+     private route: ActivatedRoute
+     
+    
+      ) {
 
     this.route.params.subscribe(params => {
       this.recordId = params.id;
@@ -95,17 +106,13 @@ export class DocumentUploadComponent implements OnInit {
   public filesAddForm: FormGroup;
 
 
-<<<<<<< HEAD
-  public  samplepreparationid: boolean;
-  public  samplecollectionid: boolean;
-  public  qualityanalysisid: boolean;
-  public  isSetDocument: boolean;
-
-=======
-  public samplepreparation: any[];
-  public samplecollection: any[];
-  public qualityanalysisid: any[];
->>>>>>> 85dcfa1b587ceb8d0d6acd4bf909d33c9f58c247
+    // tabcolor=[
+    //   {name:this.recordDetails.isQualityAnalysis},
+    //   {name:this.recordDetails.isSampleCollection},
+    //   {name:this.recordDetails.isSamplePreparation},
+    //   {name:this.recordDetails.isSetDocument}
+    // ]
+   
 
 
   ngOnInit() {
@@ -180,7 +187,7 @@ export class DocumentUploadComponent implements OnInit {
     }
   }
 
-<<<<<<< HEAD
+
 // public getdata(){
 //       if(this.samplecollection instanceof Array){
 //           this.samplecollection.forEach(function(e){
@@ -190,29 +197,12 @@ export class DocumentUploadComponent implements OnInit {
 //       }
 //       return total;
 //   }
-// public getTabColor(){
-//    this.recordDetails.isQualityAnalysis = true 
-// }
-
-   // tabClick($event){
-   //      if (!tab.disabled) {
-   //          this.active = tab.value;
-   //          this.activeTabChange.emit(tab.value);
-   //          this.onClick.emit(tab.value);
-   //      }
-   //  }
-
-=======
- 
-  // tabClick($event){
-  //      if (!tab.disabled) {
-  //          this.active = tab.value;
-  //          this.activeTabChange.emit(tab.value);
-  //          this.onClick.emit(tab.value);
-  //      }
-  //  }
- 
->>>>>>> 85dcfa1b587ceb8d0d6acd4bf909d33c9f58c247
+//   
+    // public getTabColor(){
+    //    this.getRecordDetails.find(function(getRecordDetails){
+    //      return getRecordDetails.isSampleCollection === true ? true :false;      
+    //    }); 
+    //  }
 
 }
 

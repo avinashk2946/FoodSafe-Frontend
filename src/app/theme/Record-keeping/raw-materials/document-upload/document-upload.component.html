@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-=======
-<style type="text/css">
-  .nav-tabs .nav-link.active,
-  .nav-tabs .nav-item.show .nav-link {
-    color: #495057 !important;
-    background-color: #fff !important;
-    border-color: #ddd #ddd #fff !important;
-  }
-
-</style>
->>>>>>> 85dcfa1b587ceb8d0d6acd4bf909d33c9f58c247
 <div class="doc-upload">
   <div class="doc-upload card">
     <div class="row data-table" *ngIf="recordDetails._id">
@@ -58,8 +46,8 @@
 
   <div class="col-md-12 ">
     <ngb-tabset type="tabs" #tabs>
-      <ngb-tab title="Document" id="documentUploadid1">
-        <ng-template ngbTabContent>
+      <ngb-tab title="Document" id="documentUploadid1" >
+        <ng-template ngbTabContent [ngIf]="value">
           <table class="table table-framed table-responsive">
             <thead>
               <tr>
@@ -97,7 +85,7 @@
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Sample Preparation" id="samplepreparationid" *ngIf="!undefined">
+      <ngb-tab title="Sample Preparation" id="samplepreparationid" >
         <ng-template ngbTabContent>
           <app-sample-preparation></app-sample-preparation>
         </ng-template>
@@ -107,11 +95,14 @@
           <app-sample-collection></app-sample-collection>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Quality Analysis" id="qualityanalysisid">
-        <ng-template ngbTabContent>
+     
+        <ngb-tab title="Quality Analysis" id="qualityanalysisid"> 
+        <ng-template ngbTabContent >
           <app-quality-analysis></app-quality-analysis>
-        </ng-template>
+        </ng-template> 
       </ngb-tab>
+     
+      
       <ngb-tab title="Micro/Chemical Analysis" id="microchemicalanalysid">
         <ng-template ngbTabContent>
           <p></p>

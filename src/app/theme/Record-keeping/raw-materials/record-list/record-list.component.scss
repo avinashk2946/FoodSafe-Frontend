@@ -1,8 +1,14 @@
-.btn-success{
+.form-control{
+  -moz-border-radius:10px;
+    -webkit-appearance: none;
     color: #fff;
-    background-color: #72c02c;
     border:none;
-}
+    margin: 0 0 0 -3px;
+    padding: 12px 2px  ;
+    font-size: 12px;
+    text-transform: uppercase;
+
+  }
 .tag-select{
     width:100%;
 }

@@ -13,7 +13,9 @@ export const API_ACTIONS = Object.freeze({
         verifyOtp: 'ecomVerifyOtp.action',
         verifymPin: 'ecomVerifyMpin.action',
         verifyEmail: 'resetPassword/verifyEmail/:email',
-        resetPassword: 'resetPasswordByToken'
+        resetPassword: 'resetPasswordByToken',
+        forgotpassword:'forgotpassword'
+
     },
     summary: {
         savecardsInitiate: 'encryptedEcomStoredCards.action',
@@ -21,7 +23,7 @@ export const API_ACTIONS = Object.freeze({
     },
     configuration: {
         loginConfig: 'config',
-        userConfig: 'userConfig'
+        userConfig: 'userConfig',
     },
     common: {
         getHash: 'getEcomHash.action',
