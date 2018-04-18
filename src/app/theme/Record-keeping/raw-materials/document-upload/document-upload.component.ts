@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormsModule } from '@angular/forms';
 
 
 import { FileUploader } from 'ng2-file-upload';
@@ -18,6 +18,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Observable } from 'rxjs/Observable';
 
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-document-upload',
@@ -59,14 +60,18 @@ export class DocumentUploadComponent implements OnInit {
 
   uploader: FileUploader = new FileUploader({});
 
+  attachmentList: FileUploader = new FileUploader({});
+
+  currentDocType = '';
+
   fileList = [
-    { 'title': 'Bill of Lading', 'attachmentList': new FileUploader({ isHTML5: true }), 'name': 'billOfLanding' },
-    { 'title': 'Commercial Invoice', 'attachmentList': new FileUploader({}), 'name': 'commercialInvoice' },
-    { 'title': 'Packing list', 'attachmentList': new FileUploader({}), 'name': 'packingList' },
-    { 'title': 'COA', 'attachmentList': new FileUploader({}), 'name': 'coa' },
-    { 'title': 'CCP verification records', 'attachmentList': new FileUploader({}), 'name': 'ccpVerification' },
-    { 'title': 'Environmental Monitoring records', 'attachmentList': new FileUploader({}), 'name': 'environmentalMonitoring' },
-    { 'title': 'Other Supporting records', 'attachmentList': new FileUploader({}), 'name': 'otherSupporting' }
+    { label: 'Bill of Lading', value: 'billOfLanding' },
+    { label: 'Commercial Invoice', value: 'commercialInvoice' },
+    { label: 'Packing list', value: 'packingList' },
+    { label: 'COA', value: 'coa' },
+    { label: 'CCP verification records', value: 'ccpVerification' },
+    { label: 'Environmental Monitoring records', value: 'environmentalMonitoring' },
+    { label: 'Other Supporting records', value: 'otherSupporting' }
   ];
 
   recordId: any = '';
@@ -75,6 +80,13 @@ export class DocumentUploadComponent implements OnInit {
   ngOnInit() {
     this.getRecordDetails();
   }
+
+  onNext() {
+    this.tabs.select('samplepreparationid');
+    this.tabService.sendMessage(this.tabs);
+  }
+
+
 
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
@@ -97,14 +109,8 @@ export class DocumentUploadComponent implements OnInit {
 
   uploadFile() {
     const formData: any = new FormData();
-    this.fileList.forEach(element => {
-      let i = 1;
-      let name = element.name;
-      element.attachmentList.queue.forEach(obj => {
-        name = name + i;
-        formData.append(name, obj.file.rawFile);
-        i++;
-      });
+    this.attachmentList.queue.forEach(obj => {
+      formData.append(this.currentDocType, obj.file.rawFile);
     });
     formData.append('_id', this.recordId);
     this.updateAttachment(formData);
@@ -113,8 +119,6 @@ export class DocumentUploadComponent implements OnInit {
   updateAttachment(formData) {
     this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      this.tabs.select('samplepreparationid');
-      this.tabService.sendMessage(this.tabs);
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
