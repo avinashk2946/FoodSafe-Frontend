@@ -1,5 +1,5 @@
-<div class="doc-upload">
-  <div class="doc-upload card">
+<div class="doc-upload ">
+  <div class="doc-upload ">
     <div class="row data-table" *ngIf="recordDetails._id">
       <div class="col-md-4">
         Plant :
@@ -53,7 +53,7 @@
           <div class="form-group row">
             <label for="docTypeID" class="col-sm-3 offset-sm-2 col-form-label">Document Type</label>
             <div class="col-sm-4">
-              <select id="docTypeID" class="form-control" [(ngModel)]="currentDocType" required>
+              <select id="docTypeID" class="form-control form-control-primary" [(ngModel)]="currentDocType" required>
                 <option *ngFor="let doctype of fileList" [value]="doctype.value">
                   {{doctype.label}}
                 </option>
@@ -62,7 +62,7 @@
           </div>
           <div class="row">
             <div class="col-sm-3 offset-sm-2 custom-file" style="height: 76px;">
-              <input type="file" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
+              <input type="file" style="margin-top: 21px;" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
               <span class="custom-file-control" style="margin-top: 21px">Drag and drop your files here</span>
             </div>
             <div class="col-sm-4">
@@ -78,7 +78,7 @@
           <div class="row">
             <div class="col-sm-7 offset-sm-2">
               <div class=" row justify-content-center">
-                <button autofocus="" type="button" class="btn btn-success btn-md" (click)="uploadFile($event)">Upload Files</button>
+                <button autofocus="" type="button" class="btn btn-success btn-md" (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
               </div>
             </div>
           </div>
@@ -109,10 +109,9 @@
                 <tr>
                   <th>Commercial Invoice</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.commercialInvoice">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.commercialInvoice"> 
                       <div class="col">
-                        {{image}}
-                        <!--a [href]="image"  class="btn btn-default btn-custom">{{image}} </a -->
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
                       <!--div class="col">
                         <span class="fa fa-trash"></span>
@@ -192,8 +191,11 @@
             <div class="col-sm-2">
               <button autofocus="" type="button" class="btn btn-success btn-md" disabled="true">Previous</button>
             </div>
-            <div class="col-sm-2 offset-sm-8 justify-content-end">
-              <button autofocus="" type="button" class="btn btn-success btn-md" (click) ='onNext()'>Next</button>
+            <div class="col-sm-2 offset-sm-3">
+              <button autofocus="" type="button" class="btn btn-success btn-md" (click)="onExit()">Exit</button>
+            </div>
+            <div class="col-sm-1 offset-sm-4">
+              <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
             </div>
           </div>
         </ng-template>

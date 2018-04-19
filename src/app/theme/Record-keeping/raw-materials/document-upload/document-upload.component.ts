@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TabsSevice } from './tabs.service';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
+import { GLOBAL_PROPERTIES } from '../../../../common/common.constant';
 import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
@@ -62,6 +63,8 @@ export class DocumentUploadComponent implements OnInit {
 
   attachmentList: FileUploader = new FileUploader({});
 
+  existingImageData = { 'billOfLanding': [], 'commercialInvoice': [] };
+
   currentDocType = '';
 
   fileList = [
@@ -78,19 +81,31 @@ export class DocumentUploadComponent implements OnInit {
   recordDetails: any = {};
 
   ngOnInit() {
-    this.getRecordDetails();
+   // this.getRecordDetails();
   }
 
   onNext() {
     this.tabs.select('samplepreparationid');
     this.tabService.sendMessage(this.tabs);
+    this.attachmentList = new FileUploader({});
   }
 
-
+  onExit() {
+    this.router.navigate(['/record-list/record-list.module#RecordListModule']);
+  }
 
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
       this.recordDetails = response.data[0];
+      debugger;
+      const doctypename = [];
+      for (let i = 0; i < this.recordDetails.commercialInvoice.length; i++) {
+        const tempobj = {
+          name: this.recordDetails.commercialInvoice[i].split('_')[1],
+          imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.commercialInvoice[i]
+        };
+        this.existingImageData.commercialInvoice.push(tempobj);
+      }
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
     }, err => {
       this.comonSrvc.showErrorMsg('Document upload - Error in getting a list of record');
@@ -119,6 +134,7 @@ export class DocumentUploadComponent implements OnInit {
   updateAttachment(formData) {
     this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
+      this.getRecordDetails();
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
