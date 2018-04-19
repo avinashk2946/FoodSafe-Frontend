@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CommonService } from '../../../common/common.service';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { GLOBAL_PROPERTIES, API_ACTIONS } from '../../../common/common.constant';
 import { HttpRequestModal } from '../../../common/httpRequest.modal';
-import { HttpClient } from 'selenium-webdriver/http';
+// import { HttpClient } from 'selenium-webdriver/http';
 
 @Injectable()
 export class ResetPasswordService {

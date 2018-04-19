@@ -19,17 +19,23 @@ export class ForgotPasswordService {
     
   );
   create(email) {
+    console.log(email);
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL,
       companyId: email
     };
+
     const url = API_ACTIONS.login.forgotpassword +'/'+email;
     const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
 
-    return this.comonSrvc.createHttpRequest(httpRequest);
+    let requestAny: any;
+    requestAny = this.comonSrvc.createHttpRequest(httpRequest);
+    console.log(requestAny);
+    return requestAny;
   }
 
 }
+
 
 
 

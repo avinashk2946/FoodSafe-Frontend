@@ -30,7 +30,10 @@ export class ForgotPasswordComponent implements OnInit {
       })
   }
   message: string;
-  onSubmit():void {
+  
+  onSubmit(value: string):void {
+    this.email= value;
+    console.log(this.email);
     this.submitted=true;
     if (this.frgtPwdForm.valid) {
       this.forgotpasswordservice.create({'email':this.email})

@@ -43,13 +43,18 @@ export class ResetPasswordComponent implements OnInit {
   public onSubmit(){
       let formdata=this.resetPwdForm.value;
       formdata.token=this.token;
-      this.resetpasswordservice.reset(formdata).then(response=>{
+      this.resetpasswordservice.reset(formdata).subscribe(response=>{
+        console.log("response",response);
         this.route.navigate(['/login']);
-       }).catch(error=>{
-         this.message="error occured try again";
        });
+
+      //  .catch(error=>{
+      //    this.message="error occured try again";
+      //  });
   
+
    }
+   
  }
 export function ifEqual (c: AbstractControl) {
   if (c.get('newPassword').value === c.get('confirmPassword').value)
