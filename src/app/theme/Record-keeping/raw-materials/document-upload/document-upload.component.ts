@@ -63,7 +63,10 @@ export class DocumentUploadComponent implements OnInit {
 
   attachmentList: FileUploader = new FileUploader({});
 
-  existingImageData = { 'billOfLanding': [], 'commercialInvoice': [] };
+  existingImageData = {
+    'billOfLanding': [], 'commercialInvoice': [], 'packingList': [], 'coa': [],
+    'ccpVerification': [], 'environmentalMonitoring': [], 'otherSupporting': []
+  };
 
   currentDocType = '';
 
@@ -81,7 +84,7 @@ export class DocumentUploadComponent implements OnInit {
   recordDetails: any = {};
 
   ngOnInit() {
-   // this.getRecordDetails();
+    // this.getRecordDetails();
   }
 
   onNext() {
@@ -97,15 +100,7 @@ export class DocumentUploadComponent implements OnInit {
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
       this.recordDetails = response.data[0];
-      debugger;
-      const doctypename = [];
-      for (let i = 0; i < this.recordDetails.commercialInvoice.length; i++) {
-        const tempobj = {
-          name: this.recordDetails.commercialInvoice[i].split('_')[1],
-          imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.commercialInvoice[i]
-        };
-        this.existingImageData.commercialInvoice.push(tempobj);
-      }
+      this.convertImageDatatoShowableData();
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
     }, err => {
       this.comonSrvc.showErrorMsg('Document upload - Error in getting a list of record');
@@ -135,8 +130,76 @@ export class DocumentUploadComponent implements OnInit {
     this.rawMatService.uploadAttachment(formData).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
       this.getRecordDetails();
+      this.attachmentList = new FileUploader({});
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
   }
-}
+
+  convertImageDatatoShowableData() {
+
+    this.existingImageData.billOfLanding = [];
+    for (let i = 0; i < this.recordDetails.billOfLanding.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.billOfLanding[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.billOfLanding[i]
+      };
+      this.existingImageData.billOfLanding.push(tempobj);
+    }
+
+    this.existingImageData.commercialInvoice = [];
+    for (let i = 0; i < this.recordDetails.commercialInvoice.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.commercialInvoice[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.commercialInvoice[i]
+      };
+      this.existingImageData.commercialInvoice.push(tempobj);
+    }
+
+    this.existingImageData.packingList = [];
+    for (let i = 0; i < this.recordDetails.packingList.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.packingList[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.packingList[i]
+      };
+      this.existingImageData.packingList.push(tempobj);
+    }
+
+    this.existingImageData.coa = [];
+    for (let i = 0; i < this.recordDetails.coa.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.coa[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.coa[i]
+      };
+      this.existingImageData.coa.push(tempobj);
+    }
+
+    this.existingImageData.ccpVerification = [];
+    for (let i = 0; i < this.recordDetails.ccpVerification.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.ccpVerification[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.ccpVerification[i]
+      };
+      this.existingImageData.ccpVerification.push(tempobj);
+    }
+
+    this.existingImageData.environmentalMonitoring = [];
+    for (let i = 0; i < this.recordDetails.environmentalMonitoring.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.environmentalMonitoring[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.environmentalMonitoring[i]
+      };
+      this.existingImageData.environmentalMonitoring.push(tempobj);
+    }
+
+    this.existingImageData.otherSupporting = [];
+    for (let i = 0; i < this.recordDetails.otherSupporting.length; i++) {
+      const tempobj = {
+        name: this.recordDetails.otherSupporting[i].split('_')[1],
+        imageurl: GLOBAL_PROPERTIES.BASE_API_URL + '' + this.recordDetails.otherSupporting[i]
+      };
+      this.existingImageData.otherSupporting.push(tempobj);
+    }
+
+  }
+

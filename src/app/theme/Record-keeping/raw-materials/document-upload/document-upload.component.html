@@ -96,12 +96,9 @@
                 <tr>
                   <th>Bill of Lading</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.billOfLanding">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.billOfLanding">
                       <div class="col">
-                        {{image}}
-                      </div>
-                      <div class="col">
-                        <span class="fa fa-trash"></span>
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -109,64 +106,49 @@
                 <tr>
                   <th>Commercial Invoice</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of existingImageData.commercialInvoice"> 
+                    <div class="row mypadding" *ngFor="let image of existingImageData.commercialInvoice">
                       <div class="col">
                         <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
-                      <!--div class="col">
-                        <span class="fa fa-trash"></span>
-                      </div -->
                     </div>
                   </th>
                 </tr>
                 <tr>
                   <th>Packing list</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.packingList">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.packingList">
                       <div class="col">
-                        {{image}}
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
-                      <!--div class="col">
-                        <span class="fa fa-trash"></span>
-                      </div -->
                     </div>
                   </th>
                 </tr>
                 <tr>
                   <th>COA</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.coa">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.coa">
                       <div class="col">
-                        {{image}}
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
-                      <!--div class="col">
-                        <span class="fa fa-trash"></span>
-                      </div -->
                     </div>
                   </th>
                 </tr>
                 <tr>
                   <th>CCP verification records</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.ccpVerification">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.ccpVerification">
                       <div class="col">
-                        {{image}}
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
-                      <!--div class="col">
-                        <span class="fa fa-trash"></span>
-                      </div -->
                     </div>
                   </th>
                 </tr>
                 <tr>
                   <th>Environmental Monitoring records</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.environmentalMonitoring">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.environmentalMonitoring">
                       <div class="col">
-                        {{image}}
-                      </div>
-                      <div class="col">
-                        <span class="fa fa-trash"></span>
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -174,13 +156,10 @@
                 <tr>
                   <th>Other Supporting records</th>
                   <th>
-                    <div class="row mypadding" *ngFor="let image of recordDetails.otherSupporting">
+                    <div class="row mypadding" *ngFor="let image of existingImageData.otherSupporting">
                       <div class="col">
-                        {{image}}
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
                       </div>
-                      <!--div class="col">
-                        <span class="fa fa-trash"></span>
-                      </div -->
                     </div>
                   </th>
                 </tr>
