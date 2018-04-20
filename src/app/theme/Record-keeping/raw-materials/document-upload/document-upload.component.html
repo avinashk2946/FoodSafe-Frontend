@@ -1,5 +1,5 @@
-<div class="doc-upload">
-  <div class="doc-upload card">
+<div class="doc-upload ">
+  <div class="doc-upload ">
     <div class="row data-table" *ngIf="recordDetails._id">
       <div class="col-md-4">
         Plant :
@@ -20,11 +20,11 @@
       <div class="col-md-4">
         Raw Material Group :
         <strong> {{recordDetails.rawMaterial.rmGroupName}}</strong>
-	  </div>
-	  <div class="col-md-4">
-			Purchase Order :
-			<strong> {{recordDetails.po}}</strong>
-		  </div>
+      </div>
+      <div class="col-md-4">
+        Purchase Order :
+        <strong> {{recordDetails.po}}</strong>
+      </div>
       <div class="col-md-4">
         Container No :
         <strong> {{recordDetails.containerNo}}</strong>
@@ -37,7 +37,7 @@
         Approved :
         <strong> {{recordDetails.approved}}</strong>
       </div>
-      <div class="col-md-4"> 
+      <div class="col-md-4">
         Raw Material :
         <strong> {{recordDetails.rawMaterial.name}}</strong>
       </div>
@@ -45,43 +45,137 @@
   </div>
 
   <div class="col-md-12 ">
-    <ngb-tabset type="tabs"  #tabs>
+    <ngb-tabset type="tabs" #tabs>
       <ngb-tab title="Document" id="documentUploadid1">
         <ng-template ngbTabContent>
-          <table class="table table-framed table-responsive">
-            <thead>
-              <tr>
-                <th>Document</th>
-                <th>Attachment</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let type of fileList">
-                <td>{{type.title}}</td>
-                <td>
-                  <form novalidate>
-                    <div class="form-group">
-                      <label class="custom-file mb-3">
-                        <input type="file" ng2FileSelect ng2FileDrop [uploader]="type.attachmentList" multiple class="custom-file-input">
-                        <span class="custom-file-control">Drag and drop your files here</span>
-                      </label>
+          <br>
+          <br>
+          <div class="form-group row">
+            <label for="docTypeID" class="col-sm-3 offset-sm-2 col-form-label">Document Type</label>
+            <div class="col-sm-4">
+              <select id="docTypeID" class="form-control form-control-primary" [(ngModel)]="currentDocType" required>
+                <option *ngFor="let doctype of fileList" [value]="doctype.value">
+                  {{doctype.label}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3 offset-sm-2 custom-file" style="height: 76px;">
+              <input type="file" style="margin-top: 21px;" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
+              <span class="custom-file-control" style="margin-top: 21px">Drag and drop your files here</span>
+            </div>
+            <div class="col-sm-4">
+              <ul class="list-inline" style="margin-bottom: 0px">
+                <li class="list-group-item media-left" *ngFor="let item of attachmentList.queue; let i=index">
+                  <img src="" imgPreview [image]="item?._file" class="media-object" />
+                  <span class="fa fa-trash" (click)="delete($event,i,attachmentList.queue)"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-7 offset-sm-2">
+              <div class=" row justify-content-center">
+                <button autofocus="" type="button" class="btn btn-success btn-md" (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
+              </div>
+            </div>
+          </div>
+          <br>
 
-                      <ul class="list-inline">
-                        <li class="list-group-item media-left" *ngFor="let item of type.attachmentList.queue; let i=index">
-                          <img src="" imgPreview [image]="item?._file" class="media-object" />
-                          <span class="fa fa-trash" (click)="delete($event,i,type.attachmentList.queue)"></span>
-                        </li>
-                      </ul>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th style="width:30%">Document Type</th>
+                  <th>Attachments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Bill of Lading</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.billOfLanding">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
                     </div>
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class=" row justify-content-center">
-            <button type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button>
-            <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile(filesAddForm,$event) ">Save</button>
-            <button type="button" class="btn btn-default" (click)="exit($event)">Exit</button>
+                  </th>
+                </tr>
+                <tr>
+                  <th>Commercial Invoice</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.commercialInvoice">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>Packing list</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.packingList">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>COA</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.coa">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>CCP verification records</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.ccpVerification">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>Environmental Monitoring records</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.environmentalMonitoring">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>Other Supporting records</th>
+                  <th>
+                    <div class="row mypadding" *ngFor="let image of existingImageData.otherSupporting">
+                      <div class="col">
+                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-between">
+            <div class="col-sm-2">
+              <button autofocus="" type="button" class="btn btn-success btn-md" disabled="true">Previous</button>
+            </div>
+            <div class="col-sm-2 offset-sm-3">
+              <button autofocus="" type="button" class="btn btn-success btn-md" (click)="onExit()">Exit</button>
+            </div>
+            <div class="col-sm-1 offset-sm-4">
+              <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
+            </div>
           </div>
         </ng-template>
       </ngb-tab>

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../../service/data.service';
 import { LoginService } from './login.service';
 import { CommonService } from '../../common/common.service';
-import { AuthService } from '../../common/auth.service';
+// import { AuthService } from '../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
@@ -16,21 +15,18 @@ import { GLOBAL_PROPERTIES } from './../../common/common.constant';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss'],
-  providers: [LoginService],
-  // provider: [LocalStorageService]
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  // @LocalStorage() public username:string;
+
 
   loginForm: FormGroup;
   companyId: string;
   logoUrl: any;
   backgroundImgUrl: any;
   isFetchConfig: Boolean;
-  
-  // private logo = require("./assets/images/logo.png");
 
   // static emailFormat(control: Control): [[key: string]: boolean] {
   //   let pattern:RegExp = /\S+@\S+\.\S+/;
@@ -38,7 +34,7 @@ export class LoginComponent implements OnInit {
   // }
   user;
 
-  constructor(private _dataService: DataService, private _router: Router, private fb: FormBuilder,
+  constructor(private _router: Router, private fb: FormBuilder,
     private loginSrvc: LoginService, private comonSrvc: CommonService, private locationStrategy: LocationStrategy,
     protected localStorage: AsyncLocalStorage) {
 
@@ -46,9 +42,6 @@ export class LoginComponent implements OnInit {
     const splittedArray = absUrl.split(':')[0].split('/');
     this.companyId = splittedArray[0];
     this.isFetchConfig = false;
-    console.log('this.companyId', this.companyId);
-
-
   }
 
   ngOnInit() {

@@ -2,8 +2,8 @@ import {Component, ElementRef, OnInit, Input, ViewChild, ViewEncapsulation} from
 import {animate, style, transition, trigger} from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import { PlantService } from '../../../service/plant.service';
-import { Plant } from '../../../classes/plant';
+// import { PlantService } from '../../../service/plant.service';
+// import { Plant } from '../../../classes/plant';
 import { CommonService } from '../../../common/common.service';
 import { AuthService } from '../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
@@ -23,7 +23,7 @@ export class RawmaterialComponent implements OnInit {
   
    @Input() plant=[];
 
-  constructor(private fb: FormBuilder, public plantservice: PlantService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.dataForm = this.fb.group({
@@ -43,52 +43,52 @@ export class RawmaterialComponent implements OnInit {
       'containerNo' : ['', [Validators.required]],
       'lotNo' : ['', [Validators.required]]
     });
-    this.plantservice.getplant().subscribe(responseplants => this.plant = responseplants);
+    // this.plantservice.getplant().subscribe(responseplants => this.plant = responseplants);
   }
     
-  public changePlant (plant: Plant): void {  
-    this.plantservice.getplant().subscribe((response: any) => {
-      console.log(response);
-    });
+//   public changePlant (plant: Plant): void {  
+//     this.plantservice.getplant().subscribe((response: any) => {
+//       console.log(response);
+//     });
 
 
-    this.dataForm = this.fb.group({
-      'plant' : '',
-      'createdDate' : '', 
-      'createdBy' : '', 
-      'suplier' : '', 
-      'broker' : '', 
-      'coo' : '', 
-      'rawMaterial' : '', 
-      'rawMaterialCode' : '', 
-      'variety' : '', 
-      'approved' : '', 
-      'kosher' : '', 
-      'nonGMO' : '', 
-      'po' : '', 
-      'containerNo' : '', 
-      'lotNo' : ''
-  });
-  this.dataForm.controls[ 'plant' ].setValidators([ Validators.required]);
-  this.dataForm.controls[ 'createdDate' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'createdBy' ].setValidators([Validators.required ]);
-  this.dataForm.controls[ 'suplier' ].setValidators([ Validators.required]);
-  this.dataForm.controls[ 'broker' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'coo' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'rawMaterial' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'rawMaterialCode' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'variety' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'approved' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'kosher' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'nonGMO' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'po' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'containerNo' ].setValidators([Validators.required]);
-  this.dataForm.controls[ 'lotNo' ].setValidators([Validators.required]);
-  }
-reset()
-  {
-     this.hitCancel=true;
-  }
+//     this.dataForm = this.fb.group({
+//       'plant' : '',
+//       'createdDate' : '', 
+//       'createdBy' : '', 
+//       'suplier' : '', 
+//       'broker' : '', 
+//       'coo' : '', 
+//       'rawMaterial' : '', 
+//       'rawMaterialCode' : '', 
+//       'variety' : '', 
+//       'approved' : '', 
+//       'kosher' : '', 
+//       'nonGMO' : '', 
+//       'po' : '', 
+//       'containerNo' : '', 
+//       'lotNo' : ''
+//   });
+//   this.dataForm.controls[ 'plant' ].setValidators([ Validators.required]);
+//   this.dataForm.controls[ 'createdDate' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'createdBy' ].setValidators([Validators.required ]);
+//   this.dataForm.controls[ 'suplier' ].setValidators([ Validators.required]);
+//   this.dataForm.controls[ 'broker' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'coo' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'rawMaterial' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'rawMaterialCode' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'variety' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'approved' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'kosher' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'nonGMO' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'po' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'containerNo' ].setValidators([Validators.required]);
+//   this.dataForm.controls[ 'lotNo' ].setValidators([Validators.required]);
+//   }
+// reset()
+//   {
+//      this.hitCancel=true;
+//   }
 }
 
   

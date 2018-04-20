@@ -176,7 +176,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.setBackgroundPattern('pattern1');
-    console.log('menuItems', this.menuItems.getAll());
+   // console.log('menuItems', this.menuItems.getAll());
     this.localStorage.getItem('user').subscribe((user) => {
       console.log(user);
       this.createdBy = user.user.username;

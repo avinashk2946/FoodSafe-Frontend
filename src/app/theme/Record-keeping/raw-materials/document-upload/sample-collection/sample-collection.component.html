@@ -1,84 +1,109 @@
-<div class="sample-collection">
-  <div class="sample-collection  card">
-      <div class="table-head">
-        <div class="row table-row">
-          <div class="col-md-1 table-th action">
-            Samppling No
-          </div>
-          <div class="col-md-1 table-th action">
-            Supplier Lot
-          </div>
-          <div class="col-md-1 table-th action">
-            Picture Of case Label
-          </div>
-          <div class="col-md-2 table-th action">
-            Quality Analysis Sampling
-          </div>
-          <div class="col-md-3 table-th action">
-            Pathogen/Virus/Indicator <br> Organism Sampling
-          </div>
-          <div class='col-md-2 table-th action'>
-            Pesticides Sampling
-          </div>
-         <!--  <div class='col-md-2 table-th action'>
-            Pesticide sampling
-          </div> -->
-         <!--  <div class='col-md-2 table-th action'>
-            Indicator Organism Sampling
-          </div> -->
-           <div class='col-md-2 table-th action'>
-            Comments
-        </div>
-        </div>
-      </div>
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-sm-2">
+      Total Samples :
+      <strong>{{totalSamples}}</strong>
+    </div>
+    <div class="col-sm-2">
+      Remaining Samples :
+      <strong> 10 </strong>
+    </div>
+    <div class="col-sm-2">
+      <button type="button" class="btn btn-primary btn-sm" (click)="addNewSample()">Add new Samples</button>
+    </div>
   </div>
-
-
-     <div class="table-head">
-      <div class="row table-row" *ngFor="let s of sampleArr">
-        <div class="col-md-1 table-th action">
-         <!-- {{sample.quantityPlanned}} -->
-        </div>
-        <div class="col-md-1 table-th action">
-            <select type="text" class="form-control"  [(ngModel)]="selectedsupplierLot.supplierLot" name=""   >
-               <option *ngFor='let s of samplecollection' value={{s.supplierLot}} (change)="onSelect($event.target.value)"
-              >{{s.supplierLot}}</option>  
-            </select>
-          <!-- <ng-select [ngClass]="'ng-select'" [allowClear]="true"  placeholder='Supplier Lot'  [value]="sample.supplierLot" [(ngModel)]="sample.supplierLot"></ng-select> -->
-        </div>
-        <div class="col-md-1 table-th action">
-      <a  href="./recordkeeping/raw-matrial/document-upload/123" class="image"><span class="fa fa-camera fa-2x "></span></a> 
-          <!-- {{sample.pictureofcaselabel}} -->
-        </div>
-        <div class="col-md-2 table-th action">
-         <span>             
-             <label>{{selectedsupplierLot.qualityAnalysis}}</label> 
-             <input type="checkbox" calss="checkbox">
-         </span> 
-        </div>
-        <div class="col-md-3 table-th action">         
-         <label> {{selectedsupplierLot.virusTest }}</label>
-          <input type="checkbox" calss="checkbox"> 
-        </div>
-        <div class='col-md-2 table-th action'>
-           <label> {{selectedsupplierLot.pesticideTest}}</label> 
-            <input type="checkbox" calss="checkbox">
-        </div>
-        <!-- <div class='col-md-2 table-th action'> -->
-        <!--    <input type="checkbox" calss="checkbox">
-         <label> {{sample.comment}}</label>  -->
-        <!-- </div> -->
-         <div class='col-md-2 table-th action'>
-          <textarea type="text" class="form-control" name=""  placeholder="your text here"></textarea>  
-        </div>
+  <form [formGroup]="sampleForm" *ngIf="showEditFields" (ngSubmit)="saveUpdateSample(current)">
+    <div class="row">
+      <div class="col-sm-3" style="margin-top: 21px;">
+        <ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="current.supplierLot"
+          (ngModelChange)='changeSupplierLot()' [formControl]="sampleForm.controls['supplierLot']"></ng-select>
+      </div>
+      <div class="col-sm-3 custom-file" style="height: 76px;">
+        <input type="file" style="margin-top: 26px;" ng2FileSelect ng2FileDrop [uploader]="current.attachments" class="custom-file-input">
+        <span class="custom-file-control" style="margin-top: 26px">Drag and drop your files here</span>
+      </div>
+      <div class="col-sm-5">
+        <ul class="list-inline" style="margin-bottom: 0px">
+          <li class="list-group-item media-left" *ngFor="let item of current.attachments.queue; let i=index">
+            <img src="" imgPreview [image]="item?._file" class="media-object" />
+            <span class="fa fa-trash" (click)="delete($event,i,current.attachments.queue)"></span>
+          </li>
+        </ul>
       </div>
     </div>
-        <div class="button pull-right">
-                <span>
-                  <button type="button" class="btn btn-warning">Cancel</button>
-                  <button autofocus="" type="button" class="btn btn-success" >Save</button>
-                  <button type="button" class="btn btn-default">Exit</button>
-               </span>
-        </div>
-</div>
+    <br>
+    <div class="row">
+      <div class="col-sm-12 checkbox-zoom zoom-primary ">
+        <label>
+          <input type="checkbox" value="" [formControl]="sampleForm.controls['qaAnalysis']" [checked]="current.quaAnalsisIndicator" [disabled]="qualityanadisabled" (change)="current.quaAnalsisIndicator = !current.quaAnalsisIndicator">
+          <span class="cr">
+            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+          </span>
+          <span>Is Quality Analysis sample taken</span>
+        </label>
+      </div>
 
+      <div class="col-sm-12  checkbox-zoom zoom-primary">
+        <label>
+          <input type="checkbox" value="" [formControl]="sampleForm.controls['pathvirsuFcon']" [checked]="current.paViIndIndicator" [disabled]="pavirusadisabled" (change)="current.paViIndIndicator = !current.paViIndIndicator">
+          <span class="cr">
+            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+          </span>
+          <span>Is Pathogen/Virus/Indicator test sample taken</span>
+        </label>
+      </div>
+
+      <div class=" col-sm-12  checkbox-zoom zoom-primary">
+        <label>
+          <input type="checkbox" value="" [formControl]="sampleForm.controls['pestcidesFcon']" [checked]="current.pesticideIndicator" [disabled]="pesticdiedisabled" (change)="current.pesticideIndicator = !current.pesticideIndicator">
+          <span class="cr">
+            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+          </span>
+          <span>Is Pesticide test sample taken</span>
+        </label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" style="padding-top:45px">Comments </label>
+      <div class="col-sm-4">
+        <textarea rows="4" cols="4" class="form-control" [formControl]="sampleForm.controls['comments']" (change)="doTextareaValueChange($event)" [(ngModel)]="current.conmment"
+          placeholder="Enter you commetns"></textarea>
+      </div>
+      <div class="col-sm-1" style="padding-top:78px">
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="supplierlotdisable">Save</button>
+      </div>
+    </div>
+  </form>
+  <br>
+  <div class="row">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Sample Id</th>
+          <th scope="col">Supplier Lot</th>
+          <th scope="col">Picture of the Label</th>
+          <th scope="col">Is QA sample taken</th>
+          <th scope="col">Is Pathogen/Virus/Indictor sample taken</th>
+          <th scope="col">Is Pesticide Test sample taken</th>
+          <th scope="col">Comments</th>
+          <th scope="col">Edit/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sample of sampleList">
+          <th>{{sample.id}}</th>
+          <td>{{sample.supplierLot}}</td>
+          <td>
+            <a> Preview </a>
+          </td>
+          <td>{{sample.quaAnalsisIndicator}}</td>
+          <td>{{sample.paViIndIndicator}}</td>
+          <td>{{sample.pesticideIndicator}}</td>
+          <td>{{sample.conmment}}</td>
+          <td>Edit/ Delete</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

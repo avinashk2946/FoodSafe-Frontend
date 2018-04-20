@@ -9,28 +9,25 @@ import { HttpRequestModal } from '../../../common/httpRequest.modal';
 @Injectable()
 export class ForgotPasswordService {
 
-  constructor(private comonSrvc: CommonService,
-    private http : HttpClient) { }
+  constructor(private comonSrvc: CommonService, private http : HttpClient) { }
     private headers=new Headers(
     {
         "Content-Type":"application/json",
-
     } 
-    
   );
   create(email) {
-    console.log(email);
+    console.log(email);//got mail address
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL,
       companyId: email
     };
-
-    const url = API_ACTIONS.login.forgotpassword +'/'+email;
+    console.log(reqPayload);
+    const url = API_ACTIONS.login.verifyEmail + '/' + email;
     const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
 
     let requestAny: any;
     requestAny = this.comonSrvc.createHttpRequest(httpRequest);
-    console.log(requestAny);
+    console.log('requestAny', requestAny);
     return requestAny;
   }
 

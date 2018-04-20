@@ -8,7 +8,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Subject } from 'rxjs/Subject';
 import * as _ from 'lodash';
-
+import { animate, style, transition, trigger } from '@angular/animations';
+import { FileUploader } from 'ng2-file-upload';
+import { Http } from '@angular/http';
+import { HttpEventType } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { TabsSevice } from './../tabs.service';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-sample-preparation',
@@ -32,6 +39,10 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
+
+  private tabs: any;
+  public onlineOffline: boolean = navigator.onLine;
+  private subscription: ISubscription;
   samples = [
     {
       supplierLot: '',
@@ -44,16 +55,17 @@ export class SamplePreparationComponent implements OnInit {
       pathogenTest: false,
       virusTest: false,
       pesticideTest: false,
-      conmment: ''
+      comment: ''
     }
   ];
 
-  constructor(public fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+  constructor(public fb: FormBuilder, private tabService: TabsSevice,
+    public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     public router: Router, private route: ActivatedRoute, protected localStorage: AsyncLocalStorage) {
+
     this.route.params.subscribe(params => {
       this.recordId = params.id;
     });
-
 
   }
 
@@ -71,7 +83,7 @@ export class SamplePreparationComponent implements OnInit {
           const index = _.findIndex(this.samples, { 'supplierLot': this.tempSearchTerm });
           this.updateSampleObj(index, response.data);
         }, err => {
-
+          console.log('Sample Preparation : Error validating supplier lot.');
         });
 
       this.rawMatService.getSamplePreparation(this.recordDetails._id)
@@ -80,12 +92,13 @@ export class SamplePreparationComponent implements OnInit {
             this.samples = [];
           }
           response.data.forEach(element => {
-            this.samples.push(element.samples[0]);
+            for (let i = 0; i < element.samples.length; i++) {
+              this.samples.push(element.samples[i]);
+            }
           });
         }, err => {
-
+          console.log('Sample Preparation : Error getting exsiting sample preparations.');
         });
-
     });
   }
 
@@ -96,26 +109,7 @@ export class SamplePreparationComponent implements OnInit {
       item.virusTest = (item.newLot === true) ? true : false;
     }
   }
-  createForm() {
-    // this.itemAddForm = this.fb.group({
-    //   items: this.fb.array([
-    //     this.fb.group({
-    //       supplierlot: ['',],
-    //       newlot: [''],
-    //       ifnopreviouspo: [''],
-    //       totalquality: [''],
-    //       qcanalysys: [''],
-    //       qualityplannedforsampling: [''],
-    //       indicatortest: [''],
-    //       pathogentest: [''],
-    //       virustest: [''],
-    //       Pestisidetest: [''],
 
-    //     })
-    //   ])
-    // });
-    // ]);
-  }
   public addRow(e: Event) {
     e.preventDefault();
     this.samples.push({
@@ -129,7 +123,7 @@ export class SamplePreparationComponent implements OnInit {
       pathogenTest: false,
       virusTest: false,
       pesticideTest: false,
-      conmment: ''
+      comment: ''
     });
   }
 
@@ -144,11 +138,14 @@ export class SamplePreparationComponent implements OnInit {
     };
     this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
+      this.subscription = this.tabService.getMessage().subscribe(tabState => {
+        this.tabs = tabState.value;
+        this.tabs.select('samplecollectionid');
+      });
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
   }
-
   public handleEvent(sampleadded: any) {
     this.item = sampleadded;
   }
@@ -158,7 +155,6 @@ export class SamplePreparationComponent implements OnInit {
     this.searchTerm.next(supplierlot);
   }
   public updateSampleObj(index, response) {
-    console.log('In Update Sample obj' + index, response);
     this.samples[index].newLot = response.newLot ? 'Yes' : 'No';
     this.samples[index].po = response.po;
     this.samples[index].pathogenTest = response.pathogenTest;
