@@ -25,10 +25,10 @@ export class ForgotPasswordService {
     const url = API_ACTIONS.login.verifyEmail + '/' + email;
     const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
 
-    let requestAny: any;
-    requestAny = this.comonSrvc.createHttpRequest(httpRequest);
-    console.log('requestAny', requestAny);
-    return requestAny;
+    let response: any;
+    response = this.comonSrvc.createHttpRequest(httpRequest);
+    console.log('response', response);
+    return response;
   }
 
 }

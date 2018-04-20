@@ -14,7 +14,7 @@ import { LoginService } from '../login.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   frgtPwdForm: FormGroup;
-  constructor(private fb: FormBuilder, private forgotpasswordservice:ForgotPasswordService, private comonSrvc: CommonService)
+  constructor(private fb: FormBuilder, private _router: Router,private forgotpasswordservice:ForgotPasswordService, private comonSrvc: CommonService)
      { 
        this.CreateForm();
       }
@@ -33,13 +33,18 @@ export class ForgotPasswordComponent implements OnInit {
   message: string;
   
   onSubmit(email: string) {
-    console.log(email);//got mail address
     this.submitted=true;
     if (this.frgtPwdForm.valid) {
-      this.forgotpasswordservice.create({'email': email})
-      console.log("service call")
+      this.forgotpasswordservice.create(email).subscribe((resData: any) => {
        this.mailsent=true;
        this.message= 'Please check your mail';
+        this.comonSrvc.showSuccessMsg(resData.message);
+        this._router.navigate(['/login']);
+       }, (errData:any) => {
+         console.error("Error in service call",errData.error);
+         this.comonSrvc.showErrorMsg(errData.error.message);
+        });
+      
     }
     else{
       this.message= 'This is not a valid email address, please enter a valid one.';
