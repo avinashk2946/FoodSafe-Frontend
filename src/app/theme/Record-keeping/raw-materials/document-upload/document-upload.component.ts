@@ -202,4 +202,4 @@ export class DocumentUploadComponent implements OnInit {
     }
 
   }
-
+}
