@@ -19,7 +19,7 @@ export class ForgotPasswordService {
     console.log(email);//got mail address
     const reqPayload = {
       channel: GLOBAL_PROPERTIES.CHANNEL,
-      companyId: email
+      // companyId: email
     };
     console.log(reqPayload);
     const url = API_ACTIONS.login.verifyEmail + '/' + email;

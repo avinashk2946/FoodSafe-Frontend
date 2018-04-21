@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ResetPasswordService } from './reset-password.service';
 import { CommonService } from '../../../common/common.service';
@@ -28,9 +28,11 @@ export class ResetPasswordComponent implements OnInit {
       }
 
   ngOnInit() {
-    this.aRoute.params.subscribe((param) => {
-      if(param.token){
-        this.param=param.token;
+    this.aRoute.params.subscribe((params: Params) => {
+      let resetPasswordToken = params['resetPasswordToken'];
+      console.log(resetPasswordToken);
+      if(params.token){
+        this.param=params.token;
       }
     });
     this.resetPwdForm = this.fb.group({

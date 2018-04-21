@@ -1,6 +1,6 @@
 export const GLOBAL_PROPERTIES = Object.freeze({
-    BASE_API_URL: 'http://18.191.2.115:3000/',
-    // BASE_API_URL: 'http://localhost:3000/',
+    // BASE_API_URL: 'http://18.191.2.115:3000/',
+    BASE_API_URL: 'http://localhost:3000/',
 
     FE_SESSIONID_PREFIX: 'ECOM',
     REQUEST_TIMEOUT: 60,
