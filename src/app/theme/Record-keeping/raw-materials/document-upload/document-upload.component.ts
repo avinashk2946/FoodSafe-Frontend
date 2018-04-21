@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation,Directive,
-  Renderer, HostListener, HostBinding} from '@angular/core';
+  Renderer} from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators, FormsModule } from '@angular/forms';
 
@@ -18,7 +18,7 @@ import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Observable } from 'rxjs/Observable';
-
+import 'rxjs/add/observable/of';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -100,8 +100,8 @@ export class DocumentUploadComponent implements OnInit {
 
   dataForm: FormGroup;
   UploadFiles: any = '';
-  online$ = Observable.fromEvent(window, 'online');
-  offline$ = Observable.fromEvent(window, 'offline');
+  // online$ = Observable.fromEvent(window, 'online');
+  // offline$ = Observable.fromEvent(window, 'offline');
   public files: File[];
   public filesAddForm: FormGroup;
   color: any;

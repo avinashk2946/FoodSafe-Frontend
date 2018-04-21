@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-sample-collection',
