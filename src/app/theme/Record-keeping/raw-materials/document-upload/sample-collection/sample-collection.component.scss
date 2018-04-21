@@ -1,6 +1,10 @@
-.labelCenter{
-    vertical-align: middle;
-}
-.media-left img{
+@import "bootstrap";
+
+
+.list-group-item{
+    display:inherit ;
+  }
+  
+  .media-left img {
     height: 50px;
   }

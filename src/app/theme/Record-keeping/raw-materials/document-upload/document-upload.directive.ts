@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation,Directive,
-  Renderer, HostListener, HostBinding} from '@angular/core';
+  Renderer} from '@angular/core';
 
 
 

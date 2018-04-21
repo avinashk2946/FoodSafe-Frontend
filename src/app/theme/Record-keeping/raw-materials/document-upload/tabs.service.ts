@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ReplaySubject} from 'rxjs/ReplaySubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -13,8 +13,8 @@ export class TabsSevice {
   }
 
 
-getMessage(): Observable<any> {
+  getMessage(): Observable<any> {
     return this._setTabs.asObservable();
-}
-  
+  }
+
 }

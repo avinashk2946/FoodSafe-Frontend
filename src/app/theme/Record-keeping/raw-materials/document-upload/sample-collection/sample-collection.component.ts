@@ -3,7 +3,6 @@ import { RawMaterialService } from '../../raw-material.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { Router, ActivatedRoute } from '@angular/router';
-// import { SamplePreparation } from '../../../../../classes/sample-preparation';
 import * as _ from 'lodash';
 
 @Component({
@@ -32,6 +31,12 @@ export class SampleCollectionComponent implements OnInit {
   uploader: FileUploader = new FileUploader({});
 
   public current = new Sample('', '', new FileUploader({}), false, false, false, '');
+
+  public qualityanadisabled = false;
+  public pavirusadisabled = false;
+  public pesticdiedisabled = false;
+  public supplierlotdisable = true;
+
 
   constructor(public rawMatService: RawMaterialService, fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
     this.sampleForm = fb.group({
@@ -69,17 +74,25 @@ export class SampleCollectionComponent implements OnInit {
   }
 
   public changeSupplierLot() {
-    console.log(this.current.supplierLot);
     const sampleobj = _.find(this.samplePreparations, { '_id': this.current.supplierLot });
     if (sampleobj !== undefined) {
-      this.current.quaAnalsisIndicator = sampleobj.qualityAnalysis ? 'true' : 'false';
-      this.current.pesticideIndicator = sampleobj.pesticideTest ? 'true' : 'false';
-      this.current.paViIndIndicator = this.getPaVirIndicator(sampleobj) ? 'true' : 'false';
+      this.supplierlotdisable = false;
+      this.current.quaAnalsisIndicator = sampleobj.qualityAnalysis ? true : false;
+      this.current.pesticideIndicator = sampleobj.pesticideTest ? true : false;
+      this.current.paViIndIndicator = this.getPaVirIndicator(sampleobj) ? true : false;
+    } else {
+      this.supplierlotdisable = true;
+      this.current.quaAnalsisIndicator = false;
+      this.current.pesticideIndicator = false;
+      this.current.paViIndIndicator = false;
     }
-    console.log(sampleobj);
+    this.qualityanadisabled = this.current.quaAnalsisIndicator ? false : true;
+    this.pavirusadisabled = this.current.paViIndIndicator ? false : true;
+    this.pesticdiedisabled = this.current.pesticideIndicator ? false : true;
+
   }
 
-  // based on pathogen virus and indictor test 
+  // based on pathogen virus and indictor test
   getPaVirIndicator(sampleobj) {
 
     if (sampleobj.pathogenTest === false && sampleobj.indicatorTest === false && sampleobj.virusTest === false) {
@@ -88,6 +101,14 @@ export class SampleCollectionComponent implements OnInit {
       return true;
     }
   }
+  doTextareaValueChange(ev) {
+    try {
+      this.current.conmment = ev.target.value;
+    } catch (e) {
+      console.log('texarea failed.');
+    }
+  }
+
 
   public saveUpdateSample(current) {
     console.log(current);
@@ -95,7 +116,7 @@ export class SampleCollectionComponent implements OnInit {
     this.current.id = 'sample_supplierlot_1'; // this.createId();
     this.sampleList.push({
       id: this.current.id,
-      attachments: this.current.attachments.queue[0]._file.name,
+      //   attachments: this.current.attachments.queue[0]._file.name,
       supplierLot: _.find(this.samplePreparations, { '_id': this.current.supplierLot }).supplierLot,
       quaAnalsisIndicator: this.current.quaAnalsisIndicator,
       paViIndIndicator: this.current.paViIndIndicator,
@@ -155,9 +176,9 @@ export class Sample {
   id: string;
   attachments: FileUploader;
   supplierLot: string;
-  quaAnalsisIndicator: string;
-  paViIndIndicator: string;
-  pesticideIndicator: string;
+  quaAnalsisIndicator: boolean;
+  paViIndIndicator: boolean;
+  pesticideIndicator: boolean;
   conmment: string;
 
   constructor(id, supplierLot, attachments, quaAnalsisIndicator, paViIndIndicator, pesticideIndicator, comments) {
