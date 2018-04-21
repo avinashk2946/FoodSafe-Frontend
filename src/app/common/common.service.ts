@@ -20,6 +20,7 @@ export class CommonService {
 
     constructor(public http: HttpClient, private toastr: ToastrService) { }
 
+
     createHttpRequest(dataObject: HttpRequestModal) {
 
         /*dataObject.payload['feSessionId'] = this.generateFeSessionId();*/
@@ -32,9 +33,7 @@ export class CommonService {
         } else if (dataObject.method === 'GET') {
             const baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
             return this.http.get(baseUrl + dataObject.actionName);
-        }
-          else if (dataObject.method === 'DELETE') {
-            console.log("calling delete service")
+        } else if (dataObject.method === 'DELETE') {
             const baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
             return this.http.delete(baseUrl + dataObject.actionName);
         }

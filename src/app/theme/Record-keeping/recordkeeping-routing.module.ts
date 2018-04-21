@@ -18,6 +18,18 @@ const routes: Routes = [
         path: 'raw-matrial',
         loadChildren: './raw-materials/raw-material.module#RawMaterialsModule'
       },
+      //  {
+      //   path: 'packaging',
+      //   loadChildren: './returns/returns.module#ReturnsModule'
+      // },
+      //  {
+      //   path: 'chemicals',
+      //   loadChildren: './returns/returns.module#ReturnsModule'
+      // },
+       {
+        path: 'returns',
+        loadChildren: './returns/returns.module#ReturnsModule'
+      },
     ]
   }
 ];

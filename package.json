@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
-    "@swimlane/ngx-datatable": "^11.0.4",
+    "@swimlane/ngx-datatable": "^11.2.0",
     "@types/lodash": "^4.14.104",
     "angular-async-local-storage": "^3.1.1",
     "angular-localstorage": "^1.1.5",

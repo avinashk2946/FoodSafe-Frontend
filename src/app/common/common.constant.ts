@@ -1,6 +1,5 @@
-
 export const GLOBAL_PROPERTIES = Object.freeze({
-    BASE_API_URL: 'http://ec2-18-216-185-118.us-east-2.compute.amazonaws.com:3000/',
+    BASE_API_URL: 'http://18.191.2.115:3000/',
     FE_SESSIONID_PREFIX: 'ECOM',
     REQUEST_TIMEOUT: 60,
     CHANNEL: 'ANDROID',
@@ -13,7 +12,10 @@ export const API_ACTIONS = Object.freeze({
         fetchConfig: 'fetchConfig.json',
         verifyOtp: 'ecomVerifyOtp.action',
         verifymPin: 'ecomVerifyMpin.action',
-        resetPassword: 'user/resetPassword'
+        verifyEmail: 'resetPassword/verifyEmail/:email',
+        resetPassword: 'resetPasswordByToken',
+        forgotpassword:'forgotpassword'
+
     },
     summary: {
         savecardsInitiate: 'encryptedEcomStoredCards.action',
@@ -21,7 +23,7 @@ export const API_ACTIONS = Object.freeze({
     },
     configuration: {
         loginConfig: 'config',
-        userConfig: 'userConfig'
+        userConfig: 'userConfig',
     },
     common: {
         getHash: 'getEcomHash.action',

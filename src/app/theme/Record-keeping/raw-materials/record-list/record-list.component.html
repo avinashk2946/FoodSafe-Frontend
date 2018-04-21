@@ -1,22 +1,22 @@
 <div class="justify-content-center top">
   <div class="row m-t-5 ">
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary btn-block">
+      <button type="button" class="btn btn-block form-control">
         Create a record template
       </button>
     </div>
     <div class="col-md-3">
-      <button [routerLink]="['./create']" type="button" class="btn btn-primary btn-block">
+      <button [routerLink]="['./create']" type="button" class="btn btn-block form-control">
         Add a new record
       </button>
     </div>
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary btn-block">
+      <button type="button" class="btn btn-block form-control">
         Summary
       </button>
     </div>
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary btn-block">
+      <button type="button" class="btn btn-block form-control">
         Dashboard
       </button>
     </div>
@@ -29,17 +29,17 @@
     <div class="form-group row">
       <div class="row col-sm-12">
         <tag-input [ngClass]="'tag-select'" theme='bootstrap' [placeholder]="'Search...'" [ngModel]="[]" [onlyFromAutocomplete]="true">
-          <tag-input-dropdown [displayBy]="'value'" [identifyBy]="'id'" [autocompleteItems]="autocompleteItemsAsObjects"></tag-input-dropdown>
+          <tag-input-dropdown [displayBy]="'value'" [identifyBy]="'id'"></tag-input-dropdown>
         </tag-input>
       </div>
     </div>
   </div>
-  <div class="form-group">
+  <div class="row">
     <div class="col-md-12   action">
-      <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right" (click)="openConfirmsSwal($event)">
+      <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right action" (click)="openConfirmsSwal($event)">
         <i class="icofont icofont-delete-alt"></i>
       </button>
-      <button [disabled]="selected.length > 1" type="button" class="btn btn-default pull-right">
+      <button [disabled]="selected.length == 0" type="button" class="btn btn-default pull-right action" (click)="enableEditRow(selected)">
         <i class="icofont icofont-edit-alt"></i>
       </button>
     </div>
@@ -78,7 +78,7 @@
           </ng-template>
         </ngx-datatable-column> -->
 
-          <ngx-datatable-column name="Supplier Name">
+          <ngx-datatable-column name="Supplier Name" >
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
               <span class="table-head">
                 {{row.supplier.name}}

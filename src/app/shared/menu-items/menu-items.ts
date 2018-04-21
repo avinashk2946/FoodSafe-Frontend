@@ -49,14 +49,14 @@ const MENUITEMS = [
             state: 'plant',
             name: 'Plant Dashboard',
           },
-          {
-            state: 'my',
-            name: 'My Dashboard',
-          },
-          {
-            state: 'summary',
-            name: 'Summary'
-          }
+          // {
+          //   state: 'my',
+          //   name: 'My Dashboard',
+          // },
+          // {
+          //   state: 'summary',
+          //   name: 'Summary'
+          // }
         ]
       }
     ]
@@ -144,15 +144,15 @@ const MENUITEMS = [
 
           },
           {
-            state: 'Packaging',
+            state: 'packaging',
             name: 'Packaging'
           },
           {
-            state: 'Chemicals',
+            state: 'chemicals',
             name: 'Chemicals'
           },
           {
-            state: 'Returns',
+            state: 'returns',
             name: 'Returns'
           }
         ]

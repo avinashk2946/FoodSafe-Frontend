@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: '',
     component: DocumentUploadComponent,
+  },
+  {
+    path: 'recordlist',
+    loadChildren: '../record-list/record-list.module#RecordListModule'
   }
 ];
 
