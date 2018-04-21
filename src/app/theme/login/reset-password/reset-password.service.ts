@@ -18,12 +18,12 @@ export class ResetPasswordService {
     
   );
   reset(data) {
-    const reqPayload = {
-      channel: GLOBAL_PROPERTIES.CHANNEL,
-      companyId: data
-    };
+    // const reqPayload = {
+    //   channel: GLOBAL_PROPERTIES.CHANNEL,
+    //   companyId: data
+    // };
     const url = API_ACTIONS.login.resetPassword ;
-    const httpRequest = new HttpRequestModal(url, 'POST', reqPayload, true);
+    const httpRequest = new HttpRequestModal(url, 'POST', data, true);
 
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
