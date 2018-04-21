@@ -171,34 +171,34 @@ export class Sample {
   }
 }
 
-export class SamplePreparation {
-  id: string;
-  supplierLot: string;
-  newLot: boolean;
-  po: string;
-  totalQuantity: number;
-  qualityAnalysis: boolean;
-  quantityPlanned: boolean;
-  indicatorTest: boolean;
-  pathogenTest: boolean;
-  virusTest: boolean;
-  pesticideTest: boolean;
-  conmment: string;
+// export class SamplePreparation {
+//   id: string;
+//   supplierLot: string;
+//   newLot: boolean;
+//   po: string;
+//   totalQuantity: number;
+//   qualityAnalysis: boolean;
+//   quantityPlanned: boolean;
+//   indicatorTest: boolean;
+//   pathogenTest: boolean;
+//   virusTest: boolean;
+//   pesticideTest: boolean;
+//   conmment: string;
 
-  constructor(id, supplierlot, newlot, po, totalqantity, qaulityanalysis, quantityplanned,
-    indictortest, pathogentest, virustest, pestcidestest, comments) {
-    this.id = id;
-    this.supplierLot = supplierlot;
-    this.newLot = newlot;
-    this.po = po;
-    this.totalQuantity = totalqantity;
-    this.qualityAnalysis = qaulityanalysis;
-    this.quantityPlanned = quantityplanned;
-    this.indicatorTest = indictortest;
-    this.pathogenTest = pathogentest;
-    this.virusTest = virustest;
-    this.pesticideTest = pestcidestest;
-    this.conmment = comments;
-  }
+//   constructor(id, supplierlot, newlot, po, totalqantity, qaulityanalysis, quantityplanned,
+//     indictortest, pathogentest, virustest, pestcidestest, comments) {
+//     this.id = id;
+//     this.supplierLot = supplierlot;
+//     this.newLot = newlot;
+//     this.po = po;
+//     this.totalQuantity = totalqantity;
+//     this.qualityAnalysis = qaulityanalysis;
+//     this.quantityPlanned = quantityplanned;
+//     this.indicatorTest = indictortest;
+//     this.pathogenTest = pathogentest;
+//     this.virusTest = virustest;
+//     this.pesticideTest = pestcidestest;
+//     this.conmment = comments;
+//   }
 
-}
+// }

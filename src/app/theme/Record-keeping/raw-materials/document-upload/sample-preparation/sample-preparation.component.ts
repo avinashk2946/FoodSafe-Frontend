@@ -39,8 +39,6 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
-  @ViewChild('tabs')
-  //@Input() tabs;
   private tabs :any;
   online$ = Observable.fromEvent(window, 'online');
   offline$ = Observable.fromEvent(window, 'offline');

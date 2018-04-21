@@ -50,12 +50,16 @@
   color: #28d745;
 }
 
-.color{ 
+.doc{ 
 background-color:#28d745;
 }
 
-:host /deep/ .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: #495057;
-    background-color: #28d845 !important;
-    border-color: #ddd #ddd #fff;
-}
+// :host/deep/ .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+//     color: #495057;
+//     background-color: #28d845 !important;
+//     border-color: #ddd #ddd #fff;
+// }
+
+// :host/deep/ #documentUploadid1{
+//   background-color: red;
+// }

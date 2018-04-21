@@ -79,7 +79,7 @@ export class RecordListComponent implements OnInit {
       if (returnData.dismiss === 'cancel') {
         swal(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your file is safe :)',
           'error'
         );
       } else {

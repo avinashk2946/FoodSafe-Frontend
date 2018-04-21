@@ -19,6 +19,8 @@ import { SampleCollectionComponent } from './sample-collection/sample-collection
 import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.component';
 import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
 import { SummaryComponent } from './summary/summary.component';
+import { DocumentUploadDirective } from './document-upload.directive';
+
 
 @NgModule({
   imports: [
@@ -40,7 +42,8 @@ import { SummaryComponent } from './summary/summary.component';
     QualityAnalysisComponent,
     MicroAnalysisComponent,
     SummaryComponent,
-    ImagePreviewDirective
+    ImagePreviewDirective,
+    DocumentUploadDirective
   ],
 providers:[TabsSevice],
   bootstrap: [DocumentUploadComponent]

@@ -36,10 +36,10 @@
   </div>
   <div class="form-group">
     <div class="col-md-12   action">
-      <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right" (click)="openConfirmsSwal($event)">
+      <button [disabled]="selected.length == 0" type="button" class="btn btn-danger pull-right action" (click)="openConfirmsSwal($event)">
         <i class="icofont icofont-delete-alt"></i>
       </button>
-      <button [disabled]="selected.length ==0 " type="button" class="btn btn-default pull-right" (click)="enableEditRow(selected)">
+      <button [disabled]="selected.length == 0" type="button" class="btn btn-default pull-right action" (click)="enableEditRow(selected)">
         <i class="icofont icofont-edit-alt"></i>
       </button>
     </div>
@@ -78,7 +78,7 @@
           </ng-template>
         </ngx-datatable-column> -->
 
-          <ngx-datatable-column name="Supplier Name">
+          <ngx-datatable-column name="Supplier Name" >
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
               <span class="table-head">
                 {{row.supplier.name}}

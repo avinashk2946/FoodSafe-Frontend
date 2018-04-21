@@ -1,31 +1,32 @@
-.form-control{
-  -moz-border-radius:10px;
-    -webkit-appearance: none;
-    color: #fff;
-    border:none;
-    margin: 0 0 0 -3px;
-    padding: 12px 2px  ;
-    font-size: 12px;
-    text-transform: uppercase;
+  .form-control{
+      color: #fff;
+      margin: 0 0 0 -3px;
+      padding: 12px 10px  ;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 900;
 
+    }
+  .tag-select{
+      width:100%;
   }
-.tag-select{
-    width:100%;
-}
-.card .card-header span{
-    margin-top: 0 !important;
-}
-.table-head{
-	  font-size: 14px;
-    font-weight: 700;
-    padding-top: 8px;
-    text-align: center;
-}
-
-.top{
-  	
-     border-top: 15px;
-     margin-bottom: 15px;
-   
-}
+  .card .card-header span{
+      margin-top: 0 !important;
+  }
+  .table-head{
+  	  font-size: 14px;
+      font-weight: 700;
+      padding-top: 8px;
+      text-align: center;
+  }
+ .action{         
+         text-transform: uppercase;        
+         margin-right: 10px;
+     }
+  .top{
+    	
+       border-top: 15px;
+       margin-bottom: 15px;
+     
+  }
 

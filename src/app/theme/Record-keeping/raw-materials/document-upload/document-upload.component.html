@@ -43,11 +43,10 @@
       </div>
     </div>
   </div>
-
   <div class="col-md-12 ">
-    <ngb-tabset type="tabs" #tabs>
-      <ngb-tab title="Document" id="documentUploadid1" >
-        <ng-template ngbTabContent [ngIf]="value">
+    <ngb-tabset type="tabs" #tabs  > 
+      <ngb-tab title="Document" id="documentUploadid1">
+        <ng-template ngbTabContent >
           <table class="table table-framed table-responsive">
             <thead>
               <tr>
@@ -80,7 +79,7 @@
           </table>
           <div class=" row justify-content-center">
             <!-- button type="button" class="btn btn-warning" (click)="cancel($event)">Cancel</button -->
-            <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile(filesAddForm,$event)">Save</button>
+            <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile(filesAddForm,$event)"  >Save</button>
             <!-- button type="button" class="btn btn-default" (click)="exit($event)">Exit</button -->
           </div>
         </ng-template>

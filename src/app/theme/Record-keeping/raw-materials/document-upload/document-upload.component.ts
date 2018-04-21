@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation,Directive
- } from '@angular/core';
+import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation,Directive,
+  Renderer, HostListener, HostBinding} from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -48,27 +48,23 @@ import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 })
 
-// @Directive({
-//   selector: '[ngIF]'
-// })
 
 export class DocumentUploadComponent implements OnInit {
 
   @ViewChild('tabs')
 
   private tabs: any;
-  // @Input() tabs: any;
-  //@Input() activeTab  = '';
- 
-  // @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
-
   currentOrientation = 'horizontal';
+
+
   
 
   constructor(private fb: FormBuilder,private tabService:TabsSevice, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, 
     public router: Router, public http: Http,
-     private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private el: ElementRef,
+    private renderer: Renderer
      
     
       ) {
@@ -77,13 +73,18 @@ export class DocumentUploadComponent implements OnInit {
       this.recordId = params.id;
       this.getRecordDetails();
     });
-  
+   // this.ChangeBgColor("green");
   }
-    
+
+
+
+
+
+
+
+
   public onlineOffline: boolean = navigator.onLine;
-
   attchmentList = [{ attachment: '' }];
-
   uploader: FileUploader = new FileUploader({});
 
   fileList = [
@@ -104,16 +105,10 @@ export class DocumentUploadComponent implements OnInit {
   offline$ = Observable.fromEvent(window, 'offline');
   public files: File[];
   public filesAddForm: FormGroup;
+  color: any;
 
-
-    // tabcolor=[
-    //   {name:this.recordDetails.isQualityAnalysis},
-    //   {name:this.recordDetails.isSampleCollection},
-    //   {name:this.recordDetails.isSamplePreparation},
-    //   {name:this.recordDetails.isSetDocument}
-    // ]
-   
-
+  private nativeElement:any;
+  private elementref:ElementRef; 
 
   ngOnInit() {
     this.getRecordDetails();
@@ -135,9 +130,27 @@ export class DocumentUploadComponent implements OnInit {
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
       this.recordDetails = response.data[0];
-
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
-      // console.log(this.recordDetails.isQualityAnalysis);
+       if(this.recordDetails.isSetDocument == true){
+        let color = this.el.nativeElement.querySelector('#documentUploadid1');
+        this.renderer.setElementStyle(color, 'background', 'green');
+      }
+     
+       if(this.recordDetails.isSamplePreparation == true){
+        let color = this.el.nativeElement.querySelector('#samplepreparationid');
+        this.renderer.setElementStyle(color, 'background', 'green');
+      }
+    
+       if(this.recordDetails.samplecollection == true){
+        let color = this.el.nativeElement.querySelector('#samplecollectionid');
+        this.renderer.setElementStyle(color, 'background', 'green');
+      }
+     
+       if(this.recordDetails.qualityanalysis == true){
+        let color = this.el.nativeElement.querySelector('#qualityanalysisid');
+        this.renderer.setElementStyle(color, 'background', 'green');
+      }
+    
     }, err => {
       if (err.status === 401) {
       }
@@ -188,21 +201,6 @@ export class DocumentUploadComponent implements OnInit {
   }
 
 
-// public getdata(){
-//       if(this.samplecollection instanceof Array){
-//           this.samplecollection.forEach(function(e){
-//               // this.supplierLot=supplierLot;
-//               // let index=supplierLot.findIndex(x=>x.supplierLot===samplecollection.supplierLot);
-//           })
-//       }
-//       return total;
-//   }
-//   
-    // public getTabColor(){
-    //    this.getRecordDetails.find(function(getRecordDetails){
-    //      return getRecordDetails.isSampleCollection === true ? true :false;      
-    //    }); 
-    //  }
 
 }
 
