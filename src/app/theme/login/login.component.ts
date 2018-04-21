@@ -101,5 +101,3 @@ export class LoginComponent implements OnInit {
     this.localStorage.setItem('user', this.user.password).subscribe(() => { });
   }
 }
-
-
