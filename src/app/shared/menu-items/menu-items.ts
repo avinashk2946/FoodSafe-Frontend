@@ -154,6 +154,10 @@ const MENUITEMS = [
           {
             state: 'returns',
             name: 'Returns'
+          },
+          {
+            state: 'production',
+            name: 'Production'
           }
         ]
       }
@@ -169,13 +173,17 @@ const MENUITEMS = [
         type: 'sub',
         icon: 'icon-settings',
         children: [
+          // {
+          //   state: 'login-page',
+          //   name: 'login page'
+          // },
+          // {
+          //   state: 'user-menu',
+          //   name: 'user management'
+          // },
           {
-            state: 'login-page',
-            name: 'login page'
-          },
-          {
-            state: 'user-menu',
-            name: 'user management'
+            state: 'dynamic-form',
+            name: 'Dynamic Form'
           },
         ]
       }

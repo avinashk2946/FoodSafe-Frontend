@@ -1,0 +1,231 @@
+<div class=" ">
+    <div class="" id="divWeightCheck">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">{{formData.productName}} - Weight Checks</h6>
+                <div class="form-group row row">&nbsp;</div>
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        <label for="inputDate" class="col-sm-3 control-label text-left">Date:</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="inputDate" placeholder="Date" [(ngModel)]="formData.date" required="true">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="itemCode" class="col-sm-3 control-label text-left">Production Line:</label>
+                        <div class="col-sm-9">
+                            <ng-select [options]="productionLine" bindLabel="name" bindValue="code" placeholder="Select Production Line" appendTo="body"
+                                [(ngModel)]="formData.productionLine" (ngModelChange)="productionLineSelected($event)"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="itemCode" class="col-sm-3 control-label text-left">Brand Name:</label>
+                        <div class="col-sm-9">
+                            <ng-select [options]="brandName" bindLabel="name" bindValue="code" placeholder="Select Brand Name" appendTo="body" [(ngModel)]="formData.brandName"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputProduct" class="col-sm-3 control-label text-left">Product Name:</label>
+                        <div class="col-sm-9">
+                            <ng-select [options]="productName" bindLabel="Product Name" placeholder="Select Product Name" appendTo="body" [(ngModel)]="formData.productName"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNetWght" class="col-sm-3 control-label text-left">Net Weight (g):</label>
+                        <div class="col-sm-9">
+                            <ng-select [options]="netWeight" bindLabel="Product Name" placeholder="Select Net Weight" appendTo="body" [(ngModel)]="formData.netWeight"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="itemCode" class="col-sm-3 control-label text-left">Item Code:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputItemCode" placeholder="Item Code" [(ngModel)]="formData.itemCode" required="true"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputBestBefore" class="col-sm-3 control-label text-left">Best Before:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputBestBefore" placeholder="Best Before" [(ngModel)]="formData.bestBefore"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputDateCodeFormat" class="col-sm-3 control-label text-left">Date Code Format:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputDateCodeFormat" placeholder="Date Code Format" [(ngModel)]="formData.dateCodeFormat"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputUPCCode" class="col-sm-3 control-label text-left">UPC Code of Bag:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputUPCCode" placeholder="UPC Code of Bag" [(ngModel)]="formData.UpcCodeBag"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPicDataCodeBag" class="col-sm-3 control-label text-left">Picture of the Data Code Format on the Bag:</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="inputPicDataCodeBag" required="true" [(ngModel)]="formData.imgDataCodeFormat">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPicProductRecipe" class="col-sm-3 control-label text-left">Picture of Finished Product Recipe:</label>
+                        <div class="col-sm-9">
+                            <input type="file" class="form-control" id="inputPicProductRecipe" required="true" [(ngModel)]="formData.imgProdcutRecipe">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="card">
+        <div class="table-responsive card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            Bag Lot Number
+                        </th>
+                        <th class="text-center">
+                            Pictures
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" id="inputBagLot" placeholder="Bag Lot Number" required="true">
+                        </td>
+                        <td>
+                            <input type="file" class="form-control" id="inputPicture1" required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" id="inputBagLot" placeholder="Bag Lot Number" required="true">
+                        </td>
+                        <td>
+                            <input type="file" class="form-control" id="inputPicture2" required="true">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Product Verification</h6>
+                <div class="form-group row row">&nbsp;</div>
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        <label for="inputSuperviserDay" class="col-sm-3 control-label text-left">Superviser Day:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputSuperviserDay" placeholder="Superviser Day" [(ngModel)]="formData.superviserDay"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Verifed By Superviser Day ?</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline"><input type="radio" name="radioSD" id="optDayYes" >Yes</label>
+                            <label class="radio-inline"><input type="radio" name="radioSD" id="optDayNo" >No</label>
+                            <label class="radio-inline"><input type="radio" name="radioSD" id="optDayNA" >NA</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSuperviserNight" class="col-sm-3 control-label text-left">Superviser Night:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputSuperviserNight" placeholder="Superviser Night" [(ngModel)]="formData.superviserNight"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Verifed By Superviser Night ?</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline"><input type="radio" name="radioSN" id="optNightYes" >Yes</label>
+                            <label class="radio-inline"><input type="radio" name="radioSN" id="optNightNo" >No</label>
+                            <label class="radio-inline"><input type="radio" name="radioSN" id="optNightNA" >NA</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputQC" class="col-sm-3 control-label text-left">Quality Control:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputQC" placeholder="Quality Control" [(ngModel)]="formData.QC" required="true"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Quality Control Done ?</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline"><input type="radio" name="radioQC" id="optQcYes">Yes</label>
+                            <label class="radio-inline"><input type="radio" name="radioQC" id="optQcNo">No</label>
+                            <label class="radio-inline"><input type="radio" name="radioQC" id="optQcNA">NA</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputQC" class="col-sm-3 control-label text-left">Record Verification:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputRV" placeholder="Record Verification" [(ngModel)]="formData.recordVerification"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Record Verification Done ?</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline"><input type="radio" name="radioRV" id="optRvYes">Yes</label>
+                            <label class="radio-inline"><input type="radio" name="radioRV" id="optRvNo">No</label>
+                            <label class="radio-inline"><input type="radio" name="radioRv" id="optRvNA">NA</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Overall Data</h6>
+                <div class="form-group row row">&nbsp;</div>
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 control-label text-left">Total Average Net Weight:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="Total Average Net Weight" [(ngModel)]="formData.totalAvgWght"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-3 control-label text-left">Low Limit:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputPassword3" placeholder="Low Limit" [(ngModel)]="formData.lowLimit" required="true"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 control-label text-left">High Limit:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="High Limit" [(ngModel)]="formData.highLimit" required="true"
+                                readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <p class="h2">Dynamic Form Tabular Content</p>
+    <!-- <div class="row container">
+        <div class="form-group row text-center">
+            <button (click)="onSubmit($event, formData)" class="btn btn-success">Submit</button>
+            <button (click)="onSubmit($event, formData, true)" class="btn btn-danger">Reset</button>
+        </div>
+    </div> -->
+</div>
