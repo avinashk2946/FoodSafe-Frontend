@@ -27,7 +27,7 @@ export class ForgotPasswordComponent implements OnInit {
   public CreateForm(){
      
       this.frgtPwdForm = this.fb.group({
-        'email': ['',[Validators.email]]
+        'email': ['', [Validators.required, Validators.email]]
       })
   }
   message: string;
