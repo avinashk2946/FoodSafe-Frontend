@@ -20,6 +20,7 @@ import { QualityAnalysisComponent } from './quality-analysis/quality-analysis.co
 import { MicroAnalysisComponent } from './micro-analysis/micro-analysis.component';
 import { SummaryComponent } from './summary/summary.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +41,7 @@ import { SummaryComponent } from './summary/summary.component';
     QualityAnalysisComponent,
     MicroAnalysisComponent,
     SummaryComponent,
-    ImagePreviewDirective
+    ImagePreviewDirective,
   ],
 providers:[TabsSevice],
   bootstrap: [DocumentUploadComponent]

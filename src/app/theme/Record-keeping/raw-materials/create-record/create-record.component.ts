@@ -25,7 +25,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
 export class CreateRecordComponent implements OnInit {
 
   dataForm: FormGroup;
-  // public value: boolean = null;
+  public value: boolean = null;
 
   id: number;
   rawmaterial: any = 'rawmaterials[]';
@@ -35,6 +35,7 @@ export class CreateRecordComponent implements OnInit {
   productList = [];
   materialGrpList = [];
   materialList = [];
+  address: any = '';
 
   createdDate: any = new Date();
   createdBy: any = '';
@@ -44,60 +45,62 @@ export class CreateRecordComponent implements OnInit {
   product: any = '';
   productCode: any = '';
   variety: any = '';
-  isApproved: any = undefined;
-  kosher: any = undefined;
-  nonGMO: any = false;
-  organicValue: any = undefined;
-  po: any = '';
-  containerNo: any = '';
-  lotNo: any = '';
+  isApproved: any = '';
+  kosher: any = '';
+  nonGMO: any = '';
+  organicValue: any = '';
+  po:  any = '';
+  containerNo:string;
+  lotNo: string;
   plant: any = '';
   supplier: any = '';
   selectedSupplier: any = '';
   selectedMaterial: any = '';
   materialGrp = '';
   material = '';
-  disabled: true;
+  // disabled: true;
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, public router: Router, public route: ActivatedRoute) { }
+    protected localStorage: AsyncLocalStorage, public router: Router, public route: ActivatedRoute)
+     {
+   
+      }
 
   ngOnInit() {
-
-    this.dataForm = this.fb.group({
-      'plant': ['', [Validators.required]],
-      'suplier': ['', [Validators.required]],
-      'broker': ['', [Validators.required]],
-      'coo': ['', [Validators.required]],
-      'variety': ['', [Validators.required]],
-      'approved': [{ value: 'isApproved', disabled: true }, [Validators.required]],
-      'kosher': [{ value: 'kosher', disabled: true }, [Validators.required]],
-      'nonGMO': [{ value: 'nonGMO', disabled: true }, [Validators.required]],
-      'po': ['', [Validators.required]],
-      'containerNo': ['', [Validators.required]],
-      'createdBy': ['', [Validators.required]],
-      'lotNo': ['', [Validators.required]],
-      'organic': [{ value: 'organicValue', disabled: true }, [Validators.required]],
-      'material': ['', [Validators.required]],
-      'materialGrp': ['', [Validators.required]]
-    });
-
+    this.CreateForm();
     this.getPlant();
-
     this.localStorage.getItem('user').subscribe((user) => {
       this.createdBy = user.user.username;
       this.createdById = user.user._id;
     });
-
     this.route.queryParams.subscribe(params => {
-
-      this.po = params.po;
-      this.containerNo = params.containerNo;
-      this.lotNo = params.lotNo;
-
+     this.po = params.po;
+     this.containerNo = params.containerNo;
+     this.lotNo = params.lotNo;
     });
-
   }
+
+
+public CreateForm(){
+   this.dataForm = this.fb.group({
+      plant: ['', [Validators.required]],
+      supplier: ['', [Validators.required]],
+      broker: ['', [Validators.required]],
+      coo: ['', [Validators.required]],
+      variety: ['', [Validators.required]],
+      isApproved: [{ value: 'isApproved', disabled: true }, [Validators.required]],
+      kosher: [{ value: 'kosher', disabled: true }, [Validators.required]],
+      nonGMO: [{ value: 'nonGMO', disabled: true }, [Validators.required]],
+      po: ['', [Validators.required]],
+      containerNo: ['', [Validators.required]],
+      createdBy: ['', [Validators.required]],
+      lotNo: ['', [Validators.required]],
+      organicValue: [{ value: 'organicValue', disabled: true }, [Validators.required]],
+      material: ['', [Validators.required]],
+      materialGrp: ['', [Validators.required]]
+    });
+}
+
 
   onRecordCreate() {
     const obj = {
@@ -110,7 +113,7 @@ export class CreateRecordComponent implements OnInit {
       lotNo: this.lotNo,
       variety: this.variety,
       rawMaterial: this.material,
-      nonGmo: this.nonGMO,
+      nonGMO: this.nonGMO,
       createdBy: this.createdById,
       materialGrp: this.materialGrp
       // isDelete : false
@@ -155,6 +158,8 @@ export class CreateRecordComponent implements OnInit {
     }
   }
 
+    let
+
   public changeSupplier(): void {
 
     this.brokerList = [];
@@ -167,6 +172,9 @@ export class CreateRecordComponent implements OnInit {
 
       this.selectedSupplier = _.find(this.supplierList, { '_id': this.supplier });
 
+      // let({supplierList._id} supplierlist){
+      //   new_id.find(x => x._d[supplierList])+= value;
+      // }
       this.selectedSupplier.address.forEach(element => {
         element.label = element.country;
         element.value = element.country;
@@ -228,11 +236,10 @@ export class CreateRecordComponent implements OnInit {
   public changeMaterial(): void {
     if (this.material !== '') {
       this.selectedMaterial = _.find(this.materialList, { '_id': this.material });
-      this.nonGMO = (this.selectedMaterial.nonGmo) ? 'true' : 'false';
-      this.organicValue = (this.selectedMaterial.organic) ? 'true' : 'false';
+      this.nonGMO = (this.selectedMaterial.nonGMO) ? 'true' : 'false';
+      this.organicValue = (this.selectedMaterial.organicValue) ? 'true' : 'false';
       this.isApproved = (this.selectedMaterial.isApproved) ? 'true' : 'false';
       this.kosher = (this.selectedMaterial.kosher) ? 'true' : 'false';
-      console.log(this.organicValue);
     }
   }
 }

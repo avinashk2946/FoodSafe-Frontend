@@ -28,6 +28,9 @@ import { HttpsRequestInterceptor } from './common/http.interceptor';
 import { MenuItems } from './shared/menu-items/menu-items';
 
 import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
+import { GfsiComponent } from './theme/gfsi/gfsi.component';
+import { OperatingProceduresComponent } from './theme/operating-procedures/operating-procedures.component';
+import { EmpComponent } from './theme/prerequisite-program/emp/emp.component';
 
 
 
@@ -38,7 +41,10 @@ import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-pa
     AdminComponent,
     BreadcrumbsComponent,
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    GfsiComponent,
+    OperatingProceduresComponent,
+    EmpComponent,
   ],
   imports: [
     BrowserModule,

@@ -49,14 +49,14 @@ const MENUITEMS = [
             state: 'plant',
             name: 'Plant Dashboard',
           },
-          {
-            state: 'my',
-            name: 'My Dashboard',
-          },
-          {
-            state: 'summary',
-            name: 'Summary'
-          }
+          // {
+          //   state: 'my',
+          //   name: 'My Dashboard',
+          // },
+          // {
+          //   state: 'summary',
+          //   name: 'Summary'
+          // }
         ]
       }
     ]
@@ -137,41 +137,24 @@ const MENUITEMS = [
         name: 'Record Keeping',
         type: 'sub',
         icon: 'icon-check-box',
-        children: [{
-          state: 'recieving-materials',
-          type: 'sub',
-          name: 'Recieving Materials',
-          children: [
-            {
-              state: 'raw-matrial',
-              name: ' Raw Materials',
+        children: [
+          {
+            state: 'raw-matrial',
+            name: ' Raw Materials',
 
-            },
-            {
-              state: 'Packaging',
-              name: 'Packaging'
-            },
-            {
-              state: 'Chemicals',
-              name: 'Chemicals'
-            },
-            {
-              state: 'Returns',
-              name: 'Returns'
-            }]
-        },
-        {
-          state: 'Production',
-          type: 'sub',
-          name: 'Production',
-          children: [
-            {
-              state: 'weight-check',
-              name: ' Weight Check',
-
-            }
-           ]
-        }
+          },
+          {
+            state: 'packaging',
+            name: 'Packaging'
+          },
+          {
+            state: 'chemicals',
+            name: 'Chemicals'
+          },
+          {
+            state: 'returns',
+            name: 'Returns'
+          }
         ]
       }
     ]

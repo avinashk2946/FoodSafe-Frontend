@@ -39,8 +39,10 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
+  private tabs :any;
+  online$ = Observable.fromEvent(window, 'online');
+  offline$ = Observable.fromEvent(window, 'offline');
 
-  private tabs: any;
   public onlineOffline: boolean = navigator.onLine;
   private subscription: ISubscription;
   samples = [
