@@ -59,6 +59,7 @@ export class CreateRecordComponent implements OnInit {
   materialGrp = '';
   material = '';
   // disabled: true;
+  
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage, public router: Router, public route: ActivatedRoute)
@@ -68,17 +69,18 @@ export class CreateRecordComponent implements OnInit {
 
   ngOnInit() {
     this.CreateForm();
+    let selectedRecord:any;
     this.route.queryParams.subscribe(params => {
       this.po = params.po;
       this.containerNo = params.containerNo;
       this.lotNo = params.lotNo;
-      this.selectedRecord = params.selectedRecord;
+      selectedRecord = params.selectedRecord;
       // calling record by id
-      if(this.selectedRecord) {
-        this.rawMatService.getRecord(this.selectedRecord).subscribe((response: any) => {
-          this.selectedRecord = response.data[0];
+      if(selectedRecord) {
+        this.rawMatService.getRecord(selectedRecord).subscribe((response: any) => {
+          selectedRecord = response.data[0];
           // autofill Record details
-          this.autoFillRecord(this.selectedRecord);
+          this.autoFillRecord(selectedRecord);
         }, err => {
           this.comonSrvc.showErrorMsg(err.message);
         });
