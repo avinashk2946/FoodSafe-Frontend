@@ -12,7 +12,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { TabsSevice } from './../tabs.service';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { ISubscription } from 'rxjs/Subscription';
