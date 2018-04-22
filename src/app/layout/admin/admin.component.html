@@ -4,7 +4,7 @@
   [attr.sidebar-img-type]="sidebarImgType" [attr.layout-type]="layoutType" (window:resize)="onResize($event)">
   <div class="pcoded-overlay-box"></div>
   <div class="pcoded-container navbar-wrapper">
-    <nav class="navbar header-navbar pcoded-header" [attr.header-theme]="headerTheme" [attr.pcoded-header-position]="pcodedHeaderPosition">
+    <nav class="navbar header-navbar pcoded-header" [attr.header-theme]="headerTheme" [attr.pcoded-header-position]="pcodedHeaderPosition" style="padding: 0px">
       <div class="navbar-wrapper">
         <div class="navbar-logo">
           <a class="mobile-menu" id="mobile-collapse" href="javascript:" (click)="toggleOpened()" [exclude]="'#main_navbar'" (clickOutside)="onClickedOutsideSidebar($event)">
