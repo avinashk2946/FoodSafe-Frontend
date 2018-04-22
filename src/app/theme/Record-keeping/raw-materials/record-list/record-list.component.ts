@@ -31,7 +31,7 @@ export class RecordListComponent implements OnInit {
     this.getRecordList();
   }
   getRecordList() {
-    this.rawMatService.getRecord().subscribe((response: any) => {
+    this.rawMatService.getRecord(null).subscribe((response: any) => {
       this.recordList = response.data;
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
@@ -47,7 +47,7 @@ export class RecordListComponent implements OnInit {
       {
         queryParams:
           {
-            'selectedRow': selectedRow[0]._id,
+            'selectedRecord': selectedRow[0]._id,
             'plant': selectedRow[0].plant['name'],
             'supplierName': selectedRow[0].supplier['name'],
             'po': selectedRow[0].po,

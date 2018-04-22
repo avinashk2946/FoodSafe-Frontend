@@ -68,19 +68,34 @@ export class CreateRecordComponent implements OnInit {
 
   ngOnInit() {
     this.CreateForm();
-    this.getPlant();
-    this.localStorage.getItem('user').subscribe((user) => {
-      this.createdBy = user.user.username;
-      this.createdById = user.user._id;
-    });
     this.route.queryParams.subscribe(params => {
-     this.po = params.po;
-     this.containerNo = params.containerNo;
-     this.lotNo = params.lotNo;
+      this.po = params.po;
+      this.containerNo = params.containerNo;
+      this.lotNo = params.lotNo;
+      this.selectedRecord = params.selectedRecord;
+      // calling record by id
+      if(this.selectedRecord) {
+        this.rawMatService.getRecord(this.selectedRecord).subscribe((response: any) => {
+          this.selectedRecord = response.data[0];
+          // autofill Record details
+          this.autoFillRecord(this.selectedRecord);
+        }, err => {
+          this.comonSrvc.showErrorMsg(err.message);
+        });
+      }
+      else{
+        this.getPlant();
+        this.localStorage.getItem('user').subscribe((user) => {
+          this.createdBy = user.user.username;
+          this.createdById = user.user._id;
+        });
+      }
     });
   }
 
-
+public autoFillRecord(selectedRecord:any) {
+  this.getPlant(selectedRecord);
+}
 public CreateForm(){
    this.dataForm = this.fb.group({
       plant: ['', [Validators.required]],
@@ -127,7 +142,7 @@ public CreateForm(){
     });
   }
 
-  getPlant() {
+  getPlant(selectedRecord:any = null ) {
     this.rawMatService.getPlant().subscribe((response: any) => {
       console.log(response);
       this.plantList = response.data;
@@ -135,13 +150,19 @@ public CreateForm(){
         element.label = element.name;
         element.value = element._id;
       });
+      if(selectedRecord) {
+        this.changePlant(selectedRecord);
+      }
     }, err => {
       if (err.status === 401) {
       }
     });
   }
 
-  public changePlant(): void {
+  public changePlant(selectedRecord:any = null): void {
+    if(selectedRecord && selectedRecord.plant._id) {
+      this.plant = selectedRecord.plant._id;
+    }
     this.supplierList = [];
     if (this.plant !== '') {
       this.rawMatService.getSupplier(this.plant).subscribe((response: any) => {
@@ -151,6 +172,9 @@ public CreateForm(){
           element.label = element.name;
           element.value = element._id;
         });
+        if(selectedRecord){
+          this.changeSupplier(selectedRecord);
+        }
       }, err => {
         if (err.status === 401) {
         }
@@ -158,10 +182,10 @@ public CreateForm(){
     }
   }
 
-    let
-
-  public changeSupplier(): void {
-
+  public changeSupplier(selectedRecord:any = null): void {
+    if(selectedRecord && selectedRecord.supplier._id){
+      this.supplier = selectedRecord.supplier._id;
+    }
     this.brokerList = [];
 
     if (this.supplier !== '') {
@@ -186,6 +210,9 @@ public CreateForm(){
           element.label = element.name;
           element.value = element._id;
         });
+        if(selectedRecord){
+          this.changeBroker(selectedRecord);
+        }
       }, err => {
         if (err.status === 401) {
         }
@@ -194,7 +221,10 @@ public CreateForm(){
     }
   }
 
-  public changeBroker(): void {
+  public changeBroker(selectedRecord:any = null): void {
+    if(selectedRecord && selectedRecord.broker && selectedRecord.broker._id){
+      this.broker = selectedRecord.broker._id;
+    }
     this.productList = [];
     if (this.supplier !== '') {
 
@@ -206,6 +236,9 @@ public CreateForm(){
 
       this.rawMatService.getRawMatrialGroup(obj).subscribe((response: any) => {
         this.materialGrpList = response.data;
+        if(selectedRecord){
+          this.changeMaterialGroup(selectedRecord);
+        }
       }, err => {
         if (err.status === 401) {
         }
@@ -213,7 +246,10 @@ public CreateForm(){
 
     }
   }
-  public changeMaterialGroup(): void {
+  public changeMaterialGroup(selectedRecord:any = null): void {
+    if(selectedRecord && selectedRecord.rawMaterial && selectedRecord.rawMaterial.rmGroupName){
+      this.materialGrp = selectedRecord.rawMaterial.rmGroupName;
+    }
     if (this.materialGrp !== '') {
       const obj = {
         plantId: this.plant,
@@ -227,13 +263,19 @@ public CreateForm(){
           element.label = element.name;
           element.value = element._id;
         });
+          if(selectedRecord && selectedRecord.rawMaterial){
+            this.changeMaterial(selectedRecord);
+          }
       }, err => {
         if (err.status === 401) {
         }
       });
     }
   }
-  public changeMaterial(): void {
+  public changeMaterial(selectedRecord:any = null): void {
+    if(selectedRecord){
+      this.material = selectedRecord.rawMaterial._id;
+    }
     if (this.material !== '') {
       this.selectedMaterial = _.find(this.materialList, { '_id': this.material });
       this.nonGMO = (this.selectedMaterial.nonGMO) ? 'true' : 'false';
