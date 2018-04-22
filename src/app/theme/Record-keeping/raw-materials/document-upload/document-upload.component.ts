@@ -17,7 +17,7 @@ import { GLOBAL_PROPERTIES } from '../../../../common/common.constant';
 import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/of';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
