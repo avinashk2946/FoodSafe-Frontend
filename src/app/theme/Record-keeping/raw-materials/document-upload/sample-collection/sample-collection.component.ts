@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
+import { CommonService } from '../../../../../common/common.service';
 
 @Component({
   selector: 'app-sample-collection',
@@ -32,16 +33,17 @@ export class SampleCollectionComponent implements OnInit {
 
   public current = new Sample('', '', new FileUploader({}), false, false, false, '');
 
-  public qualityanadisabled = false;
-  public pavirusadisabled = false;
-  public pesticdiedisabled = false;
+  public qualityanadisabled = true;
+  public pavirusadisabled = true;
+  public pesticdiedisabled = true;
   public supplierlotdisable = true;
 
 
-  constructor(public rawMatService: RawMaterialService, fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
+  constructor(public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+    fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
     this.sampleForm = fb.group({
       'supplierLot': ['', Validators.required],
-      'qaAnalysis': ['', Validators.required],
+      'qaAnalysis': [{}, Validators.required],
       'pathvirsuFcon': ['', Validators.required],
       'pestcidesFcon': ['', Validators.required],
       'comments': []
@@ -111,18 +113,30 @@ export class SampleCollectionComponent implements OnInit {
 
 
   public saveUpdateSample(current) {
-    console.log(current);
+
     this.showEditFields = false;
     this.current.id = 'sample_supplierlot_1'; // this.createId();
-    this.sampleList.push({
-      id: this.current.id,
-      //   attachments: this.current.attachments.queue[0]._file.name,
-      supplierLot: _.find(this.samplePreparations, { '_id': this.current.supplierLot }).supplierLot,
-      quaAnalsisIndicator: this.current.quaAnalsisIndicator,
-      paViIndIndicator: this.current.paViIndIndicator,
-      pesticideIndicator: this.current.pesticideIndicator,
-      conmment: this.current.conmment
+
+
+    const formData: any = new FormData();
+    this.current.attachments.queue.forEach(obj => {
+      formData.append(this.current.supplierLot, obj.file.rawFile);
     });
+    formData.append('_id', this.recordId);
+    formData.append('supplierlot', this.current.supplierLot);
+    formData.append('qaulityanalysis', this.current.quaAnalsisIndicator);
+    formData.append('pathvirusindictorsample', this.current.paViIndIndicator);
+    formData.append('pesticidesmaple', this.current.pesticideIndicator);
+    formData.append('comments', this.current.conmment);
+
+    this.rawMatService.saveSingleSampleCollection(formData).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+    }, err => {
+      this.comonSrvc.showErrorMsg(err.message);
+    });
+
+    console.log(formData);
+
     return false;
   }
 

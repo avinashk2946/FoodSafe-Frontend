@@ -137,24 +137,41 @@ const MENUITEMS = [
         name: 'Record Keeping',
         type: 'sub',
         icon: 'icon-check-box',
-        children: [
-          {
-            state: 'raw-matrial',
-            name: ' Raw Materials',
+        children: [{
+          state: 'recieving-materials',
+          type: 'sub',
+          name: 'Recieving Materials',
+          children: [
+            {
+              state: 'raw-matrial',
+              name: ' Raw Materials',
 
-          },
-          {
-            state: 'Packaging',
-            name: 'Packaging'
-          },
-          {
-            state: 'Chemicals',
-            name: 'Chemicals'
-          },
-          {
-            state: 'Returns',
-            name: 'Returns'
-          }
+            },
+            {
+              state: 'Packaging',
+              name: 'Packaging'
+            },
+            {
+              state: 'Chemicals',
+              name: 'Chemicals'
+            },
+            {
+              state: 'Returns',
+              name: 'Returns'
+            }]
+        },
+        {
+          state: 'Production',
+          type: 'sub',
+          name: 'Production',
+          children: [
+            {
+              state: 'weight-check',
+              name: ' Weight Check',
+
+            }
+           ]
+        }
         ]
       }
     ]

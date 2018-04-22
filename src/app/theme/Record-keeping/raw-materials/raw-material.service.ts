@@ -154,4 +154,9 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
+  saveSingleSampleCollection(obj) {
+    const url = GLOBAL_PROPERTIES.BASE_API_URL + API_ACTIONS.raw_material.record + '/sampleCollection2';
+    return this.http.post(url, obj);
+  }
+
 }

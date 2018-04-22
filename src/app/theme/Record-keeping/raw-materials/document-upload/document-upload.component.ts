@@ -94,7 +94,7 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   onExit() {
-    this.router.navigate(['/record-list/record-list.module#RecordListModule']);
+    this.router.navigate(['../record-list/record-list.module#RecordListModule']);
   }
 
   getRecordDetails() {
