@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RawMaterialService } from '../raw-material.service';
 import { CommonService } from '../../../../common/common.service';
+import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
+import {Observable} from 'rxjs/Observable';
+import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../common/common.constant';
 import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
-
-
+import {  map } from 'rxjs/operators';
+import { error } from 'util';
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list.component.html',
@@ -15,14 +18,14 @@ import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/route
   providers: [RawMaterialService]
 })
 export class RecordListComponent implements OnInit {
-
+  items = [];
   recordList: any = [];
   selected: any = [];
   recordSelected: any = [];
   getRecordData: any = [];
-
+  
   constructor(public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    public activatedRoute: ActivatedRoute, public router: Router) {
+    public activatedRoute: ActivatedRoute,private http:HttpClient, public router: Router) {
 
   }
 
@@ -57,6 +60,26 @@ export class RecordListComponent implements OnInit {
       });
   }
 
+  public requestAutocompleteItems = (text: string): Observable<any> => {
+   
+    if(!!text){
+   
+    const url = GLOBAL_PROPERTIES.BASE_API_URL+`record/search/${text}`;
+    return this.http.get(url)
+    .map((res: Response) => {
+      if(res.status < 200 || res.status >= 300) {
+        throw new Error();
+      } 
+      else {
+        this.recordList=res['data'];
+        return res.json();
+      }
+    })
+  }
+  else{
+    this.getRecordList();
+  }
+};
   onActivate(event) { }
 
   doubleClickAction(selectedRow) {
@@ -108,6 +131,9 @@ export class RecordListComponent implements OnInit {
 
         });
   }
+  public onItemRemoved(event){
+  this.getRecordList();
+   }
 
 
 
