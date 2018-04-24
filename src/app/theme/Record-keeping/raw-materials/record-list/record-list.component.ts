@@ -15,6 +15,7 @@ import { error } from 'util';
     './record-list.component.scss',
     '../../../../../assets/icon/icofont/css/icofont.scss'
   ],
+  
   providers: [RawMaterialService]
 })
 export class RecordListComponent implements OnInit {
@@ -37,8 +38,9 @@ export class RecordListComponent implements OnInit {
     this.rawMatService.getRecord().subscribe((response: any) => {
       this.recordList = response.data;
     }, err => {
-      this.comonSrvc.showErrorMsg(err.message);
+      this.comonSrvc.showErrorMsg(err.message); 
     });
+    
   }
   onSelect(selected) {
     this.recordSelected = selected;
