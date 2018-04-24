@@ -158,8 +158,6 @@ public CreateForm(){
     }
   }
 
-    let
-
   public changeSupplier(): void {
 
     this.brokerList = [];
@@ -241,5 +239,9 @@ public CreateForm(){
       this.isApproved = (this.selectedMaterial.isApproved) ? 'true' : 'false';
       this.kosher = (this.selectedMaterial.kosher) ? 'true' : 'false';
     }
+  }
+
+  public redirecttoRecord(){
+    this.router.navigate(['/recordkeeping/raw-matrial']);
   }
 }
