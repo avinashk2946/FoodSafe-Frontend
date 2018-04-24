@@ -1,5 +1,7 @@
-import { Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation,Directive,
-  Renderer} from '@angular/core';
+import {
+  Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation, Directive,
+  Renderer
+} from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators, FormsModule } from '@angular/forms';
 
@@ -18,7 +20,6 @@ import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -53,18 +54,14 @@ export class DocumentUploadComponent implements OnInit {
   private tabs: any;
   currentOrientation = 'horizontal';
 
-
-  
-
-  constructor(private fb: FormBuilder,private tabService:TabsSevice, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    protected localStorage: AsyncLocalStorage, 
+  constructor(private fb: FormBuilder, private tabService: TabsSevice,
+    public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+    protected localStorage: AsyncLocalStorage,
     public router: Router, public http: Http,
     private route: ActivatedRoute,
     private el: ElementRef,
     private renderer: Renderer
-     
-    
-      ) {
+  ) {
 
     this.route.params.subscribe(params => {
       this.recordId = params.id;
@@ -100,14 +97,13 @@ export class DocumentUploadComponent implements OnInit {
 
   dataForm: FormGroup;
   UploadFiles: any = '';
-  // online$ = Observable.fromEvent(window, 'online');
-  // offline$ = Observable.fromEvent(window, 'offline');
+
   public files: File[];
   public filesAddForm: FormGroup;
   color: any;
 
-  private nativeElement:any;
-  private elementref:ElementRef; 
+  private nativeElement: any;
+  private elementref: ElementRef;
 
 
   ngOnInit() {
@@ -115,8 +111,8 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   onNext() {
-    this.tabs.select('samplepreparationid');
     this.tabService.sendMessage(this.tabs);
+    this.tabs.select('samplepreparationid');
     this.attachmentList = new FileUploader({});
   }
 
@@ -129,26 +125,26 @@ export class DocumentUploadComponent implements OnInit {
       this.recordDetails = response.data[0];
       this.convertImageDatatoShowableData();
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
-       if(this.recordDetails.isSetDocument == true){
-        let color = this.el.nativeElement.querySelector('#documentUploadid1');
+      if (this.recordDetails.isSetDocument === true) {
+        const color = this.el.nativeElement.querySelector('#documentUploadid1');
         this.renderer.setElementStyle(color, 'background', 'green');
       }
-     
-       if(this.recordDetails.isSamplePreparation == true){
-        let color = this.el.nativeElement.querySelector('#samplepreparationid');
+
+      if (this.recordDetails.isSamplePreparation === true) {
+        const color = this.el.nativeElement.querySelector('#samplepreparationid');
         this.renderer.setElementStyle(color, 'background', 'green');
       }
-    
-       if(this.recordDetails.samplecollection == true){
-        let color = this.el.nativeElement.querySelector('#samplecollectionid');
+
+      if (this.recordDetails.samplecollection === true) {
+        const color = this.el.nativeElement.querySelector('#samplecollectionid');
         this.renderer.setElementStyle(color, 'background', 'green');
       }
-     
-       if(this.recordDetails.qualityanalysis == true){
-        let color = this.el.nativeElement.querySelector('#qualityanalysisid');
+
+      if (this.recordDetails.qualityanalysis === true) {
+        const color = this.el.nativeElement.querySelector('#qualityanalysisid');
         this.renderer.setElementStyle(color, 'background', 'green');
       }
-    
+
     }, err => {
       this.comonSrvc.showErrorMsg('Document upload - Error in getting a list of record');
     });

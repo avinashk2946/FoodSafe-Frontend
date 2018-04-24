@@ -1,0 +1,95 @@
+<div class="">
+    <div class="card">
+        <div class="card-body" style="position:relative">
+            <h6 class="card-title">
+                Dynamic Form Creation
+            </h6>
+            <div class="form-group row">&nbsp;</div>
+            <div class="form-group row">
+                <label>Form Name</label>
+                <ng-select [options]="formName" bindLabel="Form Name" placeholder="Select" appendTo="body" [(ngModel)]="input.formName"></ng-select>
+            </div>
+            <div class="form-group row">
+                <label>Colums</label>
+                <input type="text" class="form-control" placeholder="Enter Number of Columns" id="txtInputRows" [(ngModel)]="input.rows">
+            </div>
+            <div class="form-group row pull-left">
+                <button (click)="formTable($event, input)" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="" *ngIf="showTable">
+        <div class="card" style="margin-top:10px;">
+            <div class="card-body" style="position:relative">
+                <h6 class="card-title">
+                    Dynamic Tabular Form Creation
+                </h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let column of formTableRows" class="text-center">
+                                    {{"Cell " + (column)}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td *ngFor="let item of formTableRows">
+                                    <div>
+                                        <div class="form-group row">
+                                            <label>Label </label>
+                                            <input type="text" [attr.name]="'Label-' + item" [attr.id]="'Label-' + item" [(ngModel)]="finalObj['Cell_' + item].label"
+                                                class="form-control" placeholder="Enter Label">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label>Field Type</label>
+                                            <ng-select [options]="inputTypes" bindLabel="Field Type" placeholder="Select" appendTo="body" (add)="inputTypeSelected($event)"
+                                                [(ngModel)]="finalObj['Cell_' + item].inputType"></ng-select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label>Required</label>
+                                            <ng-select [options]="required" bindLabel="Required" placeholder="Select" appendTo="body" [(ngModel)]="finalObj['Cell_' + item].required"></ng-select>
+                                        </div>
+                                        <div class="form-group row" *ngIf="finalObj['Cell_' + item].inputType=='DropDown'">
+                                            <label>Data Points</label>
+                                            <ng-select [options]="dataPoints" bindLabel="Data Points" placeholder="Select" appendTo="body" (add)="dataSourceSelected($event)"
+                                                [(ngModel)]="finalObj['Cell_' + item].dataPoints"></ng-select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label>Formula </label>
+                                            <input type="text" [attr.name]="'Label-' + item" [attr.id]="'Formula-' + item" [(ngModel)]="finalObj['Cell_' + item].formula"
+                                                class="form-control" placeholder="Enter Formula" (change)="onFormulaEntered(finalObj, item)">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group mx-auto">
+                <button (click)="onSubmit($event, finalObj)" class="btn btn-success">Submit</button>
+                <button (click)="onSubmit($event, finalObj, true)" class="btn btn-danger">Reset</button>
+            </div>
+        </div>
+
+        <div class="container-fluid" *ngIf="myData">
+            <p>{{myData}}</p>
+        </div>
+        <!-- <div class="row">
+        <div class="overflow-box">
+            <ng-select [options]="columns" bindLabel="company" placeholder="Select item" appendTo="body" multiple="false" [closeOnSelect]="false"
+            [(ngModel)]="formData.dropdown">
+        </ng-select>
+        </div>
+        
+        <br/>
+        <input type="text"  [(ngModel)]="formData.textbox"/>
+        <button (click)="onSubmit($event, formData)">Submit</button>
+    </div> -->
+    </div>
+</div>

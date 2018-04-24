@@ -66,6 +66,9 @@
             <div class="col-md-8 form group">
               <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant"
                 (ngModelChange)='changePlant()' formControlName="plant"></ng-select>
+                <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['plant'].errors && (dataForm.controls['plant'].dirty || dataForm.controls['plant'].touched)">
+                <p *ngIf="dataForm.controls['plant'].errors.required">Palnt name is required</p>
+              </div>
             </div>
           </div>
         </div>
@@ -96,6 +99,9 @@
             <div class="col-md-8 form group">
               <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supplierList" placeholder='Select Supplier' [(ngModel)]="supplier"
                 (ngModelChange)='changeSupplier()' formControlName="supplier"></ng-select>
+                  <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['supplier'].errors && (dataForm.controls['supplier'].dirty || dataForm.controls['supplier'].touched)">
+                <p *ngIf="dataForm.controls['supplier'].errors.required">Supplier name is required</p>
+                </div>
             </div>
           </div>
         </div>
@@ -107,6 +113,9 @@
             <div class="col-md-8 form group">
               <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokerList" placeholder='Select Broker' [(ngModel)]="broker"
                 (ngModelChange)='changeBroker()' formControlName="broker"></ng-select>
+                 <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['broker'].errors && (dataForm.controls['broker'].dirty || dataForm.controls['broker'].touched)">
+                <p *ngIf="dataForm.controls['broker'].errors.required">Broker name is required</p>
+                </div>
             </div>
           </div>
         </div>
@@ -118,6 +127,9 @@
             <div class="col-md-8 form group">
               <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="selectedSupplier?.address" placeholder='Select COO' [(ngModel)]="coo"
                 formControlName="coo"></ng-select>
+                 <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['coo'].errors && (dataForm.controls['coo'].dirty || dataForm.controls['coo'].touched)">
+                <p *ngIf="dataForm.controls['coo'].errors.required">Coo required</p>
+              </div>
             </div>
           </div>
         </div>
@@ -132,6 +144,9 @@
                   {{item}}
                 </option>
               </select>
+                  <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['materialGrp'].errors && (dataForm.controls['materialGrp'].dirty || dataForm.controls['materialGrp'].touched)">
+                <p *ngIf="dataForm.controls['materialGrp'].errors.required">Raw Material Group is required</p>
+              </div>
             </div>
           </div>
         </div>
@@ -143,6 +158,9 @@
             <div class="col-md-8 form group">
               <ng-select class="rawmat" [ngClass]="'ng-select'" [allowClear]="true" [options]="materialList" placeholder='Select Material'
                 [(ngModel)]="material" formControlName="material" (ngModelChange)='changeMaterial()'></ng-select>
+                  <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['material'].errors && (dataForm.controls['material'].dirty || dataForm.controls['material'].touched)">
+                <p *ngIf="dataForm.controls['material'].errors.required">Raw Material is required</p>
+              </div>
             </div>
           </div>
         </div>
@@ -157,6 +175,9 @@
                   {{item}}
                 </option>
               </select>
+               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['variety'].errors && (dataForm.controls['variety'].dirty || dataForm.controls['variety'].touched)">
+                <p *ngIf="dataForm.controls['variety'].errors.required">Variety is required</p>
+              </div>
             </div>
           </div>
         </div>

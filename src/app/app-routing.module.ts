@@ -24,6 +24,10 @@ const routes: Routes = [
         path: 'recordkeeping',
         loadChildren: './theme/Record-keeping/recordkeeping.module#RecordKeepingModule'
       },
+      {
+        path: 'configuration',
+        loadChildren: './theme/configuration/configuration.module#ConfigurationModule'
+      }
 
      
     ]
