@@ -55,7 +55,7 @@ export class DocumentUploadComponent implements OnInit {
   currentOrientation = 'horizontal';
 
   constructor(private fb: FormBuilder, private tabService: TabsSevice,
-     public rawMatService: RawMaterialService, public comonSrvc: CommonService,
+    public rawMatService: RawMaterialService, public comonSrvc: CommonService,
     protected localStorage: AsyncLocalStorage,
     public router: Router, public http: Http,
     private route: ActivatedRoute,
@@ -111,8 +111,8 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   onNext() {
-    this.tabs.select('samplepreparationid');
     this.tabService.sendMessage(this.tabs);
+    this.tabs.select('samplepreparationid');
     this.attachmentList = new FileUploader({});
   }
 
