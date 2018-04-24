@@ -28,12 +28,9 @@ import { HttpsRequestInterceptor } from './common/http.interceptor';
 import { MenuItems } from './shared/menu-items/menu-items';
 
 import { ForgotPasswordComponent } from './theme/login/forgot-password/forgot-password.component';
-import { GfsiComponent } from './theme/gfsi/gfsi.component';
-import { OperatingProceduresComponent } from './theme/operating-procedures/operating-procedures.component';
-import { EmpComponent } from './theme/prerequisite-program/emp/emp.component';
+import { ResetPasswordComponent } from './theme/login/reset-password/reset-password.component';
 
-
-
+//import {Control} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,10 +39,8 @@ import { EmpComponent } from './theme/prerequisite-program/emp/emp.component';
     BreadcrumbsComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    GfsiComponent,
-    OperatingProceduresComponent,
-    EmpComponent,
-  ],
+    ResetPasswordComponent
+ ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

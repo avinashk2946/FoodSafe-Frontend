@@ -70,9 +70,10 @@
 </div>
 <div class="button pull-right">
   <span>
-    <button type="button" class="btn btn-warning">Cancel</button>
+    <button type="button" class="btn btn-warning"(click)="onPrev()">Prevoius</button>
     <button autofocus="" type="button" class="btn btn-success" 
     (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Save</button>
-    <button type="button" class="btn btn-default">Exit</button>
+    <button type="button" class="btn btn-default" (click)="onExit()">Exit</button>
+    <button type="button" class="btn btn-default" (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Next</button>
   </span>
 </div>
