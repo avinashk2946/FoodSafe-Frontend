@@ -40,6 +40,7 @@ export class SamplePreparationComponent implements OnInit {
   public item: any = '';
   recordId = '';
   private tabs :any;
+
   online$ = Observable.fromEvent(window, 'online');
   offline$ = Observable.fromEvent(window, 'offline');
 
@@ -165,5 +166,16 @@ export class SamplePreparationComponent implements OnInit {
     if (this.samples[index].po === '') {
       this.samples[index].po = this.recordDetails.po;
     }
+  }
+  
+ onPrev() {
+    this.subscription = this.tabService.getMessage().subscribe(tabState => {
+      this.tabs = tabState.value;
+      console.log("docu clicked");
+      this.tabs.select('documentuploadid');
+    });
+  }
+  onExit() {
+        this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
   }
 }

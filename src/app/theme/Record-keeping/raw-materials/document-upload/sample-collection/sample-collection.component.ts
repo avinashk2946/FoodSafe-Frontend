@@ -6,6 +6,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { CommonService } from '../../../../../common/common.service';
 
+import { TabsSevice } from '../tabs.service';
+import { ISubscription } from 'rxjs/Subscription';
+
 @Component({
   selector: 'app-sample-collection',
   templateUrl: './sample-collection.component.html',
@@ -16,37 +19,31 @@ export class SampleCollectionComponent implements OnInit {
 
 
   public supplierLotlist: any = [];
-
   public showEditFields = false;
-
   public sampleForm: FormGroup;
-
   public recordId: string;
-
   public sampleList = [];
-
-  public samplePreparations = []; /// : SamplePreparation[];
-
+  public samplePreparations = [];
   public totalSamples = 0;
+  public supplierlot;
+  public imagedata: any;
+  public isEditing = false;
+  private tabs: any;
+  private subscription: ISubscription;
 
   uploader: FileUploader = new FileUploader({});
-
-  public current = new Sample('', '', new FileUploader({}), false, false, false, '');
-
-  public qualityanadisabled = true;
-  public pavirusadisabled = true;
-  public pesticdiedisabled = true;
-  public supplierlotdisable = true;
-
+  attachments = [];
 
   constructor(public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
+    fb: FormBuilder, public router: Router, public route: ActivatedRoute, private tabService: TabsSevice) {
+
     this.sampleForm = fb.group({
       'supplierLot': ['', Validators.required],
-      'qaAnalysis': [{}, Validators.required],
+      'qaAnalysis': ['', Validators.required],
       'pathvirsuFcon': ['', Validators.required],
       'pestcidesFcon': ['', Validators.required],
-      'comments': []
+      'comments': [],
+      'attachment': ''
     });
 
     this.route.params.subscribe(params => {
@@ -56,13 +53,22 @@ export class SampleCollectionComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   public addNewSample() {
     this.showEditFields = true;
-    this.current = new Sample('', '', new FileUploader({}), false, false, false, '');
+    this.rebuildForm();
+  }
+
+  rebuildForm() {
+    this.sampleForm.reset({
+      supplierLot: '',
+      qaAnalysis: '',
+      pathvirsuFcon: '',
+      pestcidesFcon: '',
+      comments: '',
+      attachment: null
+    });
   }
 
   public addFile(e, list) {
@@ -73,76 +79,89 @@ export class SampleCollectionComponent implements OnInit {
   delete(e: Event, index: number, list) {
     e.preventDefault();
     list.splice(index, 1);
+    this.sampleForm.get('attachment').setValue({});
   }
 
   public changeSupplierLot() {
-    const sampleobj = _.find(this.samplePreparations, { '_id': this.current.supplierLot });
-    if (sampleobj !== undefined) {
-      this.supplierlotdisable = false;
-      this.current.quaAnalsisIndicator = sampleobj.qualityAnalysis ? true : false;
-      this.current.pesticideIndicator = sampleobj.pesticideTest ? true : false;
-      this.current.paViIndIndicator = this.getPaVirIndicator(sampleobj) ? true : false;
-    } else {
-      this.supplierlotdisable = true;
-      this.current.quaAnalsisIndicator = false;
-      this.current.pesticideIndicator = false;
-      this.current.paViIndIndicator = false;
-    }
-    this.qualityanadisabled = this.current.quaAnalsisIndicator ? false : true;
-    this.pavirusadisabled = this.current.paViIndIndicator ? false : true;
-    this.pesticdiedisabled = this.current.pesticideIndicator ? false : true;
+    const sampleobj = _.find(this.samplePreparations, { '_id': this.supplierlot });
 
+    if (sampleobj !== undefined) {
+      this.sampleForm.patchValue({
+        qaAnalysis: sampleobj.qualityAnalysis ? true : false,
+        pathvirsuFcon: this.getPaVirIndicator(sampleobj) ? true : false,
+        pestcidesFcon: sampleobj.pesticideTest ? true : false,
+      });
+
+      sampleobj.qualityAnalysis ? this.sampleForm.get('qaAnalysis').enable() : this.sampleForm.get('qaAnalysis').disable();
+      this.getPaVirIndicator(sampleobj) ? this.sampleForm.get('pathvirsuFcon').enable() : this.sampleForm.get('pathvirsuFcon').disable();
+      sampleobj.pesticideTest ? this.sampleForm.get('pestcidesFcon').enable() : this.sampleForm.get('pestcidesFcon').disable();
+
+    } else {
+      this.sampleForm.patchValue({
+        qaAnalysis: false,
+        pathvirsuFcon: false,
+        pestcidesFcon: false,
+      });
+      this.sampleForm.get('qaAnalysis').enable();
+      this.sampleForm.get('pathvirsuFcon').enable();
+      this.sampleForm.get('pestcidesFcon').enable();
+      this.sampleForm.get('attachment').setValue({});
+      this.sampleForm.get('comments').setValue('');
+      this.attachments = [];
+    }
+  }
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.attachments.push({ imagedata: 'data:image/png;base64,' + reader.result.split(',')[1] });
+        this.sampleForm.get('attachment').setValue({
+          filename: file.name,
+          filetype: file.type,
+          value: reader.result.split(',')[1]
+        });
+      };
+    }
   }
 
   // based on pathogen virus and indictor test
   getPaVirIndicator(sampleobj) {
-
     if (sampleobj.pathogenTest === false && sampleobj.indicatorTest === false && sampleobj.virusTest === false) {
       return false;
     } else {
       return true;
     }
   }
-  doTextareaValueChange(ev) {
-    try {
-      this.current.conmment = ev.target.value;
-    } catch (e) {
-      console.log('texarea failed.');
-    }
-  }
-
 
   public saveUpdateSample(current) {
 
-    this.showEditFields = false;
-    this.current.id = 'sample_supplierlot_1'; // this.createId();
+    const dataModel = {
+      'record': this.recordId,
+      'samplePreparation': this.sampleForm.get('supplierLot').value,
+      'sampleCollection': this.isEditing ? null : null,
+      'base64': this.sampleForm.get('attachment').value.value,
+      'fileName': this.sampleForm.get('attachment').value.filename,
+      'supplierLot': _.find(this.samplePreparations, { '_id': this.supplierlot }).supplierLot,
+      'qualityAnalysis': this.sampleForm.get('qaAnalysis').value,
+      'testGrp': this.sampleForm.get('pathvirsuFcon').value,
+      'pesticideTest': this.sampleForm.get('pestcidesFcon').value,
+      'comment': this.sampleForm.get('comments').value
+    };
 
-
-    const formData: any = new FormData();
-    this.current.attachments.queue.forEach(obj => {
-      formData.append(this.current.supplierLot, obj.file.rawFile);
-    });
-    formData.append('_id', this.recordId);
-    formData.append('supplierlot', this.current.supplierLot);
-    formData.append('qaulityanalysis', this.current.quaAnalsisIndicator);
-    formData.append('pathvirusindictorsample', this.current.paViIndIndicator);
-    formData.append('pesticidesmaple', this.current.pesticideIndicator);
-    formData.append('comments', this.current.conmment);
-
-    this.rawMatService.saveSingleSampleCollection(formData).subscribe((response: any) => {
-      this.comonSrvc.showSuccessMsg(response.message);
-    }, err => {
-      this.comonSrvc.showErrorMsg(err.message);
-    });
-
-    console.log(formData);
+    console.log(dataModel);
+    this.rawMatService.saveSingleSampleCollection(dataModel)
+      .subscribe((response: any) => {
+        console.log(response);
+        this.showEditFields = false;
+        this.comonSrvc.showSuccessMsg(response.message);
+      }, err => {
+        this.comonSrvc.showSuccessMsg(err.message);
+      });
 
     return false;
-  }
-
-  public deleteSelected(event: Event, index: number, attachmentsQueue) {
-    event.preventDefault();
-    attachmentsQueue.splice(index, 1);
   }
 
   getSamplePreparations() {
@@ -152,11 +171,12 @@ export class SampleCollectionComponent implements OnInit {
 
           for (let i = 0; i < element.samples.length; i++) {
             this.samplePreparations.push(element.samples[i]);
-            console.log(element.samples[i].quantityPlanned);
+            //   console.log(element.samples[i].quantityPlanned);
             this.totalSamples = this.totalSamples + element.samples[i].quantityPlanned;
             this.supplierLotlist.push({ label: element.samples[i].supplierLot, value: element.samples[i]._id });
           }
-          console.log(this.samplePreparations);
+          // console.log(this.samplePreparations);
+          this.supplierLotlist = _.uniqBy(this.supplierLotlist, '_id');
         });
       }, err => {
         console.log('Error occured while getting sample preparation from db.');
@@ -184,6 +204,24 @@ export class SampleCollectionComponent implements OnInit {
       });
   }
 
+  onNext() {
+    this.subscription = this.tabService.getMessage().subscribe(tabState => {
+      this.tabs = tabState.value;
+      this.tabs.select('qualityanalysisid');
+    });
+  }
+
+  onExit() {
+    this.router.navigate(['/recordkeeping/raw-matrial']);
+  }
+
+  onPrevious() {
+    this.subscription = this.tabService.getMessage().subscribe(tabState => {
+      this.tabs = tabState.value;
+      this.tabs.select('samplepreparationid');
+    });
+  }
+
 }
 
 export class Sample {
@@ -204,4 +242,5 @@ export class Sample {
     this.pesticideIndicator = pesticideIndicator;
     this.conmment = comments;
   }
+
 }

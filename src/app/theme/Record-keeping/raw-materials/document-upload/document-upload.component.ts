@@ -121,8 +121,9 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   onExit() {
-    this.router.navigate(['../record-list/record-list.module#RecordListModule']);
+        this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
   }
+    // this.router.navigate(['../record-list/record-list.module#RecordListModule']);
 
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
@@ -248,4 +249,5 @@ export class DocumentUploadComponent implements OnInit {
     }
 
   }
+
 }
