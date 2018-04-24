@@ -8,6 +8,10 @@ import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../common/common.consta
 import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
 import {  map } from 'rxjs/operators';
 import { error } from 'util';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/debounceTime';
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list.component.html',
@@ -133,10 +137,9 @@ export class RecordListComponent implements OnInit {
 
         });
   }
+
   public onItemRemoved(event){
   this.getRecordList();
    }
-
-
 
 }
