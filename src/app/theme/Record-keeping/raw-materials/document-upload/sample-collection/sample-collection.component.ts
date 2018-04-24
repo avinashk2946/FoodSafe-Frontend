@@ -8,6 +8,7 @@ import { CommonService } from '../../../../../common/common.service';
 
 import { TabsSevice } from '../tabs.service';
 import { ISubscription } from 'rxjs/Subscription';
+import { GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
 
 @Component({
   selector: 'app-sample-collection',
@@ -30,6 +31,8 @@ export class SampleCollectionComponent implements OnInit {
   public isEditing = false;
   private tabs: any;
   private subscription: ISubscription;
+  private samplepreparationId;
+  public remainingsamples;
 
   uploader: FileUploader = new FileUploader({});
   attachments = [];
@@ -140,7 +143,7 @@ export class SampleCollectionComponent implements OnInit {
 
     const dataModel = {
       'record': this.recordId,
-      'samplePreparation': this.sampleForm.get('supplierLot').value,
+      'samplePreparation': this.samplepreparationId,
       'sampleCollection': this.isEditing ? null : null,
       'base64': this.sampleForm.get('attachment').value.value,
       'fileName': this.sampleForm.get('attachment').value.filename,
@@ -167,6 +170,8 @@ export class SampleCollectionComponent implements OnInit {
   getSamplePreparations() {
     this.rawMatService.getSamplePreparation(this.recordId)
       .subscribe((response: any) => {
+
+        this.samplepreparationId = response.data[0]._id;
         response.data.forEach(element => {
 
           for (let i = 0; i < element.samples.length; i++) {
@@ -188,17 +193,22 @@ export class SampleCollectionComponent implements OnInit {
       .subscribe((response: any) => {
 
         console.log('Existing sample collection :' + response);
-
-
-        /* response.data.forEach(element => {
-
+        response.data.forEach(element => {
           for (let i = 0; i < element.samples.length; i++) {
-            this.sampleList.push(element.samples[i]);
-            console.log(element.samples[i].quantityPlanned);
-            this.totalSamples = this.totalSamples + element.samples[i].quantityPlanned;
+            const sampleobj = {
+              supplierLot: element.samples[i].supplierLot,
+              caseImg: GLOBAL_PROPERTIES.BASE_API_URL + element.samples[i].caseImg.replace('./', ''),
+              qualityAnalysis: element.samples[i].qualityAnalysis,
+              testGrp: element.samples[i].testGrp,
+              pesticideTest: element.samples[i].pesticideTest,
+              comment: element.samples[i].comment,
+              imagename: element.samples[i].caseImg.split('_')[1]
+            };
+            this.sampleList.push(sampleobj);
           }
-          console.log(this.samplePreparations);
-        }); */
+          this.remainingsamples = this.totalSamples - element.samples.length;
+        });
+        console.log(this.sampleList);
       }, err => {
         console.log('Error occured while getting sample preparation from db.');
       });
