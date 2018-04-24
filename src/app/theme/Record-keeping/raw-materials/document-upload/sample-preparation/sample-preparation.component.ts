@@ -40,7 +40,6 @@ export class SamplePreparationComponent implements OnInit {
   public item: any = '';
   recordId = '';
   private tabs :any;
-
   online$ = Observable.fromEvent(window, 'online');
   offline$ = Observable.fromEvent(window, 'offline');
 

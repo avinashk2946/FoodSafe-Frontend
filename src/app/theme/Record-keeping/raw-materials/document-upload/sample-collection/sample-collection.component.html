@@ -6,8 +6,8 @@
       <strong>{{totalSamples}}</strong>
     </div>
     <div class="col-sm-2">
-      Remaining Samples :
-      <strong> 10 </strong>
+      Remaining Samples : 
+      <strong> {{remainingsamples}} </strong>  
     </div>
     <div class="col-sm-2">
       <button type="button" class="btn btn-success btn-sm" (click)="addNewSample()">Add new Samples</button>
@@ -78,29 +78,27 @@
   <div class="row">
     <table class="table table-responsive">
       <thead>
-        <tr>
-          <th scope="col">Sample Id</th>
+        <tr>         
           <th scope="col">Supplier Lot</th>
-          <th scope="col">Picture of the Label</th>
+          <th scope="col">Picture of <br/> the Label</th>
           <th scope="col">Is QA sample taken</th>
-          <th scope="col">Is Pathogen/Virus/Indictor sample taken</th>
-          <th scope="col">Is Pesticide Test sample taken</th>
+          <th scope="col">Is Pathogen/Virus/ <br/> Indictor sample taken</th>
+          <th scope="col">Is Pesticide Test <br/> sample taken</th>
           <th scope="col">Comments</th>
-          <th scope="col">Edit/Delete</th>
+          <!--th scope="col">Edit/Delete</th -->
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let sample of sampleList">
-          <th>{{sample.id}}</th>
+        <tr *ngFor="let sample of sampleList">         
           <td>{{sample.supplierLot}}</td>
-          <td>
-            <a> Preview </a>
+          <td>         
+           <a [href]="sample.caseImgl" target="_blank" class="btn btn-default btn-custom">{{sample.imagename}} </a>
           </td>
-          <td>{{sample.quaAnalsisIndicator}}</td>
-          <td>{{sample.paViIndIndicator}}</td>
-          <td>{{sample.pesticideIndicator}}</td>
-          <td>{{sample.conmment}}</td>
-          <td>Edit/ Delete</td>
+          <td>{{sample.qualityAnalysis}}</td>
+          <td>{{sample.testGrp}}</td>
+          <td>{{sample.pesticideTest}}</td>
+          <td>{{sample.comment}}</td>
+          <!--td>Edit/ Delete</td-->
         </tr>
       </tbody>
     </table>

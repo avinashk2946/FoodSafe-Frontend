@@ -30,7 +30,7 @@ export class DynamicFormComponent implements OnInit {
     { "label": "State", "code": "State" },
     { "label": "District", "code": "District" }
   ];
-  required = [true, false];
+  required = [{"label" : "True", "code" : "True"},{"label" : "False", "code" : "False"}];
   public columns: Array<string>;
   public rows: Array<object>;
   public items: Array<object>;
@@ -95,7 +95,7 @@ export class DynamicFormComponent implements OnInit {
       this.finalObj["Cell_" + index]["label"] = "";
       this.finalObj["Cell_" + index]["inputType"] = "Text";
       this.finalObj["Cell_" + index]["formula"] = "";
-      this.finalObj["Cell_" + index]["required"] = false;
+      this.finalObj["Cell_" + index]["required"] = "False";
     }
     this.showTable = true;
   }
