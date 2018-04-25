@@ -1,0 +1,77 @@
+user-goals: {
+ userId : {
+    Me: {
+      goalId1: {
+         date: timestamp
+         description: string
+         id:userId 
+         title: string
+            },
+      goalId2: {
+         date: timestamp
+         description: string
+         id:userId 
+         title: string
+            }
+        },
+    My Team{
+      goalId1: {
+         date: timestamp
+         description: string
+         id:userId 
+         title: string
+            },
+      goalId2: {
+         date: timestamp
+         description: string
+         id:userId 
+         title: string
+            }
+        },
+    My Partnership{
+      goalId1: {
+         date: timestamp
+         description: string
+         id:userId 
+         title: string
+            },
+      goalId2: {
+         date: timestamp
+         description: string
+         id:userId 
+         title: string
+            }
+        }
+    }
+}
+user-reflections: {
+ reflectionId1: {
+        date:date string
+        description: string
+        email: email string
+        strength: string enum
+        title: string
+        userId: string
+    },
+ reflectionId2: {
+        date:date string
+        description: string
+        email: email string
+        strength: string enum
+        title: string
+        userId: string
+    }
+}
+
+
+user-profiles:{
+ randomId: {
+        description:string
+        email: string
+        id: string
+        name: string
+        profilePic: string
+        strength: string
+        stretch: string
+    }
+}
