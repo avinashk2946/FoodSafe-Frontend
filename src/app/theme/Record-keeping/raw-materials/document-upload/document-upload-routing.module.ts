@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: DocumentUploadComponent,
     data: {
-      title: 'Document Upload',
+      title: 'Purchase Order',
       icon: 'icon-receipt',
       status: true
     }

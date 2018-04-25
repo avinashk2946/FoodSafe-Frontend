@@ -1,4 +1,3 @@
-<div class="container-fluid">
   <br>
   <div class="row">
     <div class="col-sm-2">
@@ -74,18 +73,19 @@
       </div>
     </div>
   </form>
-  <br>  
+
+    
+
   <div class="row">
     <table class="table table-responsive">
       <thead>
         <tr>         
           <th scope="col">Supplier Lot</th>
-          <th scope="col">Picture of <br/> the Label</th>
+          <th scope="col">Label of Picture </th>
           <th scope="col">Is QA sample taken</th>
           <th scope="col">Is Pathogen/Virus/ <br/> Indictor sample taken</th>
           <th scope="col">Is Pesticide Test <br/> sample taken</th>
           <th scope="col">Comments</th>
-          <!--th scope="col">Edit/Delete</th -->
         </tr>
       </thead>
       <tbody>
@@ -98,21 +98,67 @@
           <td>{{sample.testGrp}}</td>
           <td>{{sample.pesticideTest}}</td>
           <td>{{sample.comment}}</td>
-          <!--td>Edit/ Delete</td-->
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div class="row justify-content-between">
-    <div class="col-sm-2">
-      <button autofocus="" type="button" class="btn btn-success btn-md" (click)="onPrevious();">Previous</button>
-    </div>
-    <div class="col-sm-2 offset-sm-3">
-      <button autofocus="" type="button" class="btn btn-success btn-md" (click)="onExit()">Exit</button>
-    </div>
-    <div class="col-sm-1 offset-sm-4">
-      <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
-    </div>
-  </div>
-</div>
+  <div class="row pull-right"> 
+    <span>   
+      <button type="button" class="btn btn-primary"(click)="onPrevious();">Previous</button>
+    <button autofocus="" type="button" class="btn btn-warning" 
+    (click)="onExit()">Exit</button>
+    <button type="button" class="btn btn-success"(click)='onNext()'>Next</button>
+    </span>
+ </div>
+
+
+
+<!-- 
+ <div class="sample-collection table-head "> 
+         <div class="col-md-12 ">
+            <div class="row">
+              <div class="col-md-2 table-th action">
+              Supplier Lot
+              </div>
+              <div class="col-md-2 table-th action">
+                Picture of the Label
+              </div>
+              <div class="col-md-2 table-th action">
+               Is QA sample taken
+              </div>
+              <div class="col-md-2 table-th action">
+               Is Pathogen/Virus/ Indictor sample taken
+              </div>
+              <div class="col-md-2 table-th action">
+                Is Pesticide Test sample taken
+              </div>
+              <div class='col-md-2 table-th action'>
+               Comments
+              </div>
+            </div>
+        </div>
+
+      <div class="sample-collection table-body "> 
+         <div class="col-md-12 ">
+            <div class="row">
+              <div class="col-md-2 table-th actionraw" *ngFor="let sample of sampleList">
+              {{sample.supplierLot}}
+              </div>
+              <div class="col-md-2 table-th actionraw">
+                <a [href]="sample.caseImgl" target="_blank" class="btn btn-default btn-custom">{{sample.imagename}} </a>
+              </div>
+              <div class="col-md-2 table-th actionraw">
+             
+              </div>
+              <div class="col-md-2 table-th actionraw">
+               
+              </div>
+              <div class="col-md-2 table-th actionraw">
+     
+              </div>
+              <div class='col-md-2 table-th actionraw'>
+               Comments
+              </div>
+            </div>
+        </div> -->

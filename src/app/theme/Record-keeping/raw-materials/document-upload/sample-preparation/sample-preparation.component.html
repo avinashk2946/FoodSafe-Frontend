@@ -35,7 +35,7 @@
           </select>
         </td>
         <td>
-          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned" >
         </td>
 
         <td>
@@ -70,10 +70,11 @@
 </div>
 <div class="button pull-right">
   <span>
-    <button type="button" class="btn btn-warning"(click)="onPrev()">Prevoius</button>
-    <button autofocus="" type="button" class="btn btn-success" 
-    (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Save</button>
-    <button type="button" class="btn btn-default" (click)="onExit()">Exit</button>
-    <button type="button" class="btn btn-default" (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Next</button>
+    <button type="button" class="btn btn-primary"(click)="onPrev()">Prevoius</button>
+    <button autofocus="" type="button" class="btn btn-warning" 
+    (click)="onExit()">Exit</button>
+    <button type="button" class="btn btn-success"(click)="onNext()">Next</button>
   </span>
 </div>
+
+

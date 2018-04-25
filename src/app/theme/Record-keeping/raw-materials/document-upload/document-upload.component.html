@@ -1,5 +1,5 @@
 <div class="doc-upload ">
-  <div class="doc-upload ">
+  <div class="doc-upload card ">
     <div class="row data-table" *ngIf="recordDetails._id">
       <div class="col-md-4">
         Plant :
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <div class="col-md-12 ">
+  <div class="col-md-12 card">
     <ngb-tabset type="tabs" #tabs>
       <ngb-tab title="Document" id="documentUploadid1">
         <ng-template ngbTabContent>
@@ -78,7 +78,7 @@
           <div class="row">
             <div class="col-sm-7 offset-sm-2">
               <div class=" row justify-content-center">
-                <button autofocus="" type="button" class="btn btn-success btn-md" (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
+                <button  autofocus="" type="button" class="btn btn-success btn-md"  (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
               </div>
             </div>
           </div>
@@ -166,16 +166,12 @@
               </tbody>
             </table>
           </div>
-          <div class="row justify-content-between">
-            <div class="col-sm-2">
-              <button autofocus="" type="button" class="btn btn-success btn-md" disabled="true">Previous</button>
-            </div>
-            <div class="col-sm-2 offset-sm-3">
-              <button autofocus="" type="button" class="btn btn-success btn-md" (click)="onExit()">Exit</button>
-            </div>
-            <div class="col-sm-1 offset-sm-4">
+          <div class="row pull-right">
+            <span>
+              <button autofocus="" type="button" class="btn btn-primary btn-md" disabled="true">Previous</button>    
+              <button autofocus="" type="button" class="btn btn-warning btn-md" (click)="onExit()">Exit</button>
               <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
-            </div>
+            </span>
           </div>
         </ng-template>
       </ngb-tab>

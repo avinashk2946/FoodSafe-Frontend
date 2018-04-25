@@ -11,7 +11,7 @@
                 <ng-select [options]="formName" bindLabel="Form Name" placeholder="Select" appendTo="body" [(ngModel)]="input.formName"></ng-select>
             </div>
             <div class="form-group row">
-                <label>Colums</label>
+                <label>Columns</label>
                 <input type="text" class="form-control" placeholder="" id="txtInputRows" [(ngModel)]="input.rows">
             </div>
             <div class="form-group row pull-left">
@@ -33,7 +33,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th *ngFor="let column of formTableRows" class="text-center">
-                                    {{"Cell " + (column)}}
+                                    {{"Cell " + (column + 1)}}
                                 </th>
                             </tr>
                         </thead>

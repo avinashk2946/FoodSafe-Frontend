@@ -286,4 +286,8 @@ public CreateForm(){
       this.kosher = (this.selectedMaterial.kosher) ? 'true' : 'false';
     }
   }
+
+  public redirecttoRecord(){
+    this.router.navigate(['/recordkeeping/raw-matrial']);
+  }
 }

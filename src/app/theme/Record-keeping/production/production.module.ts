@@ -9,7 +9,7 @@ import {SharedModule} from '../../../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    ProdcutionRoutingModule,
+    ProdcutionRoutingModule
   ],
   declarations: [
   // ChemicalsComponent, PackagingComponent, ReturnsComponent
