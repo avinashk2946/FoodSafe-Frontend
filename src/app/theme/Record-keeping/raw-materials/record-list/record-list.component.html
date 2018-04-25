@@ -28,9 +28,10 @@
   <div class="card-header">
     <div class="form-group row">
       <div class="row col-sm-12">
-        <tag-input [ngClass]="'tag-select'" theme='bootstrap' [placeholder]="'Search...'" [ngModel]="[]" [onlyFromAutocomplete]="true">
-          <tag-input-dropdown [displayBy]="'value'" [identifyBy]="'id'"></tag-input-dropdown>
-        </tag-input>
+        <tag-input [ngModel]="[]" [addOnBlur]="true"  theme='bootstrap' [clearOnBlur]="true" [onlyFromAutocomplete]="false" onTextChangeDebounce="100"
+         (onRemove)="onItemRemoved($event)">
+          <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems' [minimumTextLength]="3"></tag-input-dropdown>
+      </tag-input>
       </div>
     </div>
   </div>

@@ -9,6 +9,8 @@ import { LocationStrategy } from '@angular/common';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
 import { GLOBAL_PROPERTIES } from './../../common/common.constant';
 // import { ResetPasswordComponent } from './reset-password/reset-password.component';
+// import {Control} from '@angular/common';
+// import {CustomValidators} from './custom-validators';
 
 
 @Component({
@@ -26,6 +28,10 @@ export class LoginComponent implements OnInit {
   backgroundImgUrl: any;
   isFetchConfig: Boolean;
 
+  // static emailFormat(control: Control): [[key: string]: boolean] {
+  //   let pattern:RegExp = /\S+@\S+\.\S+/;
+  //   return pattern.test(control.value) ? null : {"emailFormat": true};
+  // }
   user;
 
   constructor(private _router: Router, private fb: FormBuilder,
@@ -92,5 +98,9 @@ export class LoginComponent implements OnInit {
   onRememberME() {
     this.localStorage.setItem('user', this.user.username).subscribe(() => { });
     this.localStorage.setItem('user', this.user.password).subscribe(() => { });
+    // this.user.password = new Control('',
+    //   Validators.compose([Validators.required, Validators.minLength(8)])
+    // );
+    
   }
 }

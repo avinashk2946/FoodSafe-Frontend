@@ -12,7 +12,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-// import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 import { TabsSevice } from './../tabs.service';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { ISubscription } from 'rxjs/Subscription';
@@ -39,7 +39,9 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
-  private tabs: any;
+  private tabs :any;
+  online$ = Observable.fromEvent(window, 'online');
+  offline$ = Observable.fromEvent(window, 'offline');
 
   public onlineOffline: boolean = navigator.onLine;
   private subscription: ISubscription;
@@ -163,5 +165,16 @@ export class SamplePreparationComponent implements OnInit {
     if (this.samples[index].po === '') {
       this.samples[index].po = this.recordDetails.po;
     }
+  }
+  
+ onPrev() {
+    this.subscription = this.tabService.getMessage().subscribe(tabState => {
+      this.tabs = tabState.value;
+      console.log("docu clicked");
+      this.tabs.select('documentuploadid');
+    });
+  }
+  onExit() {
+        this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
   }
 }

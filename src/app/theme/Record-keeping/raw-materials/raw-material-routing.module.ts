@@ -21,7 +21,14 @@ const routes: Routes = [
         path: 'document-upload/:id',
         loadChildren: './document-upload/document-upload.module#DocumentUploadModule'
       },
-      
+      //  {
+      //   path: 'document-upload/:id',
+      //   loadChildren: './sample-preparation/sample-preparation.module#SamplePreparationModule'
+      // },
+      //   {
+      //   path: 'document-upload/:id',
+      //   loadChildren: './sample-collection/sample-collection.module#SamplePreparationModule'
+      // }
     ]
   }
 ];

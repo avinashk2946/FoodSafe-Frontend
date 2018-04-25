@@ -21,6 +21,9 @@
          letter-spacing: 2px; 
          margin-left: 10px;
      }
+     .notallowed {
+        cursor: not-allowed;
+    }
  }
  
  .table thead th{
@@ -37,6 +40,11 @@
  .heading{
    height: 5px;
   
+ }
+ .exit{
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
  }
  
 
