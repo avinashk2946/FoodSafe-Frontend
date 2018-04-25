@@ -128,22 +128,22 @@ export class DocumentUploadComponent implements OnInit {
       this.localStorage.setItem('recordDetails', this.recordDetails).subscribe(() => { }, () => { });
       if (this.recordDetails.isSetDocument === true) {
         const color = this.el.nativeElement.querySelector('#documentUploadid1');
-        this.renderer.setElementStyle(color, 'background', 'green');
+        this.renderer.setElementStyle(color, 'background', '#71c02c');
       }
 
       if (this.recordDetails.isSamplePreparation === true) {
         const color = this.el.nativeElement.querySelector('#samplepreparationid');
-        this.renderer.setElementStyle(color, 'background', 'green');
+        this.renderer.setElementStyle(color, 'background', '#71c02c');
       }
 
       if (this.recordDetails.samplecollection === true) {
         const color = this.el.nativeElement.querySelector('#samplecollectionid');
-        this.renderer.setElementStyle(color, 'background', 'green');
+        this.renderer.setElementStyle(color, 'background', '#71c02c');
       }
 
       if (this.recordDetails.qualityanalysis === true) {
         const color = this.el.nativeElement.querySelector('#qualityanalysisid');
-        this.renderer.setElementStyle(color, 'background', 'green');
+        this.renderer.setElementStyle(color, 'background', '#71c02c');
       }
 
     }, err => {

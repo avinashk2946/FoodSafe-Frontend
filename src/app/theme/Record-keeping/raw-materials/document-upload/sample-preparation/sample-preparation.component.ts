@@ -170,11 +170,18 @@ export class SamplePreparationComponent implements OnInit {
  onPrev() {
     this.subscription = this.tabService.getMessage().subscribe(tabState => {
       this.tabs = tabState.value;
-      console.log("docu clicked");
       this.tabs.select('documentuploadid');
     });
   }
   onExit() {
         this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
   }
+
+    onNext() {
+        this.subscription = this.tabService.getMessage().subscribe(tabState => {
+        this.tabs = tabState.value;
+      this.tabs.select('samplecollectionid');
+    });
+  }
+
 }

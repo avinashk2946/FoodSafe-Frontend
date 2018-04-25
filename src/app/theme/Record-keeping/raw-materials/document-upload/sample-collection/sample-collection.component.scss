@@ -1,5 +1,3 @@
-@import "bootstrap";
-
 
 .list-group-item{
     display:inherit ;
@@ -8,3 +6,42 @@
   .media-left img {
     height: 50px;
   }
+
+  .btn{
+     margin-top: 50px;  
+     text-transform: uppercase;
+     letter-spacing: 1px; 
+     margin-bottom: 20px;     
+     } 
+
+
+      .table-th,{
+          padding-top:8px;
+          padding-bottom: 8px;        
+     }
+    
+     .table-row{
+            margin-right: 2px;
+         }
+ 
+ .table thead th{
+     border-bottom:none;
+     border-top:2px;
+     box-shadow:rgba(4, 26, 55, 0.16);
+     margin-top: 50px;
+ }
+
+.action{
+    font-size: 12px;
+    font-weight: 700;
+    padding-top: 8px;
+    text-align: center;
+    text-transform: uppercase;      
+  }
+
+  .actionraw{
+     font-size: 12px;
+    font-weight: 800;
+    padding-top: 8px;
+    text-align: center;
+    }
