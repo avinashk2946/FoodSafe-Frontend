@@ -1,4 +1,3 @@
-<div class="container-fluid">
   <br>
   <div class="row">
     <div class="col-sm-2">
@@ -104,18 +103,14 @@
     </table>
   </div>
 
-  <div class="row pull-right">
-    <div class="col-md-4">
-      <button autofocus="" type="button" class="btn btn-primary btn-md" (click)="onPrevious();">Previous</button>
-    </div>
-    <div class="col-md-4 ">
-      <button autofocus="" type="button" class="btn btn-warning btn-md" (click)="onExit()">Exit</button>
-    </div>
-    <div class="col-md-4 ">
-      <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
-    </div>
-  </div>
-</div>
+  <div class="row pull-right"> 
+    <span>   
+      <button type="button" class="btn btn-primary"(click)="onPrevious();">Previous</button>
+    <button autofocus="" type="button" class="btn btn-warning" 
+    (click)="onExit()">Exit</button>
+    <button type="button" class="btn btn-success"(click)='onNext()'>Next</button>
+    </span>
+ </div>
 
 
 
