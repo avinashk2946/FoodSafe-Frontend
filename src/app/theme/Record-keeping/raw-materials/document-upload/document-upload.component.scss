@@ -1,8 +1,7 @@
-@import "bootstrap";
 .raw-materials,
 .doc-upload {
   .data-table {
-    padding-top: 8px;
+    padding-top: 10px;
     padding-bottom: 8px;
     margin-left: 8px;
   }
@@ -10,14 +9,12 @@
 .list-group-item{
   display:inherit ;
 }
+   .card{
+     padding-top: 15px;
 
+     } 
 .media-left img {
   height: 50px;
-}
-
-
-.doc{ 
-background-color:#28d745;
 }
 
 
@@ -26,12 +23,12 @@ background-color:#28d745;
   margin: 0 !important;
 }
 
-table {
+.table {
   table-layout: fixed;
   word-wrap: break-word;
 }
 
-  table th, table td {
+ .table th, table td {
       overflow: hidden;
   }
 
@@ -40,3 +37,20 @@ table {
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
+
+ :host/deep/ .nav-tabs .nav-link.active, .nav-tabs .nav-item.show {
+  background-color: #eaeaea;
+  border-right-color:#7f827e;
+  border-left-color:#7f827e;
+  border-top-color:#7f827e; 
+}
+ :host/deep/ .nav-link{
+  margin-left:5px;
+  padding-left: 5px;
+ }
+.btn{
+     margin-top: 50px;  
+     text-transform: uppercase;
+     letter-spacing: 1px; 
+     margin-bottom: 20px;     
+   } 

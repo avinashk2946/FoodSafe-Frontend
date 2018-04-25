@@ -1,6 +1,6 @@
 <form [formGroup]="dataForm" (ngSubmit)="onRecordCreate()" novalidate autocomplete="off">
 
-  <div class="raw-materials justify-content-center" > 
+  <div class="raw-materials justify-content-center card" > 
 
     <div class="col-md-12 m-t-5 ">
       <div class="row">
@@ -280,9 +280,9 @@
       </div>
     </div>
     <div class=" row justify-content-center">
-      <button type="button" class="btn btn-success exit" (click)="redirecttoRecord()">Exit</button>
+      <button type="button" class="btn btn-warning" (click)="redirecttoRecord()">Exit</button>
       <button type="submit" class="btn btn-success" [disabled]="!dataForm.valid" >Save & Submit</button>
-      <button type="button" class="btn btn-default" (click)="dataForm.reset()">Cancel </button>
+      <button type="button" class="btn btn-secondary" (click)="dataForm.reset()">Cancel </button>
     </div>
   </div>
 </form>
