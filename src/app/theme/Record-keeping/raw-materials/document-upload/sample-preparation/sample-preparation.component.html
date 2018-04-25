@@ -68,12 +68,17 @@
 
   </table>
 </div>
-<div class="button pull-right">
-  <span>
-    <button type="button" class="btn btn-warning"(click)="onPrev()">Prevoius</button>
-    <button autofocus="" type="button" class="btn btn-success" 
-    (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Save</button>
-    <button type="button" class="btn btn-default" (click)="onExit()">Exit</button>
-    <button type="button" class="btn btn-default" (item)='handleEvent($event)'(click)="saveSampleRecord(itemAddForm,$event)">Next</button>
-  </span>
-</div>
+  <div class="row justify-content-between">
+          <div class="col-sm-2">
+              <button autofocus="" type="button" class="btn btn-primary btn-md" (click)="onPrev()">Prevoius</button>
+          </div>
+          <div class="col-sm-2 offset-sm-3">
+             <button autofocus="" type="button" class="btn btn-warning btn-md" (click)="onExit()">Exit</button>
+          </div>
+           <div class="col-sm-1 offset-sm-4">
+              <button autofocus="" type="button" class="btn btn-success btn-md"(click)="onNext()">Next</button>
+          </div>
+  </div>
+
+
+

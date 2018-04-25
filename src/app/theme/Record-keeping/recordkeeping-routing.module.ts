@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path : '',
-        redirectTo : 'raw-matrial',
+        redirectTo : '',
         pathMatch : 'full'
       },
       {
