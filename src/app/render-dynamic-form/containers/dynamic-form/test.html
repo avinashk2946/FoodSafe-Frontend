@@ -1,0 +1,40 @@
+<form class="dynamic-form" [formGroup]="form" (submit)="handleSubmit($event)"></form>
+<table class="table table-striped">
+    <tr>
+        <th *ngFor="let fc of labelConfig;" dynamicField [config]="fc" [group]="form">
+        </th>
+    </tr>
+    <tr *ngFor="let d of data">
+        <td *ngFor="let k of d | iterable">
+            {{d[k]}}
+        </td>
+    </tr>
+    <tr>
+        <td *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
+        </td>
+    </tr>
+</table>
+<ng-container *ngFor="let footerField of footerConfig;" dynamicField [config]="footerField" [group]="form">
+
+</ng-container>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th *ngFor="let f of config;">{{f.label}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data">
+            <td *ngFor="let k of d | iterable"> {{d[k]}}</td>
+        </tr>
+        <tr>
+                <form class="dynamic-form" [formGroup]="form" (submit)="handleSubmit($event)">
+                        <td *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
+                            </td>
+                </form>
+
+        </tr>
+    </tbody>
+</table>
