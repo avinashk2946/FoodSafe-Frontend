@@ -50,8 +50,18 @@ export class DynamicFormComponent implements OnInit {
     this.myData = null;
     this.input = {};
   }
+  
   ngOnInit() {
 
+  }
+
+  onChangeFormType(data){
+    if(data){
+      this.input["formName"] = data;
+    }
+    else{
+      delete this.input["formName"];
+    }
   }
 
   onSubmit(event, data, show) {
