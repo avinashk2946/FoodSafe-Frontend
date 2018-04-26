@@ -109,6 +109,7 @@ export class SamplePreparationComponent implements OnInit {
       item.pathogenTest = (item.newLot === true) ? true : false;
       item.pesticideTest = (item.newLot === true) ? true : false;
       item.virusTest = (item.newLot === true) ? true : false;
+      // item.comment = (item.newLot === true) ? true : false;
     }
   }
 

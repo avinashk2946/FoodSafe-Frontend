@@ -6,15 +6,15 @@
         <th scope="col">New Lot</th>
         <th scope="col">If No Previous PO's</th>
 
-        <th scope="col">Total Quality</th>
+        <th scope="col">Total Quantity</th>
         <th scope="col">QC Analysys</th>
-        <th scope="col">Quality Planned For Sampling</th>
+        <th scope="col">Quantity Planned For Sampling</th>
 
-        <th scope="col">Indicator test</th>
-        <th scope="col">Pathogen test</th>
-        <th scope="col">Virus test</th>
+        <th scope="col">Indicator Test</th>
+        <th scope="col">Pathogen Test</th>
+        <th scope="col">Virus Test</th>
 
-        <th scope="col">Pesticides test</th>
+        <th scope="col">Pesticides Test</th>
         <th scope="col">Comments</th>
       </tr>
     </thead>
@@ -48,8 +48,10 @@
         <td> {{item.virusTest}}</td>
 
         <td> {{item.pesticideTest}}</td>
+        
         <td>
-          <textarea type="text" class="form-control" name="" [(ngModel)]="item.comment" placeholder="your text here"></textarea> 
+          <textarea type="text" class="form-control" name="" [(ngModel)]="item.Comment" placeholder="your text here"></textarea> 
+          <!-- <td> {{item.comment}}</td> -->
         </td>
         <td>
           <span>
