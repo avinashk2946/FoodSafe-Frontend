@@ -23,7 +23,7 @@
         <td>
           <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot" (ngModelChange)="searchForSupplier(item.supplierLot)">
         </td>
-        <td>{{item.newLot}}</td>
+        <td>{{true == item.newLot ? 'Yes' : 'No'}}</td>
         <td>{{item.po}} </td>
         <td>
           <input type="text" class="form-control" name="" value="" [(ngModel)]="item.totalQuantity">
@@ -44,10 +44,10 @@
             <option [ngValue]="false">No</option>
           </select>
         </td>
-        <td> {{item.pathogenTest}}</td>
-        <td> {{item.virusTest}}</td>
+        <td> {{true == item.pathogenTest ? 'Yes' : 'No'}}</td>
+        <td> {{true == item.virusTest ? 'Yes' : 'No'}}</td>
 
-        <td> {{item.pesticideTest}}</td>
+        <td> {{true == item.pesticideTest ? 'Yes' : 'No'}}</td>
         <td>
           <textarea type="text" class="form-control" name="" [(ngModel)]="item.comment" placeholder="your text here"></textarea> 
         </td>
