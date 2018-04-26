@@ -1,6 +1,6 @@
 import {
   Component, ElementRef, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation, Directive,
-  Renderer
+  Renderer, AfterViewInit
 } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { FormGroup, FormBuilder, FormControl, Validators, FormsModule } from '@angular/forms';
@@ -48,7 +48,7 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 })
 
 
-export class DocumentUploadComponent implements OnInit {
+export class DocumentUploadComponent implements OnInit , AfterViewInit {
 
   @ViewChild('tabs')
   private tabs: any;
@@ -110,6 +110,14 @@ export class DocumentUploadComponent implements OnInit {
     // this.getRecordDetails();
   }
 
+  ngAfterViewInit() {
+    this.tabService.sendMessage(this.tabs);
+  }
+
+  onPrev() {
+    this.router.navigateByUrl('/recordkeeping/raw-matrial');
+  }
+
   onNext() {
     this.tabService.sendMessage(this.tabs);
     this.tabs.select('samplepreparationid');
@@ -117,9 +125,9 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   onExit() {
-        this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
+    this.router.navigateByUrl('/recordkeeping/raw-matrial');
   }
-    // this.router.navigate(['../record-list/record-list.module#RecordListModule']);
+  // this.router.navigate(['../record-list/record-list.module#RecordListModule']);
 
   getRecordDetails() {
     this.rawMatService.getRecordData(this.recordId).subscribe((response: any) => {
