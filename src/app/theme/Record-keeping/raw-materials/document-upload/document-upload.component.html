@@ -47,42 +47,41 @@
   <div class="col-md-12 card">
     <ngb-tabset type="tabs" #tabs>
       <ngb-tab title="Document" id="documentUploadid1">
-        <ng-template ngbTabContent>
-          <br>
-          <br>
-          <div class="form-group row">
-            <label for="docTypeID" class="col-sm-3 offset-sm-2 col-form-label">Document Type</label>
-            <div class="col-sm-4">
-              <select id="docTypeID" class="form-control form-control-primary" [(ngModel)]="currentDocType" required>
-                <option *ngFor="let doctype of fileList" [value]="doctype.value">
-                  {{doctype.label}}
-                </option>
-              </select>
+        <ng-template ngbTabContent>      
+
+        <div class="document-upload table-head "> 
+            <div class="col-md-12 ">
+              <div class="row">
+                <div class="col-md-2 table-th action">                
+                  <label>Document Type</label> 
+                </div>
+
+                <div class="col-md-3 table-th action">
+                   <select class="form-control form-control-primary" [(ngModel)]="currentDocType" required>
+                      <option *ngFor="let doctype of fileList" [value]="doctype.value">
+                        {{doctype.label}}
+                      </option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 table-th action">    
+                  <input type="file"  ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
+                    <span class="custom-file-control" >Drag and drop your files here</span>  
+                    <!--   <ul class="list-inline" >
+                          <li class="list-group-item media-left" *ngFor="let item of attachmentList.queue; let i=index">
+                          <img src="" imgPreview [image]="item?._file" class="media-object" />
+                          <span class="fa fa-trash" (click)="delete($event,i,attachmentList.queue)"></span>
+                          </li>
+                      </ul>   -->  
+                </div>
+
+                <div class="col-md-3 table-th action">
+                     <button  autofocus="" type="button" class="btn btn-success fa fa-upload"  (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0"> Upload </button>
+                </div>
+
+              </div>  
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3 offset-sm-2 custom-file" style="height: 76px;">
-              <input type="file" style="margin-top: 21px;" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
-              <span class="custom-file-control" style="margin-top: 21px">Drag and drop your files here</span>
-            </div>
-            <div class="col-sm-4">
-              <ul class="list-inline" style="margin-bottom: 0px">
-                <li class="list-group-item media-left" *ngFor="let item of attachmentList.queue; let i=index">
-                  <img src="" imgPreview [image]="item?._file" class="media-object" />
-                  <span class="fa fa-trash" (click)="delete($event,i,attachmentList.queue)"></span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-7 offset-sm-2">
-              <div class=" row justify-content-center">
-                <button  autofocus="" type="button" class="btn btn-success btn-md"  (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
-              </div>
-            </div>
-          </div>
-          <br>
+         </div>
 
           <div class="table-responsive">
             <table class="table">
@@ -168,9 +167,10 @@
           </div>
           <div class="row pull-right">
             <span>
-              <button autofocus="" type="button" class="btn btn-primary btn-md" (click)="onPrev()">Previous</button>    
-              <button autofocus="" type="button" class="btn btn-warning btn-md" (click)="onExit()">Exit</button>
-              <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
+              <!-- <button autofocus="" type="button" class="btn btn-outline-primary btn-md" disabled="true">Previous</button>     -->
+              <button autofocus="" type="button" class="btn btn-outline-warning btn-md" (click)="onExit()">Exit</button>
+              <button autofocus="" type="button" class="btn btn-outline-danger btn-md" (click)="cancel()">Cancel</button>
+              <button autofocus="" type="button" class="btn btn-outline-success btn-md" (click)='onNext()'>Next</button>
             </span>
           </div>
         </ng-template>
@@ -187,7 +187,7 @@
       </ngb-tab>
       <ngb-tab title="Quality Analysis" id="qualityanalysisid">
         <ng-template ngbTabContent>
-          <app-quality-analysis></app-quality-analysis>
+          <!-- <app-quality-analysis></app-quality-analysis> -->
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Micro/Chemical Analysis" id="microchemicalanalysid">
@@ -200,6 +200,14 @@
           <p></p>
         </ng-template>
       </ngb-tab>
+        <ngb-tab title="Allocation" id="alllocationid">
+        <ng-template ngbTabContent>
+          <p></p>
+        </ng-template>
+      </ngb-tab>
     </ngb-tabset>
   </div>
 </div>
+
+
+

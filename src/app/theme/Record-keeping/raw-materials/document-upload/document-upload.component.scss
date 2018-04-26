@@ -13,15 +13,15 @@
      padding-top: 15px;
 
      } 
-.media-left img {
-  height: 50px;
-}
 
+.action{
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;     
+  }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
-}
 
 .table {
   table-layout: fixed;
@@ -30,12 +30,6 @@
 
  .table th, table td {
       overflow: hidden;
-  }
-
-  .mypadding{
-    margin-bottom: 10px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
   }
 
  :host/deep/ .nav-tabs .nav-link.active, .nav-tabs .nav-item.show {
@@ -49,9 +43,13 @@
   padding-left: 5px;
  }
 .btn{
-     margin-top: 10px;  
      text-transform: uppercase;
      letter-spacing: 1px; 
      margin-bottom: 20px;  
-      margin-right:5px;     
+      margin-right:5px; 
+       font-weight: 900;
+     font-size: 12px;
+     width: 100px;
+     height: 40px;    
      }  
+
