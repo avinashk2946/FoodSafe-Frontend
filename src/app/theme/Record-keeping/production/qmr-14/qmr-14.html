@@ -222,10 +222,16 @@
     </div>
     <div class="row">&nbsp;</div>
     <p class="h2">Dynamic Form Tabular Content</p>
-    <!-- <div class="row container">
-        <div class="form-group row text-center">
-            <button (click)="onSubmit($event, formData)" class="btn btn-success">Submit</button>
-            <button (click)="onSubmit($event, formData, true)" class="btn btn-danger">Reset</button>
-        </div>
-    </div> -->
+    <div class="app">
+        <dynamic-form
+          [config]="config"
+          [data]="data"
+          [footerConfig]="footerConfig"
+          [labelConfig]="labelConfig"
+          #form="dynamicForm"
+          (submit)="submit($event)">
+        </dynamic-form>
+        <!-- {{ form.valid }}
+        {{ form.value | json }} -->
+      </div>
 </div>
