@@ -1,29 +1,37 @@
-  <br>
-  <div class="row">
-    <div class="col-sm-2">
+<div class="sample collection">
+  <div class="col-md-12">
+    <div class="row table-th">
+    <div class="col-md-4">
       Total Samples :
       <strong>{{totalSamples}}</strong>
     </div>
-    <div class="col-sm-2">
+    <div class="col-md-4">
       Remaining Samples : 
       <strong> {{remainingsamples}} </strong>  
     </div>
-    <div class="col-sm-2">
-      <button type="button" class="btn btn-success btn-sm" (click)="addNewSample()">Add new Samples</button>
+    <div class="col-md-4">
+       <span>
+         <a  (click)="addNewSample()" class="">Add new Samples
+          <span class="fa fa-plus-circle fa-2x "></span>
+         </a>
+      </span>
+      <!-- <button type="button" class="btn btn-success" (click)="addNewSample()">Add new Samples</button> -->
     </div>
-  </div>
+    </div>
+ </div>
+
   <form [formGroup]="sampleForm" *ngIf="showEditFields" (ngSubmit)="saveUpdateSample()">
     <div class="row">
-      <div class="col-sm-3" style="margin-top: 21px;">
+      <div class="col-sm-3">
         <ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="supplierlot"
           (ngModelChange)='changeSupplierLot()' formControlName="supplierLot"></ng-select>
       </div>
-      <div class="col-sm-3 custom-file" style="height: 76px;">
-        <input type="file" style="margin-top: 26px;" (change)="onFileChange($event)" #fileInput class="custom-file-input">
-        <span class="custom-file-control" style="margin-top: 26px">Drag and drop your files here</span>
+      <div class="col-sm-3">
+        <input type="file" (change)="onFileChange($event)" #fileInput class="custom-file-input">
+        <span class="custom-file-control">Drag and drop your files here</span>
       </div>
       <div class="col-sm-5">
-        <ul class="list-inline" style="margin-bottom: 0px">
+        <ul class="list-inline">
           <li class="list-group-item media-left" *ngFor="let item of attachments; let i=index">
             <img [src]="item.imagedata" class="media-object" />
             <span class="fa fa-trash" (click)="delete($event,i,attachments)"></span>
@@ -64,12 +72,12 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label" style="padding-top:45px">Comments </label>
+      <label class="col-sm-2 col-form-label" >Comments </label>
       <div class="col-sm-4">
         <textarea rows="4" cols="4" class="form-control" formControlName="comments" placeholder="Enter your comments"></textarea>
       </div>
-      <div class="col-sm-1" style="padding-top:78px">
-        <button type="submit" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid">Save</button>
+      <div class="col-sm-2" >
+        <button type="submit" class="btn btn-primary btn-md" [disabled]="!sampleForm.valid">Save</button>
       </div>
     </div>
   </form>
@@ -105,13 +113,14 @@
 
   <div class="row pull-right"> 
     <span>   
-      <button type="button" class="btn btn-primary"(click)="onPrevious();">Previous</button>
-    <button autofocus="" type="button" class="btn btn-warning" 
+      <button type="button" class="btn btn-outline-primary"(click)="onPrevious();">Previous</button>
+    <button autofocus="" type="button" class="btn btn-outline-warning" 
     (click)="onExit()">Exit</button>
-    <button type="button" class="btn btn-success"(click)='onNext()'>Next</button>
+    <button type="button" class="btn btn-outline-danger"(click)='cancel()'>Cancel</button>
+    <button type="button" class="btn btn-outline-success"(click)='onNext()'>Next</button>
     </span>
  </div>
-
+</div>
 
 
 <!-- 
