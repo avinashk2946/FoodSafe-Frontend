@@ -53,7 +53,7 @@
 
         <ngx-datatable class="data-table fullscreen" [rows]="recordList" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
           [rowHeight]="50" [limit]="10" [selected]="selected" [selectionType]="'multi'" (activate)="onActivate($event)" (select)='onSelect($event)'
-          (dblclick)='doubleClickAction(selected)'>
+          (dblclick)='doubleClickAction(selected)' >
 
           <ngx-datatable-column name="Created Date">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
@@ -65,7 +65,7 @@
 
           <ngx-datatable-column name="Purchase Order">
             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-              <span class="table-head">
+              <span class="table-head" >
                 {{row.po}}
               </span>
             </ng-template>

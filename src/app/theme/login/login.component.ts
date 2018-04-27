@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
         this.user = resData.data;
 
         this.localStorage.setItem('user', this.user).subscribe(() => { }, () => { });
-        this.comonSrvc.showSuccessMsg(resData.message);
+        // this.comonSrvc.showSuccessMsg(resData.message);
 
         this._router.navigate(['/dashboard']);
 
