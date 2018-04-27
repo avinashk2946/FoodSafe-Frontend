@@ -6,25 +6,24 @@
         <th scope="col">New Lot</th>
         <th scope="col">If No Previous PO's</th>
 
-        <th scope="col">Total Quantity</th>
+        <th scope="col">Total Quality</th>
         <th scope="col">QC Analysys</th>
-        <th scope="col">Quantity Planned For Sampling</th>
+        <th scope="col">Quality Planned For Sampling</th>
 
-        <th scope="col">Indicator Test</th>
-        <th scope="col">Pathogen Test</th>
-        <th scope="col">Virus Test</th>
+        <th scope="col">Indicator test</th>
+        <th scope="col">Pathogen test</th>
+        <th scope="col">Virus test</th>
 
-        <th scope="col">Pesticides Test</th>
+        <th scope="col">Pesticides test</th>
         <th scope="col">Comments</th>
       </tr>
     </thead>
-
-    <tbody>
+    <tbody>   
       <tr *ngFor="let item of samples; let i = index">
         <td>
           <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot" (ngModelChange)="searchForSupplier(item.supplierLot)">
         </td>
-        <td>{{item.newLot}}</td>
+        <td>{{true == item.newLot ? 'Yes' : 'No'}}</td>
         <td>{{item.po}} </td>
         <td>
           <input type="text" class="form-control" name="" value="" [(ngModel)]="item.totalQuantity">
@@ -36,22 +35,21 @@
           </select>
         </td>
         <td>
-          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned">
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned" >
         </td>
 
         <td>
-          <select class="form-control" [(ngModel)]="item.indicatorTest" name="">
+          <select class="form-control" [(ngModel)]="item.indicatorTest" name="">  
             <option [ngValue]="true">Yes</option>
             <option [ngValue]="false">No</option>
           </select>
         </td>
-        <td> {{item.pathogenTest}}</td>
-        <td> {{item.virusTest}}</td>
+        <td> {{true == item.pathogenTest ? 'Yes' : 'No'}}</td>
+        <td> {{true == item.virusTest ? 'Yes' : 'No'}}</td>
 
-        <td> {{item.pesticideTest}}</td>
-
+        <td> {{true == item.pesticideTest ? 'Yes' : 'No'}}</td>
         <td>
-          <textarea type="text" class="form-control" [(ngModel)]="item.comment" placeholder="your text here"> {{item.comment}}</textarea>
+          <textarea type="text" class="form-control" name="" [(ngModel)]="item.comment" placeholder="your text here"></textarea> 
         </td>
         <td>
           <span>
@@ -67,13 +65,16 @@
         <span class="fa fa-plus-circle fa-2x "></span>
       </a>
     </span>
+
   </table>
-  <div class="button pull-right">
-    <span>
-      <button type="button" class="btn btn-primary" (click)="onPrev()">Previous</button>
-      <button autofocus="" type="button" class="btn btn-warning" (click)="onExit()">Exit</button>
-      <button type="button" class="btn btn-danger" (click)='saveSampleRecord()'>Save</button>
-      <button type="button" class="btn btn-success" (click)="onNext()">Next</button>
-    </span>
-  </div>
 </div>
+<div class="button pull-right">
+  <span>
+    <button type="button" class="btn btn-primary"(click)="onPrev()">Prevoius</button>
+    <button autofocus="" type="button" class="btn btn-warning" 
+    (click)="onExit()">Exit</button>
+    <button type="button" class="btn btn-success"(click)="onNext()">Next</button>
+  </span>
+</div>
+
+

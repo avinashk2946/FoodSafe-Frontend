@@ -75,7 +75,7 @@
     </div>
   </form>
 
-    
+  <!-- true == patient.Alcoholic ? 'Yes' : 'No' -->
 
   <div class="row">
     <table class="table table-responsive">
@@ -95,9 +95,9 @@
           <td>         
            <a [href]="sample.caseImgl" target="_blank" class="btn btn-default btn-custom">{{sample.imagename}} </a>
           </td>
-          <td>{{sample.qualityAnalysis}}</td>
-          <td>{{sample.testGrp}}</td>
-          <td>{{sample.pesticideTest}}</td>
+          <td>{{true == sample.qualityAnalysis ? 'Yes' : 'No' }}</td>
+          <td>{{true == sample.testGrp ? 'Yes' : 'No' }}</td>
+          <td>{{true == sample.pesticideTest ? 'Yes' : 'No' }}</td>
           <td>{{sample.comment}}</td>
         </tr>
       </tbody>
