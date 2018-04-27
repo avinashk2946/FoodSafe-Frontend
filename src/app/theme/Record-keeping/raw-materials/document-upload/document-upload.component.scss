@@ -6,17 +6,18 @@
     margin-left: 8px;
   }
 }
-.list-group-item{
-  display:inherit ;
-}
-   .card{
-     padding-top: 15px;
 
-     } 
+.list-group-item {
+  display: inherit;
+}
+
+.card {
+  padding-top: 15px;
+}
+
 .media-left img {
   height: 50px;
 }
-
 
 .nopadding {
   padding: 0 !important;
@@ -28,30 +29,27 @@
   word-wrap: break-word;
 }
 
- .table th, table td {
-      overflow: hidden;
-  }
-
-  .mypadding{
-    margin-bottom: 10px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-
- :host/deep/ .nav-tabs .nav-link.active, .nav-tabs .nav-item.show {
-  background-color: #eaeaea;
-  border-right-color:#7f827e;
-  border-left-color:#7f827e;
-  border-top-color:#7f827e; 
+.table th,
+table td {
+  overflow: hidden;
 }
- :host/deep/ .nav-link{
-  margin-left:5px;
+
+.mypadding {
+  margin-bottom: 10px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+:host/deep/ .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show {
+  background-color: #eaeaea;
+  border-right-color: #7f827e;
+  border-left-color: #7f827e;
+  border-top-color: #7f827e;
+}
+
+:host/deep/ .nav-link {
+  margin-left: 5px;
   padding-left: 5px;
- }
-.btn{
-     margin-top: 10px;  
-     text-transform: uppercase;
-     letter-spacing: 1px; 
-     margin-bottom: 20px;  
-      margin-right:5px;     
-     }  
+}
+

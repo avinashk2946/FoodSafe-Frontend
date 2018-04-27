@@ -12,7 +12,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
 import { TabsSevice } from './../tabs.service';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { ISubscription } from 'rxjs/Subscription';
@@ -39,9 +38,7 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
-  private tabs :any;
-  online$ = Observable.fromEvent(window, 'online');
-  offline$ = Observable.fromEvent(window, 'offline');
+  private tabs: any;
 
   public onlineOffline: boolean = navigator.onLine;
   private subscription: ISubscription;
@@ -141,10 +138,6 @@ export class SamplePreparationComponent implements OnInit {
     };
     this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      this.subscription = this.tabService.getMessage().subscribe(tabState => {
-        this.tabs = tabState.value;
-        this.tabs.select('samplecollectionid');
-      });
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
@@ -167,20 +160,20 @@ export class SamplePreparationComponent implements OnInit {
       this.samples[index].po = this.recordDetails.po;
     }
   }
-  
- onPrev() {
+
+  onPrev() {
     this.subscription = this.tabService.getMessage().subscribe(tabState => {
       this.tabs = tabState.value;
       this.tabs.select('documentuploadid');
     });
   }
   onExit() {
-        this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
+    this.router.navigateByUrl('/recordkeeping/raw-matrial');
   }
 
-    onNext() {
-        this.subscription = this.tabService.getMessage().subscribe(tabState => {
-        this.tabs = tabState.value;
+  onNext() {
+    this.subscription = this.tabService.getMessage().subscribe(tabState => {
+      this.tabs = tabState.value;
       this.tabs.select('samplecollectionid');
     });
   }

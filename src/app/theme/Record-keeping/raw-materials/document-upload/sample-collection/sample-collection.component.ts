@@ -34,7 +34,7 @@ export class SampleCollectionComponent implements OnInit {
   private samplepreparationId;
   public remainingsamples;
 
- public caseImgl:undefined;
+  public caseImgl: undefined;
 
   uploader: FileUploader = new FileUploader({});
   attachments = [];

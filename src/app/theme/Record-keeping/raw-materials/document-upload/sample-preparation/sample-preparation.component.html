@@ -18,8 +18,8 @@
         <th scope="col">Comments</th>
       </tr>
     </thead>
-     
-    <tbody>   
+
+    <tbody>
       <tr *ngFor="let item of samples; let i = index">
         <td>
           <input type="text" class="form-control" name="" [(ngModel)]="item.supplierLot" (ngModelChange)="searchForSupplier(item.supplierLot)">
@@ -36,11 +36,11 @@
           </select>
         </td>
         <td>
-          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned" >
+          <input type="text" class="form-control" name="" value="" [(ngModel)]="item.quantityPlanned">
         </td>
 
         <td>
-          <select class="form-control" [(ngModel)]="item.indicatorTest" name="">  
+          <select class="form-control" [(ngModel)]="item.indicatorTest" name="">
             <option [ngValue]="true">Yes</option>
             <option [ngValue]="false">No</option>
           </select>
@@ -49,10 +49,9 @@
         <td> {{item.virusTest}}</td>
 
         <td> {{item.pesticideTest}}</td>
-        
+
         <td>
-          <textarea type="text" class="form-control" name="" [(ngModel)]="item.Comment" placeholder="your text here"></textarea> 
-          <!-- <td> {{item.comment}}</td> -->
+          <textarea type="text" class="form-control" [(ngModel)]="item.comment" placeholder="your text here"> {{item.comment}}</textarea>
         </td>
         <td>
           <span>
@@ -71,12 +70,10 @@
   </table>
   <div class="button pull-right">
     <span>
-      <button type="button" class="btn btn-outline-primary"(click)="onPrev()">Previous</button>
-      <button autofocus="" type="button" class="btn btn-outline-warning" 
-      (click)="onExit()">Exit</button>
-          <button type="button" class="btn btn-outline-danger"(click)='cancel()'>Cancel</button>
-      <button type="button" class="btn btn-outline-success"(click)="onNext()">Next</button>
+      <button type="button" class="btn btn-primary" (click)="onPrev()">Previous</button>
+      <button autofocus="" type="button" class="btn btn-warning" (click)="onExit()">Exit</button>
+      <button type="button" class="btn btn-danger" (click)='saveSampleRecord()'>Save</button>
+      <button type="button" class="btn btn-success" (click)="onNext()">Next</button>
     </span>
   </div>
 </div>
-
