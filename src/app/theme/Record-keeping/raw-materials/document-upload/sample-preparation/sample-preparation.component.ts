@@ -40,8 +40,8 @@ export class SamplePreparationComponent implements OnInit {
   recordId = '';
   private tabs: any;
 
-  public onlineOffline: boolean = navigator.onLine;
   private subscription: ISubscription;
+
   samples = [
     {
       supplierLot: '',
@@ -66,6 +66,20 @@ export class SamplePreparationComponent implements OnInit {
       this.recordId = params.id;
     });
 
+    this.rawMatService.getSamplePreparation(this.recordId)
+      .subscribe((response: any) => {
+        if (response.data.length !== 0) {
+          this.samples = [];
+        }
+        response.data.forEach(element => {
+          for (let i = 0; i < element.samples.length; i++) {
+            this.samples.push(element.samples[i]);
+          }
+        });
+      }, err => {
+        console.log('Sample Preparation : Error getting exsiting sample preparations.');
+      });
+
   }
 
   ngOnInit() {
@@ -84,21 +98,9 @@ export class SamplePreparationComponent implements OnInit {
         }, err => {
           console.log('Sample Preparation : Error validating supplier lot.');
         });
-
-      this.rawMatService.getSamplePreparation(this.recordDetails._id)
-        .subscribe((response: any) => {
-          if (response.data.length !== 0) {
-            this.samples = [];
-          }
-          response.data.forEach(element => {
-            for (let i = 0; i < element.samples.length; i++) {
-              this.samples.push(element.samples[i]);
-            }
-          });
-        }, err => {
-          console.log('Sample Preparation : Error getting exsiting sample preparations.');
-        });
     });
+
+
   }
 
   public changeNewLot(item): void {
@@ -106,7 +108,6 @@ export class SamplePreparationComponent implements OnInit {
       item.pathogenTest = (item.newLot === true) ? true : false;
       item.pesticideTest = (item.newLot === true) ? true : false;
       item.virusTest = (item.newLot === true) ? true : false;
-      // item.comment = (item.newLot === true) ? true : false;
     }
   }
 
@@ -151,7 +152,7 @@ export class SamplePreparationComponent implements OnInit {
     this.searchTerm.next(supplierlot);
   }
   public updateSampleObj(index, response) {
-    this.samples[index].newLot = response.newLot ? 'Yes' : 'No';
+    this.samples[index].newLot = response.newLot;
     this.samples[index].po = response.po;
     this.samples[index].pathogenTest = response.pathogenTest;
     this.samples[index].pesticideTest = response.pesticideTest;
@@ -164,7 +165,7 @@ export class SamplePreparationComponent implements OnInit {
   onPrev() {
     this.subscription = this.tabService.getMessage().subscribe(tabState => {
       this.tabs = tabState.value;
-      this.tabs.select('documentuploadid');
+      this.tabs.select('documentuploadid1');
     });
   }
   onExit() {
