@@ -165,7 +165,7 @@ export class SamplePreparationComponent implements OnInit {
   onPrev() {
     this.subscription = this.tabService.getMessage().subscribe(tabState => {
       this.tabs = tabState.value;
-      this.tabs.select('documentuploadid1');
+      this.tabs.select('documentUploadid1');
     });
   }
   onExit() {
