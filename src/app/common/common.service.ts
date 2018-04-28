@@ -24,7 +24,7 @@ export class CommonService {
     createHttpRequest(dataObject: HttpRequestModal) {
 
         /*dataObject.payload['feSessionId'] = this.generateFeSessionId();*/
-        console.log('BASE_API_URL', GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName);
+      //  console.log('BASE_API_URL', GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName);
         if (dataObject.method === 'POST') {
             return this.http.post(
                 GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,

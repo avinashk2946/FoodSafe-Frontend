@@ -110,7 +110,6 @@ export class RawMaterialService {
       channel: GLOBAL_PROPERTIES.CHANNEL
     };
     const url = API_ACTIONS.raw_material.record + '/samplePreparation/' + recordId;
-    console.log(url);
     const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }

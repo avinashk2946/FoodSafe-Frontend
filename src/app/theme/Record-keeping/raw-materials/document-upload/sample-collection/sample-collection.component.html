@@ -1,165 +1,115 @@
+<div class="row sample-perparation">
+  <div class="col-sm-2 " style="padding-top: 17px">
+    Total Samples :
+    <strong>{{totalSamples}}</strong>
+  </div>
+  <div class="col-sm-2 " style="padding-top: 17px">
+    Remaining Samples :
+    <strong> {{remainingsamples || 0}} </strong>
+  </div>
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-success btn-sm" (click)="addNewSample()">Add new Samples</button>
+  </div>
+</div>
+<form [formGroup]="sampleForm" *ngIf="showEditFields" (ngSubmit)="saveUpdateSample()" class="sample-perparation">
+  <div class="row">
+    <div class="col-sm-3" style="margin-top: 21px;">
+      <ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="supplierlot"
+        (ngModelChange)='changeSupplierLot()' formControlName="supplierLot"></ng-select>
+    </div>
+    <div class="col-sm-3 custom-file" style="height: 76px;">
+      <input type="file" style="margin-top: 26px;" (change)="onFileChange($event)" #fileInput class="custom-file-input" >
+      <span class="custom-file-control" style="margin-top: 26px">Drag and drop your files here</span>
+    </div>
+    <div class="col-sm-5">
+      <ul class="list-inline" style="margin-bottom: 0px">
+        <li class="list-group-item media-left" *ngFor="let item of attachments; let i=index">
+          <img [src]="item.imagedata" class="media-object" />
+          <span class="fa fa-trash" (click)="delete($event,i,attachments)"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
   <br>
   <div class="row">
-    <div class="col-sm-2 " style="padding-top: 17px">
-      Total Samples :
-      <strong>{{totalSamples}}</strong>
+    <div class="col-sm-12 checkbox-zoom zoom-primary ">
+      <label>
+        <input type="checkbox" formControlName="qaAnalysis">
+        <span class="cr">
+          <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+        </span>
+        <span>Quality Analysis sample</span>
+      </label>
     </div>
-    <div class="col-sm-2 " style="padding-top: 17px">
-      Remaining Samples : 
-      <strong> {{remainingsamples || 0}} </strong>  
+
+    <div class="col-sm-12  checkbox-zoom zoom-primary">
+      <label>
+        <input type="checkbox" formControlName="pathvirsuFcon">
+        <span class="cr">
+          <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+        </span>
+        <span>Pathogen Test sample</span>
+      </label>
     </div>
-    <div class="col-sm-2">
-      <button type="button" class="btn btn-success btn-sm" (click)="addNewSample()">Add new Samples</button>
+
+    <div class=" col-sm-12  checkbox-zoom zoom-primary">
+      <label>
+        <input type="checkbox" formControlName="pestcidesFcon">
+        <span class="cr">
+          <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+        </span>
+        <span>Pesticide Test sample</span>
+      </label>
     </div>
   </div>
-  <form [formGroup]="sampleForm" *ngIf="showEditFields" (ngSubmit)="saveUpdateSample()">
-    <div class="row">
-      <div class="col-sm-3" style="margin-top: 21px;">
-        <ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="supplierlot"
-          (ngModelChange)='changeSupplierLot()' formControlName="supplierLot"></ng-select>
-      </div>
-      <div class="col-sm-3 custom-file" style="height: 76px;">
-        <input type="file" style="margin-top: 26px;" (change)="onFileChange($event)" #fileInput class="custom-file-input">
-        <span class="custom-file-control" style="margin-top: 26px">Drag and drop your files here</span>
-      </div>
-      <div class="col-sm-5">
-        <ul class="list-inline" style="margin-bottom: 0px">
-          <li class="list-group-item media-left" *ngFor="let item of attachments; let i=index">
-            <img [src]="item.imagedata" class="media-object" />
-            <span class="fa fa-trash" (click)="delete($event,i,attachments)"></span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-12 checkbox-zoom zoom-primary ">
-        <label>
-          <input type="checkbox" formControlName="qaAnalysis">
-          <span class="cr">
-            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-          </span>
-          <span>Quality Analysis sample</span>
-        </label>
-      </div>
-
-      <div class="col-sm-12  checkbox-zoom zoom-primary">
-        <label>
-          <input type="checkbox" formControlName="pathvirsuFcon">
-          <span class="cr">
-            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-          </span>
-          <span>Pathogen Test sample</span>
-        </label>
-      </div>
-
-      <div class=" col-sm-12  checkbox-zoom zoom-primary">
-        <label>
-          <input type="checkbox" formControlName="pestcidesFcon">
-          <span class="cr">
-            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-          </span>
-          <span>Pesticide Test sample</span>
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <label class="col-sm-2 col-form-label" style="padding-top:45px">Comments</label>
-      <div class="col-sm-4">
-        <textarea rows="5" cols="50" formControlName="comments" placeholder="Enter your comments"></textarea>
-      </div>
-      <div class="col-sm-2" style="padding-top:66px">
-        <button type="submit" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid">Save</button>
-        <button type="button" class="btn btn-primary btn-sm" [disabled]="sampleForm.valid">Cancel</button>
-      </div>
-    </div>
-  </form>
-
-  <!-- true == patient.Alcoholic ? 'Yes' : 'No' -->
-
   <div class="row">
-    <table class="table table-responsive">
-      <thead>
-        <tr>         
-          <th scope="col">Supplier Lot</th>
-          <th scope="col">Picture Label </th>
-          <th scope="col">QA sample</th>
-          <th scope="col">Pathogen sample</th>
-          <th scope="col">Pesticide sample</th>
-          <th scope="col">Comments</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let sample of sampleList">         
-          <td>{{sample.supplierLot}}</td>
-          <td>         
-           <a [href]="sample.caseImgl" target="_blank" class="btn btn-default btn-custom">{{sample.imagename}} </a>
-          </td>
-          <td>{{true == sample.qualityAnalysis ? 'Yes' : 'No' }}</td>
-          <td>{{true == sample.testGrp ? 'Yes' : 'No' }}</td>
-          <td>{{true == sample.pesticideTest ? 'Yes' : 'No' }}</td>
-          <td>{{sample.comment}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <label class="col-sm-2 col-form-label" style="padding-top:45px">Comments</label>
+    <div class="col-sm-4">
+      <textarea rows="5" cols="50" formControlName="comments" placeholder="Enter your comments"></textarea>
+    </div>
+    <div class="col-sm-2" style="padding-top:66px">
+      <button type="submit" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid || attachments.length < 0">Save</button>
+      <button type="button" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid">Cancel</button>
+    </div>
   </div>
+</form>
 
-  <div class="row pull-right"> 
-    <span>   
-      <button type="button" class="btn btn-primary"(click)="onPrevious();">Previous</button>
-    <button autofocus="" type="button" class="btn btn-warning" 
-    (click)="onExit()">Exit</button>
-    <button type="button" class="btn btn-success"(click)='onNext()'>Next</button>
-    </span>
- </div>
-
-
-
-<!-- 
- <div class="sample-collection table-head "> 
-         <div class="col-md-12 ">
-            <div class="row">
-              <div class="col-md-2 table-th action">
-              Supplier Lot
-              </div>
-              <div class="col-md-2 table-th action">
-                Picture of the Label
-              </div>
-              <div class="col-md-2 table-th action">
-               Is QA sample taken
-              </div>
-              <div class="col-md-2 table-th action">
-               Is Pathogen/Virus/ Indictor sample taken
-              </div>
-              <div class="col-md-2 table-th action">
-                Is Pesticide Test sample taken
-              </div>
-              <div class='col-md-2 table-th action'>
-               Comments
-              </div>
+<div class="row sample-perparation">
+  <table class="table table-responsive">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Supplier Lot</th>
+        <th scope="col">Picture Label </th>
+        <th scope="col">QA sample</th>
+        <th scope="col">Pathogen sample</th>
+        <th scope="col">Pesticide sample</th>
+        <th scope="col">Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sample of sampleList">
+        <td>{{sample.supplierLot}}</td>
+        <td>
+          <div class="row">
+            <div class="col">
+              <a [href]="sample.imageurl" target="_blank">{{sample.name}} </a>
             </div>
-        </div>
+          </div>
+          <a [href]="sample.caseImgl" target="_blank">{{sample.imagename}} </a>
+        </td>
+        <td>{{true == sample.qualityAnalysis ? 'Yes' : 'No' }}</td>
+        <td>{{true == sample.testGrp ? 'Yes' : 'No' }}</td>
+        <td>{{true == sample.pesticideTest ? 'Yes' : 'No' }}</td>
+        <td>{{sample.comment}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-      <div class="sample-collection table-body "> 
-         <div class="col-md-12 ">
-            <div class="row">
-              <div class="col-md-2 table-th actionraw" *ngFor="let sample of sampleList">
-              {{sample.supplierLot}}
-              </div>
-              <div class="col-md-2 table-th actionraw">
-                <a [href]="sample.caseImgl" target="_blank" class="btn btn-default btn-custom">{{sample.imagename}} </a>
-              </div>
-              <div class="col-md-2 table-th actionraw">
-             
-              </div>
-              <div class="col-md-2 table-th actionraw">
-               
-              </div>
-              <div class="col-md-2 table-th actionraw">
-     
-              </div>
-              <div class='col-md-2 table-th actionraw'>
-               Comments
-              </div>
-            </div>
-        </div> -->
+<div class="row pull-right">
+  <span>
+    <button type="button" class="btn btn-primary" (click)="onPrevious();">Previous</button>
+    <button autofocus="" type="button" class="btn btn-warning" (click)="onExit()">Exit</button>
+    <button type="button" class="btn btn-success" (click)='onNext()'>Next</button>
+  </span>
+</div>

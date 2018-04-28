@@ -28,7 +28,7 @@ export class SampleCollectionComponent implements OnInit {
   public totalSamples = 0;
   public supplierlot;
   public imagedata: any;
-  public isEditing = false;
+  public isEditingSampleCollID = '';
   private tabs: any;
   private subscription: ISubscription;
   private samplepreparationId;
@@ -48,7 +48,7 @@ export class SampleCollectionComponent implements OnInit {
       'pathvirsuFcon': ['', Validators.required],
       'pestcidesFcon': ['', Validators.required],
       'comments': [],
-      'attachment': ''
+      'attachment': ['', Validators.required]
     });
 
     this.route.params.subscribe(params => {
@@ -145,9 +145,9 @@ export class SampleCollectionComponent implements OnInit {
 
     const dataModel = {
       'record': this.recordId,
-      'samplePreparation': this.sampleForm.get('supplierLot').value,
-      // 'samplePreparation': this.samplepreparationId,
-      'sampleCollection': this.isEditing ? null : null,
+      // 'samplePreparation': this.sampleForm.get('supplierLot').value,
+      'samplePreparation': this.samplepreparationId,
+      'sampleCollection': this.isEditingSampleCollID === '' ? null : this.isEditingSampleCollID,
       'base64': this.sampleForm.get('attachment').value.value,
       'fileName': this.sampleForm.get('attachment').value.filename,
       'supplierLot': _.find(this.samplePreparations, { '_id': this.supplierlot }).supplierLot,
@@ -162,9 +162,10 @@ export class SampleCollectionComponent implements OnInit {
       .subscribe((response: any) => {
         console.log(response);
         this.showEditFields = false;
+        this.getSampleCollections();
         this.comonSrvc.showSuccessMsg(response.message);
       }, err => {
-        this.comonSrvc.showSuccessMsg(err.message);
+        this.comonSrvc.showErrorMsg(err.message);
       });
 
     return false;
@@ -184,7 +185,7 @@ export class SampleCollectionComponent implements OnInit {
             this.supplierLotlist.push({ label: element.samples[i].supplierLot, value: element.samples[i]._id });
           }
           // console.log(this.samplePreparations);
-          this.supplierLotlist = _.uniqBy(this.supplierLotlist, '_id');
+          this.supplierLotlist = _.uniqBy(this.supplierLotlist, 'value');
         });
       }, err => {
         console.log('Error occured while getting sample preparation from db.');
@@ -195,12 +196,14 @@ export class SampleCollectionComponent implements OnInit {
     this.rawMatService.getSampleCollection(this.recordId)
       .subscribe((response: any) => {
 
-        console.log('Existing sample collection :' + response);
+      //  console.log('Existing sample collection :' + JSON.stringify(response));
+      this.sampleList = [];
         response.data.forEach(element => {
+          this.isEditingSampleCollID =  element._id;
           for (let i = 0; i < element.samples.length; i++) {
             const sampleobj = {
               supplierLot: element.samples[i].supplierLot,
-              caseImg: GLOBAL_PROPERTIES.BASE_API_URL + element.samples[i].caseImg.replace('./', ''),
+              caseImg: GLOBAL_PROPERTIES.BASE_API_URL + '' + element.samples[i].caseImg.replace('./', ''),
               qualityAnalysis: element.samples[i].qualityAnalysis,
               testGrp: element.samples[i].testGrp,
               pesticideTest: element.samples[i].pesticideTest,
