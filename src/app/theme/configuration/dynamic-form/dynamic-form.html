@@ -7,12 +7,20 @@
                 </h6>
             </div>
             <div class="form-group row">
-                <label>Form Name</label>
-                <ng-select [options]="formName" bindLabel="Form Name" placeholder="Select" appendTo="body" [(ngModel)]="input.formName"></ng-select>
+                <label>Form Type</label>
+                <!-- <ng-select [options]="formName" bindLabel="Form Name" placeholder="Select" appendTo="body" [(ngModel)]="input.formName" (selected)="onChangeFormType($event)"
+                (deselected)="onChangeFormType($event)" [allowClear]="true"></ng-select> -->
+                <ng-select [items]="formTypes" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" [(ngModel)]="input.formTypeId" (add)="formTypeSelected($event)" (clear)="formTypeSelected($event)"></ng-select>
             </div>
             <div class="form-group row">
-                <label>Columns</label>
-                <input type="text" class="form-control" placeholder="" id="txtInputRows" [(ngModel)]="input.rows">
+                <label>Unit Type</label>
+                <!-- <ng-select [options]="formName" bindLabel="Form Name" placeholder="Select" appendTo="body" [(ngModel)]="input.formName" (selected)="onChangeFormType($event)"
+                (deselected)="onChangeFormType($event)" [allowClear]="true"></ng-select> -->
+                <ng-select [items]="unitTypes" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" [(ngModel)]="input.cellUnitTypeId"></ng-select>
+            </div>
+            <div class="form-group row">
+                <label>Total Columns</label>
+                <input type="text" class="form-control" placeholder="Enter Value" id="txtInputRows" [(ngModel)]="input.columns">
             </div>
             <div class="form-group row pull-left">
                 <button (click)="formTable($event, input)" class="btn btn-success">Submit</button>
@@ -48,16 +56,21 @@
                                         </div>
                                         <div class="form-group row">
                                             <label>Field Type</label>
-                                            <ng-select [options]="inputTypes" bindLabel="Field Type" placeholder="Select" appendTo="body" (add)="inputTypeSelected($event)"
+                                            <!-- <ng-select [options]="inputTypes" bindLabel="Field Type" placeholder="Select" appendTo="body" (add)="inputTypeSelected($event)"
+                                                [(ngModel)]="finalObj['Cell_' + item].inputType"></ng-select> -->
+                                            <ng-select [items]="inputTypes" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" (add)="inputTypeSelected($event)"
                                                 [(ngModel)]="finalObj['Cell_' + item].inputType"></ng-select>
                                         </div>
                                         <div class="form-group row">
                                             <label>Required</label>
-                                            <ng-select [options]="required" bindLabel="Required" placeholder="Select" appendTo="body" [(ngModel)]="finalObj['Cell_' + item].required"></ng-select>
+                                            <!-- <ng-select [options]="required" bindLabel="Required" placeholder="Select" appendTo="body" [(ngModel)]="finalObj['Cell_' + item].required"></ng-select> -->
+                                            <ng-select [items]="required" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" [(ngModel)]="finalObj['Cell_' + item].required"></ng-select>
                                         </div>
                                         <div class="form-group row" *ngIf="finalObj['Cell_' + item].inputType=='DropDown'">
                                             <label>Data Points</label>
-                                            <ng-select [options]="dataPoints" bindLabel="Data Points" placeholder="Select" appendTo="body" (add)="dataSourceSelected($event)"
+                                            <!-- <ng-select [options]="dataPoints" bindLabel="Data Points" placeholder="Select" appendTo="body" (add)="dataSourceSelected($event)"
+                                                [(ngModel)]="finalObj['Cell_' + item].dataPoints"></ng-select> -->
+                                            <ng-select [items]="dataPoints" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" (add)="dataSourceSelected($event)"
                                                 [(ngModel)]="finalObj['Cell_' + item].dataPoints"></ng-select>
                                         </div>
                                         <div class="form-group row">
@@ -75,13 +88,12 @@
         </div>
         <div class="row">
             <div class="form-group mx-auto">
-                <button (click)="onSubmit($event, finalObj)" class="btn btn-success">Submit</button>
-                <button (click)="onSubmit($event, finalObj, true)" class="btn btn-danger">Reset</button>
+                <button (click)="onSubmit($event, finalObj, true)" class="btn btn-success">Submit</button>
+                <button (click)="onSubmit($event, finalObj, false)" class="btn btn-danger">Reset</button>
             </div>
         </div>
-
-        <div class="container-fluid" *ngIf="myData">
+        <!-- <div class="container-fluid" *ngIf="myData">
             <p>{{myData}}</p>
-        </div>
+        </div> -->
     </div>
 </div>

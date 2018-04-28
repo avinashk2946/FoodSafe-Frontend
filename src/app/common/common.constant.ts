@@ -1,6 +1,6 @@
 export const GLOBAL_PROPERTIES = Object.freeze({
-     BASE_API_URL: 'http://18.191.2.115:3000/',
-   // BASE_API_URL: 'http://localhost:3000/',
+    BASE_API_URL: 'http://18.191.2.115:3000/',
+   //BASE_API_URL: 'http://localhost:3000/',
 
     FE_SESSIONID_PREFIX: 'ECOM',
     REQUEST_TIMEOUT: 60,
@@ -24,6 +24,7 @@ export const API_ACTIONS = Object.freeze({
     configuration: {
         loginConfig: 'config',
         userConfig: 'userConfig',
+        dynamicForm : 'dynamicForm'
     },
     common: {
         getHash: 'getEcomHash.action',
@@ -45,5 +46,11 @@ export const API_ACTIONS = Object.freeze({
         samplepreparation: 'SamplePreparation',
         rawmaterial: 'rawMaterial',
         recorddelete: 'deleterecordList',
+    },
+    generic_masters:{
+        company : 'company',
+        inputTypes : 'inputtype',
+        formTypes : 'formtypes',
+        unitTypes : 'unittypes'
     }
 });

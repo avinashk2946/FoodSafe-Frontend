@@ -27,6 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
     "@swimlane/ngx-datatable": "^11.2.0",
     "@types/lodash": "^4.14.104",
+    "@ng-select/ng-select": "^1.0.3",
     "angular-async-local-storage": "^3.1.1",
     "angular-localstorage": "^1.1.5",
     "angular2-chartjs": "^0.4.1",
