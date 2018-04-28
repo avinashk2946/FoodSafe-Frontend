@@ -9,6 +9,7 @@ import { CommonService } from '../../../../../common/common.service';
 import { TabsSevice } from '../tabs.service';
 import { ISubscription } from 'rxjs/Subscription';
 import { GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
+import { NgOption } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-sample-collection',
@@ -33,8 +34,12 @@ export class SampleCollectionComponent implements OnInit {
   private subscription: ISubscription;
   private samplepreparationId;
   public remainingsamples;
+  public supdrpclear = true;
 
   public caseImgl: undefined;
+
+  public samplePreparationCountMap = new Map();
+  public sampleCollectionCountMap = new Map();
 
   uploader: FileUploader = new FileUploader({});
   attachments = [];
@@ -48,13 +53,13 @@ export class SampleCollectionComponent implements OnInit {
       'pathvirsuFcon': ['', Validators.required],
       'pestcidesFcon': ['', Validators.required],
       'comments': [],
-      'attachment': ['', Validators.required]
+      'attachment': ''
     });
 
     this.route.params.subscribe(params => {
       this.recordId = params.id;
       this.getSamplePreparations();
-      this.getSampleCollections();
+
     });
   }
 
@@ -66,14 +71,19 @@ export class SampleCollectionComponent implements OnInit {
   }
 
   rebuildForm() {
-    this.sampleForm.reset({
-      supplierLot: '',
-      qaAnalysis: '',
-      pathvirsuFcon: '',
-      pestcidesFcon: '',
-      comments: '',
-      attachment: null
+    this.sampleForm.patchValue({
+      qaAnalysis: false,
+      pathvirsuFcon: false,
+      pestcidesFcon: false,
     });
+
+    this.sampleForm.get('qaAnalysis').enable();
+    this.sampleForm.get('pathvirsuFcon').enable();
+    this.sampleForm.get('pestcidesFcon').enable();
+    this.sampleForm.get('attachment').setValue({});
+    this.sampleForm.get('comments').setValue('');
+    this.attachments = [];
+    this.sampleForm.get('supplierLot').patchValue([]);
   }
 
   public addFile(e, list) {
@@ -102,17 +112,7 @@ export class SampleCollectionComponent implements OnInit {
       sampleobj.pesticideTest ? this.sampleForm.get('pestcidesFcon').enable() : this.sampleForm.get('pestcidesFcon').disable();
 
     } else {
-      this.sampleForm.patchValue({
-        qaAnalysis: false,
-        pathvirsuFcon: false,
-        pestcidesFcon: false,
-      });
-      this.sampleForm.get('qaAnalysis').enable();
-      this.sampleForm.get('pathvirsuFcon').enable();
-      this.sampleForm.get('pestcidesFcon').enable();
-      this.sampleForm.get('attachment').setValue({});
-      this.sampleForm.get('comments').setValue('');
-      this.attachments = [];
+      this.rebuildForm();
     }
   }
 
@@ -160,10 +160,11 @@ export class SampleCollectionComponent implements OnInit {
     console.log(dataModel);
     this.rawMatService.saveSingleSampleCollection(dataModel)
       .subscribe((response: any) => {
-        console.log(response);
+        //  console.log(response);
         this.showEditFields = false;
         this.getSampleCollections();
         this.comonSrvc.showSuccessMsg(response.message);
+        this.rebuildForm();
       }, err => {
         this.comonSrvc.showErrorMsg(err.message);
       });
@@ -183,9 +184,20 @@ export class SampleCollectionComponent implements OnInit {
             //   console.log(element.samples[i].quantityPlanned);
             this.totalSamples = this.totalSamples + element.samples[i].quantityPlanned;
             this.supplierLotlist.push({ label: element.samples[i].supplierLot, value: element.samples[i]._id });
+
+            if (this.samplePreparationCountMap.has(element.samples[i].supplierLot)) {
+              this.samplePreparationCountMap.set(element.samples[i].supplierLot,
+                this.samplePreparationCountMap.get(element.samples[i].supplierLot)
+                + element.samples[i].quantityPlanned);
+            } else {
+              this.samplePreparationCountMap.set(element.samples[i].supplierLot,
+                element.samples[i].quantityPlanned);
+            }
           }
+          console.log(this.samplePreparationCountMap);
           // console.log(this.samplePreparations);
           this.supplierLotlist = _.uniqBy(this.supplierLotlist, 'value');
+          this.getSampleCollections();
         });
       }, err => {
         console.log('Error occured while getting sample preparation from db.');
@@ -196,10 +208,11 @@ export class SampleCollectionComponent implements OnInit {
     this.rawMatService.getSampleCollection(this.recordId)
       .subscribe((response: any) => {
 
-      //  console.log('Existing sample collection :' + JSON.stringify(response));
-      this.sampleList = [];
+        //  console.log('Existing sample collection :' + JSON.stringify(response));
+        this.sampleList = [];
+        this.sampleCollectionCountMap = new Map();
         response.data.forEach(element => {
-          this.isEditingSampleCollID =  element._id;
+          this.isEditingSampleCollID = element._id;
           for (let i = 0; i < element.samples.length; i++) {
             const sampleobj = {
               supplierLot: element.samples[i].supplierLot,
@@ -208,10 +221,20 @@ export class SampleCollectionComponent implements OnInit {
               testGrp: element.samples[i].testGrp,
               pesticideTest: element.samples[i].pesticideTest,
               comment: element.samples[i].comment,
-              imagename: element.samples[i].caseImg.split('_')[1]
+              imagename: element.samples[i].caseImg.split('_')[1],
+              id: element.samples[i]._id
             };
             this.sampleList.push(sampleobj);
+            if (this.sampleCollectionCountMap.has(element.samples[i].supplierLot)) {
+              const key = element.samples[i].supplierLot;
+              this.sampleCollectionCountMap.set(key, this.sampleCollectionCountMap.get(key) + 1);
+            } else {
+              const key = element.samples[i].supplierLot;
+              this.sampleCollectionCountMap.set(key, 1);
+            }
           }
+          console.log(this.sampleCollectionCountMap);
+          this.supplierLotCondition();
           this.remainingsamples = this.totalSamples - element.samples.length;
         });
         console.log(this.sampleList);
@@ -236,6 +259,58 @@ export class SampleCollectionComponent implements OnInit {
       this.tabs = tabState.value;
       this.tabs.select('samplepreparationid');
     });
+  }
+
+  deleteSample(sampleid) {
+    console.log(this.isEditingSampleCollID + ' : ' + sampleid);
+    this.rawMatService.deleteSingleSampleCollection(this.isEditingSampleCollID, sampleid)
+      .subscribe((response: any) => {
+        this.comonSrvc.showSuccessMsg('Sample Collection has been deleted successfully');
+        this.getSampleCollections();
+      }, err => {
+        this.comonSrvc.showErrorMsg('Error deleting Sample Collection.');
+      });
+  }
+  updateSamplecoll(sampleobj) {
+    console.log(JSON.stringify(sampleobj));
+    this.showEditFields = true;
+    const index = this.setDropdwonValue(sampleobj.supplierLot);
+    this.supplierlot = this.supplierLotlist[index].value;
+    this.sampleForm.get('supplierLot').
+      patchValue(this.supplierLotlist[index].value);
+
+
+    this.sampleForm.patchValue({
+      qaAnalysis: sampleobj.qualityAnalysis,
+      pathvirsuFcon: sampleobj.testGrp,
+      pestcidesFcon: sampleobj.pesticideTest
+    });
+
+    sampleobj.qualityAnalysis ? this.sampleForm.get('qaAnalysis').enable() : this.sampleForm.get('qaAnalysis').disable();
+    sampleobj.testGrp ? this.sampleForm.get('pathvirsuFcon').enable() : this.sampleForm.get('pathvirsuFcon').disable();
+    sampleobj.pesticideTest ? this.sampleForm.get('pestcidesFcon').enable() : this.sampleForm.get('pestcidesFcon').disable();
+
+  }
+
+  setDropdwonValue(supplierlot) {
+    return _.findIndex(this.supplierLotlist, { label: supplierlot });
+  }
+
+  supplierLotCondition() {
+    const toBeRemovedSupplierlots = [];
+    for (let i = 0; i < this.supplierLotlist.length; i++) {
+      console.log(this.supplierLotlist[i]);
+      const key = this.supplierLotlist[i].label;
+      const smplpreCount = this.samplePreparationCountMap.get(key);
+      const smplcollCount = this.sampleCollectionCountMap.get(key);
+      if (smplpreCount === smplcollCount) {
+        toBeRemovedSupplierlots.push(key);
+      }
+    }
+    toBeRemovedSupplierlots.forEach(element => {
+      _.remove(this.supplierLotlist, { label: element });
+    });
+    console.log(toBeRemovedSupplierlots);
   }
 
 }

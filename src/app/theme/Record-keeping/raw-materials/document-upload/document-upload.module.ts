@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocumentUploadComponent } from './document-upload.component';
 import { DocumentUploadRoutingModule } from './document-upload-routing.module';
-import { TabsSevice} from './tabs.service';
+import { TabsSevice } from './tabs.service';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ImagePreviewDirective } from '../../../../directives/image-preview-directive';
 
@@ -11,7 +11,7 @@ import { ChartModule } from 'angular2-chartjs';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SelectModule } from 'ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import { SamplePreparationComponent } from './sample-preparation/sample-preparation.component';
@@ -28,7 +28,7 @@ import { SummaryComponent } from './summary/summary.component';
     SharedModule,
     ChartModule,
     FormsModule, ReactiveFormsModule,
-    SelectModule,
+    NgSelectModule,
     SimpleNotificationsModule.forRoot(),
     FileUploadModule
   ],
@@ -43,7 +43,7 @@ import { SummaryComponent } from './summary/summary.component';
     SummaryComponent,
     ImagePreviewDirective,
   ],
-providers:[TabsSevice],
+  providers: [TabsSevice],
   bootstrap: [DocumentUploadComponent]
 })
 export class DocumentUploadModule { }

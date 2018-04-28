@@ -159,4 +159,13 @@ export class RawMaterialService {
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 
+  deleteSingleSampleCollection(smplid, smplcollid) {
+    const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
+    const url = API_ACTIONS.raw_material.record + '/sampleCollection/deleteSample/' + smplid + '/' + smplcollid;
+    const httpRequest = new HttpRequestModal(url, 'DELETE', reqPayload, true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
+
 }

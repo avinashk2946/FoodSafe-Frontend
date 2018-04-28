@@ -14,12 +14,16 @@
 <form [formGroup]="sampleForm" *ngIf="showEditFields" (ngSubmit)="saveUpdateSample()" class="sample-perparation">
   <div class="row">
     <div class="col-sm-3" style="margin-top: 21px;">
-      <ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="supplierlot"
-        (ngModelChange)='changeSupplierLot()' formControlName="supplierLot"></ng-select>
+      <!--ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="supplierlot"
+        (ngModelChange)='changeSupplierLot()' formControlName="supplierLot"></ng-select -->
+
+      <ng-select [items]="supplierLotlist" [selectOnTab]="true" bindLabel="label" bindValue="value" [clearable] ="supdrpclear" [(ngModel)]="supplierlot" (ngModelChange)="changeSupplierLot()"
+        placeholder="Select Supplier Lot" formControlName="supplierLot">
+      </ng-select>   
     </div>
     <div class="col-sm-3 custom-file" style="height: 76px;">
-      <input type="file" style="margin-top: 26px;" (change)="onFileChange($event)" #fileInput class="custom-file-input" >
-      <span class="custom-file-control" style="margin-top: 26px">Drag and drop your files here</span>
+      <input type="file" style="margin-top: 21px;" (change)="onFileChange($event)" #fileInput class="custom-file-input">
+      <span class="custom-file-control" style="margin-top: 21px">Drag and drop your files here</span>
     </div>
     <div class="col-sm-5">
       <ul class="list-inline" style="margin-bottom: 0px">
@@ -69,7 +73,7 @@
     </div>
     <div class="col-sm-2" style="padding-top:66px">
       <button type="submit" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid || attachments.length < 0">Save</button>
-      <button type="button" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid">Cancel</button>
+      <button type="button" class="btn btn-primary btn-sm" [disabled]="!sampleForm.valid" (click)="rebuildForm()">Cancel</button>
     </div>
   </div>
 </form>
@@ -84,6 +88,7 @@
         <th scope="col">Pathogen sample</th>
         <th scope="col">Pesticide sample</th>
         <th scope="col">Comments</th>
+        <th scope="col">Edit/ Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -95,12 +100,16 @@
               <a [href]="sample.imageurl" target="_blank">{{sample.name}} </a>
             </div>
           </div>
-          <a [href]="sample.caseImgl" target="_blank">{{sample.imagename}} </a>
+          <a [href]="sample.caseImg" target="_blank">{{sample.imagename}} </a>
         </td>
         <td>{{true == sample.qualityAnalysis ? 'Yes' : 'No' }}</td>
         <td>{{true == sample.testGrp ? 'Yes' : 'No' }}</td>
         <td>{{true == sample.pesticideTest ? 'Yes' : 'No' }}</td>
         <td>{{sample.comment}}</td>
+        <td>
+          <span class="fa fa-edit" (click)="updateSamplecoll(sample)"></span>
+          <span class="fa fa-trash" (click)="deleteSample(sample.id)"></span>
+        </td>
       </tr>
     </tbody>
   </table>
