@@ -17,7 +17,7 @@
       <!--ng-select [allowClear]="true" [ngClass]="'ng-select'" [options]="supplierLotlist" placeholder='Select Supplier Lot' [(ngModel)]="supplierlot"
         (ngModelChange)='changeSupplierLot()' formControlName="supplierLot"></ng-select -->
 
-      <ng-select [items]="supplierLotlist" [selectOnTab]="true" bindLabel="label" bindValue="value" [clearable] ="supdrpclear" [(ngModel)]="supplierlot" (ngModelChange)="changeSupplierLot()"
+      <ng-select [items]="supplierLotlist" [selectOnTab]="true" bindLabel="label" bindValue="value"  [(ngModel)]="supplierlot" (change)="changeSupplierLot()"
         placeholder="Select Supplier Lot" formControlName="supplierLot">
       </ng-select>   
     </div>

@@ -67,14 +67,14 @@ export class SampleCollectionComponent implements OnInit {
 
   public addNewSample() {
     this.showEditFields = true;
-    this.rebuildForm();
+    // this.rebuildForm();
   }
 
   rebuildForm() {
     this.sampleForm.patchValue({
       qaAnalysis: false,
       pathvirsuFcon: false,
-      pestcidesFcon: false,
+      pestcidesFcon: false
     });
 
     this.sampleForm.get('qaAnalysis').enable();
@@ -84,6 +84,7 @@ export class SampleCollectionComponent implements OnInit {
     this.sampleForm.get('comments').setValue('');
     this.attachments = [];
     this.sampleForm.get('supplierLot').patchValue([]);
+
   }
 
   public addFile(e, list) {
@@ -98,6 +99,7 @@ export class SampleCollectionComponent implements OnInit {
   }
 
   public changeSupplierLot() {
+    console.log('changing supplier lot');
     const sampleobj = _.find(this.samplePreparations, { '_id': this.supplierlot });
 
     if (sampleobj !== undefined) {
@@ -278,7 +280,7 @@ export class SampleCollectionComponent implements OnInit {
     this.supplierlot = this.supplierLotlist[index].value;
     this.sampleForm.get('supplierLot').
       patchValue(this.supplierLotlist[index].value);
-
+      this.sampleForm.get('comments').setValue(sampleobj.comment);
 
     this.sampleForm.patchValue({
       qaAnalysis: sampleobj.qualityAnalysis,
