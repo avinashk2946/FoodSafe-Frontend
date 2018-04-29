@@ -59,13 +59,12 @@ export class DynamicFormService extends CommonService{
   }
 
   //It will be used for searching dependent master data
-  searchMasterData(params, modalName){
-    try {
-      const url = "genericMaster/" + modalName + '/search';
-        const httpRequest = new HttpRequestModal(url, 'POST', params, true);
-        return this.createHttpRequest(httpRequest);
-    } catch (error) {
-      console.log(error);
-    }
+  getPlants() {
+    const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
+    const url = API_ACTIONS.raw_material.plant;
+    const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
+    return this.createHttpRequest(httpRequest);
   }
 }
