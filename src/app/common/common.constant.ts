@@ -1,11 +1,12 @@
 export const GLOBAL_PROPERTIES = Object.freeze({
     BASE_API_URL: 'http://18.191.2.115:3000/',
-   //BASE_API_URL: 'http://localhost:3000/',
+    //BASE_API_URL: 'http://localhost:3000/',
 
     FE_SESSIONID_PREFIX: 'ECOM',
     REQUEST_TIMEOUT: 60,
     CHANNEL: 'ANDROID',
-    CLIENTID: '11'
+    CLIENTID: '11',
+    Company_Id: "5ae44f77f0645c06c8179cce"
 });
 
 export const API_ACTIONS = Object.freeze({
@@ -24,7 +25,7 @@ export const API_ACTIONS = Object.freeze({
     configuration: {
         loginConfig: 'config',
         userConfig: 'userConfig',
-        dynamicForm : 'dynamicForm'
+        dynamicForm: 'dynamicForm'
     },
     common: {
         getHash: 'getEcomHash.action',
@@ -47,10 +48,21 @@ export const API_ACTIONS = Object.freeze({
         rawmaterial: 'rawMaterial',
         recorddelete: 'deleterecordList',
     },
-    generic_masters:{
-        company : 'company',
-        inputTypes : 'inputtype',
-        formTypes : 'formtypes',
-        unitTypes : 'unittypes'
+    generic_masters: {
+        company: 'company',
+        inputTypes: 'inputtype',
+        formTypes: 'formtypes',
+        unitTypes: 'unittypes',
+        validations: 'validations'
     }
 });
+
+export const Master_Data = Object.freeze({
+    dynamicForm: {
+        default: {
+            unitTypeName: "Gram",
+            validationName: "Required",
+            inputTypeName: "Text"
+        }
+    }
+})
