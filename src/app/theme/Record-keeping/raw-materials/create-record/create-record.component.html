@@ -1,6 +1,6 @@
 <form [formGroup]="dataForm" (ngSubmit)="onRecordCreate()" novalidate autocomplete="off">
 
-  <div class="raw-materials justify-content-center card" > 
+  <div class="raw-materials justify-content-center card">
 
     <div class="col-md-12 m-t-5 ">
       <div class="row">
@@ -8,11 +8,10 @@
           <div class="row ">
             <div class="col-md-4 form group">
               <label for="name">Purchase Order</label>
-              
+
             </div>
             <div class="col-md-8 form group">
-              <input type="text" class="form-control" placeholder="Purchase Order" [formControl]="dataForm.controls['po']" [(ngModel)]="po"
-                formControlName="po">
+              <input type="text" class="form-control" placeholder="Purchase Order" formControlName="po" [(ngModel)]="po">
               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['po'].errors && (dataForm.controls['po'].dirty || dataForm.controls['po'].touched)">
                 <p *ngIf="dataForm.controls['po'].errors.required">Purchase number is required</p>
               </div>
@@ -25,8 +24,7 @@
               <label for="name">Lot Number</label>
             </div>
             <div class="col-md-8 form group">
-              <input type="text" class="form-control" placeholder="Lot Number" [formControl]="dataForm.controls['lotNo']" [(ngModel)]="lotNo"
-                formControlName="lotNo">
+              <input type="text" class="form-control" placeholder="Lot Number" [(ngModel)]="lotNo" formControlName="lotNo">
               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['lotNo'].errors && (dataForm.controls['lotNo'].dirty || dataForm.controls['lotNo'].touched)">
                 <p *ngIf="dataForm.controls['lotNo'].errors.required">Lot number is required</p>
               </div>
@@ -64,32 +62,17 @@
               <label for="name">Plant</label>
             </div>
             <div class="col-md-8 form group">
-              <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant"
-                (ngModelChange)='changePlant()' formControlName="plant"></ng-select>
-                <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['plant'].errors && (dataForm.controls['plant'].dirty || dataForm.controls['plant'].touched)">
+              <!--ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="plantList" placeholder='Select Plant' [(ngModel)]="plant"
+                (ngModelChange)='changePlant()' formControlName="plant"></ng-select-->
+              <ng-select #selectplant [items]="plantList" [selectOnTab]="true" bindLabel="label" bindValue="value" (change)="changePlant()"
+                placeholder="Select Plant" formControlName="plant" (clear)="onPlantClear()">
+              </ng-select>
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['plant'].errors && (dataForm.controls['plant'].dirty || dataForm.controls['plant'].touched)">
                 <p *ngIf="dataForm.controls['plant'].errors.required">Palnt name is required</p>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table">
-					<div class="row ">
-						<div class="col-md-4 form group">
-							<label for="name">Date Created</label>
-						</div>
-						<div class="col-md-8 form group">
-							<div class="form-group ">
-								<div class="input-group">
-									<input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="createdDate" formControlName="createdDate" ngbDatepicker
-									 #d="ngbDatepicker">
-									<div class="input-group-addon bg-default" (click)="d.toggle()">
-										<span class="icofont icofont-ui-calendar"></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 
         <div class="col-xs-12 col-sm-6 col-md-6 data-table">
           <div class="row ">
@@ -97,11 +80,14 @@
               <label for="name">Supplier Name</label>
             </div>
             <div class="col-md-8 form group">
-              <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supplierList" placeholder='Select Supplier' [(ngModel)]="supplier"
-                (ngModelChange)='changeSupplier()' formControlName="supplier"></ng-select>
-                  <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['supplier'].errors && (dataForm.controls['supplier'].dirty || dataForm.controls['supplier'].touched)">
+              <!--ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="supplierList" placeholder='Select Supplier' [(ngModel)]="supplier"
+                (ngModelChange)='changeSupplier()' formControlName="supplier"></ng-select -->
+              <ng-select #selectsupplier [items]="supplierList" [selectOnTab]="true" bindLabel="label" bindValue="value" (change)="changeSupplier()"
+                placeholder="Select supplier" formControlName="supplier" (clear)="onSupplierClear()"> 
+              </ng-select>
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['supplier'].errors && (dataForm.controls['supplier'].dirty || dataForm.controls['supplier'].touched)">
                 <p *ngIf="dataForm.controls['supplier'].errors.required">Supplier name is required</p>
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -111,11 +97,14 @@
               <label for="name">Broker</label>
             </div>
             <div class="col-md-8 form group">
-              <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokerList" placeholder='Select Broker' [(ngModel)]="broker"
-                (ngModelChange)='changeBroker()' formControlName="broker"></ng-select>
-                 <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['broker'].errors && (dataForm.controls['broker'].dirty || dataForm.controls['broker'].touched)">
+              <!--ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="brokerList" placeholder='Select Broker' [(ngModel)]="broker"
+                (ngModelChange)='changeBroker()' formControlName="broker"></ng-select -->
+              <ng-select #selectbroker [items]="brokerList" [selectOnTab]="true" bindLabel="label" bindValue="value" (change)="changeBroker()"
+                placeholder="Select Broker" formControlName="broker" (clear)="onBrokerClear()">
+              </ng-select>
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['broker'].errors && (dataForm.controls['broker'].dirty || dataForm.controls['broker'].touched)">
                 <p *ngIf="dataForm.controls['broker'].errors.required">Broker name is required</p>
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -125,9 +114,12 @@
               <label for="name">Country Of Origin</label>
             </div>
             <div class="col-md-8 form group">
-              <ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="selectedSupplier?.address" placeholder='Select COO' [(ngModel)]="coo"
-                formControlName="coo"></ng-select>
-                 <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['coo'].errors && (dataForm.controls['coo'].dirty || dataForm.controls['coo'].touched)">
+              <!--ng-select [ngClass]="'ng-select'" [allowClear]="true" [options]="selectedSupplier?.address" placeholder='Select COO' [(ngModel)]="coo"
+                formControlName="coo"></ng-select -->
+              <ng-select #selectcoo [items]="selectedSupplier?.address" [selectOnTab]="true" bindLabel="label" bindValue="value" placeholder="Select Country of orgin"
+                formControlName="coo">
+              </ng-select>
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['coo'].errors && (dataForm.controls['coo'].dirty || dataForm.controls['coo'].touched)">
                 <p *ngIf="dataForm.controls['coo'].errors.required">Coo required</p>
               </div>
             </div>
@@ -139,12 +131,15 @@
               <label for="name">Raw Material Group</label>
             </div>
             <div class="col-md-8 form group">
-              <select name="select" class="form-control form-control-default" [(ngModel)]="materialGrp" formControlName="materialGrp" (ngModelChange)='changeMaterialGroup()'>
+              <ng-select #selectrmgrp [items]="materialGrpList" [selectOnTab]="true" bindLabel="label" bindValue="value" placeholder="Select Raw Material Group"
+                (change)="changeMaterialGroup()" formControlName="materialGrp" (clear)="onMaterialGrpClear()">
+              </ng-select>
+              <!--select name="select" class="form-control form-control-default" [(ngModel)]="materialGrp" formControlName="materialGrp" (ngModelChange)='changeMaterialGroup()'>
                 <option *ngFor="let item of materialGrpList" value={{item}}>
                   {{item}}
                 </option>
-              </select>
-                  <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['materialGrp'].errors && (dataForm.controls['materialGrp'].dirty || dataForm.controls['materialGrp'].touched)">
+              </select -->
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['materialGrp'].errors && (dataForm.controls['materialGrp'].dirty || dataForm.controls['materialGrp'].touched)">
                 <p *ngIf="dataForm.controls['materialGrp'].errors.required">Raw Material Group is required</p>
               </div>
             </div>
@@ -156,26 +151,33 @@
               <label for="name">Raw Material</label>
             </div>
             <div class="col-md-8 form group">
-              <ng-select class="rawmat" [ngClass]="'ng-select'" [allowClear]="true" [options]="materialList" placeholder='Select Material'
-                [(ngModel)]="material" formControlName="material" (ngModelChange)='changeMaterial()'></ng-select>
-                  <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['material'].errors && (dataForm.controls['material'].dirty || dataForm.controls['material'].touched)">
+              <!--ng-select class="rawmat" [ngClass]="'ng-select'" [allowClear]="true" [options]="materialList" placeholder='Select Material'
+                [(ngModel)]="material" formControlName="material" (ngModelChange)='changeMaterial()'></ng-select-->
+              <ng-select #selectbroker [items]="materialList" [selectOnTab]="true" bindLabel="label" bindValue="value" (change)="changeMaterial()"
+                placeholder="Select Material" formControlName="material" (clear)="onMaterialClear()">
+              </ng-select>
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['material'].errors && (dataForm.controls['material'].dirty || dataForm.controls['material'].touched)">
                 <p *ngIf="dataForm.controls['material'].errors.required">Raw Material is required</p>
               </div>
             </div>
           </div>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6 data-table">
-          <div class="row " >
+          <div class="row ">
             <div class="col-md-4 form group">
               <label for="name">Variety</label>
             </div>
             <div class="col-md-8 form group">
-              <select name="select" class="form-control form-control-default"  formControlName="variety">
+              <!--select name="select" class="form-control form-control-default" formControlName="variety">
                 <option *ngFor="let item of selectedMaterial.variety" value={{item}}>
                   {{item}}
                 </option>
-              </select>
-               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['variety'].errors && (dataForm.controls['variety'].dirty || dataForm.controls['variety'].touched)">
+              </select-->
+              <ng-select #selectbroker [items]="selectedMaterial.variety" [selectOnTab]="true" bindValue="item" 
+                placeholder="Select Material" formControlName="variety">
+              </ng-select>
+
+              <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['variety'].errors && (dataForm.controls['variety'].dirty || dataForm.controls['variety'].touched)">
                 <p *ngIf="dataForm.controls['variety'].errors.required">Variety is required</p>
               </div>
             </div>
@@ -189,13 +191,13 @@
             <div class="col-md-8 form-radio">
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="true">
+                  <input type="radio" formControlName="kosher"  value="true">
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="kosher" [(ngModel)]="kosher" value="false">
+                  <input type="radio" formControlName="kosher" value="false">
                   <i class="helper"></i>No
                 </label>
               </div>
@@ -210,13 +212,13 @@
             <div class="col-md-8 form-radio">
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="isApproved" [(ngModel)]="isApproved" value="true">
+                  <input type="radio" formControlName="isApproved"  value="true">
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="isApproved" [(ngModel)]="isApproved" value="false">
+                  <input type="radio" formControlName="isApproved"  value="false">
                   <i class="helper"></i>No
                 </label>
               </div>
@@ -231,46 +233,36 @@
             <div class="col-md-8 form-radio">
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="organicValue" [(ngModel)]="organicValue" value="true">
+                  <input type="radio" formControlName="organicValue"  value="true">
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="organicValue" [(ngModel)]="organicValue" value="false">
+                  <input type="radio" formControlName="organicValue"  value="false">
                   <i class="helper"></i>No
                 </label>
               </div>
-              <!-- <input type="text" name="input" class="form-control form-control-primary" [(ngModel)]="organic" formControlName="organic"> -->
+              
             </div>
           </div>
         </div>
-        <!-- <div class="col-xs-12 col-sm-6 col-md-6 data-table">
-					<div class="row ">
-						<div class="col-md-4 form group">
-							<label for="name">Raw Material Code</label>
-						</div>
-						<div class="col-md-8 form group">
-							<input type="text" [readOnly]="true" name="input" class="form-control form-control-primary" [(ngModel)]="selectedProduct.productId" formControlName="productCode">
-						</div>
-					</div>
-				</div> -->
-
+        
         <div class="col-xs-12 col-sm-6 col-md-6 data-table">
-          <div class="row " >
+          <div class="row ">
             <div class="col-md-4 form group">
               <label for="name">Non-GMO</label>
             </div>
             <div class="col-md-8 form-radio">
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="true">
+                  <input type="radio" formControlName="nonGMO"  value="true">
                   <i class="helper"></i>Yes
                 </label>
               </div>
               <div class="radio radiofill radio-inline">
                 <label>
-                  <input type="radio" formControlName="nonGMO" [(ngModel)]="nonGMO" value="false" >
+                  <input type="radio" formControlName="nonGMO"  value="false">
                   <i class="helper"></i>No
                 </label>
               </div>
@@ -281,8 +273,12 @@
     </div>
     <div class=" row justify-content-center">
       <button type="button" class="btn btn-warning" (click)="redirecttoRecord()">Exit</button>
-      <button type="submit" class="btn btn-success" [disabled]="!dataForm.valid" >Save & Submit</button>
-      <button type="button" class="btn btn-secondary" (click)="dataForm.reset()">Cancel </button>
+      <button type="submit" class="btn btn-success" [disabled]="!dataForm.valid">Save & Submit</button>
+      <button type="button" class="btn btn-secondary" (click)="resetform()">Cancel </button>
     </div>
   </div>
 </form>
+<div class="row">
+  <p>Form value: {{ dataForm.value | json }}</p>
+  <p>Form status: {{ dataForm.status | json }}</p>
+</div>

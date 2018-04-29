@@ -5,7 +5,7 @@ import { CreateRecordRoutingModule } from './create-record-routing.module';
 import { SharedModule } from '../../../../shared/shared.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SelectModule } from 'ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { SelectModule } from 'ng-select';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    SelectModule,
+    NgSelectModule,
     SimpleNotificationsModule.forRoot(),
   ],
   declarations: [CreateRecordComponent],

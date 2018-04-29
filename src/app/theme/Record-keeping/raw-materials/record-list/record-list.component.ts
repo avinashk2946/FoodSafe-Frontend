@@ -69,23 +69,21 @@ export class RecordListComponent implements OnInit {
   public requestAutocompleteItems = (text: string): Observable<any> => {
 
     if (!!text) {
-
       const url = GLOBAL_PROPERTIES.BASE_API_URL + `record/search/${text}`;
       return this.http.get(url)
         .map((res: Response) => {
           if (res.status < 200 || res.status >= 300) {
             throw new Error();
-          }
-          else {
+          } else {
             this.recordList = res['data'];
             return res.json();
           }
-        })
-    }
-    else {
+        });
+    } else {
       this.getRecordList();
     }
-  };
+  }
+
   onActivate(event) { }
 
   doubleClickAction(selectedRow) {
@@ -126,18 +124,6 @@ export class RecordListComponent implements OnInit {
     }).bind(this)).catch(swal.noop);
 
   }
-
-  public deleteClick(_id) {
-    this.rawMatService.deleterecordList(this.recordSelected.selected[0]._id)
-      .subscribe((response: any) => {
-
-        this.getRecordList();
-      },
-        err => {
-
-        });
-  }
-
   public onItemRemoved(event) {
     this.getRecordList();
   }
