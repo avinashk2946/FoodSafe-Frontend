@@ -55,6 +55,10 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
   selectedMaterial: any = '';
   materialGrp = '';
   material = '';
+  isEditingMode = false;
+  isEditingModeTemp = false;
+  seletedRow;
+  buttonLabel = 'Save & Submit';
   // disabled: true;
 
   constructor(private fb: FormBuilder, public rawMatService: RawMaterialService, public comonSrvc: CommonService,
@@ -75,10 +79,16 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
       this.createdById = user.user._id;
     });
 
+    this.localStorage.getItem('selectedRecordList').subscribe((seletedrow) => {
+      this.seletedRow = seletedrow;
+    });
+
     this.route.queryParams.subscribe(params => {
-      this.po = params.po;
-      this.containerNo = params.containerNo;
-      this.lotNo = params.lotNo;
+      this.isEditingMode = params.isEditingMode;
+      this.isEditingModeTemp = params.isEditingMode;
+      if (params.isEditingMode) {
+        this.buttonLabel = 'Update & Submit';
+      }
     });
   }
 
@@ -86,9 +96,9 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
   public CreateForm() {
 
     this.dataForm = this.fb.group({
-      po: [{ value: 'po' }, [Validators.required]],
-      lotNo: [{ value: 'lotNo' }, [Validators.required]],
-      containerNo: [{ value: 'containerNo' }, [Validators.required]],
+      po: ['', [Validators.required]],
+      lotNo: ['', [Validators.required]],
+      containerNo: ['', [Validators.required]],
       createdBy: ['', [Validators.required]],
 
       plant: [null, Validators.required],
@@ -110,27 +120,37 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
 
 
   onRecordCreate() {
+
     const obj = {
+      po: this.dataForm.get('po').value,
+      containerNo: this.dataForm.get('lotNo').value,
+      lotNo: this.dataForm.get('containerNo').value,
+      createdBy: this.createdById,
+
       plant: this.plant,
       supplier: this.supplier,
       broker: this.broker,
       country: this.dataForm.get('coo').value,
-      po: this.po,
-      containerNo: this.containerNo,
-      lotNo: this.lotNo,
-      variety: this.dataForm.get('variety').value,
+
+      materialGrp: this.materialGrp,
       rawMaterial: this.material,
-      nonGMO: this.dataForm.get('nonGMO').value,
-      createdBy: this.createdById,
-      materialGrp: this.materialGrp
+      variety: this.dataForm.get('variety').value,
+      nonGMO: this.dataForm.get('nonGMO').value
     };
 
-    this.rawMatService.saveRecord(obj).subscribe((response: any) => {
-      this.comonSrvc.showSuccessMsg(response.message);
-      this.router.navigate(['/recordkeeping/raw-matrial/document-upload', response.data._id]);
-    }, err => {
-      this.comonSrvc.showErrorMsg(err.message);
-    });
+    if (this.isEditingModeTemp) {
+      console.log('updating record.....');
+      console.log(obj);
+    } else {
+      this.rawMatService.saveRecord(obj).subscribe((response: any) => {
+        this.comonSrvc.showSuccessMsg(response.message);
+        this.router.navigate(['/recordkeeping/raw-matrial/document-upload', response.data._id]);
+      }, err => {
+        this.comonSrvc.showErrorMsg(err.message);
+      });
+    }
+
+
   }
 
   getPlant() {
@@ -140,6 +160,15 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
         element.label = element.name;
         element.value = element._id;
       });
+      if (this.isEditingMode) {
+        this.dataForm.get('po').patchValue(this.seletedRow.po);
+        this.dataForm.get('lotNo').patchValue(this.seletedRow.lotNo);
+        this.dataForm.get('containerNo').patchValue(this.seletedRow.containerNo);
+
+        const index = _.findIndex(this.plantList, { '_id': this.seletedRow.plantId });
+        this.dataForm.get('plant').patchValue(this.plantList[index]._id);
+        this.changePlant();
+      }
     }, err => {
       if (err.status === 401) {
       }
@@ -156,6 +185,12 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
           element.label = element.name;
           element.value = element._id;
         });
+        if (this.isEditingMode) {
+          const index = _.findIndex(this.supplierList, { '_id': this.seletedRow.supplierId });
+          this.dataForm.get('supplier').patchValue(this.supplierList[index]._id);
+          this.changeSupplier();
+        }
+
       }, err => {
         if (err.status === 401) {
         }
@@ -187,6 +222,15 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
           element.label = element.name;
           element.value = element._id;
         });
+        if (this.isEditingMode) {
+          const index = _.findIndex(this.brokerList, { '_id': this.seletedRow.brokerId });
+          this.dataForm.get('broker').patchValue(this.brokerList[index]._id);
+
+          const index2 = _.findIndex(this.selectedSupplier.address, { 'value': this.seletedRow.country });
+          this.dataForm.get('coo').patchValue(this.selectedSupplier.address[index2].value);
+
+          this.changeBroker();
+        }
       }, err => {
         if (err.status === 401) {
         }
@@ -197,7 +241,6 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
 
   public changeBroker(): void {
     this.broker = this.dataForm.get('broker').value;
-    this.productList = [];
     if (this.supplier !== null && this.plant !== null && this.broker) {
 
       const obj = {
@@ -207,7 +250,18 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
       };
 
       this.rawMatService.getRawMatrialGroup(obj).subscribe((response: any) => {
+
         this.materialGrpList = response.data;
+
+        if (this.isEditingMode) {
+          for (let i = 0; i < this.materialGrpList.length; i++) {
+            if (this.materialGrpList[i] === this.seletedRow.rmGroupName) {
+              this.dataForm.get('materialGrp').patchValue(this.materialGrpList[i]);
+            }
+          }
+          this.changeMaterialGroup();
+        }
+
       }, err => {
         if (err.status === 401) {
         }
@@ -232,6 +286,12 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
           element.label = element.name;
           element.value = element._id;
         });
+        if (this.isEditingMode) {
+          const index = _.findIndex(this.materialList, { '_id': this.seletedRow.rawMaterialId });
+          this.dataForm.get('material').patchValue(this.materialList[index]._id);
+
+          this.changeMaterial();
+        }
       }, err => {
         if (err.status === 401) {
         }
@@ -250,6 +310,14 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
         organicValue: '' + this.selectedMaterial.organic + ''
       });
     }
+    if (this.isEditingMode) {
+      for (let i = 0; i < this.selectedMaterial.variety.length; i++) {
+        if (this.selectedMaterial.variety[i] === this.seletedRow.variety) {
+          this.dataForm.get('variety').patchValue(this.selectedMaterial.variety[i]);
+        }
+      }
+      this.isEditingMode = false;
+    }
   }
 
   public redirecttoRecord() {
@@ -257,8 +325,7 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
   }
 
   public resetform() {
-    console.log('resetting the form');
-    this.po = undefined;
+
     this.dataForm.patchValue({
 
       po: undefined,

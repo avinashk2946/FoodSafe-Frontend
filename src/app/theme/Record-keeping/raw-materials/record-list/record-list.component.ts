@@ -12,6 +12,9 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/debounceTime';
+
+import { AsyncLocalStorage } from 'angular-async-local-storage';
+
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list.component.html',
@@ -30,7 +33,7 @@ export class RecordListComponent implements OnInit {
   getRecordData: any = [];
 
   constructor(public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    public activatedRoute: ActivatedRoute, private http: HttpClient, public router: Router) {
+    public activatedRoute: ActivatedRoute, private http: HttpClient, public router: Router, protected localStorage: AsyncLocalStorage, ) {
 
   }
 
@@ -47,7 +50,7 @@ export class RecordListComponent implements OnInit {
 
   }
   onSelect(selected) {
-    this.recordSelected = selected;
+    this.recordSelected = selected.selected[0];
   }
 
   enableEditRow(selectedRow) {
@@ -56,14 +59,23 @@ export class RecordListComponent implements OnInit {
       {
         queryParams:
           {
-            'selectedRow': selectedRow[0]._id,
-            'plant': selectedRow[0].plant['name'],
-            'supplierName': selectedRow[0].supplier['name'],
-            'po': selectedRow[0].po,
-            'lotNo': selectedRow[0].lotNo,
-            'containerNo': selectedRow[0].containerNo
+            'isEditingMode': true
           }
       });
+    const selecetedrow = {
+      po: this.recordSelected.po,
+      lotNo: this.recordSelected.lotNo,
+      containerNo: this.recordSelected.containerNo,
+      createdBy: this.recordSelected.createdBy,
+      plantId: this.recordSelected.plant._id,
+      supplierId: this.recordSelected.supplier._id,
+      country: this.recordSelected.country,
+      brokerId: this.recordSelected.broker._id,
+      rmGroupName: this.recordSelected.rawMaterial.rmGroupName,
+      rawMaterialId: this.recordSelected.rawMaterial._id,
+      variety: this.recordSelected.rawMaterial.variety[0]
+    };
+    this.localStorage.setItem('selectedRecordList', selecetedrow).subscribe(() => { }, () => { });
   }
 
   public requestAutocompleteItems = (text: string): Observable<any> => {

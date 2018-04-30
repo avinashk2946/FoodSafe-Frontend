@@ -24,20 +24,17 @@ export class CommonService {
     createHttpRequest(dataObject: HttpRequestModal) {
 
         /*dataObject.payload['feSessionId'] = this.generateFeSessionId();*/
-        console.log('BASE_API_URL', GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName);
         if (dataObject.method === 'POST') {
             return this.http.post(
                 GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,
                 dataObject.payload,
                 this._options).timeout(GLOBAL_PROPERTIES.REQUEST_TIMEOUT * 1000);
-        } 
-        else if (dataObject.method === 'PUT') {
+        } else if (dataObject.method === 'PUT') {
             return this.http.put(
                 GLOBAL_PROPERTIES.BASE_API_URL + dataObject.actionName,
                 dataObject.payload,
                 this._options).timeout(GLOBAL_PROPERTIES.REQUEST_TIMEOUT * 1000);
-        } 
-        else if (dataObject.method === 'GET') {
+        } else if (dataObject.method === 'GET') {
             const baseUrl = GLOBAL_PROPERTIES.BASE_API_URL;
             return this.http.get(baseUrl + dataObject.actionName);
         } else if (dataObject.method === 'DELETE') {

@@ -11,7 +11,7 @@
 
             </div>
             <div class="col-md-8 form group">
-              <input type="text" class="form-control" placeholder="Purchase Order" formControlName="po" [(ngModel)]="po">
+              <input type="text" class="form-control" placeholder="Purchase Order" formControlName="po" [readOnly]="isEditingModeTemp">
               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['po'].errors && (dataForm.controls['po'].dirty || dataForm.controls['po'].touched)">
                 <p *ngIf="dataForm.controls['po'].errors.required">Purchase number is required</p>
               </div>
@@ -24,7 +24,7 @@
               <label for="name">Lot Number</label>
             </div>
             <div class="col-md-8 form group">
-              <input type="text" class="form-control" placeholder="Lot Number" [(ngModel)]="lotNo" formControlName="lotNo">
+              <input type="text" class="form-control" placeholder="Lot Number"  formControlName="lotNo" [readOnly]="isEditingModeTemp">
               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['lotNo'].errors && (dataForm.controls['lotNo'].dirty || dataForm.controls['lotNo'].touched)">
                 <p *ngIf="dataForm.controls['lotNo'].errors.required">Lot number is required</p>
               </div>
@@ -38,8 +38,8 @@
               <label for="name">Container Number</label>
             </div>
             <div class="col-md-8 form group">
-              <input type="text" class="form-control" placeholder="Container Number" [formControl]="dataForm.controls['containerNo']" [(ngModel)]="containerNo"
-                formControlName="containerNo">
+              <input type="text" class="form-control" placeholder="Container Number" [formControl]="dataForm.controls['containerNo']" 
+                formControlName="containerNo" [readOnly]="isEditingModeTemp">
               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['containerNo'].errors && (dataForm.controls['containerNo'].dirty || dataForm.controls['containerNo'].touched)">
                 <p *ngIf="dataForm.controls['containerNo'].errors.required">Container number is required</p>
               </div>
@@ -131,7 +131,7 @@
               <label for="name">Raw Material Group</label>
             </div>
             <div class="col-md-8 form group">
-              <ng-select #selectrmgrp [items]="materialGrpList" [selectOnTab]="true" bindLabel="label" bindValue="value" placeholder="Select Raw Material Group"
+              <ng-select #selectrmgrp [items]="materialGrpList" [selectOnTab]="true"  placeholder="Select Raw Material Group"
                 (change)="changeMaterialGroup()" formControlName="materialGrp" (clear)="onMaterialGrpClear()">
               </ng-select>
               <!--select name="select" class="form-control form-control-default" [(ngModel)]="materialGrp" formControlName="materialGrp" (ngModelChange)='changeMaterialGroup()'>
@@ -273,7 +273,7 @@
     </div>
     <div class=" row justify-content-center">
       <button type="button" class="btn btn-warning" (click)="redirecttoRecord()">Exit</button>
-      <button type="submit" class="btn btn-success" [disabled]="!dataForm.valid">Save & Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!dataForm.valid">{{buttonLabel}}</button>
       <button type="button" class="btn btn-secondary" (click)="resetform()">Cancel </button>
     </div>
   </div>
