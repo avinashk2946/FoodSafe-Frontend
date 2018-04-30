@@ -63,7 +63,8 @@
                                         </div>
                                         <div class="form-group row">
                                             <label>Validation</label>
-                                            <ng-select [items]="validations" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" multiple="true" [(ngModel)]="finalObj[item].validation"></ng-select>
+                                            <ng-select [items]="validations" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" multiple="true" [(ngModel)]="finalObj[item].validation" (add)="validationSelected($event, item)"
+                                            (clear)="validationSelected(null, item)"></ng-select>
                                         </div>
                                         <div class="form-group row" *ngIf="finalObj[item].inputType=='DropDown'">
                                             <label>Data Points</label>
@@ -98,7 +99,7 @@
 
 <!-- Modal section -->
 <div class="backdrop" [ngStyle]="{'display':display}"></div>
-<div id="divFormulaModal" class="" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+<div id="divFormulaModal" class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -110,7 +111,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Operation</label>
-                <ng-select [items]="operations" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" [(ngModel)]="formula.operation"
+                <ng-select [items]="operations" bindLabel="name" bindValue="name"  placeholder="Select" appendTo="body" [(ngModel)]="formula.operation"
                     (selected)="onChangeOperation($event, formula)"></ng-select>
             </div>
             <div class="form-group">

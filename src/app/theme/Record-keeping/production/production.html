@@ -1,0 +1,23 @@
+<div class="row">
+        <div class="card col-md-12">
+                <div class="card-body" style="position:relative">
+                        <div class="form-group row well">
+                                <h6 class="card-title">
+                                        Select Production Form
+                                </h6>
+                        </div>
+                        <div class="form-group row">
+                                <label>Form Type</label>
+                                <ng-select [items]="formTypes" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" [(ngModel)]="input.formType"
+                                        (add)="formTypeSelected($event)" (clear)="formTypeSelected($event)"></ng-select>
+                        </div>
+                        <!-- <div class="form-group row">
+                                <label>Plant</label>
+                                <ng-select [items]="plants" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" [(ngModel)]="input.plantId"></ng-select>
+                        </div> -->
+                        <div class="form-group row pull-left">
+                                <button (click)="navigateToForm(input.formType)" class="btn btn-success">Submit</button>
+                        </div>
+                </div>
+        </div>
+</div>

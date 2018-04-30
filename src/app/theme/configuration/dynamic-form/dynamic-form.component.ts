@@ -261,7 +261,7 @@ export class DynamicFormComponent implements OnInit {
         case "Select":
         case "Text Area":
         default:
-          output = input;
+          output = input.toLowerCase();
           break;
       }
       return output;
@@ -322,6 +322,13 @@ export class DynamicFormComponent implements OnInit {
 
   formTypeSelected(value) {
     if (value) {
+    }
+  }
+
+  validationSelected(value, index){
+    //console.log(value);
+    if(value.name==="min"){
+      
     }
   }
 

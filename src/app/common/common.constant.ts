@@ -61,7 +61,7 @@ export const Master_Data = Object.freeze({
     dynamicForm: {
         default: {
             unitTypeName: "Gram",
-            validationName: "Required",
+            validationName: "required",
             inputTypeName: "Text"
         }
     }

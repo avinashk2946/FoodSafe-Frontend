@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {ProductionComponent} from './production.component';
 
 const routes: Routes = [
   {
@@ -11,8 +12,7 @@ const routes: Routes = [
     children: [
       {
         path : '',
-        redirectTo : 'qmr-14',
-        pathMatch : 'full'
+        component: ProductionComponent,
       },
       {
         path: 'qmr-14',
