@@ -55,14 +55,10 @@ export class RecordListComponent implements OnInit {
 
   enableEditRow(selectedRow) {
     // TODO: Default dropdown value selection
-    this.router.navigate(['/recordkeeping/raw-matrial/create/'],
-      {
-        queryParams:
-          {
-            'isEditingMode': true
-          }
-      });
+    this.router.navigate(['/recordkeeping/raw-matrial/create/'], { queryParams: { 'isEditingMode': true } });
+
     const selecetedrow = {
+      recordId :  this.recordSelected._id,
       po: this.recordSelected.po,
       lotNo: this.recordSelected.lotNo,
       containerNo: this.recordSelected.containerNo,
@@ -75,6 +71,7 @@ export class RecordListComponent implements OnInit {
       rawMaterialId: this.recordSelected.rawMaterial._id,
       variety: this.recordSelected.rawMaterial.variety[0]
     };
+
     this.localStorage.setItem('selectedRecordList', selecetedrow).subscribe(() => { }, () => { });
   }
 

@@ -141,6 +141,7 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
     if (this.isEditingModeTemp) {
       console.log('updating record.....');
       console.log(obj);
+      this.router.navigate(['/recordkeeping/raw-matrial/document-upload', this.seletedRow.recordId]);
     } else {
       this.rawMatService.saveRecord(obj).subscribe((response: any) => {
         this.comonSrvc.showSuccessMsg(response.message);
