@@ -15,24 +15,12 @@ const routes: Routes = [
         pathMatch : 'full'
       },
       {
-        path: 'raw-matrial',
-        loadChildren: './raw-materials/raw-material.module#RawMaterialsModule'
+        path: 'receiving',
+        loadChildren: './receiving/raw-materials/raw-material.module#RawMaterialsModule'
       },
       {
         path: 'production',
         loadChildren: './production/production.module#ProductionModule'
-      },
-      //  {
-      //   path: 'packaging',
-      //   loadChildren: './returns/returns.module#ReturnsModule'
-      // },
-      //  {
-      //   path: 'chemicals',
-      //   loadChildren: './returns/returns.module#ReturnsModule'
-      // },
-       {
-        path: 'returns',
-        loadChildren: './returns/returns.module#ReturnsModule'
       },
     ]
   }

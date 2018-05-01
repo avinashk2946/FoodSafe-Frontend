@@ -57,4 +57,6 @@ export class BreadcrumbsComponent {
         } while (currentRoute);
       });
   }
+
+  
 }

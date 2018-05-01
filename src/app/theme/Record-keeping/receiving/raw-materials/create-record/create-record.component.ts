@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
 
-import { CommonService } from '../../../../common/common.service';
+
+import { CommonService } from '../../../../../common/common.service';
 import { RawMaterialService } from '../raw-material.service';
 
 import * as _ from 'lodash';
@@ -14,7 +15,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
   templateUrl: './create-record.component.html',
   styleUrls: [
     './create-record.component.scss',
-    '../../../../../assets/icon/icofont/css/icofont.scss'
+    '../../../../../../assets/icon/icofont/css/icofont.scss'
   ],
   providers: [RawMaterialService]
 
@@ -152,6 +153,12 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
     }
 
 
+    this.rawMatService.saveRecord(obj).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+      this.router.navigate(['/recordkeeping/receiving/document-upload', response.data._id]);
+    }, err => {
+      this.comonSrvc.showErrorMsg(err.message);
+    });
   }
 
   getPlant() {
@@ -321,8 +328,9 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public redirecttoRecord() {
-    this.router.navigate(['/recordkeeping/raw-matrial']);
+
+  public redirecttoRecord(){
+    this.router.navigate(['/recordkeeping/receiving']);
   }
 
   public resetform() {

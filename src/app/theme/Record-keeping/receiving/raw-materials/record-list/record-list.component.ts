@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RawMaterialService } from '../raw-material.service';
-import { CommonService } from '../../../../common/common.service';
+import { CommonService } from '../../../../../common/common.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
-import { Observable } from 'rxjs/Observable';
-import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../common/common.constant';
+
+import {Observable} from 'rxjs/Observable';
+import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
 import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { error } from 'util';
@@ -20,7 +21,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
   templateUrl: './record-list.component.html',
   styleUrls: [
     './record-list.component.scss',
-    '../../../../../assets/icon/icofont/css/icofont.scss'
+    '../../../../../../assets/icon/icofont/css/icofont.scss'
   ],
 
   providers: [RawMaterialService]
@@ -73,6 +74,18 @@ export class RecordListComponent implements OnInit {
     };
 
     this.localStorage.setItem('selectedRecordList', selecetedrow).subscribe(() => { }, () => { });
+    this.router.navigate(['/recordkeeping/receiving/create/'],
+      {
+        queryParams:
+          {
+            'selectedRow': selectedRow[0]._id,
+            'plant': selectedRow[0].plant['name'],
+            'supplierName': selectedRow[0].supplier['name'],
+            'po': selectedRow[0].po,
+            'lotNo': selectedRow[0].lotNo,
+            'containerNo': selectedRow[0].containerNo
+          }
+      });
   }
 
   public requestAutocompleteItems = (text: string): Observable<any> => {
@@ -96,7 +109,7 @@ export class RecordListComponent implements OnInit {
   onActivate(event) { }
 
   doubleClickAction(selectedRow) {
-    this.router.navigate(['/recordkeeping/raw-matrial/document-upload/' + selectedRow[0]._id]);
+    this.router.navigate(['/recordkeeping/receiving/document-upload/' + selectedRow[0]._id]);
   }
 
   public openConfirmsSwal(_id) {

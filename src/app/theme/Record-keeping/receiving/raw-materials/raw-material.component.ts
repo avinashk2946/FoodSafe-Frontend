@@ -4,8 +4,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 // import { PlantService } from '../../../service/plant.service';
 // import { Plant } from '../../../classes/plant';
-import { CommonService } from '../../../common/common.service';
-import { AuthService } from '../../../common/auth.service';
+import { CommonService } from '../../../../common/common.service';
+import { AuthService } from '../../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 
 @Component({

@@ -139,26 +139,33 @@ const MENUITEMS = [
         icon: 'icon-check-box',
         children: [
           {
-            state: 'raw-matrial',
-            name: ' Raw Materials',
-
-          },
-          {
-            state: 'packaging',
-            name: 'Packaging'
-          },
-          {
-            state: 'chemicals',
-            name: 'Chemicals'
-          },
-          {
-            state: 'returns',
-            name: 'Returns'
-          },
+            // type: 'sub',
+            state: 'receiving',
+            name: ' Receiving',
+              children: [
+                {
+                  state: 'raw-materials',
+                  name: 'Raw material',
+                  
+                }, {
+                  state: 'packaging',
+                  name: 'Packaging',
+                 
+                }, {
+                  state: 'chemicals',
+                  name: 'Chemicals',
+                  
+                }, {
+                  state: 'returns',
+                  name: 'Returns',
+                  
+                }
+              ]
+            },
           {
             state: 'production',
             name: 'Production'
-          }
+          },
         ]
       }
     ]

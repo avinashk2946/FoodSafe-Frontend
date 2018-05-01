@@ -4,18 +4,19 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FileUploader } from 'ng2-file-upload';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
-import { CommonService } from '../../../../../common/common.service';
+import { CommonService } from '../../../../../../common/common.service';
 
 import { TabsSevice } from '../tabs.service';
 import { ISubscription } from 'rxjs/Subscription';
-import { GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
-import { NgOption } from '@ng-select/ng-select';
+
+
+import { GLOBAL_PROPERTIES } from '../../../../../../common/common.constant';
 
 @Component({
   selector: 'app-sample-collection',
   templateUrl: './sample-collection.component.html',
   styleUrls: ['./sample-collection.component.scss',
-    '../../../../../../assets/icon/icofont/css/icofont.scss']
+    '../../../../../../../assets/icon/icofont/css/icofont.scss']
 })
 export class SampleCollectionComponent implements OnInit {
 
