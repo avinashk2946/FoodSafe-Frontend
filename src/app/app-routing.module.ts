@@ -19,7 +19,7 @@ const routes: Routes = [
         loadChildren: './theme/dashboard/dashboard.module#DashboardModule'
       },
 
-       { path: 'forgotPassword', component: ForgotPasswordComponent },
+      //  { path: 'forgotPassword', component: ForgotPasswordComponent },
 
       {
         path: 'recordkeeping',
@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'resetPassword', component: ResetPasswordComponent },
-  { path: 'forgotPassword', component: ForgotPasswordComponent },
+  // { path: 'forgotPassword', component: ForgotPasswordComponent },
 
   // { path: 'resetPassword', component: ResetPasswordComponent },
 

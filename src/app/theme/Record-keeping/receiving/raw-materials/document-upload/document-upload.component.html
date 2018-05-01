@@ -35,7 +35,7 @@
       </div>
       <div class="col-md-4">
         Approved :
-        <strong> {{recordDetails.approved}}</strong>
+        <strong> {{true == recordDetails.approved ? 'Yes' : 'No'}}</strong>
       </div>
       <div class="col-md-4">
         Raw Material :
@@ -47,41 +47,37 @@
   <div class="col-md-12 card">
     <ngb-tabset type="tabs" #tabs>
       <ngb-tab title="Document" id="documentUploadid1">
-        <ng-template ngbTabContent>      
-
-        <div class="document-upload table-head "> 
-            <div class="col-md-12 ">
-              <div class="row">
-                <div class="col-md-2 table-th action">                
-                  <label>Document Type</label> 
-                </div>
-
-                <div class="col-md-3 table-th action">
-                   <select class="form-control form-control-primary" [(ngModel)]="currentDocType" required>
-                      <option *ngFor="let doctype of fileList" [value]="doctype.value">
-                        {{doctype.label}}
-                      </option>
-                    </select>
-                </div>
-
-                <div class="col-md-4 table-th action">    
-                  <input type="file"  ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
-                    <span class="custom-file-control" >Drag and drop your files here</span>  
-                    <!--   <ul class="list-inline" >
-                          <li class="list-group-item media-left" *ngFor="let item of attachmentList.queue; let i=index">
-                          <img src="" imgPreview [image]="item?._file" class="media-object" />
-                          <span class="fa fa-trash" (click)="delete($event,i,attachmentList.queue)"></span>
-                          </li>
-                      </ul>   -->  
-                </div>
-
-                <div class="col-md-3 table-th action">
-                     <button  autofocus="" type="button" class="btn btn-success fa fa-upload"  (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0"> Upload </button>
-                </div>
-
-              </div>  
+        <ng-template ngbTabContent>
+          <br>
+          <br>
+          <div class="form-group row">
+            <label for="docTypeID" class="col-sm-2 col-form-label">Document Type</label>
+            <div class="col-sm-3">
+              <select id="docTypeID" class="form-control form-control-primary" [(ngModel)]="currentDocType" required>
+                <option *ngFor="let doctype of fileList" [value]="doctype.value">
+                  {{doctype.label}}
+                </option>
+              </select>
             </div>
-         </div>
+            <div class="col-sm-3  custom-file">
+              <input type="file" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
+              <span class="custom-file-control">Drag and drop your files here</span>
+            </div>
+            <div class="col-sm-3">
+              <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="list-inline" style="margin-bottom: 0px">
+                <li class="list-group-item media-left" *ngFor="let item of attachmentList.queue; let i=index">
+                  <img src="" imgPreview [image]="item?._file" class="media-object" />
+                  <span class="fa fa-trash" (click)="delete($event,i,attachmentList.queue)"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br>
 
           <div class="table-responsive">
             <table class="table">
@@ -97,7 +93,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.billOfLanding">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -107,7 +103,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.commercialInvoice">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -117,7 +113,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.packingList">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -127,7 +123,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.coa">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -137,7 +133,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.ccpVerification">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -147,7 +143,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.environmentalMonitoring">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -157,7 +153,7 @@
                   <th>
                     <div class="row mypadding" *ngFor="let image of existingImageData.otherSupporting">
                       <div class="col">
-                        <a [href]="image.imageurl" target="_blank" class="btn btn-default btn-custom">{{image.name}} </a>
+                        <a [href]="image.imageurl" target="_blank">{{image.name}} </a>
                       </div>
                     </div>
                   </th>
@@ -165,12 +161,11 @@
               </tbody>
             </table>
           </div>
-          <div class="row pull-right">
+          <div class="row pull-right" style="padding-bottom: 10px; padding-right: 10px">
             <span>
-              <!-- <button autofocus="" type="button" class="btn btn-outline-primary btn-md" disabled="true">Previous</button>     -->
-              <button autofocus="" type="button" class="btn btn-outline-warning btn-md" (click)="onExit()">Exit</button>
-              <button autofocus="" type="button" class="btn btn-outline-danger btn-md" (click)="cancel()">Cancel</button>
-              <button autofocus="" type="button" class="btn btn-outline-success btn-md" (click)='onNext()'>Next</button>
+              <button autofocus="" type="button" class="btn btn-primary btn-md" disabled="true">Previous</button>
+              <button autofocus="" type="button" class="btn btn-warning btn-md" (click)="onExit()">Exit</button>
+              <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
             </span>
           </div>
         </ng-template>
@@ -187,7 +182,7 @@
       </ngb-tab>
       <ngb-tab title="Quality Analysis" id="qualityanalysisid">
         <ng-template ngbTabContent>
-          <!-- <app-quality-analysis></app-quality-analysis> -->
+          <app-quality-analysis></app-quality-analysis>
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Micro/Chemical Analysis" id="microchemicalanalysid">
@@ -200,14 +195,6 @@
           <p></p>
         </ng-template>
       </ngb-tab>
-        <ngb-tab title="Allocation" id="alllocationid">
-        <ng-template ngbTabContent>
-          <p></p>
-        </ng-template>
-      </ngb-tab>
     </ngb-tabset>
   </div>
 </div>
-
-
-

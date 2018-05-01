@@ -7,12 +7,17 @@
                 </h6>
             </div>
             <div class="form-group row">
-                <label>Form Name</label>
-                <ng-select [options]="formName" bindLabel="Form Name" placeholder="Select" appendTo="body" [(ngModel)]="input.formName"></ng-select>
+                <label>Form Type</label>
+                <ng-select [items]="formTypes" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" [(ngModel)]="input.formTypeId"
+                    (add)="formTypeSelected($event)" (clear)="formTypeSelected($event)"></ng-select>
             </div>
             <div class="form-group row">
-                <label>Colums</label>
-                <input type="text" class="form-control" placeholder="" id="txtInputRows" [(ngModel)]="input.rows">
+                <label>Plant</label>
+                <ng-select [items]="plants" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" [(ngModel)]="input.plantId"></ng-select>
+            </div>
+            <div class="form-group row">
+                <label>Total Columns</label>
+                <input type="text" class="form-control" placeholder="Enter Value" id="txtInputRows" [(ngModel)]="input.columns">
             </div>
             <div class="form-group row pull-left">
                 <button (click)="formTable($event, input)" class="btn btn-success">Submit</button>
@@ -33,7 +38,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th *ngFor="let column of formTableRows" class="text-center">
-                                    {{"Cell " + (column)}}
+                                    {{column}}
                                 </th>
                             </tr>
                         </thead>
@@ -43,27 +48,34 @@
                                     <div class="col-md-12">
                                         <div class="form-group row">
                                             <label>Label </label>
-                                            <input type="text" [attr.name]="'Label-' + item" [attr.id]="'Label-' + item" [(ngModel)]="finalObj['Cell_' + item].label"
+                                            <input type="text" [attr.name]="'Label-' + item" [attr.id]="'Label-' + item" [(ngModel)]="finalObj[item].label"
                                                 class="form-control" placeholder="">
                                         </div>
                                         <div class="form-group row">
-                                            <label>Field Type</label>
-                                            <ng-select [options]="inputTypes" bindLabel="Field Type" placeholder="Select" appendTo="body" (add)="inputTypeSelected($event)"
-                                                [(ngModel)]="finalObj['Cell_' + item].inputType"></ng-select>
+                                            <label>Input Type</label>
+                                            <ng-select [items]="inputTypes" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" (add)="inputTypeSelected($event, item)"
+                                                (clear)="inputTypeSelected(null, item)" [(ngModel)]="finalObj[item].input"></ng-select>
                                         </div>
                                         <div class="form-group row">
-                                            <label>Required</label>
-                                            <ng-select [options]="required" bindLabel="Required" placeholder="Select" appendTo="body" [(ngModel)]="finalObj['Cell_' + item].required"></ng-select>
+                                            <label>Unit Type</label>
+                                            <ng-select [items]="unitTypes" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" [(ngModel)]="finalObj[item].unitType"
+                                                (selected)="onChangeUnitType($event, item)"></ng-select>
                                         </div>
-                                        <div class="form-group row" *ngIf="finalObj['Cell_' + item].inputType=='DropDown'">
+                                        <div class="form-group row">
+                                            <label>Validation</label>
+                                            <ng-select [items]="validations" bindLabel="name" bindValue="name" placeholder="Select" appendTo="body" multiple="true" [(ngModel)]="finalObj[item].validation" (add)="validationSelected($event, item)"
+                                            (clear)="validationSelected(null, item)"></ng-select>
+                                        </div>
+                                        <div class="form-group row" *ngIf="finalObj[item].inputType=='DropDown'">
                                             <label>Data Points</label>
-                                            <ng-select [options]="dataPoints" bindLabel="Data Points" placeholder="Select" appendTo="body" (add)="dataSourceSelected($event)"
-                                                [(ngModel)]="finalObj['Cell_' + item].dataPoints"></ng-select>
+                                            <ng-select [items]="dataPoints" bindLabel="name" bindValue="_id" placeholder="Select" appendTo="body" (add)="dataSourceSelected($event)"
+                                                [(ngModel)]="finalObj[item].dataPoints"></ng-select>
                                         </div>
                                         <div class="form-group row">
-                                            <label>Formula </label>
-                                            <input type="text" [attr.name]="'Label-' + item" [attr.id]="'Formula-' + item" [(ngModel)]="finalObj['Cell_' + item].formula"
-                                                class="form-control" placeholder="" (change)="onFormulaEntered(finalObj, item)">
+                                            <label>Formula : <a href="#" class="badge badge-info" (click)="openFormulaPopup(item)">Generate</a> </label>
+                                            <input type="text" [attr.name]="'Label-' + item" [attr.id]="'Formula-' + item" [(ngModel)]="finalObj[item].formula"
+                                                class="form-control" placeholder="" (change)="onFormulaEntered(finalObj, item)"
+                                                readonly>
                                         </div>
                                     </div>
                                 </td>
@@ -75,13 +87,43 @@
         </div>
         <div class="row">
             <div class="form-group mx-auto">
-                <button (click)="onSubmit($event, finalObj)" class="btn btn-success">Submit</button>
-                <button (click)="onSubmit($event, finalObj, true)" class="btn btn-danger">Reset</button>
+                <button (click)="onSubmit($event, finalObj, true)" class="btn btn-success">Submit</button>
+                <button (click)="onSubmit($event, finalObj, false)" class="btn btn-danger">Reset</button>
             </div>
         </div>
-
         <div class="container-fluid" *ngIf="myData">
             <p>{{myData}}</p>
         </div>
     </div>
 </div>
+
+<!-- Modal section -->
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div id="divFormulaModal" class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Formula</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Operation</label>
+                <ng-select [items]="operations" bindLabel="name" bindValue="name"  placeholder="Select" appendTo="body" [(ngModel)]="formula.operation"
+                    (selected)="onChangeOperation($event, formula)"></ng-select>
+            </div>
+            <div class="form-group">
+                <label>Select Cell(s)</label>
+                <ng-select [items]="cellList" placeholder="Select" appendTo="body" [(ngModel)]="formula.cells"
+                    (selected)="onChangeSelectCell($event, formula)" multiple="true"></ng-select>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-primary" (click)="applyFormula(formula)">Apply</button>
+          <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" (click)="onCloseHandled()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

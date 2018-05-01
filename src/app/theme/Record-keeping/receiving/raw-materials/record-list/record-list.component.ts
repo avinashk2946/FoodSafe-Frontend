@@ -6,12 +6,15 @@ import swal from 'sweetalert2';
 import {Observable} from 'rxjs/Observable';
 import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
 import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
-import {  map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { error } from 'util';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/debounceTime';
+
+import { AsyncLocalStorage } from 'angular-async-local-storage';
+
 @Component({
   selector: 'app-record-list',
   templateUrl: './record-list.component.html',
@@ -19,7 +22,7 @@ import 'rxjs/add/operator/debounceTime';
     './record-list.component.scss',
     '../../../../../../assets/icon/icofont/css/icofont.scss'
   ],
-  
+
   providers: [RawMaterialService]
 })
 export class RecordListComponent implements OnInit {
@@ -28,9 +31,9 @@ export class RecordListComponent implements OnInit {
   selected: any = [];
   recordSelected: any = [];
   getRecordData: any = [];
-  
+
   constructor(public rawMatService: RawMaterialService, public comonSrvc: CommonService,
-    public activatedRoute: ActivatedRoute,private http:HttpClient, public router: Router) {
+    public activatedRoute: ActivatedRoute, private http: HttpClient, public router: Router, protected localStorage: AsyncLocalStorage, ) {
 
   }
 
@@ -42,12 +45,12 @@ export class RecordListComponent implements OnInit {
     this.rawMatService.getRecord().subscribe((response: any) => {
       this.recordList = response.data;
     }, err => {
-      this.comonSrvc.showErrorMsg(err.message); 
+      this.comonSrvc.showErrorMsg(err.message);
     });
-    
+
   }
   onSelect(selected) {
-    this.recordSelected = selected;
+    this.recordSelected = selected.selected[0];
   }
 
   enableEditRow(selectedRow) {
@@ -64,28 +67,44 @@ export class RecordListComponent implements OnInit {
             'containerNo': selectedRow[0].containerNo
           }
       });
+    this.router.navigate(['/recordkeeping/raw-matrial/create/'], { queryParams: { 'isEditingMode': true } });
+
+    const selecetedrow = {
+      recordId :  this.recordSelected._id,
+      po: this.recordSelected.po,
+      lotNo: this.recordSelected.lotNo,
+      containerNo: this.recordSelected.containerNo,
+      createdBy: this.recordSelected.createdBy,
+      plantId: this.recordSelected.plant._id,
+      supplierId: this.recordSelected.supplier._id,
+      country: this.recordSelected.country,
+      brokerId: this.recordSelected.broker._id,
+      rmGroupName: this.recordSelected.rawMaterial.rmGroupName,
+      rawMaterialId: this.recordSelected.rawMaterial._id,
+      variety: this.recordSelected.rawMaterial.variety[0]
+    };
+
+    this.localStorage.setItem('selectedRecordList', selecetedrow).subscribe(() => { }, () => { });
   }
 
   public requestAutocompleteItems = (text: string): Observable<any> => {
-   
-    if(!!text){
-   
-    const url = GLOBAL_PROPERTIES.BASE_API_URL+`record/search/${text}`;
-    return this.http.get(url)
-    .map((res: Response) => {
-      if(res.status < 200 || res.status >= 300) {
-        throw new Error();
-      } 
-      else {
-        this.recordList=res['data'];
-        return res.json();
-      }
-    })
+
+    if (!!text) {
+      const url = GLOBAL_PROPERTIES.BASE_API_URL + `record/search/${text}`;
+      return this.http.get(url)
+        .map((res: Response) => {
+          if (res.status < 200 || res.status >= 300) {
+            throw new Error();
+          } else {
+            this.recordList = res['data'];
+            return res.json();
+          }
+        });
+    } else {
+      this.getRecordList();
+    }
   }
-  else{
-    this.getRecordList();
-  }
-};
+
   onActivate(event) { }
 
   doubleClickAction(selectedRow) {
@@ -126,20 +145,8 @@ export class RecordListComponent implements OnInit {
     }).bind(this)).catch(swal.noop);
 
   }
-
-  public deleteClick(_id) {
-    this.rawMatService.deleterecordList(this.recordSelected.selected[0]._id)
-      .subscribe((response: any) => {
-
-        this.getRecordList();
-      },
-        err => {
-
-        });
+  public onItemRemoved(event) {
+    this.getRecordList();
   }
-
-  public onItemRemoved(event){
-  this.getRecordList();
-   }
 
 }

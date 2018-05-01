@@ -178,7 +178,7 @@ export class AdminComponent implements OnInit {
     this.setBackgroundPattern('pattern1');
    // console.log('menuItems', this.menuItems.getAll());
     this.localStorage.getItem('user').subscribe((user) => {
-      console.log(user);
+     // console.log(user);
       this.createdBy = user.user.username;
     });
   }

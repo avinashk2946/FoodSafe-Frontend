@@ -11,7 +11,7 @@
           <a   [ngClass]="breadcrumb.status === true ? 'not-active': ''" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
         </li> 
          <li class="breadcrumb-item" *ngIf="recordDetails._id"> 
-          <a   [ngClass]="recordDetails.po === true ? 'not-active': ''" >  : {{recordDetails.po}}</a>
+          <a   [ngClass]="recordDetails.po == true ? 'not-active': ''" >   {{recordDetails.po}}</a>
         </li>     
       </ul>   
     </div>

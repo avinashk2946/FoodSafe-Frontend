@@ -6,50 +6,50 @@
     margin-left: 8px;
   }
 }
-.list-group-item{
-  display:inherit ;
+
+.list-group-item {
+  display: inherit;
 }
-   .card{
-     padding-top: 15px;
 
-     } 
+.card {
+  padding-top: 15px;
+}
 
-.action{
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;     
-  }
+.media-left img {
+  height: 50px;
+}
 
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
 .table {
   table-layout: fixed;
   word-wrap: break-word;
 }
 
- .table th, table td {
-      overflow: hidden;
-  }
-
- :host/deep/ .nav-tabs .nav-link.active, .nav-tabs .nav-item.show {
-  background-color: #eaeaea;
-  border-right-color:#7f827e;
-  border-left-color:#7f827e;
-  border-top-color:#7f827e; 
+.table th,
+table td {
+  overflow: hidden;
 }
- :host/deep/ .nav-link{
-  margin-left:5px;
+
+.mypadding {
+  margin-bottom: 10px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+:host/deep/ .nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show {
+  background-color: #eaeaea;
+  border-right-color: #7f827e;
+  border-left-color: #7f827e;
+  border-top-color: #7f827e;
+}
+
+:host/deep/ .nav-link {
+  margin-left: 5px;
   padding-left: 5px;
- }
-.btn{
-     text-transform: uppercase;
-     letter-spacing: 1px; 
-     margin-bottom: 20px;  
-      margin-right:5px; 
-       font-weight: 900;
-     font-size: 12px;
-     width: 100px;
-     height: 40px;    
-     }  
+}
 

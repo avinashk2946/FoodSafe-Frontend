@@ -12,13 +12,4 @@ export class QualityAnalysisComponent implements OnInit {
   ngOnInit() {
   }
 
-		characteristics: string = "Count for 500gm"; 
-		description: string = "No. of pieces in 500gm"; 
-		unit: string = "pieces"; 
-		one:number = 33; 
-		two: number = 45; 
-		three: number = 28; 
-		four: number = 28; 
-		five: number = 28;
-
 }

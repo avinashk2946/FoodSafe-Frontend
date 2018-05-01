@@ -12,7 +12,6 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
 import { TabsSevice } from './../tabs.service';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { ISubscription } from 'rxjs/Subscription';
@@ -39,12 +38,10 @@ export class SamplePreparationComponent implements OnInit {
   test = '';
   public item: any = '';
   recordId = '';
-  private tabs :any;
-  online$ = Observable.fromEvent(window, 'online');
-  offline$ = Observable.fromEvent(window, 'offline');
+  private tabs: any;
 
-  public onlineOffline: boolean = navigator.onLine;
   private subscription: ISubscription;
+
   samples = [
     {
       supplierLot: '',
@@ -69,6 +66,20 @@ export class SamplePreparationComponent implements OnInit {
       this.recordId = params.id;
     });
 
+    this.rawMatService.getSamplePreparation(this.recordId)
+      .subscribe((response: any) => {
+        if (response.data.length !== 0) {
+          this.samples = [];
+        }
+        response.data.forEach(element => {
+          for (let i = 0; i < element.samples.length; i++) {
+            this.samples.push(element.samples[i]);
+          }
+        });
+      }, err => {
+        console.log('Sample Preparation : Error getting exsiting sample preparations.');
+      });
+
   }
 
   ngOnInit() {
@@ -87,21 +98,9 @@ export class SamplePreparationComponent implements OnInit {
         }, err => {
           console.log('Sample Preparation : Error validating supplier lot.');
         });
-
-      this.rawMatService.getSamplePreparation(this.recordDetails._id)
-        .subscribe((response: any) => {
-          if (response.data.length !== 0) {
-            this.samples = [];
-          }
-          response.data.forEach(element => {
-            for (let i = 0; i < element.samples.length; i++) {
-              this.samples.push(element.samples[i]);
-            }
-          });
-        }, err => {
-          console.log('Sample Preparation : Error getting exsiting sample preparations.');
-        });
     });
+
+
   }
 
   public changeNewLot(item): void {
@@ -140,10 +139,6 @@ export class SamplePreparationComponent implements OnInit {
     };
     this.rawMatService.saveSamplePreparation(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      this.subscription = this.tabService.getMessage().subscribe(tabState => {
-        this.tabs = tabState.value;
-        this.tabs.select('samplecollectionid');
-      });
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
@@ -157,7 +152,7 @@ export class SamplePreparationComponent implements OnInit {
     this.searchTerm.next(supplierlot);
   }
   public updateSampleObj(index, response) {
-    this.samples[index].newLot = response.newLot ? 'Yes' : 'No';
+    this.samples[index].newLot = response.newLot;
     this.samples[index].po = response.po;
     this.samples[index].pathogenTest = response.pathogenTest;
     this.samples[index].pesticideTest = response.pesticideTest;
@@ -166,20 +161,20 @@ export class SamplePreparationComponent implements OnInit {
       this.samples[index].po = this.recordDetails.po;
     }
   }
-  
- onPrev() {
+
+  onPrev() {
     this.subscription = this.tabService.getMessage().subscribe(tabState => {
       this.tabs = tabState.value;
-      this.tabs.select('documentuploadid');
+      this.tabs.select('documentUploadid1');
     });
   }
   onExit() {
-        this.router.navigateByUrl('/recordkeeping/raw-matrial'); 
+    this.router.navigateByUrl('/recordkeeping/raw-matrial');
   }
 
-    onNext() {
-        this.subscription = this.tabService.getMessage().subscribe(tabState => {
-        this.tabs = tabState.value;
+  onNext() {
+    this.subscription = this.tabService.getMessage().subscribe(tabState => {
+      this.tabs = tabState.value;
       this.tabs.select('samplecollectionid');
     });
   }

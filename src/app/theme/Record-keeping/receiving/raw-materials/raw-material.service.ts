@@ -110,7 +110,6 @@ export class RawMaterialService {
       channel: GLOBAL_PROPERTIES.CHANNEL
     };
     const url = API_ACTIONS.raw_material.record + '/samplePreparation/' + recordId;
-    console.log(url);
     const httpRequest = new HttpRequestModal(url, 'GET', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
@@ -157,6 +156,15 @@ export class RawMaterialService {
   saveSingleSampleCollection(obj) {
     const url = API_ACTIONS.raw_material.record + '/sampleCollection2';
     const httpRequest = new HttpRequestModal(url, 'POST', obj, true);
+    return this.comonSrvc.createHttpRequest(httpRequest);
+  }
+
+  deleteSingleSampleCollection(smplid, smplcollid) {
+    const reqPayload = {
+      channel: GLOBAL_PROPERTIES.CHANNEL
+    };
+    const url = API_ACTIONS.raw_material.record + '/sampleCollection/deleteSample/' + smplid + '/' + smplcollid;
+    const httpRequest = new HttpRequestModal(url, 'DELETE', reqPayload, true);
     return this.comonSrvc.createHttpRequest(httpRequest);
   }
 

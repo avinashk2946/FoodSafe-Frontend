@@ -8,39 +8,49 @@
                     <div class="form-group row">
                         <label for="inputDate" class="col-sm-3 control-label text-left">Date:</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="inputDate" placeholder="Date" [(ngModel)]="formData.date" required="true">
+                            <input type="text" class="form-control" id="inputDate" placeholder="Date" [(ngModel)]="formData.date" required="true" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="itemCode" class="col-sm-3 control-label text-left">Production Line:</label>
                         <div class="col-sm-9">
-                            <ng-select [options]="productionLine" bindLabel="name" bindValue="code" placeholder="Select Production Line" appendTo="body"
-                                [(ngModel)]="formData.productionLine" (ngModelChange)="productionLineSelected($event)"></ng-select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="itemCode" class="col-sm-3 control-label text-left">Brand Name:</label>
-                        <div class="col-sm-9">
-                            <ng-select [options]="brandName" bindLabel="name" bindValue="code" placeholder="Select Brand Name" appendTo="body" [(ngModel)]="formData.brandName"></ng-select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputProduct" class="col-sm-3 control-label text-left">Product Name:</label>
-                        <div class="col-sm-9">
-                            <ng-select [options]="productName" bindLabel="Product Name" placeholder="Select Product Name" appendTo="body" [(ngModel)]="formData.productName"></ng-select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputNetWght" class="col-sm-3 control-label text-left">Net Weight (g):</label>
-                        <div class="col-sm-9">
-                            <ng-select [options]="netWeight" bindLabel="Product Name" placeholder="Select Net Weight" appendTo="body" [(ngModel)]="formData.netWeight"></ng-select>
+                            <!-- <ng-select [options]="productionLine" bindLabel="name" bindValue="code" placeholder="Select Production Line" appendTo="body"
+                                [(ngModel)]="formData.productionLine" (ngModelChange)="productionLineSelected($event)"></ng-select> -->
+                            <ng-select [items]="productionLine" bindLabel="name" bindValue="code" placeholder="Select Production Line" appendTo="body"
+                                [(ngModel)]="formData.productionLine" (add)="productionLineSelected($event)" (clear)="productionLineSelected($event)"></ng-select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="itemCode" class="col-sm-3 control-label text-left">Item Code:</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputItemCode" placeholder="Item Code" [(ngModel)]="formData.itemCode" required="true"
-                                readonly>
+                            <!-- <input type="text" class="form-control" id="inputItemCode" placeholder="Item Code" [(ngModel)]="formData.itemCode" required="true"
+                                readonly> -->
+                            <ng-select [items]="itemCode" bindLabel="name" bindValue="code" placeholder="Select Item Code" appendTo="body" [(ngModel)]="formData.itemCode"
+                                (add)="itemCodeSelected($event)" (clear)="itemCodeSelected($event)"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputBrandName" class="col-sm-3 control-label text-left">Brand Name:</label>
+                        <div class="col-sm-9">
+                            <!-- <ng-select [options]="brandName" bindLabel="name" bindValue="code" placeholder="Select Brand Name" appendTo="body" [(ngModel)]="formData.brandName"></ng-select> -->
+                            <input type="text" class="form-control" name="inputBrandName" id="inputBrandName" placeholder="Brand Name" [(ngModel)]="formData.brandName"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputProductName" class="col-sm-3 control-label text-left">Product Name:</label>
+                        <div class="col-sm-9">
+                            <!-- <ng-select [options]="productName" bindLabel="Product Name" placeholder="Select Product Name" appendTo="body" [(ngModel)]="formData.productName"></ng-select> -->
+                            <input type="text" class="form-control" name="inputProductName" id="inputProductName" placeholder="Product Name" [(ngModel)]="formData.productName"
+                                required="true" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNetWght" class="col-sm-3 control-label text-left">Net Weight (g):</label>
+                        <div class="col-sm-9">
+                            <!-- <ng-select [options]="netWeight" bindLabel="Product Name" placeholder="Select Net Weight" appendTo="body" [(ngModel)]="formData.netWeight"></ng-select> -->
+                            <input type="text" class="form-control" name="inputNetWght" id="inputNetWght" placeholder="Net Weight" [(ngModel)]="formData.netWeight"
+                                required="true" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -222,10 +232,11 @@
     </div>
     <div class="row">&nbsp;</div>
     <p class="h2">Dynamic Form Tabular Content</p>
-    <!-- <div class="row container">
-        <div class="form-group row text-center">
-            <button (click)="onSubmit($event, formData)" class="btn btn-success">Submit</button>
-            <button (click)="onSubmit($event, formData, true)" class="btn btn-danger">Reset</button>
-        </div>
-    </div> -->
+    <div class="app">
+        <dynamic-form [config]="config" [data]="data" [footerConfig]="footerConfig" [labelConfig]="labelConfig" #form="dynamicForm"
+            (submit)="submit($event)">
+        </dynamic-form>
+        <!-- {{ form.valid }}
+        {{ form.value | json }} -->
+    </div>
 </div>
