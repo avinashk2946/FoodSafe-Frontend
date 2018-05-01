@@ -9,8 +9,12 @@
         </li>
         <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs;">
           <a   [ngClass]="breadcrumb.status === true ? 'not-active': ''" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
-        </li>
-      </ul>
+        </li> 
+         <li class="breadcrumb-item" *ngIf="recordDetails._id"> 
+          <a   [ngClass]="recordDetails.po === true ? 'not-active': ''" >  : {{recordDetails.po}}</a>
+        </li>     
+      </ul>   
     </div>
   </div>
 </div>
+
