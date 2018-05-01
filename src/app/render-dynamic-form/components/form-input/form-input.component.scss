@@ -12,3 +12,11 @@ input {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   }
 }
+
+input.ng-invalid {
+  border: red solid 1px;
+}
+
+input.disabled {
+  pointer-events: none;
+}

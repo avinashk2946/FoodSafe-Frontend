@@ -7,6 +7,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { DynamicFormModule } from '../../../../render-dynamic-form/dynamic-form.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from 'ng-select';
+import {IterablePipe} from '../pipes/iterable.pipe'
 
 @NgModule({
   imports: [
@@ -19,7 +20,7 @@ import { SelectModule } from 'ng-select';
     SimpleNotificationsModule.forRoot(),
     DynamicFormModule
   ],
-  declarations: [QMR14Component],
+  declarations: [QMR14Component,IterablePipe],
   bootstrap: [QMR14Component]
 })
 export class QMR14Module { }

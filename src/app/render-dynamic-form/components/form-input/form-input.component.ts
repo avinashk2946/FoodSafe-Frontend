@@ -12,12 +12,13 @@ import { FormulaService } from '../../services/formula.service';
     <div 
       class="dynamic-field form-input" 
       [formGroup]="group">
-      <label>{{ config.label }}</label>
-      <input
+      <label *ngIf="!config.hidden">{{ config.label }}</label>
+      <input 
         [type]="config.dataType"
         [attr.placeholder]="config.placeholder"
-        [disabled]="config.disabled"
-        [value]="config.value || calculate(config.formula)"
+        [class.disabled]="config.disabled"
+        [hidden]="config.hidden"
+        [value]="config.dataType=='time'?getTime():(config.value || calculate(config.formula) || group.value[config.name])"
         [formControlName]="config.name">
     </div>
   `
@@ -27,7 +28,10 @@ export class FormInputComponent implements Field {
   group: FormGroup;
 
   constructor(private _formulaService: FormulaService) {
-
+    console.log(this.group);
+  }
+  getTime(){
+    return `${new Date().getHours()}:${new Date().getMinutes()}`;
   }
   calculate(exp: string) {
     let dataPoint={};

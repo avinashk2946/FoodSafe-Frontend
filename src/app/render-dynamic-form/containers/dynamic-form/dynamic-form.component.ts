@@ -8,33 +8,19 @@ import { FieldConfig } from '../../models/field-config.interface';
   selector: 'dynamic-form',
   styleUrls: ['dynamic-form.component.scss'],
   template: `
-  <button class="btn btn-primary" (click)="showTable=false">Add New</button>
-  <table class="table" *ngIf="showTable">
-  <thead>
-      <tr>
-          <th *ngFor="let f of config;">{{f.label}}</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let d of data">
-          <td *ngFor="let k of d | iterable"> {{d[k]}}</td>
-          <td><button class="btn btn-primary" (click)="showTable=false;form.value=d">Edit</button></td>
-      </tr>
-  </tbody>
-</table>
-
-
-
-<form *ngIf="!showTable" [formGroup]="form" (submit)="handleSubmit($event)">
-<ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
-</ng-container>
-</form>
+  <form *ngIf="showForm" class="dynamic-form forEqualWidth" [formGroup]="form" (submit)="handleSubmit($event)">
+  <ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
+  </ng-container>
+  </form>
   `
 })
 export class DynamicFormComponent implements OnChanges, OnInit {
   showTable: boolean = true;
   @Input()
   config: FieldConfig[] = [];
+
+  @Input()
+  showForm:boolean=false;
 
   @Input()
   footerConfig: FieldConfig[] = [];
@@ -115,6 +101,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   setValue(name: string, value: any) {
+    if(this.form.controls[name])
     this.form.controls[name].setValue(value, { emitEvent: true });
   }
 }

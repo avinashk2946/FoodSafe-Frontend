@@ -10,5 +10,6 @@ export interface FieldConfig {
   validation?: ValidatorFn[],
   value?: any,
   formula?:any,
-  dataType?:string
+  dataType?:string,
+  hidden?:boolean
 }

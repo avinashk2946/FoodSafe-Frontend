@@ -7,5 +7,5 @@ import { HttpRequestModal } from '../../../common/httpRequest.modal';
 export class DynamicFormService {
 
   constructor(private comonSrvc: CommonService) { }
-  
+
 }

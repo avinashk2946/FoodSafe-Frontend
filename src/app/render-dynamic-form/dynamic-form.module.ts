@@ -8,7 +8,6 @@ import { FormButtonComponent } from './components/form-button/form-button.compon
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { FormSelectComponent } from './components/form-select/form-select.component';
 import { FormLabelComponent } from './components/form-label/form-label.component';
-import { IterablePipe } from './pipes/iterable.pipe';
 import { FormulaService } from './services/formula.service';
 
 @NgModule({
@@ -25,8 +24,7 @@ import { FormulaService } from './services/formula.service';
     FormButtonComponent,
     FormInputComponent,
     FormSelectComponent,
-    FormLabelComponent,
-    IterablePipe
+    FormLabelComponent
   ],
   exports: [
     DynamicFormComponent

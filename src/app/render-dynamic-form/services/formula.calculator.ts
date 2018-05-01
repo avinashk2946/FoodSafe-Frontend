@@ -6,6 +6,9 @@ math.import({
     },
     colSum:function(colName){
         return colName.reduce((v,it)=>(+it + +v),0)
+    },
+    generateRandomNumber:function(){
+        return Date.now();
     }
 })
 

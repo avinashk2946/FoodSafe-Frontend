@@ -17,6 +17,7 @@ import { FormulaService } from '../../../../render-dynamic-form/services/formula
   providers: [QMR14Service]
 })
 export class QMR14Component implements OnInit {
+  showForm:boolean=false;
   productionLine = [
     { "label": "Production-1", "code": "P1" },
     { "label": "Production-2", "code": "P2" },
@@ -47,23 +48,33 @@ export class QMR14Component implements OnInit {
   public formData: Object;
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
   headerConfig:FieldConfig[];
-  config: FieldConfig[] = [
+  config:FieldConfig[]=[];
+  tempConfig: FieldConfig[] = [
+    {
+      type: 'input',
+      label: 'Row Id',
+      name: 'id',
+      dataType:"text",
+      hidden:true,
+      validation: []
+    },
     {
       type: 'input',
       label: 'Time',
       name: 'time',
-      
-      dataType:"date",
+      value: '09:10',
+      dataType:"time",
+      disabled:true,
       validation: [Validators.required]
     },
-    {
+   /* {
       type: 'input',
       label: 'Bag1',
       dataType:"number",
       value:0,
       name: 'bag1',
-      placeholder: 'b',
-      validation: []
+      placeholder: 'bag1',
+      validation: [Validators.required]
     },
     {
       type: 'input',
@@ -71,41 +82,7 @@ export class QMR14Component implements OnInit {
       name: 'bag2',
       value:0,
       dataType:"number",
-      placeholder: 'b',
-      validation: []
-    },
-    {
-      type: 'input',
-      label: 'Bag3',
-      name: 'bag3',
-      dataType:"number",
-      placeholder: 'b',
-      value:0,
-      validation: []
-    },
-    {
-      type: 'input',
-      label: 'Bag4',
-      name: 'bag4',
-      dataType:"number",
-      placeholder: 'b',
-      value:0,
-      validation: []
-    },
-    {
-      type: 'select',
-      label: 'tests',
-      name: 'compliencetest',
-      options:["c","nc","na"],
-      placeholder: '',
-      validation: [Validators.required]
-    },
-    {
-      type: 'select',
-      label: 'tests xyz',
-      name: 'test2',
-      options:["c","nc","na"],
-      placeholder: '',
+      placeholder: 'bag2',
       validation: [Validators.required]
     },
     {
@@ -116,14 +93,26 @@ export class QMR14Component implements OnInit {
       dataType:"number",
       disabled:false,
       placeholder: 'avg',
-      formula:"avg(bag1, bag2 , bag3 , bag4)",
+      formula:"avg(bag1, bag2)",
+      validation: [Validators.required]
+    },
+  */
+    {
+      type: 'select',
+      label: 'tests',
+      name: 'compliencetest',
+      options:["c","nc","na"],
+      placeholder: 'select complience',
       validation: [Validators.required]
     },
     {
-      label: 'Submit',
-      name: 'submit',
-      type: 'button',
-      disabled:true
+      type: 'input',
+      label: 'Comments',
+      name: 'comments',
+      value:"",
+      dataType:"text",
+      placeholder: '',
+      validation: [this.ifAnyNonComplience.bind(this)]
     }
   ];
   footerConfig:FieldConfig[]=[{
@@ -134,17 +123,23 @@ export class QMR14Component implements OnInit {
     value:0,
     disabled:true,
     placeholder: 'final avg',
-    formula:"avg(avg(colSum(bag1)), avg(colSum(bag2)) , avg(colSum(bag3)) , avg(colSum(bag4)))",
+    formula:"avg(avg(colSum(bag1)), avg(colSum(bag2)))",
     validation: []
   }];
   labelConfig:FieldConfig[]=[];
 
   data=[];
   //public brandName: Array<object>;
-  constructor(private http: HttpClient,private _formulaService:FormulaService) {
+  constructor(private http: HttpClient,private _formulaService:FormulaService , private _qmr14Srvc:QMR14Service) {
     this.formData = {};
     //this.formData["productionLine"] = "P2";
     //this.brandName = this.brandNameData;
+  }
+  ifAnyNonComplience(control:FormControl){
+    if(this.form.value["compliencetest"] == "nc"){
+      return {'commentsNecessary':true}
+    }
+    return null;
   }
 
   onSubmit(event, data) {
@@ -152,15 +147,38 @@ export class QMR14Component implements OnInit {
   }
 
   ngOnInit(){
-    this.labelConfig=this.config.map(i=>({...i,type:'label'}));
+    //this.labelConfig=this.config.map(i=>({...i,type:'label'}));
+    this.fetchForm();
     this._formulaService.dataChange$.subscribe(flag=>{
       this.data=this._formulaService.data;
     })
   }
+  fetchForm(){
+    this._qmr14Srvc.getFormConfig().subscribe(
+      res=>{
+        console.log(res);
+        let data =res.data[0].formMetaData;
+        this.config.push(...this.tempConfig,...data.map(d=>({...d,validation:d.validation.map(v=>Validators[v.toLowerCase()])})))
+        
+        this.config[this.config.length-1].dataType="number";
+        this.config[this.config.length-1].type="input";
+        this.config.push({
+          label: 'Submit',
+          name: 'submit',
+          type: 'button',
+          disabled:true
+        })
+        this.config=this.config.slice();
+        console.log(this.config);
+      },
+      err=>console.log(err),
+      ()=> console.log("complete get qmr14 form config service")
+    )
+  }
   ngAfterViewInit() {
     let previousValid = this.form.valid;
     this.form.changes.subscribe(() => {
-      if (this.form.valid !== previousValid) {
+      if (this.form.valid !== previousValid) {   
         previousValid = this.form.valid;
         this.form.setDisabled('submit', !previousValid);
       }
@@ -172,9 +190,30 @@ export class QMR14Component implements OnInit {
 
   submit(value: {[name: string]: any}) {
     console.log('current row value',value);
-    this._formulaService.setIsDataChanged([...this.data,value]);
+    let id = value.id;
+    if(id) {
+      let index = this.data.findIndex(d=>d.id==id);
+      this.data[index]=value;
+      this._formulaService.setIsDataChanged([...this.data]);
+    }
+    else {
+      value.id=this.data.length+1;
+      this._formulaService.setIsDataChanged([...this.data,value])
+    }
+    this.showForm=false;
   }
+  editForm(d){
+    this.showForm=true;
+    Object.keys(d).forEach(k=> this.form.setValue(k,d[k]))
+  }
+  addNewRow(){
+    this.showForm=true;
+    this.config.forEach(co=>{
+      this.form.setValue(co.name,co.value);
+     
+    })
 
+  }
   productionLineSelected(data) {
     /*
     let result = [];
@@ -187,6 +226,13 @@ export class QMR14Component implements OnInit {
     });
     this.brandName = result;
     */
+  }
+  saveData(){
+    this._qmr14Srvc.saveFormConfig(this.data).subscribe(
+      (res)=>console.log(res),
+      err=>console.log(err),
+      ()=>console.log("save data service complete()")
+    )
   }
 }
 

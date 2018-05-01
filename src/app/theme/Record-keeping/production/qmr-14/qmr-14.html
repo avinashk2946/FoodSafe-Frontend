@@ -134,9 +134,12 @@
                     <div class="form-group row">
                         <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Verifed By Superviser Day ?</label>
                         <div class="col-sm-9">
-                            <label class="radio-inline"><input type="radio" name="radioSD" id="optDayYes" >Yes</label>
-                            <label class="radio-inline"><input type="radio" name="radioSD" id="optDayNo" >No</label>
-                            <label class="radio-inline"><input type="radio" name="radioSD" id="optDayNA" >NA</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioSD" id="optDayYes">Yes</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioSD" id="optDayNo">No</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioSD" id="optDayNA">NA</label>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -149,9 +152,12 @@
                     <div class="form-group row">
                         <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Verifed By Superviser Night ?</label>
                         <div class="col-sm-9">
-                            <label class="radio-inline"><input type="radio" name="radioSN" id="optNightYes" >Yes</label>
-                            <label class="radio-inline"><input type="radio" name="radioSN" id="optNightNo" >No</label>
-                            <label class="radio-inline"><input type="radio" name="radioSN" id="optNightNA" >NA</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioSN" id="optNightYes">Yes</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioSN" id="optNightNo">No</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioSN" id="optNightNA">NA</label>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -164,9 +170,12 @@
                     <div class="form-group row">
                         <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Quality Control Done ?</label>
                         <div class="col-sm-9">
-                            <label class="radio-inline"><input type="radio" name="radioQC" id="optQcYes">Yes</label>
-                            <label class="radio-inline"><input type="radio" name="radioQC" id="optQcNo">No</label>
-                            <label class="radio-inline"><input type="radio" name="radioQC" id="optQcNA">NA</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioQC" id="optQcYes">Yes</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioQC" id="optQcNo">No</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioQC" id="optQcNA">NA</label>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -179,9 +188,12 @@
                     <div class="form-group row">
                         <label for="inputSuperviserDayRB" class="col-sm-3 control-label text-left">Record Verification Done ?</label>
                         <div class="col-sm-9">
-                            <label class="radio-inline"><input type="radio" name="radioRV" id="optRvYes">Yes</label>
-                            <label class="radio-inline"><input type="radio" name="radioRV" id="optRvNo">No</label>
-                            <label class="radio-inline"><input type="radio" name="radioRv" id="optRvNA">NA</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioRV" id="optRvYes">Yes</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioRV" id="optRvNo">No</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="radioRv" id="optRvNA">NA</label>
                         </div>
                     </div>
                 </div>
@@ -222,16 +234,32 @@
     </div>
     <div class="row">&nbsp;</div>
     <p class="h2">Dynamic Form Tabular Content</p>
+
+
+    
+    <button class="btn btn-primary" (click)="addNewRow()">Add New</button>
+    
     <div class="app">
-        <dynamic-form
-          [config]="config"
-          [data]="data"
-          [footerConfig]="footerConfig"
-          [labelConfig]="labelConfig"
-          #form="dynamicForm"
-          (submit)="submit($event)">
+        <dynamic-form [showForm]="showForm" [config]="config" [data]="data" [footerConfig]="footerConfig" [labelConfig]="labelConfig" #form="dynamicForm"
+            (submit)="submit($event)">
         </dynamic-form>
-        <!-- {{ form.valid }}
-        {{ form.value | json }} -->
-      </div>
+        <!-- {{ form.valid }} {{ form.value | json }} -->
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th *ngFor="let f of config;" >{{f.label}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let d of data;index as i">
+            <td *ngFor="let k of d | iterable"> {{d[k]}}</td>
+            <td><button class="btn btn-primary" (click)="editForm(d)" >Edit</button></td>
+        </tr>
+    </tbody>
+  </table>
+  
+  <button type="button" class="btn btn-primary" (click)="saveData()">Save Data</button>
+  
+
 </div>

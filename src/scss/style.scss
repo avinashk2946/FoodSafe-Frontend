@@ -95,3 +95,18 @@ File: style.scss
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/navbar";
 @import "~bootstrap/scss/forms";
+
+.forEqualWidth {
+	display: flex;
+  }
+  
+  .forEqualWidth .dynamic-field {
+	margin-right: 5px !important;
+  }
+  [_nghost-c7] .dynamic-field{
+	margin-right: 5px !important;
+  }
+
+  .alignBottom {
+	  transform: translateY(85%)
+  }
