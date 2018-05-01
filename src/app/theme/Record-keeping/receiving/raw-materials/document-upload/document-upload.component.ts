@@ -14,8 +14,8 @@ import { HttpEventType } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TabsSevice } from './tabs.service';
 import { RawMaterialService } from '../raw-material.service';
-import { CommonService } from '../../../../common/common.service';
-import { GLOBAL_PROPERTIES } from '../../../../common/common.constant';
+import { CommonService } from '../../../../../common/common.service';
+import { GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
 import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
@@ -28,7 +28,7 @@ import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './document-upload.component.html',
   styleUrls: [
     './document-upload.component.scss',
-    '../../../../../assets/icon/icofont/css/icofont.scss'
+    '../../../../../../assets/icon/icofont/css/icofont.scss'
   ],
   animations: [
     trigger('fadeInOutTranslate', [

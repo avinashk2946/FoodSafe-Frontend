@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RawMaterialService } from '../raw-material.service';
-import { CommonService } from '../../../../common/common.service';
+import { CommonService } from '../../../../../common/common.service';
 import { HttpClient } from '@angular/common/http';
 import swal from 'sweetalert2';
 import {Observable} from 'rxjs/Observable';
-import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../common/common.constant';
+import { API_ACTIONS, GLOBAL_PROPERTIES } from '../../../../../common/common.constant';
 import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
 import {  map } from 'rxjs/operators';
 import { error } from 'util';
@@ -17,7 +17,7 @@ import 'rxjs/add/operator/debounceTime';
   templateUrl: './record-list.component.html',
   styleUrls: [
     './record-list.component.scss',
-    '../../../../../assets/icon/icofont/css/icofont.scss'
+    '../../../../../../assets/icon/icofont/css/icofont.scss'
   ],
   
   providers: [RawMaterialService]
@@ -52,7 +52,7 @@ export class RecordListComponent implements OnInit {
 
   enableEditRow(selectedRow) {
     // TODO: Default dropdown value selection
-    this.router.navigate(['/recordkeeping/raw-matrial/create/'],
+    this.router.navigate(['/recordkeeping/receiving/create/'],
       {
         queryParams:
           {
@@ -89,7 +89,7 @@ export class RecordListComponent implements OnInit {
   onActivate(event) { }
 
   doubleClickAction(selectedRow) {
-    this.router.navigate(['/recordkeeping/raw-matrial/document-upload/' + selectedRow[0]._id]);
+    this.router.navigate(['/recordkeeping/receiving/document-upload/' + selectedRow[0]._id]);
   }
 
   public openConfirmsSwal(_id) {

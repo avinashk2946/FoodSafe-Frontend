@@ -5,7 +5,7 @@ import { RecordListRoutingModule } from './record-list-routing.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule } from '@angular/forms';
-import { SharedModule } from '../../../../shared/shared.module';
+import { SharedModule } from '../../../../../shared/shared.module';
 
 @NgModule({
   imports: [

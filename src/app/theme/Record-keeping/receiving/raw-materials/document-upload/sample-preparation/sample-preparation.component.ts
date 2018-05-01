@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output, OnChanges, EventEmitter, ViewChild, SimpleChange } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { RawMaterialService } from '../../raw-material.service';
-import { CommonService } from '../../../../../common/common.service';
-import { AuthService } from '../../../../../common/auth.service';
+import { CommonService } from '../../../../../../common/common.service';
+import { AuthService } from '../../../../../../common/auth.service';
 import { LocationStrategy } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AsyncLocalStorage } from 'angular-async-local-storage';
@@ -21,7 +21,7 @@ import { ISubscription } from 'rxjs/Subscription';
   selector: 'app-sample-preparation',
   templateUrl: './sample-preparation.component.html',
   styleUrls: ['./sample-preparation.component.scss',
-    '../../../../../../assets/icon/icofont/css/icofont.scss']
+    '../../../../../../../assets/icon/icofont/css/icofont.scss']
 })
 export class SamplePreparationComponent implements OnInit {
 

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SampleCollectionComponent } from './sample-collection.component';
-import { SampleCollectionRoutingModule } from './sample-collection-routing.module';
-import { SharedModule } from '../../../../../shared/shared.module';
+import { SamplePreparationComponent } from './sample-preparation.component';
+import { SamplePreparationRoutingModule } from './sample-preparation-routing.module';
+import { SharedModule } from '../../../../../../shared/shared.module';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from 'ng-select';
@@ -11,14 +11,14 @@ import { SelectModule } from 'ng-select';
 @NgModule({
   imports: [
     CommonModule,
-    SampleCollectionRoutingModule,
+    SamplePreparationRoutingModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
     SelectModule,
     SimpleNotificationsModule.forRoot(),
   ],
-  declarations: [SampleCollectionComponent],
-  bootstrap: [SampleCollectionComponent]
+  declarations: [SamplePreparationComponent],
+  bootstrap: [SamplePreparationComponent]
 })
-export class SampleCollectionModule { }
+export class SamplePreparationModule { }

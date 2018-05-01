@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DocumentUploadComponent } from './document-upload.component';
 import { DocumentUploadRoutingModule } from './document-upload-routing.module';
 import { TabsSevice} from './tabs.service';
-import { SharedModule } from '../../../../shared/shared.module';
-import { ImagePreviewDirective } from '../../../../directives/image-preview-directive';
+import { SharedModule } from '../../../../../shared/shared.module';
+import { ImagePreviewDirective } from '../../../../../directives/image-preview-directive';
 
 
 import { ChartModule } from 'angular2-chartjs';

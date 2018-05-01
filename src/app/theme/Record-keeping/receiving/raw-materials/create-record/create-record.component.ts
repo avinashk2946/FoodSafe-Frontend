@@ -6,7 +6,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { Http } from '@angular/http';
 import { HttpEventType } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { CommonService } from '../../../../common/common.service';
+import { CommonService } from '../../../../../common/common.service';
 import { RawMaterialService } from '../raw-material.service';
 import { LocationStrategy } from '@angular/common';
 import * as _ from 'lodash';
@@ -17,7 +17,7 @@ import { AsyncLocalStorage } from 'angular-async-local-storage';
   templateUrl: './create-record.component.html',
   styleUrls: [
     './create-record.component.scss',
-    '../../../../../assets/icon/icofont/css/icofont.scss'
+    '../../../../../../assets/icon/icofont/css/icofont.scss'
   ],
   providers: [RawMaterialService]
 
@@ -121,7 +121,7 @@ public CreateForm(){
 
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
-      this.router.navigate(['/recordkeeping/raw-matrial/document-upload', response.data._id]);
+      this.router.navigate(['/recordkeeping/receiving/document-upload', response.data._id]);
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
@@ -242,6 +242,6 @@ public CreateForm(){
   }
 
   public redirecttoRecord(){
-    this.router.navigate(['/recordkeeping/raw-matrial']);
+    this.router.navigate(['/recordkeeping/receiving']);
   }
 }
