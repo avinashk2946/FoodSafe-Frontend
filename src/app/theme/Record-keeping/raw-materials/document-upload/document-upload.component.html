@@ -60,11 +60,11 @@
               </select>
             </div>
             <div class="col-sm-3  custom-file">
-              <input type="file" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input">
+              <input type="file" ng2FileSelect ng2FileDrop [uploader]="attachmentList" multiple class="custom-file-input" [disabled]="currentDocType === ''">
               <span class="custom-file-control">Drag and drop your files here</span>
             </div>
             <div class="col-sm-3">
-              <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
+              <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile($event)" [disabled]="attachmentList.queue.length === 0">Upload Files</button>
             </div>
           </div>
           <div class="row">
