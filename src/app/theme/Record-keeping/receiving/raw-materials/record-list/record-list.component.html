@@ -1,28 +1,39 @@
 <div class="justify-content-center top">
   <div class="row m-t-5 ">
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary  btn-block">
+     <!--  <button type="button" class="btn btn-primary  btn-block">
         Create a record template
-      </button>
+      </button> -->
     </div>
     <div class="col-md-3">
-      <button [routerLink]="['./create']" type="button" class="btn btn-primary btn-block">
+    <!--   <button [routerLink]="['./create']" type="button" class="btn btn-warning fa fa-plus btn-block">
         Add a new record
-      </button>
+      </button> -->
     </div>
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary btn-block">
+     <!--  <button type="button" class="btn btn-primary btn-block">
         Summary
-      </button>
+      </button> -->
     </div>
     <div class="col-md-3">
-      <button type="button" class="btn btn-primary btn-block">
+       <!--  <button [routerLink]="['./create']" type="button" class="btn btn-warning btn-round fa fa-plus pull-right">
+        Add a new record
+      </button> -->
+     <!--  <button type="button" class="btn btn-primary btn-block">
         Dashboard
-      </button>
+      </button> -->
     </div>
   </div>
 </div>
-<div class="card text-center">  
+<div class="card text-center">
+  <div class="col-md-12 pull-right">
+    <span >
+      <button [routerLink]="['./create']" type="button" class="btn btn-warning btn-round fa fa-plus addbutton ">
+          Add a new record
+        </button>
+    </span>
+  </div>
+
   <div class="card-body row">
     <div class="form-group col-md-12  col-sm-12 ">
       <tag-input [ngModel]="[]" [addOnBlur]="true" theme='bootstrap' [clearOnBlur]="true" [onlyFromAutocomplete]="false" onTextChangeDebounce="100"

@@ -1,11 +1,18 @@
   .btn{
-      margin: 0 0 0 -3px;
       padding: 12px 10px  ;
       font-size: 12px;
       text-transform: uppercase;
       font-weight: 900;
-      
-
+      letter-spacing: 1px; 
+    
+    }
+    .addbutton{
+      margin-top: -20px;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+      float: right;
     }
   .tag-select{
       width:100%;
