@@ -11,6 +11,7 @@ import { ISubscription } from 'rxjs/Subscription';
 
 
 import { GLOBAL_PROPERTIES } from '../../../../../../common/common.constant';
+import { NgOption } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-sample-collection',
@@ -254,7 +255,7 @@ export class SampleCollectionComponent implements OnInit {
   }
 
   onExit() {
-    this.router.navigate(['/recordkeeping/raw-matrial']);
+    this.router.navigate(['/recordkeeping/receiving']);
   }
 
   onPrevious() {

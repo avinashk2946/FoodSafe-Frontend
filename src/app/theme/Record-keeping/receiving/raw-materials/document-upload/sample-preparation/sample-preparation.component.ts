@@ -169,7 +169,7 @@ export class SamplePreparationComponent implements OnInit {
     });
   }
   onExit() {
-    this.router.navigateByUrl('/recordkeeping/raw-matrial');
+    this.router.navigateByUrl('/recordkeeping/receiving');
   }
 
   onNext() {

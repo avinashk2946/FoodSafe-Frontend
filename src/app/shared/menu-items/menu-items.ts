@@ -145,7 +145,8 @@ const MENUITEMS = [
               children: [
                 {
                   state: 'raw-materials',
-                  name: 'Raw material',
+                  name: 'Raw materials',
+                  target: true
                   
                 }, {
                   state: 'packaging',

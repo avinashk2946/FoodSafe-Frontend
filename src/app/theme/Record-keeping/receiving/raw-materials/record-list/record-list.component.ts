@@ -51,29 +51,12 @@ export class RecordListComponent implements OnInit {
 
   }
   onSelect(selected) {
-    this.recordSelected = selected.selected[0];
+    this.recordSelected = selected;
   }
 
   enableEditRow(selectedRow) {
     // TODO: Default dropdown value selection
-    this.router.navigate(['/recordkeeping/raw-matrial/create/'], { queryParams: { 'isEditingMode': true } });
 
-    const selecetedrow = {
-      recordId :  this.recordSelected._id,
-      po: this.recordSelected.po,
-      lotNo: this.recordSelected.lotNo,
-      containerNo: this.recordSelected.containerNo,
-      createdBy: this.recordSelected.createdBy,
-      plantId: this.recordSelected.plant._id,
-      supplierId: this.recordSelected.supplier._id,
-      country: this.recordSelected.country,
-      brokerId: this.recordSelected.broker._id,
-      rmGroupName: this.recordSelected.rawMaterial.rmGroupName,
-      rawMaterialId: this.recordSelected.rawMaterial._id,
-      variety: this.recordSelected.rawMaterial.variety[0]
-    };
-
-    this.localStorage.setItem('selectedRecordList', selecetedrow).subscribe(() => { }, () => { });
     this.router.navigate(['/recordkeeping/receiving/create/'],
       {
         queryParams:
@@ -86,6 +69,40 @@ export class RecordListComponent implements OnInit {
             'containerNo': selectedRow[0].containerNo
           }
       });
+
+    this.router.navigate(['/recordkeeping/raw-matrial/create/'], { queryParams: { 'isEditingMode': true } });
+
+    const selecetedrow = {
+      recordId :  this.recordSelected._id,
+      po: this.recordSelected.po,
+      lotNo: this.recordSelected.lotNo,
+      containerNo: this.recordSelected.containerNo,
+      createdBy: this.recordSelected.createdBy,
+      plantId: this.recordSelected.plant._id,
+      supplierId: this.recordSelected.supplier._id,
+      
+      country: this.recordSelected.country,
+      brokerId: this.recordSelected.broker._id,
+      rmGroupName: this.recordSelected.rawMaterial.rmGroupName,
+      rawMaterialId: this.recordSelected.rawMaterial._id,
+      variety: this.recordSelected.rawMaterial.variety[0]
+    };
+
+    this.localStorage.setItem('selectedRecordList', selecetedrow).subscribe(() => { }, () => { });
+
+    this.router.navigate(['/recordkeeping/receiving/create/'],
+      {
+        queryParams:
+          {
+            'selectedRow': selectedRow[0]._id,
+            'plant': selectedRow[0].plant['name'],
+            'supplierName': selectedRow[0].supplier['name'],
+            'po': selectedRow[0].po,
+            'lotNo': selectedRow[0].lotNo,
+            'containerNo': selectedRow[0].containerNo
+          }
+      });
+
   }
 
   public requestAutocompleteItems = (text: string): Observable<any> => {
@@ -113,7 +130,8 @@ export class RecordListComponent implements OnInit {
   }
 
   public openConfirmsSwal(_id) {
-    const targetId = this.recordSelected._id;
+
+    const targetId = this.recordSelected.selectedRow[0]._id;
     swal({
       title: 'Are you sure?',
       text: 'Do you want to delete?',

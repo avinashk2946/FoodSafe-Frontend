@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, Input, ViewChild, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { CommonService } from '../../../../../common/common.service';
+
 import { LocationStrategy } from '@angular/common';
 
-
-import { CommonService } from '../../../../../common/common.service';
 import { RawMaterialService } from '../raw-material.service';
 
 import * as _ from 'lodash';
@@ -139,6 +139,14 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
       nonGMO: this.dataForm.get('nonGMO').value
     };
 
+
+    this.rawMatService.saveRecord(obj).subscribe((response: any) => {
+      this.comonSrvc.showSuccessMsg(response.message);
+      this.router.navigate(['/recordkeeping/receiving/document-upload', response.data._id]);
+    }, err => {
+      this.comonSrvc.showErrorMsg(err.message);
+    });
+
     if (this.isEditingModeTemp) {
       console.log('updating record.....');
       console.log(obj);
@@ -153,12 +161,14 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
     }
 
 
+
     this.rawMatService.saveRecord(obj).subscribe((response: any) => {
       this.comonSrvc.showSuccessMsg(response.message);
       this.router.navigate(['/recordkeeping/receiving/document-upload', response.data._id]);
     }, err => {
       this.comonSrvc.showErrorMsg(err.message);
     });
+
   }
 
   getPlant() {
@@ -327,7 +337,6 @@ export class CreateRecordComponent implements OnInit, AfterViewInit {
       this.isEditingMode = false;
     }
   }
-
 
   public redirecttoRecord(){
     this.router.navigate(['/recordkeeping/receiving']);
