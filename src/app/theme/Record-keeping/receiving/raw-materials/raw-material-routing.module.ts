@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     data: {
-      title: 'Raw Materials',
+      title: 'Receiving',
       status: false
     },
     children: [
@@ -21,6 +21,7 @@ const routes: Routes = [
         path: 'document-upload/:id',
         loadChildren: './document-upload/document-upload.module#DocumentUploadModule'
       },
+      
       //  {
       //   path: 'document-upload/:id',
       //   loadChildren: './sample-preparation/sample-preparation.module#SamplePreparationModule'

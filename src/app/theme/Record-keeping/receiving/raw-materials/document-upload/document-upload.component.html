@@ -64,7 +64,7 @@
               <span class="custom-file-control">Drag and drop your files here</span>
             </div>
             <div class="col-sm-3">
-              <button autofocus="" type="button" class="btn btn-success  " (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload</button>
+              <button autofocus="" type="button" class="btn btn-outline-primary fa fa-upload " (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload</button>
             </div>
           </div>
           <div class="row">
@@ -191,6 +191,11 @@
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Summary" id="summaryid">
+        <ng-template ngbTabContent>
+          <p></p>
+        </ng-template>
+      </ngb-tab>
+       <ngb-tab title="Allocation" id="allocationid">
         <ng-template ngbTabContent>
           <p></p>
         </ng-template>
