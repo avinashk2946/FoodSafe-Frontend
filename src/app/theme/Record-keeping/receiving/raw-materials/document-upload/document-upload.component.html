@@ -64,12 +64,12 @@
               <span class="custom-file-control">Drag and drop your files here</span>
             </div>
             <div class="col-sm-3">
-              <button autofocus="" type="button" class="btn btn-success" (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload Files</button>
+              <button autofocus="" type="button" class="btn btn-success  " (click)="uploadFile($event)" [disabled]="currentDocType === '' || attachmentList.queue.length === 0">Upload</button>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <ul class="list-inline" style="margin-bottom: 0px">
+              <ul class="list-inline" >
                 <li class="list-group-item media-left" *ngFor="let item of attachmentList.queue; let i=index">
                   <img src="" imgPreview [image]="item?._file" class="media-object" />
                   <span class="fa fa-trash" (click)="delete($event,i,attachmentList.queue)"></span>
@@ -163,9 +163,9 @@
           </div>
           <div class="row pull-right" style="padding-bottom: 10px; padding-right: 10px">
             <span>
-              <button autofocus="" type="button" class="btn btn-primary btn-md" disabled="true">Previous</button>
-              <button autofocus="" type="button" class="btn btn-warning btn-md" (click)="onExit()">Exit</button>
-              <button autofocus="" type="button" class="btn btn-success btn-md" (click)='onNext()'>Next</button>
+              <!-- <button autofocus="" type="button" class="btn btn-outline-primary btn-md" disabled="true">Previous</button> -->
+              <button autofocus="" type="button" class="btn btn-outline-warning btn-md" (click)="onExit()">Exit</button>
+              <button autofocus="" type="button" class="btn btn-outline-success btn-md" (click)='onNext()'>Next</button>
             </span>
           </div>
         </ng-template>

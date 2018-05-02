@@ -68,7 +68,7 @@
                 placeholder="Select Plant" formControlName="plant" (clear)="onPlantClear()">
               </ng-select>
               <div class="messages text-danger clearfix float-left" *ngIf="dataForm.controls['plant'].errors && (dataForm.controls['plant'].dirty || dataForm.controls['plant'].touched)">
-                <p *ngIf="dataForm.controls['plant'].errors.required">Palnt name is required</p>
+                <p *ngIf="dataForm.controls['plant'].errors.required">Plant name is required</p>
               </div>
             </div>
           </div>
@@ -272,9 +272,11 @@
       </div>
     </div>
     <div class=" row justify-content-center">
-      <button type="button" class="btn btn-warning" (click)="redirecttoRecord()">Exit</button>
-      <button type="submit" class="btn btn-success" [disabled]="!dataForm.valid">{{buttonLabel}}</button>
-      <button type="button" class="btn btn-secondary" (click)="resetform()">Cancel </button>
+       <span>
+        <button type="button" class="btn btn-outline-warning" (click)="redirecttoRecord()">Exit</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="dataForm.reset()">Cancel </button>
+      <button type="submit" class="btn btn-outline-success" [disabled]="!dataForm.valid" >Submit</button>
+      </span>
     </div>
   </div>
 </form>

@@ -120,7 +120,7 @@ export class DocumentUploadComponent implements OnInit, AfterViewInit {
   }
 
   onExit() {
-    this.router.navigateByUrl('/recordkeeping/raw-matrial');
+    this.router.navigateByUrl('/recordkeeping/receiving');
   }
   // this.router.navigate(['../record-list/record-list.module#RecordListModule']);
 

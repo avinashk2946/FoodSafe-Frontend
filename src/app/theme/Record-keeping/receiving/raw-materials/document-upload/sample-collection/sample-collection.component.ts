@@ -253,7 +253,7 @@ export class SampleCollectionComponent implements OnInit {
   }
 
   onExit() {
-    this.router.navigate(['/recordkeeping/raw-matrial']);
+    this.router.navigate(['/recordkeeping/receiving']);
   }
 
   onPrevious() {

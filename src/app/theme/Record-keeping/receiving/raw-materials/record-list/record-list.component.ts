@@ -50,7 +50,7 @@ export class RecordListComponent implements OnInit {
 
   }
   onSelect(selected) {
-    this.recordSelected = selected.selected[0];
+    this.recordSelected = selected;
   }
 
   enableEditRow(selectedRow) {
@@ -77,6 +77,7 @@ export class RecordListComponent implements OnInit {
       createdBy: this.recordSelected.createdBy,
       plantId: this.recordSelected.plant._id,
       supplierId: this.recordSelected.supplier._id,
+      
       country: this.recordSelected.country,
       brokerId: this.recordSelected.broker._id,
       rmGroupName: this.recordSelected.rawMaterial.rmGroupName,
@@ -112,7 +113,7 @@ export class RecordListComponent implements OnInit {
   }
 
   public openConfirmsSwal(_id) {
-    const targetId = this.recordSelected.selected[0]._id;
+    const targetId = this.recordSelected.selectedRow[0]._id;
     swal({
       title: 'Are you sure?',
       text: 'Do you want to delete?',
