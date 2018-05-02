@@ -100,7 +100,7 @@ export class RecordListComponent implements OnInit {
   }
 
   public openConfirmsSwal(_id) {
-    const targetId = this.recordSelected.selected[0]._id;
+    const targetId = this.recordSelected._id;
     swal({
       title: 'Are you sure?',
       text: 'Do you want to delete?',
